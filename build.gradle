@@ -36,6 +36,9 @@ dependencies {
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
+	//오라클 라이브러리
+	implementation fileTree(dir: '/src/main/webapp/WEB-INF/lib', include: ['*.jar'])
+
 	//파일업로드 라이브러리
 	implementation 'commons-io:commons-io:2.8.0'
 
@@ -43,7 +46,7 @@ dependencies {
 	implementation 'org.imgscalr:imgscalr-lib:4.2'
 
 	// mariadb connector
-	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.6'
 
 
 	// 카카오 gson
