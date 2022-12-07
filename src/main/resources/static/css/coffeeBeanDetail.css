@@ -1,0 +1,261 @@
+.container-wrapper{
+    margin-top: 120px;
+    display:flex;
+    justify-content:center;
+}
+.container{
+    width:100%;
+    max-width:960px;
+    padding-bottom:100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.container-name{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.container-name h2{
+    font: bold 36px Avenir;
+    color: #222222;
+    padding-top: 30px;
+}
+.context-top{
+    display:grid;
+    grid-template-columns:40% 60%
+}
+.coffee-img{
+    display:flex;
+    justify-content:center;
+    max-height:470px;
+    max-width:450px;
+}
+.coffee-img img{
+    display:flex;
+    justify-content:center;
+    max-height:470px;
+    max-width:450px;
+}
+
+.name{
+    display:flex;
+    border-bottom:1px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.name-left{
+    width:60%;
+    display:flex;
+    flex-direction:column;
+}
+.name-left div{
+    display:flex;
+
+}
+.name-left div h2{
+    font-size: 24px;
+    font-weight: bold;
+}
+.name-left div p{
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+}
+.name-right{
+    display:flex;
+    justify-content:end;
+    width:40%;
+}
+.myDrink a{
+    display: block;
+    width: 138px;
+    height: 28px;
+    line-height: 28px;
+    background: #006633;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+}
+.description-sum{
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    padding-bottom: 55px;
+}
+.type-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:start;
+    padding-top:50px;
+    padding-bottom:50px;
+    border-bottom:1px solid #a9a9a9;
+}
+.type{
+    display:flex;
+    background: #f4f4f2;
+    border-radius: 3px;
+    color: #666;
+    font-size: 14px;
+    height: 52px;
+    line-height: 52px;
+    margin-bottom: 40px;
+    width: 95%;
+    padding-left: 5%;
+}
+.type-right{
+
+}
+.type-right h3{
+    color: #222;
+    font-size: 16px;
+    font-weight: normal;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    padding-right: 10px;
+}
+.type-right p{
+    margin-top: 0px;    
+    margin-bottom: 0px;
+}
+.type-right{
+    padding-left:15px;
+}
+.more{
+    display:flex;
+    width:100%;
+    justify-content:space-between
+}
+.more img{
+    width:49%;
+    border-radius:5px;
+    max-height:450px;
+    
+}
+.icon, .weight{
+    display:flex;
+    justify-content:end;
+}
+#delete, #edit{
+    cursor:pointer;
+    padding-left:10px;
+}
+.icon img{
+    padding-top:20px;
+    width:32px;
+}
+.icon img:hover{
+    cursor:pointer;
+}
+.title-home{
+    color:grey;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+}
+.title-home .material-symbols-outlined{
+    font-size:15px;
+}
+.context-description-bottom{
+    display:flex;
+    width:100%;
+    padding-top:25px;
+}
+.description-bottom-left{
+    display:flex;
+    flex-direction:column;
+    width:65%;
+}
+.description-bottom-right{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:35%;
+    background-color:rgba(244,244,242);
+    height:fit-content;
+    margin-left:20px;
+}
+.description-bottom-left-bottom{
+     display:flex;
+}
+.design-story img,.tasting-note img{
+    width:95%;
+}
+.design-story, .tasting-note{
+    width:50%;
+   padding:5px;
+}
+.context-top{
+    padding-bottom:25px;
+    border-bottom:2px solid #d3d3d3;
+    
+}
+.description_detail{
+    font-size:13px;
+    padding:5px;
+    padding-bottom:25px;
+}
+.right-block{
+    width:85%;
+    border-bottom:1px solid #d3d3d3;
+}
+.description-bottom-left p{
+    font-size:13px;
+ 
+}
+.context-bottom{
+     background-color:rgba(244,244,242);
+}
+
+.context-bottom-common{
+    display:flex;
+    border-bottom:1px solid #d3d3d3;
+}
+.promotion{
+    width:50%;
+    display:flex;
+}
+.promotion div{
+     width:90%;
+}
+.promotion li{
+    font-size:13px;
+}
+.order{
+    display:flex;
+    width:50%;
+    align-items:center;
+    
+}
+.order img{
+    height:90%;
+    align-self:end;
+}
+.order ul{
+    padding-left:0px;
+    font-size:13px;
+}
+.order-right{
+    margin-left:20px;
+}
+.axis-indicator{
+    width:1px;
+    background-color:#d3d3d3; 
+    height:150px;
+    align-self:center;
+    margin-right:20px;
+}
+.promotion-add{
+    padding-top:20px;
+    transform: scale(1.6);
+    height:40%;
+    color:#808080;
+}
+.promotion-add:hover{
+    cursor:pointer;
+}
+.context-description-bottom{
+    padding-bottom:60px;    
+}
