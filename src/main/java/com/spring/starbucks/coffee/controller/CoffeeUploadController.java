@@ -105,19 +105,7 @@ public class CoffeeUploadController {
             return new ResponseEntity<>("file is logo", HttpStatus.OK);
         }
 
-        try {
-            oldFileName = oldFileName.substring(oldFileName.indexOf("=")+1);
-            //파일 삭제
-            File delFile = new File(UPLOAD_PATH + oldFileName);
-            if (!delFile.exists()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-            delFile.delete();
-
-            return new ResponseEntity<>("file-del-success", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-
+        return FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
     }
 
 }

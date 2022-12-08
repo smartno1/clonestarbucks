@@ -28,7 +28,7 @@
         </div>
 
         <ul class="main-menu">
-            <li class="item">
+            <li class="item menu-1">
                 <div class="item__name">COFFEE</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </li>
-            <li class="item">
+            <li class="item menu-2">
                 <div class="item__name">MENU</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </li>
-            <li class="item">
+            <li class="item menu-3">
                 <div class="item__name">STORE</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             </li>
-            <li class="item">
+            <li class="item menu-4">
                 <div class="item__name">WHAT'S NEW</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -151,7 +151,6 @@
                 </div>
             </li>
         </ul>
-
     </div>
     <!--BADGES-->
     <div class="badges" style="position: absolute; top: 132px; right: 12px">
@@ -163,4 +162,5 @@
         </div>
     </div>
 </header>
+
 

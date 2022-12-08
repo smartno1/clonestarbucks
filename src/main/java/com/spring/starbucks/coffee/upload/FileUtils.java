@@ -1,5 +1,11 @@
 package com.spring.starbucks.coffee.upload;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -10,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Log4j2
 public class FileUtils {
-
 
     // MIME TYPE 설정을 위한 맵 만들기
     private static final Map<String, MediaType> mediaMap;
@@ -104,6 +110,22 @@ public class FileUtils {
 
     // 파일명을 받아서 확장자를 반환하는 메서드
     public static String getFileExtension(String fileName) {
+
         return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    public static ResponseEntity<String> deleteFile(String FileName, String UPLOAD_PATH){
+        try {
+            FileName = FileName.substring(FileName.indexOf("=")+1);
+            //파일 삭제
+            File delFile = new File(UPLOAD_PATH + FileName);
+            if (!delFile.exists()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            delFile.delete();
+
+            return new ResponseEntity<>("delete success", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

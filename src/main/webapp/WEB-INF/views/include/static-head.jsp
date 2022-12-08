@@ -65,6 +65,11 @@
         /* img(인라인 요소) 하단에 Baseline 공백을 제거 */
         display: block;
     }
+    .clear-fix::after{
+        content: "";
+        display: block;
+        clear:both;
+    }
 
 </style>
 <link rel="stylesheet" type="text/css" href="/css/footer.css" />

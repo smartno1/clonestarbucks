@@ -17,7 +17,7 @@ class CoffeeMapperTest {
     @Test
     @DisplayName("300개 게시물을 삽입한다.")
     void bulkInsert() {
-        
+
     }
 
     @Test

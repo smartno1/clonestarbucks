@@ -205,8 +205,10 @@ function showFileData(fileName) {
 	// 이미지면 썸네일을 렌더링
 	const $img = document.querySelector('.image').firstElementChild;
 	// 단순히 src 에 파일경로만 적으면 이미지를 불러오지 못함.
-	// 이미지렌더링을 위해 서버로 비동기 요청을 하고 파일을 로드하기위해 src 경로 설정.
-	$img.setAttribute('src', '/coffee/loadFile?fileName='+fileName);
+	// 이미지렌더링을 위해 서버로 파일 전송 비동기 요청을 하고 파일을 로드하던지,
+	// 이미지 src의 경로를 적어주고, 스프링에서 WebConfig.java 에서 리소스 경로 매칭을 해주면
+	// 이미지를 불러올 수 있음.
+	$img.setAttribute('src', fileName);
 	$img.setAttribute('alt', originFileName);
 }
 
