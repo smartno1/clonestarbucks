@@ -64,7 +64,32 @@ public class MemberService {
     // 로그인 처리
     public LoginFlag login(LoginDTO inputData, HttpSession session, HttpServletResponse response) {
         // 회원가입 여부 확인
-        Member foundMember = memberMapper.findUser(inputData.getAccount());
+//        Member foundMember = memberMapper.findUser(inputData.getAccount());
+
+
+        Member foundMember = new Member();
+        if(inputData.getEmail()==null){
+
+            Map<String, Object> findMap = new HashMap<>();
+            findMap.put("type", "account");
+            findMap.put("value", inputData.getAccount());
+
+            foundMember = memberMapper.findUser2(findMap);
+
+        }else{
+            Map<String, Object> findMap = new HashMap<>();
+            log.info("email : {}",inputData.getEmail());
+            findMap.put("type", "email");
+            findMap.put("value", inputData.getEmail());
+
+            foundMember = memberMapper.findUser2(findMap);
+
+            session.setAttribute("loginUser", foundMember);
+            session.setMaxInactiveInterval(60 * 60); // 1시간
+            return SUCCESS;
+
+        }
+
         log.info("멤버 : {}", foundMember);
 
         if (foundMember != null) {

@@ -22,14 +22,14 @@ function check(form){
 		
 		return false;
 	}
-	else if(!regex.test(pwd)){
-		var errorText = "<span  id=\"errorText\">영문, 숫자 혼합하여 10~20자리 이내로 입력하세요.</span>"
-		$('.password-wrapper').append(errorText);
-		$('#password').css("border","1px solid red");
-		$('#password').focus();
+	// else if(!regex.test(pwd)){
+	// 	var errorText = "<span  id=\"errorText\">영문, 숫자 혼합하여 10~20자리 이내로 입력하세요.</span>"
+	// 	$('.password-wrapper').append(errorText);
+	// 	$('#password').css("border","1px solid red");
+	// 	$('#password').focus();
 		
-		return false;
-	}
+	// 	return false;
+	// }
 	else if(pwd != pwd2){
 		var errorText = "<span id=\"errorText\">입력하신 비밀번호가 다릅니다.</span>"
 		$('.passwordCheck-wrapper').append(errorText);
@@ -46,19 +46,19 @@ function check(form){
 		$('input[name = name]').focus();
 		
 	}
-	else if(form.year.value == 0){
+	else if(form.birthYear.value == 0){
 		var errorText = "<span class =\"subText\" id=\"errorText\">생년월일을 모두 입력하세요.</span>"
 		$('.ymd').append(errorText);
 
 		$('#ymd')[0].scrollIntoView({block  : 'center'});
 	}
-	else if(form.month.value == 0){
+	else if(form.birthMonth.value == 0){
 		var errorText = "<span class =\"subText\" id=\"errorText\">생년월일을 모두 입력하세요.</span>"
 		$('.ymd').append(errorText);
 	
 			$('#ymd')[0].scrollIntoView({block  : 'center'});
 	}
-	else if(form.day.value == 0){
+	else if(form.birthDay.value == 0){
 		var errorText = "<span class =\"subText\" id=\"errorText\">생년월일을 모두 입력하세요.</span>"
 		$('.ymd').append(errorText);
 
@@ -69,19 +69,29 @@ function check(form){
 		$('.phone-wrapper .w-88').append(errorText);
 		$('input[name = phone]').focus();
 	}
+	else if(!form.email.value){
+		var errorText = "<span class =\"subText\" id=\"errorText\">이메일을 입력하세요.</span>"
+		$('.email-wrapper .w-88').append(errorText);
+		$('input[name = email]').focus();
+	}
+
+
 	else{
-		form.action = "register";
+		form.action = "./sign-up";
 		form.method = "POST";
 		form.submit();
 	}
 }
 $('#id').focusout(function(){
-	var param = '?id='+$('#id').val();
-	if(param != '?id='){
+	var param = '?type=account&value='+$('#id').val();
+	console.log($('#id').val());
+	if(param != '?type=account&value='){
+
+
 			$.ajax({
 				type : 'GET',
 				datatype : 'json',
-				url : 'idCheck'+param,
+				url : '/member/check'+param,
 				beforeSend : function(){
 					$(".id-wrapper .subText").remove();
 					$('#id').data('accept','false');
@@ -91,13 +101,13 @@ $('#id').focusout(function(){
 					var readyText = "<span class =\"subText\" id=\"readyText\">아이디를 조회중입니다.</span>"
 					$('.id-wrapper').append(readyText);
 				},
-				success : function(result){
-					if(result){
+				success : function(flag){
+					if(!(flag===null)){
 						$("#id").removeAttr("disabled");
 						$(".id-wrapper #readyText").remove();
 						$("#id").css("border","1px solid #d3d3d3");
 						
-						if(result > 0){
+						if(flag=== 'true'){
 							var errorText = "<span class =\"subText\" id=\"errorText\">사용하실 수 없는 아이디입니다.</span>"
 							$('.id-wrapper').append(errorText);
 							$('#id').data('accept','false');
@@ -115,11 +125,12 @@ $('#id').focusout(function(){
 					}
 					else{
 						var msg = "아이디 확인 실패!";
+						console.log("플래그 : " +flag);
 						alert(msg);
 					}				
 				},
 				error: function(xhr, status, error){
-						alert("로그인 로드 실패");
+						alert("회원가입 로드 실패");
 				},
 			});
 		}

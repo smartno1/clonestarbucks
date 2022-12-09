@@ -82,11 +82,12 @@ public class MemberController {
     // 아이디, 이메일 중복확인 비동기 요청 처리
     @GetMapping("/check")
     @ResponseBody
-    public ResponseEntity<Boolean> check(String type, String value) {
+    public ResponseEntity<String> check(String type, String value) {
         log.info("/member/check?type={}&value={} GET!! ASYNC", type, value);
         boolean flag = memberService.checkSignUpValue(type, value);
 
-        return new ResponseEntity<>(flag, HttpStatus.OK);
+        log.info("check flag - {}", String.valueOf(flag));
+        return new ResponseEntity<>(String.valueOf(flag), HttpStatus.OK);
     }
 
 
@@ -115,7 +116,7 @@ public class MemberController {
         log.info("memberService.login 시작");
         // 로그인 서비스 호출
         LoginFlag flag = memberService.login(inputData, session, response);
-
+        model.addAttribute("loginMsg", flag);
         log.info("memberService.login 종료");
         log.info(flag);
         if (flag == LoginFlag.SUCCESS) {
@@ -126,7 +127,7 @@ public class MemberController {
                 return "redirect:" + redirectURI;
 
         }
-        model.addAttribute("loginMsg", flag);
+
         return "member/sign-in";
 
     }
@@ -145,12 +146,6 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/myPage")
-    public String viewMyPage() {
-
-        return "myPage";
-
-    }
 
 
 

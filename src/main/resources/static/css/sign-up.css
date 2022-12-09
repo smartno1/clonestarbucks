@@ -156,7 +156,7 @@ input[type="radio"]:checked+.btn{
 	width:95%;
 }
 .nickname-img{
-	background-image : url("../img/nickname_bg.png");
+	background-image : url("../images/nickname_bg.png");
 	background-size : cover;
 	height:350px;
 }

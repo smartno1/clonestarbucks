@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
         <title>1주차 과제</title>
          <link href="/images/logo.png" rel="shortcut icon" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
@@ -27,10 +27,10 @@
                         	<c:set var="name" value="${loginInfo.name}"/>
                         	<c:choose>
                         		<c:when test="${empty name}">
-                        			<a href="loginForm" class="right-upper-text">Sign in</a>	
+                        			<a href="/member/sign-in" class="right-upper-text">Sign in</a>	
                         		</c:when>
                         		<c:otherwise>
-                        			<a href="logout" class="right-upper-text">Sign out</a>	
+                        			<a href="/member/sign-out" class="right-upper-text">Sign out</a>	
 								</c:otherwise>
 							</c:choose>
                             <a href="#" class="right-upper-text">My Starbuks</a>

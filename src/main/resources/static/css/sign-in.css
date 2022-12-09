@@ -1,5 +1,5 @@
 .container-wrapper{
-	background-image : url("../img/login_bg.jpg");
+	background-image : url("/images/login_bg.jpg");
 	height:650px;
 	background-attachment: fixed;
 	background-size : cover;
@@ -158,6 +158,15 @@ h2{
 .login-bottom button:nth-child(3){
 	border-right:none;
 }
+#kakao-login{
+	width:95%;
+	display:flex;
+	justify-content:center;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+
 #buttonDiv{
 	width:95%;
 	display:flex;

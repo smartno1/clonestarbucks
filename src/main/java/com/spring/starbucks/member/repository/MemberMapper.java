@@ -23,5 +23,6 @@ public interface MemberMapper {
     // 회원 조회 기능
     Member findUser(String account);
 
+    Member findUser2(Map<String, Object> checkMap);
 
 }
