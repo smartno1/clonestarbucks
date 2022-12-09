@@ -19,8 +19,8 @@ public class CoffeeService {
         return coffeeMapper.findOne(id);
     }
 
-    public List<Coffee> findAllService(){
-        return coffeeMapper.findAll();
+    public List<Coffee> findAllService(String kind){
+        return coffeeMapper.findAll(kind);
     }
 
     public boolean saveService(Coffee coffee){

@@ -52,15 +52,19 @@
 <style>
     /*COMMON*/
     body {
-        font-family: 'Nanum Gothic', sans-serif;
+        font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
         font-size: 16px;
         font-weight: 400;
-        line-height: 1.4;
+        line-height: 1;
         color: #333;
     }
-    a {
-        text-decoration: none;
+    .en {
+        font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+        letter-spacing: 0;
     }
+    a { text-decoration: none; }
+    a:link { color:#646464; text-decoration: none;}
+    a:visited { color:#646464; text-decoration: none;}
     img {
         /* img(인라인 요소) 하단에 Baseline 공백을 제거 */
         display: block;

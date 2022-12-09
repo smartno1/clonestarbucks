@@ -32,9 +32,10 @@ public class CoffeeController {
     private final CoffeeService coffeeService;
 
     @GetMapping("/bean")
-    public String beanList(Model model){
-
-        List<Coffee> coffees = coffeeService.findAllService();
+    public String beanList(@ModelAttribute("kind") String kind, Model model){
+        log.info("/coffee/bean GET! - kind: {}",kind);
+        List<Coffee> coffees = coffeeService.findAllService(kind);
+        log.info("list - {}",coffees);
         model.addAttribute("list",coffees);
         return "coffeeBean/coffeeBeanList";
     }

@@ -29,23 +29,23 @@
 
         <ul class="main-menu">
             <li class="item menu-1">
-                <div class="item__name">COFFEE</div>
+                <div class="item__name"><a href="javascript:void(0)">COFFEE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4>커피</h4>
+                                <h4><a href="/coffee/bean">커피</a></h4>
                                 <ul>
-                                    <a href="/coffee/bean"><li>스타벅스 원두</li></a>
-                                    <li>나와 어울리는 커피</li>
+                                    <li><a href="/coffee/bean">스타벅스 원두</a></li>
+                                    <li><a href="javascript:void(0)">나와 어울리는 커피</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4>에스프레소 음료</h4>
+                                <h4><a href="javascript:void(0)">에스프레소 음료</a></h4>
                                 <ul>
-                                    <li>아메리카노</li>
-                                    <li>카푸치노</li>
-                                    <li>모카</li>
+                                    <li><a href="javascript:void(0)">아메리카노</a></li>
+                                    <li><a href="javascript:void(0)">카푸치노</a></li>
+                                    <li><a href="javascript:void(0)">모카</a></li>
                                 </ul>
                             </li>
 
@@ -62,30 +62,30 @@
                 </div>
             </li>
             <li class="item menu-2">
-                <div class="item__name">MENU</div>
+                <div class="item__name"><a href="javascript:void(0)">MENU</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4>음료</h4>
+                                <h4><a href="javascript:void(0)">음료</a></h4>
                                 <ul>
-                                    <li>아메리카노</li>
-                                    <li>카푸치노</li>
-                                    <li>모카</li>
+                                    <li><a href="javascript:void(0)">아메리카노</a></li>
+                                    <li><a href="javascript:void(0)">카푸치노</a></li>
+                                    <li><a href="javascript:void(0)">모카</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4>푸드</h4>
+                                <h4><a href="javascript:void(0)">푸드</a></h4>
                                 <ul>
-                                    <li>케익</li>
-                                    <li>샌드위치 & 샐러드</li>
+                                    <li><a href="javascript:void(0)">케익</a></li>
+                                    <li><a href="javascript:void(0)">샌드위치 & 샐러드</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4>상품</h4>
+                                <h4><a href="javascript:void(0)">상품</a></h4>
                                 <ul>
-                                    <li>머그</li>
-                                    <li>보온병</li>
+                                    <li><a href="javascript:void(0)">머그</a></li>
+                                    <li><a href="javascript:void(0)">보온병</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -99,15 +99,15 @@
                 </div>
             </li>
             <li class="item menu-3">
-                <div class="item__name">STORE</div>
+                <div class="item__name"><a href="javascript:void(0)">STORE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4>매장 찾기</h4>
+                                <h4><a href="javascript:void(0)">매장 찾기</a></h4>
                             </li>
                             <li>
-                                <h4>드라이브 스루</h4>
+                                <h4><a href="javascript:void(0)">드라이브 스루</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -122,20 +122,20 @@
                 </div>
             </li>
             <li class="item menu-4">
-                <div class="item__name">WHAT'S NEW</div>
+                <div class="item__name"><a href="javascript:void(0)">WHAT'S NEW</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4>이벤트</h4>
+                                <h4><a href="javascript:void(0)">이벤트</a></h4>
 
                             </li>
                             <li>
-                                <h4>뉴스</h4>
+                                <h4><a href="javascript:void(0)">뉴스</a></h4>
 
                             </li>
                             <li>
-                                <h4>공지사항</h4>
+                                <h4><a href="javascript:void(0)">공지사항</a></h4>
 
                             </li>
                         </ul>

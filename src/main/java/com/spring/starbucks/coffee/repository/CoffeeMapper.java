@@ -11,7 +11,7 @@ public interface CoffeeMapper {
 
     Coffee findOne(int id);
 
-    List<Coffee> findAll();
+    List<Coffee> findAll(String kind);
 
     boolean save(Coffee coffee);
 

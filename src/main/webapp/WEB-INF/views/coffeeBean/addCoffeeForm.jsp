@@ -45,12 +45,12 @@
 							<p>커피 타입</p>
 							<select class="form-select type" aria-label="Default select example" name="type">
 								  <option value="">선택안함</option>
-								  <option value="blondRoast">블론드 로스트</option>
-								  <option value="mediumRoast">미디엄 로스트</option>
-								  <option value="darkRoast">다크 로스트</option>
-								  <option value="reserveRoast">리저브 원두</option>
+								  <option value="blond_roast">블론드 로스트</option>
+								  <option value="medium_roast">미디엄 로스트</option>
+								  <option value="dark_roast">다크 로스트</option>
+								  <option value="reserve_roast">리저브 원두</option>
 								  <option value="flavor">플레이버</option>
-								  <option value="flavorLatte">플레이버 라떼</option>
+								  <option value="flavor_latte">플레이버 라떼</option>
 							</select>
 						</div>
 					</div>
