@@ -1,7 +1,9 @@
 package com.spring.starbucks.coffee.service;
 
 import com.spring.starbucks.coffee.domain.Coffee;
+import com.spring.starbucks.coffee.domain.Tastedto;
 import com.spring.starbucks.coffee.repository.CoffeeMapper;
+import com.spring.starbucks.favorite.domain.Favorite;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,10 @@ public class CoffeeService {
         return coffeeMapper.findAll(kind);
     }
 
+    public List<Coffee> findAll2Service(Tastedto tastedto){
+        return coffeeMapper.findAll2(tastedto);
+    }
+
     public boolean saveService(Coffee coffee){
         return coffeeMapper.save(coffee);
     }
@@ -34,4 +40,7 @@ public class CoffeeService {
     public boolean deleteService(int id){
         return coffeeMapper.delete(id);
     }
+
+
+
 }

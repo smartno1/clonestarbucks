@@ -29,7 +29,7 @@
 
         <ul class="main-menu">
             <li class="item menu-1">
-                <div class="item__name"><a href="javascript:void(0)">COFFEE</a></div>
+                <div class="item__name"><a href="/coffee/bean">COFFEE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
@@ -37,7 +37,7 @@
                                 <h4><a href="/coffee/bean">커피</a></h4>
                                 <ul>
                                     <li><a href="/coffee/bean">스타벅스 원두</a></li>
-                                    <li><a href="javascript:void(0)">나와 어울리는 커피</a></li>
+                                    <li><a href="/coffee/productFinder">나와 어울리는 커피</a></li>
                                 </ul>
                             </li>
                             <li>

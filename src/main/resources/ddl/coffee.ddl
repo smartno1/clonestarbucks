@@ -22,3 +22,10 @@ CREATE table starbucks.coffee(
 
     ,CONSTRAINT pk_coffee PRIMARY KEY (id)
 );
+
+
+CREATE TABLE starbucks.myfavorite(
+     myfavorit_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    , account VARCHAR(50)
+    , coffee_id INT(11)
+);

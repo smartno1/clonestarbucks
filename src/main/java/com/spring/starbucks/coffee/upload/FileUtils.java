@@ -122,7 +122,7 @@ public class FileUtils {
             if (!delFile.exists()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
             delFile.delete();
-
+            log.info("delete success");
             return new ResponseEntity<>("delete success", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

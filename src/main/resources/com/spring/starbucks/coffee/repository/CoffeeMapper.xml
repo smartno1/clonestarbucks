@@ -32,6 +32,12 @@
         <if test="kind == 'capsule'">WHERE kind = #{kind};</if>
     </select>
 
+    <select id="findAll2" resultMap="CoffeeMap">
+        SELECT *
+        FROM coffee
+        WHERE flavor=#{flavor} AND feel=#{feel} AND degree=#{degree}
+    </select>
+
     <insert id="save">
         INSERT INTO coffee
         (price, flavor, feel, degree, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, design_story, coffee_tasting_note, tasting_note, enjoy_with, relative, processing_method)
@@ -48,4 +54,6 @@
         DELETE FROM coffee
         WHERE id=#{id}
     </delete>
+
+
 </mapper>

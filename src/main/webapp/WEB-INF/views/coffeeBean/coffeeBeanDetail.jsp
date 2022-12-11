@@ -1,42 +1,35 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-		<%@include file="../include/static-head.jsp"%>
-        <link rel="stylesheet" type="text/css" href="/css/coffeeBeanDetail.css">
+	<%@include file="../include/static-head.jsp"%>
+	<title>커피 | Starbucks Coffee Korea</title>
+	<link rel="stylesheet" type="text/css" href="/css/coffeeBeanDetail.css">
 
 </head>
 <body>
+<div class="wrap">
 	<%@include file="../include/header.jsp"%>
-          
 	<main class="container-wrapper">
 		<div class="container">
-			<div class="container-name">
-				<h2>스타벅스 원두</h2>
-				<span class="title-home">
-					<span class="material-symbols-outlined">home</span>&nbsp;
-					<span> > COFFEE >
-						<c:choose>
-							<c:when test="${coffee.type eq 'darkRoast'}">
-								다크 로스트
-							</c:when>
-							<c:when test="${coffee.type eq 'blondRoast'}">
-								블론드 로스트
-							</c:when>
-							<c:when test="${coffee.type eq 'mediumRoast'}">
-								미디엄 로스트
-							</c:when>
-							<c:when test="${coffee.type eq 'reserveRoast'}">
-								리저브 원두
-							</c:when>
-						</c:choose>					
-					  > ${coffee.nameKr}</span>
-				</span>
-			</div>
+			<section class="detailHeader">
+				<div class="container-name">
+					<h2>스타벅스 원두</h2>
+					<p></p>
+					<nav class="nav">
+						<ul class="nav-ul">
+							<li><a href="/"><img src="/images/icon/icon_home.png" alt="홈으로"></a></li>
+							<li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
+							<li><a href="/coffee/bean" class="en">COFFEE</a></li>
+							<li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
+							<li><a href="/coffee/bean">커피</a></li>
+							<li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
+							<li><a href="/coffee/productFinder">나와 어울리는 커피</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 			<div class="context-top">
 				<div class="coffee-img">
 					<img src="${coffee.image}"/>
@@ -51,7 +44,7 @@
 							<span class="material-symbols-outlined" id="edit" data-id="${coffee.id}">edit</span>
 							<span class="material-symbols-outlined" id ="delete" data-id="${coffee.id}">delete</span>
 						</div>
-						<div class="myDrink">
+						<div id="addMyFavorite" data-id="${coffee.id}">
 							<a>나만의 상품으로 등록</a>
 						</div>
 
@@ -159,8 +152,12 @@
 		</div>
 	</main>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+</div>
  	<script src="/js/crud.js"></script>
   	<script src="/js/share.js"></script>
   	<script src="/js/coffeeDetail.js"></script>
+	<script>
+		console.log("${coffee.type}");
+	</script>
 </body>
 </html>	

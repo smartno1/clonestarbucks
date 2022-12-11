@@ -7,9 +7,6 @@ h3{
     font: normal 17px Avenir;
     font-weight:600;
 }
-.container-wrapper{
-    margin-top: 120px;
-}
 .container{
     width:100%;
     max-width:960px;
@@ -184,10 +181,8 @@ h3{
     font-weight: bold;
     margin-bottom: 10px;
 }
-
 .context-bottom{
-    display:flex;
-    justify-content:end;
+    text-align: end;
     padding-top:50px;
 }
 .submit{

@@ -6,19 +6,18 @@
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<%@include file="../include/static-head.jsp"%>
-	<title>커피 수정 | Starbucks Korea</title>
+	<title>커피 | Starbucks Korea</title>
 	<link rel="stylesheet" type="text/css" href="/css/coffeeBeanEdit.css">
-
-
 
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-	<form id="form" action="/coffee/addCoffee" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+	<form id="form" action="/coffee/editCoffeeBean" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
 		<div class="container">
 			<div class="container-name">
 				<h2>스타벅스 원두 수정</h2>
+				<input type="hidden" name="id" value="${coffee.id}">
 			</div>
 			<div class="context-top">
 				<div class="coffee-img">
@@ -134,9 +133,10 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="context-bottom" >
-				<a href="javascript:void(0)"><button id="modData" class="btn btn-primary submit" type="button">수정</button></a>
-				<a href="/coffee/deleteCoffeeBean?id=${coffee.id}"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+				<button id="modData" class="btn btn-primary submit" type="button">수정</button>
+				<button id="cancel" class="btn btn-primary submit" type="button">취소</button>
 			</div>
 
 		</div>
@@ -263,15 +263,18 @@
 
 	function submitData(){
 		document.querySelector('.context-bottom').addEventListener('click', e=>{
-
-			if(e.target.matches('#addData')) {
-				e.preventDefault();
+			e.preventDefault();
+			if(e.target.matches('#modData')) {
+				console.log("modData");
 				document.querySelector('input[name="file"]').setAttribute("disabled", "");
 				// = document.querySelector('input[name="file"]').disabled=true;
 				const $form = document.getElementById('form');
 				$form.submit();
 			}
-
+			if(e.target.matches('#cancel')) {
+				console.log("cancel");
+				history.go(-1);
+			}
 		})
 	}
 

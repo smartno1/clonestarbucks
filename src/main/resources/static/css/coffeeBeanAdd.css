@@ -7,9 +7,6 @@ h3{
     font: normal 17px Avenir;
     font-weight:600;
 }
-.container-wrapper{
-    margin-top: 120px;
-}
 .container{
     width:100%;
     max-width:960px;

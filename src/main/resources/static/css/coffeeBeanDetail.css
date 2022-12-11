@@ -1,31 +1,50 @@
+
 .container-wrapper{
-    margin-top: 120px;
-    display:flex;
-    justify-content:center;
+    letter-spacing: -0.5px;
 }
 .container{
     width:100%;
-    max-width:960px;
-    margin-top: 10px;
+    max-width:1100px;
+    margin:0 auto;
 }
-.container-name{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.detailHeader {}
+.detailHeader .container-name{
+    /*margin-top: 120px;*/
+    margin-bottom: 20px;
+    width: 100%;
+    height: 98px;
+    background: #ffffff;
+    position: relative;
 }
-.container-name h2{
-    font: bold 36px Avenir;
-    color: #222222;
+.detailHeader .container-name h2{
+    font-size: 30px;
+    font-weight: bold;
     padding-top: 30px;
 }
-.title-home{
-    color:grey;
-    font-size:12px;
-    display:flex;
-    align-items:center;
+.detailHeader .container-name p {
+    font-size: 16px;
+    color: #666;
+    padding-top: 20px;
 }
-.title-home .material-symbols-outlined{
-    font-size:15px;
+.detailHeader .nav .nav-ul{
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
+.detailHeader .nav .nav-ul li{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #666666;
+    vertical-align: middle;
+}
+.detailHeader .nav .nav-ul li img {
+    padding-top: 4px;
+}
+.detailHeader .nav .nav-ul li > img{
+    padding-top: 7px;
 }
 .context-top{
     display:grid;
@@ -41,10 +60,8 @@
     object-fit: scale-down;
 }
 .coffee-img img{
-    display:flex;
-    justify-content:center;
-    max-height:400px;
-    max-width:400px;
+    max-height:100%;
+    max-width:100%;
 }
 .name{
     display:flex;
@@ -62,6 +79,7 @@
     font-weight: bold;
 }
 .name-left p{
+    padding-top: 10px;
     font-size: 14px;
     font-weight: normal;
     color: #666;
@@ -71,7 +89,7 @@
     justify-content:end;
     width:20%;
 }
-.myDrink a{
+#addMyFavorite a{
     display: block;
     width: 138px;
     height: 28px;
