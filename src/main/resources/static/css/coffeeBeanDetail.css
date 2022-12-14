@@ -53,8 +53,7 @@
     border-bottom:2px solid #d3d3d3;
 }
 .coffee-img{
-    display:flex;
-    justify-content:center;
+
     max-height:400px;
     max-width:400px;
     object-fit: scale-down;

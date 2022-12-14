@@ -18,9 +18,18 @@
     <script defer src="/js/main.js"></script>
 </head>
 <body>
+<div class="wrapper">
     <%@include file="include/header.jsp"%>
 
-
+<!--BADGES-->
+<div class="badges">
+    <div class="badge">
+        <img src="/images/badge1.jpg" alt="Badge" />
+    </div>
+    <div class="badge">
+        <img src="/images/badge2.jpg" alt="Badge"/>
+    </div>
+</div>
 
 <!--VISUAL-->
 <section class="visual">
@@ -250,12 +259,7 @@
 
     </div>
 </section>
-
-
-
-
-
 <%@include file="include/footer.jsp"%>
-
+</div>
 </body>
 </html>

@@ -1,7 +1,8 @@
 
 /*INNER*/
 header .inner {
-    width: 1100px;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
 }
@@ -150,7 +151,7 @@ header .main-menu .item .item__contents .contents__menu > ul > li > ul > li:hove
 header .main-menu .item .item__contents .contents__texture {
     padding: 26px 0;
     font-size: 12px;
-    background-image: url("../images/main_menu_pattern.jpg");
+    background-image: url("/images/main_menu_pattern.jpg");
 }
 header .main-menu .item .item__contents .contents__texture h4 {
     color: #999;
@@ -159,17 +160,4 @@ header .main-menu .item .item__contents .contents__texture h4 {
 header .main-menu .item .item__contents .contents__texture p {
     color: #64a70b;
     margin: 4px 0 14px;
-}
-/*BADGES*/
-header .badges {
-    position: absolute;
-    top: 132px;
-    right: 12px;
-}
-header .badges .badge {
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 12px;
-    box-shadow: 4px 4px 10px rgba(0,0,0,.15);
-    cursor: pointer;
 }

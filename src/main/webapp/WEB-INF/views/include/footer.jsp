@@ -7,7 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+    #to-top{
+        right: -100px;
+    }
+</style>
 <!--AWARDS-->
 <section class="awards">
     <div class="inner">

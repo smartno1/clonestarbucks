@@ -29,19 +29,19 @@
 
         <ul class="main-menu">
             <li class="item menu-1">
-                <div class="item__name"><a href="/coffee/bean">COFFEE</a></div>
+                <div class="item__name"><a href="javascript:void(0)">COFFEE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="/coffee/bean">커피</a></h4>
+                                <h4><a href="/coffee/bean/list">커피</a></h4>
                                 <ul>
-                                    <li><a href="/coffee/bean">스타벅스 원두</a></li>
-                                    <li><a href="/coffee/productFinder">나와 어울리는 커피</a></li>
+                                    <li><a href="/coffee/bean/list">스타벅스 원두</a></li>
+                                    <li><a href="/coffee/bean/productFinder">나와 어울리는 커피</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">에스프레소 음료</a></h4>
+                                <h4><a href="/coffee/espresso/list">에스프레소 음료</a></h4>
                                 <ul>
                                     <li><a href="javascript:void(0)">아메리카노</a></li>
                                     <li><a href="javascript:void(0)">카푸치노</a></li>
@@ -127,15 +127,15 @@
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="javascript:void(0)">이벤트</a></h4>
+                                <h4><a href="/board/event/list">이벤트</a></h4>
 
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">뉴스</a></h4>
+                                <h4><a href="/board/event/news">뉴스</a></h4>
 
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">공지사항</a></h4>
+                                <h4><a href="/board/event/notice">공지사항</a></h4>
 
                             </li>
                         </ul>
@@ -151,15 +151,6 @@
                 </div>
             </li>
         </ul>
-    </div>
-    <!--BADGES-->
-    <div class="badges" style="position: absolute; top: 132px; right: 12px">
-        <div class="badge">
-            <img src="/images/badge1.jpg" alt="Badge" />
-        </div>
-        <div class="badge" style="white-space:normal; display: block;">
-            <img src="/images/badge2.jpg" alt="Badge"/>
-        </div>
     </div>
 </header>
 

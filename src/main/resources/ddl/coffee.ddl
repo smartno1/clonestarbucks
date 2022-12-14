@@ -25,7 +25,37 @@ CREATE table starbucks.coffee(
 
 
 CREATE TABLE starbucks.myfavorite(
-     myfavorit_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    my_favorit_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , account VARCHAR(50)
-    , coffee_id INT(11)
+    , type VARCHAR(50)
+    , type_id INT(11)
+    , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE starbucks.board_event(
+    event_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    , kind VARCHAR(50)
+    , title VARCHAR(50)
+    , begin_date DATETIME
+    , end_date DATETIME
+    , list_img VARCHAR(50)
+    , content_img VARCHAR(50)
+    , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE starbucks.board_news(
+    news_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    , type VARCHAR(50)
+    , title VARCHAR(50)
+    , list_img VARCHAR(50)
+    , content_img VARCHAR(50)
+    , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE starbucks.board_notice(
+   notice_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    , title VARCHAR(50)
+    , content_img VARCHAR(50)
+    , conut INT(10) DEFAULT 0
+    , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );

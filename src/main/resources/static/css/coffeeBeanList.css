@@ -67,7 +67,6 @@ ul.nav-ul{
     padding-top: 30px ;
     position: relative;
     padding-bottom: 10px;
-    min-width: 435px;
 }
 .search_kind div a{
     float: left;
@@ -79,8 +78,10 @@ ul.nav-ul{
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    width: 20%;
-    margin-right: 10px;
+    width: 32.3%;
+    max-width: 200px;
+    min-width: 145px;
+    margin-right: 1%;
 }
 .search_kind div a:hover{
     text-decoration-line:underline;

@@ -50,14 +50,14 @@
 <style>
     /*COMMON*/
     body {
-        font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+        font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica, serif;
         font-size: 16px;
         font-weight: 400;
         line-height: 1;
         color: #333;
     }
     .en {
-        font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+        font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica, serif;
         letter-spacing: 0;
     }
     a { text-decoration: none; }

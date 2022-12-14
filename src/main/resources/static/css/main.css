@@ -85,11 +85,20 @@
 .show .back-to-position.delay-3 {
   transition-delay: .9s;
 }
-
-
-
-
-
+/*BADGES*/
+.badges {
+  position: fixed;
+  top: 132px;
+  right: 12px;
+  z-index: 1000;
+}
+.badges .badge {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,.15);
+  cursor: pointer;
+}
 /*VISUAL*/
 .visual {
   background-image: url("../images/visual_bg.jpg");

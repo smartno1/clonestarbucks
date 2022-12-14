@@ -7,13 +7,13 @@ $('#delete').click(function(){
 			method:"DELETE"
 			,body:id
 		};
-		fetch("/coffee/deleteCoffeeBean",reqInfo)
+		fetch("/coffee/bean/deleteCoffeeBean",reqInfo)
 			.then(res => res.text())
 			.then(msg => {
 				console.log(msg);
 				if(msg === "delete success"){
 					alert("삭제에 성공하였습니다.");
-					location.href = "/coffee/bean"
+					location.href = "/coffee/bean/list";
 				}else{
 					alert("삭제에 실패하였습니다.");
 				}
@@ -21,7 +21,7 @@ $('#delete').click(function(){
 	}
 });
 $('#edit').click(function(){
-	var link = "/coffee/editCoffeeBeanForm?id="+$('#edit').data('id');
+	var link = "/coffee/bean/editCoffeeBeanForm?id="+$('#edit').data('id');
 	console.log(link);
 	location.href= link
 });
