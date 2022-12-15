@@ -7,28 +7,28 @@
     <title>이벤트 | Starbucks Korea</title>
     <style>
 
-        .container{
+        .middle{
             width:100%;
             max-width:1100px;
             margin: 0 auto;
         }
-        .container-name{
+        .name{
             margin-bottom: 20px;
         }
-        .container-name h2{
+        .name h2{
             font-size: 30px;
             font-weight: bold;
             padding-top: 30px;
         }
-        .container-name > h2 a{
+        .name > h2 a{
             margin-left: 20px;
             padding-left: 10px;
             font-size: 14px;
         }
-        .container-name h2 a span{
+        .name h2 a span{
             vertical-align: text-bottom;
         }
-        .container-name h2 a span.name-add{
+        .name h2 a span.name-add{
             vertical-align: text-top;
         }
         .nav {
@@ -109,9 +109,13 @@
             width: 100%;
             max-width: 23.65%;
             height: fit-content;
-            margin-right: 1.35%;
+            margin-right: 1.8%;
             align-items:center;
+            padding-bottom: 20px;
 
+        }
+        .event:nth-child(4n){
+            margin-right: 0;
         }
         .event a{
             display: block;
@@ -121,42 +125,66 @@
             overflow: hidden;
             margin-bottom: 15px;
         }
+        .event a img{
+            width: 100%;
+        }
         .event.onGoing a img{
             width: inherit;
-
             object-fit: contain;
             transition: all 0.5s linear;
         }
         .event.onGoing a img:hover{
             transform:scale(1.2)
         }
-        .event-name{
-            font-size: 14px;
-        }
-        .end li a{
+        .event.end a{
+            display: block;
             position: relative;
-
+            background-color: #646464;
         }
-        .end li a i{
+        .event.end a i {
+            display: block;
             position: absolute;
-            top: 50%;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.7;
         }
-
-
+        .event.end a i img{
+            width: 100%;
+            max-width: fit-content;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .event .event-name {
+            font-size: 16px;
+            color: #444444;
+            text-align: center;
+            width: 100%;
+            white-space: break-spaces;
+        }
+        .event .event-period{
+            font-size: 12px;
+            color: #666666;
+            margin-top: 8px;
+            text-align: center;
+            width: 100%;
+        }
         section{
             z-index:-66;
         }
         header{
             z-index:99;
         }
-
     </style>
 </head>
 <body>
+<div class="wrapper">
 <%@include file="../../include/header.jsp"%>
-<section class="container-wrapper">
-    <div class="container">
-        <div class="container-name">
+<main class="main-wrapper">
+    <div class="middle">
+        <div class="name">
             <h2>이벤트
                 <a href="/board/event/addEvent">
                     <span class="material-symbols-outlined">add</span>
@@ -191,7 +219,7 @@
                     <c:choose>
                         <c:when test="${!e.ended}">
                             <li class="event onGoing" data-kind="${e.kind}">
-                                <a href="/board/event/eventDetail?id=${e.eventId}">
+                                <a href="/board/event/detail?id=${e.eventId}">
                                     <img src="${e.listImg}"/>
                                 </a>
                                 <p class="event-name">${e.prettierTitle}</p>
@@ -213,7 +241,7 @@
                     <c:choose>
                         <c:when test="${e.ended}">
                             <li class="event end" data-kind="${e.kind}">
-                                <a href="/board/event/eventDetail?id=${e.eventId}">
+                                <a href="/board/event/detail?id=${e.eventId}">
                                     <i><img src="/images/board/event/icon_end_event.png" alt=""></i>
                                     <img src="${e.listImg}"/>
                                 </a>
@@ -227,13 +255,14 @@
             </div>
         </div>
     </div>
-</section>
+</main>
 <%@ include file="../../include/footer.jsp"%>
+</div>
 </body>
 <script>
 
     /*
-    * 원두 비아 캡슐 선택시 색상변경
+    * kind 선택시 색상변경
     */
 
     function selectKind(){
@@ -280,19 +309,9 @@
         })
     }
 
-    // 처음 전체 선택되게
-    function defaultKind(){
-        const $kinds = [...document.querySelector('.search-kind').children];
-        $kinds[0].firstElementChild.classList.add('selected');
-    }
-
-
-
     (function (){
         defaultKind();
         selectKind();
-
-
     })();
 </script>
 </html>

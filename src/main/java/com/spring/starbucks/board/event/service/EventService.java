@@ -28,7 +28,6 @@ public class EventService {
         List<Event> events = eventMapper.findAll();
 
         LocalDate current = LocalDate.now();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         for(int i=0;i<events.size();i++) {
             Event event = events.get(i);

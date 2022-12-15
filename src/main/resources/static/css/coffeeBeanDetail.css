@@ -1,4 +1,6 @@
-
+a:hover{
+    cursor: pointer;
+}
 .container-wrapper{
     letter-spacing: -0.5px;
 }
@@ -163,11 +165,11 @@
     cursor:pointer;
     padding-left:10px;
 }
-.icon img{
+.share img{
     padding-top:20px;
     width:32px;
 }
-.icon img:hover{
+.share img:hover{
     cursor:pointer;
 }
 .context-description-bottom{

@@ -88,6 +88,17 @@
             max-width: 1100px;
             margin: 0 auto;
         }
+        .bottom .container p{
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            padding-top: 40px;
+            border-top: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .bottom .container .list{
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -123,6 +134,7 @@
         </section>
         <section class="bottom">
             <div class="container">
+                <p>관련 제품</p>
                 <ul class="list clear-fix">
                     <li class="">
                     </li>

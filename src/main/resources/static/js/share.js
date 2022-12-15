@@ -1,4 +1,4 @@
-$(".icon").click(function(){
+$(".facebook").click(function(){
 		var currentLink = document.location.href;
 		var link= "http://www.facebook.com/sharer/sharer.php?u="+ currentLink;
 		

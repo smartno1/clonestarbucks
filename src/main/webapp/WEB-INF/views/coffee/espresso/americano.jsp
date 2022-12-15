@@ -88,6 +88,17 @@
             max-width: 1100px;
             margin: 0 auto;
         }
+        .bottom .container p{
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            padding-top: 40px;
+            border-top: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .bottom .container .list{
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -118,11 +129,11 @@
                 <p class="p1">“아메리카노는 에스프레소의 진한 풍미를 잘 느낄 수 있는 음료입니다. ”</p>
                 <p class="p2">아메리카노는 에스프레소 샷 두 개를 추출하여 바로 컵에 붓고, 그 위에 뜨거운 물을 재빠르게 부어 얇은 크레마 층이 형성되는 음료입니다.
                     갓 분쇄된 에스프레소만이 깊은 풍미를 가진 아메리카노를 만들 수 있습니다.</p>
-
             </div>
         </section>
         <section class="bottom">
             <div class="container">
+                <p>관련 제품</p>
                 <ul class="list clear-fix">
                     <li class="">
                     </li>

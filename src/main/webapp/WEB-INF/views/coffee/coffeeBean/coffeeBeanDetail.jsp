@@ -85,13 +85,13 @@
 						<img src="/images/icon/more_right.jpg"/>
 					</div>
 					
-					<div class="icon">
+					<div class="share">
 						<%-- <div class="fb-share-button" 
 			                data-href="https://ksh-starbucks-clone.herokuapp.com/coffee_bean_detail.jsp?seq=${coffee.id}" 
 			                data-layout="button_count"
 			                data-size="small">
                 		</div> --%>
-                		<img src="/images/icon/facebook.png" data-id="${coffee.id}"/>
+                		<img class="facebook" src="/images/icon/facebook.png" data-id="${coffee.id}"/>
 					</div>
 				</div>
 			</div>
@@ -156,8 +156,5 @@
  	<script src="/js/crud.js"></script>
   	<script src="/js/share.js"></script>
   	<script src="/js/coffeeDetail.js"></script>
-	<script>
-		console.log("${coffee.type}");
-	</script>
 </body>
 </html>	

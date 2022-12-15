@@ -28,6 +28,12 @@ public class EventController {
         return "board/event/eventList";
     }
 
-    
+    @GetMapping("/detail")
+    public String detail(int id, Model model){
+        Event event = eventService.findOneService(id);
+
+        model.addAttribute("event", event);
+        return "board/event/eventDetail";
+    }
 
 }
