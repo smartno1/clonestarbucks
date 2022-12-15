@@ -17,18 +17,10 @@ public class espressoController {
         return "coffee/espresso/espresso";
     }
 
-    @GetMapping("/americano")
-    public String americano(){
-        return "coffee/espresso/americano";
+    @GetMapping("/detail")
+    public String americano(String type){
+        return "coffee/espresso/"+type;
     }
 
-    @GetMapping("/cappuccino")
-    public String cappuccino(){
-        return "coffee/espresso/cappuccino";
-    }
 
-    @GetMapping("/mocha")
-    public String mocha(){
-        return "coffee/espresso/mocha";
-    }
 }

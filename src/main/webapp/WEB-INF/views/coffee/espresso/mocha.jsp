@@ -55,6 +55,39 @@
         .Header .nav .nav-ul li > img{
             padding-top: 7px;
         }
+        .middle {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .middle .pic img{
+            width: 100%;
+            max-width: fit-content;
+        }
+        .middle .info {
+            padding: 30px 0 60px 0;
+        }
+        .middle .info .p1{
+            font-size: 20px;
+            color: #006633;
+            font-style: italic;
+            line-height: 1.6;
+            padding-bottom: 20px;
+        }
+        .middle .info .p2{
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .bottom{
+            background: #f4f4f2;
+            padding: 40px 0 80px 0;
+        }
+        .bottom .container{
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +96,7 @@
     <main class="wrap">
         <section class="Header">
             <div class="container-name">
-                <h2>모카</h2>
+                <h2>아메리카노</h2>
                 <nav class="nav">
                     <ul class="nav-ul">
                         <li><a href="/"><img src="/images/icon/icon_home.png" alt="홈으로"></a></li>
@@ -77,8 +110,27 @@
                 </nav>
             </div>
         </section>
+        <section class="middle">
+            <div class="pic">
+                <img src="/images/coffee/espresso/mocha_img01.jpg" alt="">
+            </div>
+            <div class="info">
+                <p class="p1">“모카는 초콜릿의 달콤함과 커피의 쌉싸름한 맛을 동시에 느낄 수 있습니다.”</p>
+                <p class="p2">갓 추출한 에스프레소에 모카 시럽을 넣어 잘 섞어줍니다. 여기에 스팀 밀크를 추가하여 진한 커피 맛과 달콤한 초콜릿 맛이 잘 조화되도록 합니다.
+                    더욱 달콤한 맛을 원한다면 휘핑크림을 올려 즐겨보세요.</p>
 
+            </div>
+        </section>
+        <section class="bottom">
+            <div class="container">
+                <ul class="list clear-fix">
+                    <li class="">
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
+    <%@include file="../../include/footer.jsp"%>
 </div>
 </body>
 </html>
