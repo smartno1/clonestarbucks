@@ -34,7 +34,7 @@
             <p class="tit">분류보기</p>
             <div class="arrow"><img src="/images/icon/list_up_btn.png"></div>
             <div class="search_kind clear-fix">
-                <div><a data-kind="bean" href=javascript:void(0)></a></div>
+                <div><a data-kind="bean" href=javascript:void(0)>카테고리</a></div>
                 <div><a data-kind="via" href=javascript:void(0)>테마</a></div>
 
             </div>

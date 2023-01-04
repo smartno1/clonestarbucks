@@ -1,4 +1,4 @@
-CREATE table starbucks.menu(
+CREATE table starbucks.menuin(
                                  id INT(11) NOT NULL AUTO_INCREMENT
     ,price INT(11)
     ,flavor VARCHAR(100)

@@ -131,14 +131,6 @@ label{
     padding-left: 10px;
     padding-right:15px;
 }
-.coffee-type P{
-    font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
-    font-size: 13px;
-}
-.coffee-type h2{
-    font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
-    font-size: 18px;
-}
 .coffee-bean-wrapper{
     display:grid;
     height:fit-content;
