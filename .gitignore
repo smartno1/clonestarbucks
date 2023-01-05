@@ -38,3 +38,7 @@ out/
 
 ### DB ###
 /src/main/resources/db_info.properties
+
+
+### google API ###
+src/main/java/com/spring/starbucks/member/domain/OAuthValue.java
