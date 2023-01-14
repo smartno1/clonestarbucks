@@ -25,7 +25,7 @@
 							<li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
 							<li><a href="/coffee/bean/list">커피</a></li>
 							<li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
-							<li><a href="/coffee/bean/productFinder">나와 어울리는 커피</a></li>
+							<li><a href="/coffee/bean/productFinder">${coffee.nameKr}</a></li>
 						</ul>
 					</nav>
 				</div>

@@ -34,6 +34,8 @@ public class EventService {
             //  종료날짜 비교하여 이벤트 종료여부 결정
             if (event.getEndDate().isAfter(current)) {
                 log.info("ended");
+                event.setEnded(false);
+            }else{
                 event.setEnded(true);
             }
             // 제목 글자수 20 넘으면 짤라서 저장.
@@ -43,16 +45,25 @@ public class EventService {
                 event.setPrettierTitle(title);
             }
             // 이벤트 기간 저장.
-
             String p = event.getBeginDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " ~ "
                     + event.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            events.get(i).setPeriod(p);
+            event.setPeriod(p);
         }
         return events;
     }
 
     public Event findOneService(int id){
         Event event = eventMapper.findOne(id);
+        // 제목 글자수 20 넘으면 짤라서 저장.
+        String title = event.getTitle();
+        if(title.length()>20){
+            title = title.substring(0,20)+"...";
+            event.setPrettierTitle(title);
+        }
+        // 이벤트 기간 저장.
+        String p = event.getBeginDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " ~ "
+                + event.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        event.setPeriod(p);
 
 
 

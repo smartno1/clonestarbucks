@@ -52,27 +52,61 @@
     .nav-ul li:nth-child(2) img, .nav-ul li:nth-child(4) img{
       padding-top: 7px;
     }
-    .search-tap{
+    .top{
       padding: 20px 30px;
       border: 1px solid #ddd;
       position: relative;
       border-radius: 3px;
       margin-bottom: 40px;
-    }
-    .search-tap {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-    .search-tap > div{
 
-                  }
-    .search-tap .share img{
-      padding-top:20px;
-      width:32px;
     }
-    .search-tap .share img:hover{
+    .top .title{
+      float: left;
+      font-size: 18px;
+      font-weight: bold;
+      color: #222222;
+    }
+    .top .period{
+      font-size: 12px;
+      font-weight: normal;
+      color: #666666;
+      padding-left: 5px;
+      vertical-align: bottom;
+    }
+    .top ul{
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 1px solid #ddd;
+      padding-left: 10px;
+    }
+    .top .share img{
+      width:28px;
+    }
+    .top .share img:hover{
       cursor:pointer;
+    }
+    .content {
+      padding: 60px 50px 0;
+    }
+    .goList {
+      padding-top: 20px;
+      position: relative;
+      margin-bottom: 60px;
+    }
+    .goList a{
+      display: block;
+      width: 84px;
+      height: 45px;
+      float: right;
+      background-color: #666666;
+      border-radius: 3px;
+      text-align: center;
+      line-height: 45px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
     }
     .event-list{
       padding-bottom:50px;
@@ -85,19 +119,19 @@
       padding: 20px;
       box-sizing: border-box;
     }
-    .event-box{
-      margin-top: 20px;
-      position: relative;
+    .swiper-container{
+      max-width: 90%;
+      margin: 0 auto;
+      padding-top: 20px;
+
     }
     .event{
-      float: left;
       width: 100%;
       max-width: 23.65%;
       height: fit-content;
       margin-right: 1.8%;
       align-items:center;
       padding-bottom: 20px;
-
     }
     .event:nth-child(4n){
       margin-right: 0;
@@ -112,35 +146,6 @@
     }
     .event a img{
       width: 100%;
-    }
-    .event.onGoing a img{
-      width: inherit;
-      object-fit: contain;
-      transition: all 0.5s linear;
-    }
-    .event.onGoing a img:hover{
-      transform:scale(1.2)
-    }
-    .event.end a{
-      display: block;
-      position: relative;
-      background-color: #646464;
-    }
-    .event.end a i {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      opacity: 0.7;
-    }
-    .event.end a i img{
-      width: 100%;
-      max-width: fit-content;
-      position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
     .event .event-name {
       font-size: 16px;
@@ -185,38 +190,49 @@
           </ul>
         </nav>
       </div>
-      <div class="search-tap">
-        <span class="title">${event.title}</span> <span>${event.period}</span>
-        <span>
-          <ul>
-            <li>
-              <div class="share">
-                <img class="facebook" src="/images/icon/facebook.png" data-id="${coffee.id}"/>
-              </div>
-            </li>
-          </ul>
-        </span>
+      <div class="top">
+        <h3 class="title">${event.title}</h3> <span class="period">${event.period}</span>
+        <ul>
+          <li>
+            <div class="share">
+              <img class="facebook" src="/images/icon/facebook.png" data-id="${coffee.id}"/>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class = "content">
+        img
+      </div>
+      <div class="goList clear-fix">
+        <a href="/board/event/list?kind=${kind}">
+          목록
+        </a>
       </div>
       <div class="event-wrapper">
         <div class="event-list">
           <h2 class="event-verify">
             진행 이벤트
           </h2>
-          <ul class="event-box clear-fix">
-            <c:forEach items="${events}" var="e">
-              <c:choose>
-                <c:when test="${!e.ended}">
-                  <li class="event onGoing" data-kind="${e.kind}">
-                    <a href="/board/event/detail?id=${e.eventId}">
-                      <img src="${e.listImg}"/>
-                    </a>
-                    <p class="event-name">${e.prettierTitle}</p>
-                    <p class="event-period">${e.period}</p>
-                  </li>
-                </c:when>
-              </c:choose>
-            </c:forEach>
-          </ul>
+          <div class="swiper-container">
+            <ul class="swiper-wrapper event-box clear-fix">
+              <c:forEach items="${events}" var="e">
+                <c:choose>
+                  <c:when test="${!e.ended}">
+                    <li class="swiper-slide event onGoing" data-kind="${e.kind}">
+                      <a href="/board/event/detail?id=${e.eventId}&kind=all">
+                        <img src="${e.listImg}"/>
+                      </a>
+                      <p class="event-name">${e.prettierTitle}</p>
+                      <p class="event-period">${e.period}</p>
+                    </li>
+                  </c:when>
+                </c:choose>
+              </c:forEach>
+            </ul>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-prev"></div>
+            <div class="swiper-next"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -224,5 +240,27 @@
   <%@ include file="../../include/footer.jsp"%>
 </div>
 <script src="/js/share.js"></script>
+<script>
+new Swiper('.swiper-container', {
+// direction: 'horizontal', // 수평 슬라이드
+autoplay: { // 자동 재생 여부
+delay: 3000 // 5초마다 슬라이드 바뀜
+},
+loop: true, // 반복 재생 여부
+slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
+slidesPerGroup:3, // 3 개를 그룹으로 묶기, 위의 퍼뷰와 갯수를 일치하는게 좋음.
+loopFillGroupWithBlank : true, // 그룹수가 맞지 않을 경우 빈칸으로 메우기, 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+spaceBetween: 150, // 슬라이드 사이 여백
+centeredSlides: false, // 1번 슬라이드가 가운데 보이기
+pagination: { // 페이지 번호 사용 여부
+el: '.swiper-pagination', // 페이지 번호 요소 선택자
+clickable: true // 사용자의 페이지 번호 요소 제어 가능 여부
+},
+navigation: { // 슬라이드 이전/다음 버튼 사용 여부
+prevEl: '.swiper-prev', // 이전 버튼 선택자
+nextEl: '.swiper-next' // 다음 버튼 선택자
+}
+})
+</script>
 </body>
 </html>

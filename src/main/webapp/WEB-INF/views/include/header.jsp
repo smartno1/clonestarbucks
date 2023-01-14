@@ -43,9 +43,9 @@
                             <li>
                                 <h4><a href="/coffee/espresso/list">에스프레소 음료</a></h4>
                                 <ul>
-                                    <li><a href="javascript:void(0)">아메리카노</a></li>
-                                    <li><a href="javascript:void(0)">카푸치노</a></li>
-                                    <li><a href="javascript:void(0)">모카</a></li>
+                                    <li><a href="/coffee/espresso/americano">아메리카노</a></li>
+                                    <li><a href="/coffee/espresso/cappuccino">카푸치노</a></li>
+                                    <li><a href="/coffee/espresso/mocha">모카</a></li>
                                 </ul>
                             </li>
 

@@ -171,6 +171,10 @@
             text-align: center;
             width: 100%;
         }
+        .search_kind div a.selected {
+            background: #006633;
+            color: #fff;
+        }
         section{
             z-index:-66;
         }
@@ -219,7 +223,7 @@
                     <c:choose>
                         <c:when test="${!e.ended}">
                             <li class="event onGoing" data-kind="${e.kind}">
-                                <a href="/board/event/detail?id=${e.eventId}">
+                                <a href="javascript:void(0)" data-id="${e.eventId}">
                                     <img src="${e.listImg}"/>
                                 </a>
                                 <p class="event-name">${e.prettierTitle}</p>
@@ -230,8 +234,6 @@
                     </c:forEach>
                 </ul>
             </div>
-        </div>
-        <div class="event-wrapper">
             <div class="event-list">
                 <h2 class="event-verify">
                     종료 이벤트
@@ -241,7 +243,7 @@
                     <c:choose>
                         <c:when test="${e.ended}">
                             <li class="event end" data-kind="${e.kind}">
-                                <a href="/board/event/detail?id=${e.eventId}">
+                                <a href="javascript:void(0)" data-id="${e.eventId}">
                                     <i><img src="/images/board/event/icon_end_event.png" alt=""></i>
                                     <img src="${e.listImg}"/>
                                 </a>
@@ -261,6 +263,18 @@
 </body>
 <script>
 
+    function detailEvent(){
+        document.querySelector('.event-wrapper').addEventListener("click", e => {
+            if(e.target.matches('.event-wrapper img') || e.target.matches('.event-box i')){
+                const id = e.target.parentElement.dataset.id;
+                const kind = document.querySelector('.selected').dataset.kinds;
+                location.href = "/board/event/detail?id="+id+"&kind="+kind;
+            }
+
+
+        })
+    }
+
     /*
     * kind 선택시 색상변경
     */
@@ -279,37 +293,43 @@
                     console.log("remove selected-{}",k.firstElementChild);
                 }
             }
+            showList();
         })
     }
 
     // 선택된 옵션에 맞는 리스트 보여주기
     function showList(){
         const kind = document.querySelector('.selected').dataset.kinds; // 선택된 kind 값을 가져오고
-        const $check = document.querySelectorAll('.check'); // 타입 요소를 전부 가져오고
-        const all = document.querySelector('.all').checked;    // 전체선택에 따른 true, false 값 저장.
-
-        $check.forEach(function (check) { // 타입 배열에서 하나씩 꺼냄
-            const show = document.querySelector('.'+check.value); // 타입이 속한 부모 div 요소 가져오기
-            const showContent = show.firstElementChild.lastElementChild.firstElementChild; // 타입이 속한 li 요소 가져오기
-            const showKind = showContent ? showContent.dataset.kind : "";   // null 값 오류제거를 위해 값이 있으면 값, 없으면 빈문자열
-            if(check.checked){ // 타입이 체크되었고
-                if(showKind && showKind === kind) { // 목록의 kind 가 선택된 kind 이면
-                    console.log("show-check: ", showContent);
-                    show.style.display = "block";   // 보여준다
-                }
-            }else if(all){  // 타입체크는 안되있고, 전체보기 체크면
-                if(showKind && showKind === kind) { // 목록의 kind 가 선택된 kind 이면
-                    console.log("show-all: ", showContent);
-                    show.style.display = "block";   // 보여준다
-                }
-            }else{  // 타입체크 x , 전체보기 x
-                console.log("no show: ",show);
-                show.style.display = "none";    // 숨긴다.
+        const list = document.querySelectorAll('.event-list li');
+        console.log(list);
+        console.log("kind = ", kind);
+        list.forEach(function (event){
+            if( kind === "all" || event.dataset.kind === kind){
+                event.style.display = "";
+            }else{
+                event.style.display = "none";
             }
         })
     }
 
+    // 처음 전체 선택되게
+    function defaultKind(){
+        console.log("${kind}");
+        if(${empty kind}) {
+            const all = document.querySelector('.search-kind').firstElementChild;
+            all.firstElementChild.classList.add('selected');
+        }else{
+            const kind = [...document.querySelector('.search-kind').children]
+            kind.forEach(function (e){
+                if(e.firstElementChild.dataset.kinds === "${kind}"){
+                    e.firstElementChild.classList.add('selected');
+                }
+            })
+        }
+    }
+
     (function (){
+        detailEvent();
         defaultKind();
         selectKind();
     })();

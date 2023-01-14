@@ -22,5 +22,18 @@ public class espressoController {
         return "coffee/espresso/"+type;
     }
 
+    @GetMapping("/americano")
+    public String americano(){
+        return "coffee/espresso/americano";
+    }
+    @GetMapping("/cappuccino")
+    public String cappuccino(){
+        return "coffee/espresso/cappuccino";
+    }
+    @GetMapping("/mocha")
+    public String mocha(){
+        return "coffee/espresso/mocha";
+    }
+
 
 }

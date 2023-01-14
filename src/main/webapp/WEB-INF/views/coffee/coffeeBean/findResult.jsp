@@ -111,21 +111,13 @@
       width: 100%;
       font-size: 14px;
       font-weight: bold;
-      line-height: 1.4;
       color: #222222;
       margin-bottom: 40px;
+      word-wrap: break-word;
     }
     .mid_inner .detail p:last-child{
       font-size: 14px;
       color: #666666;
-    }
-    .middle .middleWrap p {
-      width: 100%;
-      font-size: 30px;
-      font-weight: bold;
-      text-align: center;
-      padding: 85px 0;
-
     }
     .bottomWrap{
       background: url("/images/coffee/bean/bg-finder-top.png") -140px -30px;
@@ -136,7 +128,6 @@
       margin: 0 auto;
       position: relative;
       padding: 50px 0;
-
     }
     .bot_inner ul{
       width: 100%;
