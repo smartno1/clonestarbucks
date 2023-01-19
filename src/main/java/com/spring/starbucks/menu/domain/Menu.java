@@ -1,10 +1,12 @@
 package com.spring.starbucks.menu.domain;
 
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
+@Getter @Setter @ToString
+@AllArgsConstructor @NoArgsConstructor
 public class Menu {
 
     private int id;
@@ -28,4 +30,11 @@ public class Menu {
     private String processingMethod;
     private Date regDate;
     private MultipartFile file;
+    private String weight2;
+    private String calorie1;
+    private String calorie2;
+    private String calorie3;
+    private String calorie4;
+    private String calorie5;
+    private String calorie6;
 }

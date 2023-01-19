@@ -5,7 +5,6 @@ import com.spring.starbucks.coffee.service.CoffeeService;
 import com.spring.starbucks.coffee.upload.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
-import static com.spring.starbucks.coffee.upload.FileUtils.deleteFile;
 
 
 @Controller
@@ -71,10 +68,11 @@ public class CoffeeController {
     public ResponseEntity<String> delete(@RequestBody String id){
         log.info("/coffee/deleteCoffeeBean Get! id - {}", id);
         int nid = Integer.parseInt(id);
-        boolean flag = coffeeService.deleteService(nid);
+        String img = coffeeService.findOneService(nid).getImage(); // 이미지경로저장.
+        boolean flag = coffeeService.deleteService(nid);            // DB 삭제
 
-        if(flag){
-            return FileUtils.deleteFile(coffeeService.findOneService(nid).getImage(), UPLOAD_PATH);
+        if(flag){   //DB 삭제 성공시
+            return FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
         }else{
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }

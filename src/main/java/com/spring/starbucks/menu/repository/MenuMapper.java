@@ -14,8 +14,9 @@ public interface MenuMapper {
 
     boolean delete(int id);
 
-    List<Menu> findAll();
+    List<Menu> findAll(String menu);
 
     Menu findOne(int id);
 
+    boolean save(Menu coffee);
 }
