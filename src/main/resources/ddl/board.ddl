@@ -22,7 +22,9 @@ CREATE TABLE starbucks.board_news(
 CREATE TABLE starbucks.board_notice(
                                        notice_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , title VARCHAR(50)
-    , content_img VARCHAR(50)
-    , conut INT(10) DEFAULT 0
+    , content VARCHAR(50)
+    , link_title VARCHAR(50)
+    , link VARCHAR(50)
+    , view_cnt INT(10) DEFAULT 0
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );

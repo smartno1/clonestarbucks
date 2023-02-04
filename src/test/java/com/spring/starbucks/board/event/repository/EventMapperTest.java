@@ -1,6 +1,7 @@
 package com.spring.starbucks.board.event.repository;
 
-import com.spring.starbucks.board.event.domain.Event;
+import com.spring.starbucks.whatsNew.event.domain.Event;
+import com.spring.starbucks.whatsNew.event.repository.EventMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ class EventMapperTest {
 
         Event event = new Event();
         event.setKind("card");
-        event.setListImg("/images/board/event/e1.jpg");
-        event.setContentImg("/images/board/event/e1-1.jpg");
+        event.setListImg("/images/whats_new/event/e1.jpg");
+        event.setContentImg("/images/whats_new/event/e1-1.jpg");
         event.setBeginDate(beginDate);
         event.setEndDate(endDate);
         for(int i = 0; i<20 ; i++){
@@ -71,8 +72,8 @@ class EventMapperTest {
         event.setEventId(1);
         event.setKind("card");
         event.setTitle("이벤트1");
-        event.setListImg("/images/board/event/e1.jpg");
-        event.setContentImg("/images/board/event/e1-1.jpg");
+        event.setListImg("/images/whats_new/event/e1.jpg");
+        event.setContentImg("/images/whats_new/event/e1-1.jpg");
         event.setBeginDate(beginDate);
         event.setEndDate(endDate);
 

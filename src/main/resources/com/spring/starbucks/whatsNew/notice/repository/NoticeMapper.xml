@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.whatsNew.notice.repository.NoticeMapper">
+
+    <resultMap id="NoticeMap" type="com.spring.starbucks.whatsNew.notice.domain.Notice">
+        <result property="noticeId" column="notice_id" />
+        <result property="linkTitle" column="link_title" />
+        <result property="viewCnt" column="view_cnt" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO starbucks.board_notice
+        (title,content,link_title,link,view_cnt)
+        VALUES (#{title},#{content},#{linkTitle},#{link},#{viewCnt});
+    </insert>
+
+    <select id="findOne" resultMap="NoticeMap">
+        SELECT *
+        FROM starbucks.board_notice
+        WHERE notice_id =#{noticeId}
+    </select>
+
+    <select id="findAll" resultMap="NoticeMap">
+        SELECT *
+        FROM starbucks.board_notice
+        ORDER BY notice_id DESC
+        LIMIT (#{pageNum} - 1) * #{amount}, (#{pageNum} * #{amount})
+    </select>
+
+    <select id="findAll2" resultMap="NoticeMap">
+        SELECT *
+        FROM
+            (
+            SELECT @rownum:=@rownum+1  no, A.*
+            FROM starbucks.board_notice A,
+            (SELECT @ROWNUM := 0) R
+            <include refid="search"></include>
+            ) list
+        ORDER BY notice_id DESC
+        LIMIT #{start}, #{amount}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM starbucks.board_notice
+    </select>
+
+    <select id="getTotalCount2" resultType="int">
+        SELECT COUNT(*)
+        FROM starbucks.board_notice
+        <include refid="search" />
+    </select>
+
+    <sql id="search">
+        <if test="type == 'title'">WHERE title LIKE CONCAT('%', #{keyword}, '%')</if>
+    </sql>
+
+    <update id="update">
+        UPDATE starbucks.board_notice
+        SET title=#{title}, content=#{content}, link_title=#{linkTitle}, link=#{link}, view_cnt=#{viewCnt}
+        WHERE notice_id=#{noticeId}
+    </update>
+
+    <update id="upViewCount">
+        UPDATE starbucks.board_notice
+        SET view_cnt=view_cnt+1
+        WHERE notice_id=#{noticeId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM starbucks.board_notice
+        WHERE notice_id=#{noticeId}
+    </delete>
+
+
+</mapper>

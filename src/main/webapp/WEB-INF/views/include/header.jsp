@@ -127,15 +127,15 @@
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="/board/event/list">이벤트</a></h4>
+                                <h4><a href="/whats_new/event/list">이벤트</a></h4>
 
                             </li>
                             <li>
-                                <h4><a href="/board/event/news">뉴스</a></h4>
+                                <h4><a href="/whats_new/news/list">뉴스</a></h4>
 
                             </li>
                             <li>
-                                <h4><a href="/board/event/notice">공지사항</a></h4>
+                                <h4><a href="/whats_new/notice/list">공지사항</a></h4>
 
                             </li>
                         </ul>

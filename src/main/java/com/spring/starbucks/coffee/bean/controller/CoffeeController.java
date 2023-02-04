@@ -108,4 +108,7 @@ public class CoffeeController {
         model.addAttribute("coffees", coffees);
         return "coffee/coffeeBean/findResult";
     }
+
+
+
 }
