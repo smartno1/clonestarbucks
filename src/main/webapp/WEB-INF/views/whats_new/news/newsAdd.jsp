@@ -148,22 +148,28 @@
             cursor: pointer;
             text-decoration: underline;
         }
-    /*    미리보기 팝업 */
+        /*    미리보기 팝업------------------------------------ */
         .pre-view-section{
             display: none;
+            z-index: 50;
             background-color: #fff;
-            width: 1100px;
-            min-height: 500px;
+            min-width: 500px;
+            min-height: 300px;
             border: 2px solid black ;
             position: absolute;
-            bottom: 10%;
+            top: 70%;
             left: 50%;
-            transform: translate(-50%,0);
+            transform: translate(-50%,-50%);
+        }
+        .pre-view-section .preViewContent{
+            position: relative;
+            height: 80vh;
+            overflow-y: auto;
         }
         .pre-view-section .preViewClose{
             position: absolute;
-            bottom: -10%;
-            right: 0;
+            bottom: 50px;
+            right: -95px;
             height: 40px;
             width: 80px;
             text-align: center;
@@ -176,7 +182,6 @@
             cursor: pointer;
             border-radius: 3px;
         }
-
     </style>
 </head>
 <body>
@@ -260,6 +265,7 @@
 </div>
 
 <script>
+    // 첨부파일 삭제 버튼 ---------------------------------------------------------------
     function delFile2(){
         const del2 = document.querySelectorAll('.del2');
         del2.forEach(function (del2){
@@ -273,7 +279,7 @@
                     body: path
                 };
                 if(path === "none") return;
-                fetch('/whats_new/news/deleteFile', reqInfoDel)
+                fetch('/whats_new/deleteFile', reqInfoDel)
                     .then(res => res.text())
                     .then(msg => {
                         console.log(msg);
@@ -283,7 +289,7 @@
         })
     }
 
-    function uploadListImg(){
+    function uploadListImg(type){
         document.querySelector("input[name='listImgFile']").addEventListener("change",  e => {
             e.preventDefault();
             const oldFileName = document.querySelector('.listImg img').getAttribute('src');
@@ -303,7 +309,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/whats_new/news/upload', reqInfo)
+            fetch('/whats_new/upload?type='+type, reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -320,7 +326,7 @@
                         method: 'DELETE',
                         body: oldFileName
                     };
-                    fetch('/whats_new/news/deleteFile', reqInfoDel)
+                    fetch('/whats_new/deleteFile', reqInfoDel)
                         .then(res => res.text())
                         .then(msg => {
                             console.log(msg);
@@ -360,7 +366,6 @@
                                 경로 : <input type="text" name="attach-name" value="none" disabled>
                                         <span class="del2">삭제</span>
                                 `;
-
             num = num + 1;
             $attachList.appendChild($div);
             delFile2();
@@ -369,7 +374,7 @@
 
     // 첨부파일 비동기 업로드 -----------------------------------------------------------
     let attachList;
-    function uploadAttachFile(){
+    function uploadAttachFile(type){
         document.querySelector(".attachList").addEventListener("change",  e => {
             e.preventDefault();
             console.log("change");
@@ -392,7 +397,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/whats_new/news/upload', reqInfo)
+            fetch('/whats_new/upload?type='+type, reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -409,7 +414,7 @@
                             method: 'DELETE',
                             body: oldFileName
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
@@ -435,6 +440,7 @@
                 const $div = document.createElement('div');
                 const content = document.querySelector('textarea[name="content"]').value;
                 $div.innerHTML = content;
+                $div.classList.add('preViewContent');
 
                 const $close = document.createElement('div');
                 $close.classList.add('preViewClose')
@@ -481,44 +487,41 @@
                 console.log("attach : ",attach);
                 document.querySelector('input[name="attach"]').value = attach;
 
+                // submit 전송.
                 const $form = document.getElementById('form');
                 $form.submit();
-
             }
-
             if(e.target.matches('#cancel')) {
                 console.log("cancel");
                 // 업로드 된 파일이 있으면 제거
                 let nameList=[];
                 const name = document.querySelectorAll('input[name="attach-name"]');
                 const listImg = document.querySelector('.listImg img').getAttribute("src");
-                name.forEach(function (n){
+                name.forEach(function (n){ // 첨부파일 목록 담기
                     nameList.push(n.value);
                 })
-                nameList.push(listImg);
+                nameList.push(listImg); // 리스트 썸네일이미지도 담기
                 if (nameList) {
                     nameList.forEach(function (n){
                         const reqInfoDel = {
                             method: 'DELETE',
                             body: n
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
                             })
                     })
-
                 }
                 history.go(-1);
             }
         })
     }
-
-
+    const type="news";
     (function (){
-        uploadListImg();
-        uploadAttachFile();
+        uploadListImg(type);
+        uploadAttachFile(type);
         submitData();
         attachFileAdd();
         delFile2();

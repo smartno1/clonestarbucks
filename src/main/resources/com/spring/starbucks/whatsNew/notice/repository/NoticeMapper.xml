@@ -7,15 +7,13 @@
 
     <resultMap id="NoticeMap" type="com.spring.starbucks.whatsNew.notice.domain.Notice">
         <result property="noticeId" column="notice_id" />
-        <result property="linkTitle" column="link_title" />
-        <result property="viewCnt" column="view_cnt" />
         <result property="regDate" column="reg_date" />
     </resultMap>
 
     <insert id="insert">
         INSERT INTO starbucks.board_notice
-        (title,content,link_title,link,view_cnt)
-        VALUES (#{title},#{content},#{linkTitle},#{link},#{viewCnt});
+        (title,content,attach,view_cnt)
+        VALUES (#{title},#{content},#{attach},#{viewCnt});
     </insert>
 
     <select id="findOne" resultMap="NoticeMap">
@@ -61,7 +59,7 @@
 
     <update id="update">
         UPDATE starbucks.board_notice
-        SET title=#{title}, content=#{content}, link_title=#{linkTitle}, link=#{link}, view_cnt=#{viewCnt}
+        SET title=#{title}, content=#{content}, attach=#{attach}, view_cnt=#{viewCnt}
         WHERE notice_id=#{noticeId}
     </update>
 

@@ -27,9 +27,6 @@
             font-size: 14px;
         }
         .top-section h2 a span{
-            vertical-align: text-bottom;
-        }
-        .top-section h2 a span.notice-add{
             vertical-align: text-top;
         }
         .nav {
@@ -69,7 +66,18 @@
             width: 80%;
         }
         .middle-section .title ul{
-            float:right;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 1px solid #ddd;
+            padding-left: 10px;
+        }
+        .middle-section .title .share img{
+            width:28px;
+        }
+        .middle-section .title .share img:hover{
+            cursor:pointer;
         }
         .content {
             padding: 30px 10px;
@@ -140,10 +148,10 @@
             <div class="top-section">
                 <h2>공지사항
                     <a href="/whats_new/notice/edit?noticeId=${nt.noticeId}" id="edit">
-                        <span class="notice-add">수정</span>
+                        <span class="edit">수정</span>
                     </a>
                     <a href=javascript:void(0) id="delete">
-                        <span class="notice-del" data-id="${nt.noticeId}">삭제</span>
+                        <span class="del" data-id="${nt.noticeId}">삭제</span>
                     </a>
                 </h2>
                 <nav class="nav">
@@ -161,7 +169,9 @@
                     <h3>${nt.title}</h3>
                     <ul>
                         <li>
-
+                            <div class="share">
+                                <img class="facebook" src="/images/icon/facebook.png" data-id="${nt.noticeId}"/>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -213,7 +223,7 @@
 
     function deleteEvent(){
         document.getElementById('delete').addEventListener('click', e => {
-            if(!e.target.matches('.notice-del')) return;
+            if(!e.target.matches('.del')) return;
 
             if(confirm("정말로 삭제하시겠습니까?")){
                 var id = e.target.dataset.id;

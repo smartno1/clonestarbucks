@@ -17,6 +17,7 @@ public class Notice {
     String link;
     int viewCnt;
     LocalDate regDate;
+    String attach;
 
     //custom
     int no;

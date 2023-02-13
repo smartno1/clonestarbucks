@@ -1,4 +1,4 @@
-package com.spring.starbucks.whatsNew.news.controller;
+package com.spring.starbucks.whatsNew.util;
 
 import com.spring.starbucks.coffee.bean.upload.FileUtils;
 import lombok.extern.log4j.Log4j2;
@@ -13,20 +13,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @Log4j2
-@RequestMapping("/whats_new/news")
+@RequestMapping("/whats_new")
 @PropertySource("classpath:upLoadPath.properties")
-public class NewsUploadController {
+public class UploadController {
     @Value("${UPLOAD_PATH}")
     private String UPLOAD_PATH;
 
     // 비동기 요청 파일 업로드 처리
     @PostMapping("/upload")
     @ResponseBody
-    public ResponseEntity<String> ajaxUpload(@RequestBody MultipartFile file) throws NullPointerException{
+    public ResponseEntity<String> ajaxUpload(@RequestBody MultipartFile file, String type) throws NullPointerException{
 
-        log.info("/whats_new/news/upload POST! - {}", file);
+        log.info("upload POST! - {}", file);
 
-        String type = "news";
         // 클라이언트가 전송한 파일 업로드하기
         String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH, type);
         // 클라이언트에게 전송할 파일경로 리스트
@@ -38,7 +37,7 @@ public class NewsUploadController {
     @DeleteMapping("/deleteFile")
     public ResponseEntity<String> deleteFile(@RequestBody String oldFileName) throws Exception {
 
-        log.info("/whats_new/news/deleteFile DELETE! oldFileName - {}",oldFileName);
+        log.info(" DELETE File! oldFileName - {}",oldFileName);
 
         String result = FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
         if(result == "delete success") {

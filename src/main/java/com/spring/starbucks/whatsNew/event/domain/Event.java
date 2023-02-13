@@ -15,7 +15,8 @@ public class Event {
     private LocalDate beginDate;
     private LocalDate endDate;
     private String listImg;
-    private String contentImg;
+    private String content;
+    private String attach;
     private LocalDateTime regDate;
 
     // custom

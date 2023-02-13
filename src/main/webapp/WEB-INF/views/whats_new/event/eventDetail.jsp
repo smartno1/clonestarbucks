@@ -25,10 +25,8 @@
       padding-left: 10px;
       font-size: 14px;
     }
+
     .name h2 a span{
-      vertical-align: text-bottom;
-    }
-    .name h2 a span.name-add{
       vertical-align: text-top;
     }
     .nav {
@@ -210,8 +208,11 @@
     <div class="middle">
       <div class="name">
         <h2>이벤트
-          <a href="/whats_new/event/addEvent">
-            <span class="name-add">수정 삭제</span>
+          <a href="/whats_new/event/edit?id=${event.eventId}" id="edit">
+            <span class="edit">수정</span>
+          </a>
+          <a href=javascript:void(0) id="delete">
+            <span class="del" data-id="${event.eventId}">삭제</span>
           </a>
         </h2>
         <nav class="nav">
@@ -229,13 +230,13 @@
         <ul>
           <li>
             <div class="share">
-              <img class="facebook" src="/images/icon/facebook.png" data-id="${coffee.id}"/>
+              <img class="facebook" src="/images/icon/facebook.png" data-id="${event.eventId}"/>
             </div>
           </li>
         </ul>
       </div>
       <div class = "content">
-        img
+        <img src="">
       </div>
       <div class="goList clear-fix">
         <a href="/whats_new/event/list?kind=${kind}">
@@ -276,26 +277,65 @@
 </div>
 <script src="/js/share.js"></script>
 <script>
-new Swiper('.event-wrapper .swiper-container', {
-// direction: 'horizontal', // 수평 슬라이드
-autoplay: { // 자동 재생 여부
-delay: 3000 // 5초마다 슬라이드 바뀜
-},
-loop: true, // 반복 재생 여부
-slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
-slidesPerGroup:3, // 3 개를 그룹으로 묶기, 위의 퍼뷰와 갯수를 일치하는게 좋음.
-loopFillGroupWithBlank : true, // 그룹수가 맞지 않을 경우 빈칸으로 메우기, 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-spaceBetween: 150, // 슬라이드 사이 여백
-centeredSlides: false, // 1번 슬라이드가 가운데 보이기
-pagination: { // 페이지 번호 사용 여부
-el: '.event-wrapper .swiper-pagination', // 페이지 번호 요소 선택자
-clickable: true // 사용자의 페이지 번호 요소 제어 가능 여부
-},
-navigation: { // 슬라이드 이전/다음 버튼 사용 여부
-prevEl: '.event-wrapper .swiper-prev', // 이전 버튼 선택자
-nextEl: '.event-wrapper .swiper-next' // 다음 버튼 선택자
-}
-})
+  function swiperEvent() {
+    new Swiper('.event-wrapper .swiper-container', {
+      // direction: 'horizontal', // 수평 슬라이드
+      autoplay: { // 자동 재생 여부
+        delay: 3000 // 5초마다 슬라이드 바뀜
+      },
+      loop: true, // 반복 재생 여부
+      slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
+      slidesPerGroup: 3, // 3 개를 그룹으로 묶기, 위의 퍼뷰와 갯수를 일치하는게 좋음.
+      loopFillGroupWithBlank: true, // 그룹수가 맞지 않을 경우 빈칸으로 메우기, 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+      spaceBetween: 150, // 슬라이드 사이 여백
+      centeredSlides: false, // 1번 슬라이드가 가운데 보이기
+      pagination: { // 페이지 번호 사용 여부
+        el: '.event-wrapper .swiper-pagination', // 페이지 번호 요소 선택자
+        clickable: true // 사용자의 페이지 번호 요소 제어 가능 여부
+      },
+      navigation: { // 슬라이드 이전/다음 버튼 사용 여부
+        prevEl: '.event-wrapper .swiper-prev', // 이전 버튼 선택자
+        nextEl: '.event-wrapper .swiper-next' // 다음 버튼 선택자
+      }
+    })
+  }
+  function contentShow(){
+    const $div = document.createElement('div');
+    $div.innerHTML = `${event.content}`;
+    document.querySelector('.content').appendChild($div);
+  }
+  function deleteEvent(){
+    document.getElementById('delete').addEventListener('click', e => {
+      if(!e.target.matches('.del')) return;
+
+      if(confirm("정말로 삭제하시겠습니까?")){
+        var id = e.target.dataset.id;
+        console.log(id);
+        const reqInfo = {
+          method:"POST"
+          ,body:id
+        };
+        fetch("/whats_new/event/delete",reqInfo)
+                .then(res => res.text())
+                .then(msg => {
+                  console.log(msg);
+                  if(msg === "delete success"){
+                    alert("삭제에 성공하였습니다.");
+                    location.href = "/whats_new/event/list";
+                  }else{
+                    alert("삭제에 실패하였습니다.");
+                  }
+                })
+      }
+    })
+  }
+
+  (function (){
+    swiperEvent();
+    deleteEvent();
+    contentShow();
+
+  })();
 </script>
 </body>
 </html>

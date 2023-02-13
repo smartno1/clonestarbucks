@@ -9,6 +9,7 @@
     <style>
         /*상위부분 및 검색창   */
         .main{
+            position:relative;
             width:100%;
             max-width:1100px;
             margin: 0 auto;
@@ -20,17 +21,6 @@
             font-size: 30px;
             font-weight: bold;
             padding-top: 30px;
-        }
-        .top-section > h2 a{
-            margin-left: 20px;
-            padding-left: 10px;
-            font-size: 14px;
-        }
-        .top-section h2 a span{
-            vertical-align: text-bottom;
-        }
-        .top-section h2 a span.news-add{
-            vertical-align: text-top;
         }
         .nav {
             position: relative;
@@ -150,19 +140,26 @@
         /*    미리보기 팝업------------------------------------ */
         .pre-view-section{
             display: none;
+            z-index: 50;
             background-color: #fff;
-            width: 1100px;
+            min-width: 500px;
             min-height: 500px;
             border: 2px solid black ;
             position: absolute;
-            bottom: 10%;
+            top: 70%;
             left: 50%;
-            transform: translate(-50%,0);
+            transform: translate(-50%,-50%);
+
+        }
+        .pre-view-section .preViewContent{
+            position: relative;
+            height: 80vh;
+            overflow-y: auto;
         }
         .pre-view-section .preViewClose{
             position: absolute;
-            bottom: -10%;
-            right: 0;
+            bottom: 50px;
+            right: -95px;
             height: 40px;
             width: 80px;
             text-align: center;
@@ -259,6 +256,7 @@
 </div>
 
 <script>
+    // 기존 첨부파일 삭제 기능 ---------------------------------------------------------
     function delFile1() {
         const del = document.querySelectorAll('.del');
         del.forEach(function (del) {
@@ -268,6 +266,7 @@
             })
         })
     }
+    // 추가 첨부파일 삭제 기능 ---------------------------------------------------------
     function delFile2(){
         const del2 = document.querySelectorAll('.del2');
         del2.forEach(function (del2){
@@ -281,7 +280,7 @@
                     body: path
                 };
                 if(path === "none") return;
-                fetch('/whats_new/news/deleteFile', reqInfoDel)
+                fetch('/whats_new/deleteFile', reqInfoDel)
                     .then(res => res.text())
                     .then(msg => {
                         console.log(msg);
@@ -290,9 +289,11 @@
             })
         })
     }
+    // 기존 첨부파일 보여주기 기능 -------------------------------------------------------
     let asNum = 1;
     function attachShow(){
         let attach = "${n.attach}";
+        if(attach === "") return;
         console.log("attach : ",attach);
         let attachList = attach.split(",");
         const $attachList = document.querySelector('.attachList');
@@ -315,7 +316,7 @@
         console.log(originImg);
         document.querySelector("input[name='listImg']").value = originImg;
     }
-    function uploadListImg(){
+    function uploadListImg(type){
         document.querySelector("input[name='listImgFile']").addEventListener("change",  e => {
             e.preventDefault();
             const oldFileName = document.querySelector('.listImg img').getAttribute('src');
@@ -335,7 +336,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/whats_new/news/upload', reqInfo)
+            fetch('/whats_new/upload?type='+type, reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -354,7 +355,7 @@
                             method: 'DELETE',
                             body: oldFileName
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
@@ -402,7 +403,7 @@
 
     // 첨부파일 비동기 업로드 -----------------------------------------------------------
     let attachList;
-    function uploadAttachFile(){
+    function uploadAttachFile(type){
         document.querySelector(".attachList").addEventListener("change",  e => {
             e.preventDefault();
             console.log("change");
@@ -425,7 +426,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/whats_new/news/upload', reqInfo)
+            fetch('/whats_new/upload?type='+type, reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -442,7 +443,7 @@
                             method: 'DELETE',
                             body: oldFileName
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
@@ -467,6 +468,7 @@
                 const $div = document.createElement('div');
                 const content = document.querySelector('textarea[name="content"]').value;
                 $div.innerHTML = content;
+                $div.classList.add('preViewContent');
 
                 const $close = document.createElement('div');
                 $close.classList.add('preViewClose')
@@ -521,7 +523,7 @@
                         method: 'DELETE',
                         body: originImg
                     };
-                    fetch('/whats_new/news/deleteFile', reqInfoDel)
+                    fetch('/whats_new/deleteFile', reqInfoDel)
                         .then(res => res.text())
                         .then(msg => {
                             console.log(msg);
@@ -555,7 +557,7 @@
                             method: 'DELETE',
                             body: n
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
@@ -575,17 +577,16 @@
             }
         })
     }
-
+    const type="news";
     (function (){
         attachShow();
         originImg();
-        uploadListImg();
-        uploadAttachFile();
+        uploadListImg(type);
+        uploadAttachFile(type);
         submitData();
         attachFileAdd();
         defaultKind();
         delFile2();
-
     })();
 
 </script>

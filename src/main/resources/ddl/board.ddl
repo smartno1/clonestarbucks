@@ -5,8 +5,9 @@ CREATE TABLE starbucks.board_event(
     , title VARCHAR(50)
     , begin_date DATETIME
     , end_date DATETIME
-    , list_img VARCHAR(50)
-    , content_img VARCHAR(50)
+    , list_img VARCHAR(100)
+    , content VARCHAR(100)
+    , attach VARCHAR(800)
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -15,16 +16,16 @@ CREATE TABLE starbucks.board_news(
     , kind VARCHAR(50)
     , title VARCHAR(50)
     , list_img VARCHAR(500)
-    , content_img LONGBLOB
+    , content VARCHAR(800)
+    , attach VARCHAR(800)
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE starbucks.board_notice(
                                        notice_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , title VARCHAR(50)
-    , content VARCHAR(50)
-    , link_title VARCHAR(50)
-    , link VARCHAR(50)
+    , content VARCHAR(800)
+    , attach VARCHAR(800)
     , view_cnt INT(10) DEFAULT 0
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );

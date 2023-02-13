@@ -10,13 +10,13 @@
         <result property="beginDate" column="begin_date" />
         <result property="endDate" column="end_date" />
         <result property="listImg" column="list_img" />
-        <result property="contentImg" column="content_img" />
         <result property="regDate" column="reg_date" />
     </resultMap>
 
     <insert id="insert">
         INSERT INTO starbucks.board_event
-        VALUES (NULL,#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{contentImg},CURRENT_TIMESTAMP);
+        (kind, title, begin_date, end_date, list_img, content,attach)
+        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach});
     </insert>
 
     <select id="findOne" resultMap="EventMap">
@@ -32,7 +32,7 @@
 
     <update id="update">
         UPDATE starbucks.board_event
-        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content_img-#{contentImg}
+        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content-#{content}, attach=#{attach}
         WHERE event_id=#{eventId}
     </update>
 

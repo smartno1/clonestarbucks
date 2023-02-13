@@ -91,7 +91,12 @@
             margin: 20px 0;
         }
         .attachList input{
+            display: inline-block;
+            width: 80%;
             margin: 10px 0;
+        }
+        .attachList span{
+            cursor: pointer;
         }
         /*버튼 ------------------------------------------*/
         .button{
@@ -127,22 +132,28 @@
             cursor: pointer;
             text-decoration: underline;
         }
-        /*    미리보기 팝업 */
+        /*    미리보기 팝업------------------------------------ */
         .pre-view-section{
             display: none;
+            z-index: 50;
             background-color: #fff;
-            width: 1100px;
-            min-height: 500px;
+            min-width: 1000px;
+            min-height: 600px;
             border: 2px solid black ;
             position: absolute;
-            bottom: 20%;
+            top: 70%;
             left: 50%;
-            transform: translate(-50%,0);
+            transform: translate(-50%,-70%);
+        }
+        .pre-view-section .preViewContent{
+            position: relative;
+            height: 80vh;
+            overflow-y: auto;
         }
         .pre-view-section .preViewClose{
             position: absolute;
-            bottom: -10%;
-            right: 0;
+            bottom: 50px;
+            right: -95px;
             height: 40px;
             width: 80px;
             text-align: center;
@@ -191,8 +202,9 @@
                         <input type="hidden" name="attach">
                         <p>첨부파일 <span class="material-symbols-outlined add">add</span></p>
                         <div class="attachFile1">
-                            <input name="attach-file" type="file">
+                            <input name="attach-file" type="file"><br>
                             경로 : <input type="text" name="attach-name" value="none" disabled>
+                                    <span class="del2">삭제</span>
                         </div>
                     </div>
                     <div class="button clear-fix">
@@ -218,6 +230,29 @@
 </div>
 
 <script>
+    // 첨부파일 삭제버튼 ----------------------------------------------------------------
+    function delFile2(){
+        const del2 = document.querySelectorAll('.del2');
+        del2.forEach(function (del2){
+            del2.addEventListener('click',e=>{
+                if(!e.target.matches('.del2'))  return;
+                const path = e.target.previousElementSibling.value;
+                console.log(path);
+                console.log()
+                const reqInfoDel = {
+                    method: 'DELETE',
+                    body: path
+                };
+                if(path === "none") return;
+                fetch('/whats_new/deleteFile', reqInfoDel)
+                    .then(res => res.text())
+                    .then(msg => {
+                        console.log(msg);
+                        document.querySelector('.attachList').removeChild(e.target.parentElement);
+                    })
+            })
+        })
+    }
     // 첨부파일 갯수 추가 --------------------------------------------------------------------
     let num = 2
     function attachFileAdd(){
@@ -228,23 +263,23 @@
             const $div = document.createElement('div')
             $div.classList.add("attachFile"+num);
 
-            $div.innerHTML = `<div class="attachFile`+num+`">
-                                <input name="attach-file" type="file">
-                                경로 : <input type="text" name="name" value="none" disabled>
-                                </div>`;
-
+            $div.innerHTML = ` <input name="attach-file" type="file"><br>
+                                경로 : <input type="text" name="attach-name" value="none" disabled>
+                                        <span class="del2">삭제</span>
+                                `;
             num = num + 1;
             $attachList.appendChild($div);
+            delFile2();
         })
     }
 
 
     // 첨부파일 비동기 업로드 -----------------------------------------------------------
-    function uploadAttachFile(){
+    function uploadAttachFile(type){
         document.querySelector(".attachList").addEventListener("change",  e => {
             e.preventDefault();
             // 첨부파일 변경시 이전 파일 경로 저장.
-            const oldFileName = e.target.nextElementSibling.value;
+            const oldFileName = e.target.nextElementSibling.nextElementSibling.value;
 
             // 1. 선택된 파일 데이터 읽기
             console.log(e);
@@ -262,7 +297,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/whats_new/news/upload', reqInfo)
+            fetch('/whats_new/upload?type='+type, reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -270,7 +305,7 @@
                 .then(fileName => {
                     console.log(fileName);
                     // 파일경로 보여주기
-                    e.target.nextElementSibling.value = fileName;
+                    e.target.nextElementSibling.nextElementSibling.value = fileName;
 
                     // 기존의 이미지파일 삭제 비동기 요청
                     if(oldFileName !== 'none') {
@@ -278,7 +313,7 @@
                             method: 'DELETE',
                             body: oldFileName
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
@@ -305,6 +340,7 @@
                 const content = document.querySelector('textarea[name="content"]').value;
                 $div.innerHTML = content;
 
+
                 const $close = document.createElement('div');
                 $close.classList.add('preViewClose')
                 $close.textContent = '닫기';
@@ -323,48 +359,64 @@
             }
             if(e.target.matches('#add')) {
                 console.log("add");
-
+                // 파일은 이미 업로드 되었기때문에 disabled
                 const $attachFiles = document.querySelectorAll('input[name="attach-file"]');
                 $attachFiles.forEach(function (a){
                     a.setAttribute("disabled","");
                 })
+
+                // 첨부파일 목록 생성 및 담기
+                let attach="";
+                const name = document.querySelectorAll('input[name="attach-name"]');
+                console.log(name);
+                name.forEach(function (n){
+                    console.log("n.value : ", n.value);
+                    if(n.value !== "none") {
+                        if (attach === "") {
+                            attach = attach + n.value;
+                        } else {
+                            attach = attach + "," + n.value;
+                        }
+                    }
+                })
+                console.log("attach : ",attach);
+                document.querySelector('input[name="attach"]').value = attach;
+
+                // submit 전송.
                 const $form = document.getElementById('form');
                 $form.submit();
             }
             if(e.target.matches('#cancel')) {
                 console.log("cancel");
                 // 업로드 된 파일이 있으면 제거
-                const name = document.querySelectorAll('input[name="name"]');
-                const nameList={};
-                name.forEach(function (n){
+                const name = document.querySelectorAll('input[name="attach-name"]');
+                const nameList=[];
+                name.forEach(function (n){  // 첨부파일 목록 담기
                     nameList.push(n.value);
                 })
-
                 if (nameList) {
                     nameList.forEach(function (n){
                         const reqInfoDel = {
                             method: 'DELETE',
                             body: n
                         };
-                        fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        fetch('/whats_new/deleteFile', reqInfoDel)
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
-                                history.go(-1);
                             })
                     })
-                } else {
-                    history.go(-1);
                 }
+                history.go(-1);
             }
         })
     }
-
+    const type="notice";
     (function (){
-        uploadAttachFile();
+        uploadAttachFile(type);
         submitData();
         attachFileAdd();
-
+        delFile2();
     })();
 </script>
 </body>

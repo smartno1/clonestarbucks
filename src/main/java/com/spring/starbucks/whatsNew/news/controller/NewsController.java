@@ -99,17 +99,19 @@ public class NewsController {
 
     @Transactional
     @PostMapping("/edit")
-    public String edit(News news){
+    public String edit(News news) {
         log.info("POST edit - {}",news);
         // 수정한 첨부파일과 기존의 첨부파일 목록을 비교하여 삭제된 파일경로를 찾아 파일 삭제.
         News n = newsService.findOne(news.getNewsId());
-        String[] list = n.getAttach().split(",");
-        log.info("list - {}",list);
-        for(String p : list){
-            log.info("p - {}",p);
-            if(!news.getAttach().contains(p)){
-                log.info("delete - {}",p);
-                FileUtils.deleteFile(p,UPLOAD_PATH);
+        if(n.getAttach() != null) {
+            String[] list = n.getAttach().split(",");
+            log.info("list - {}", list);
+            for (String p : list) {
+                log.info("p - {}", p);
+                if (!news.getAttach().contains(p)) {
+                    log.info("delete - {}", p);
+                    FileUtils.deleteFile(p, UPLOAD_PATH);
+                }
             }
         }
 
@@ -135,7 +137,7 @@ public class NewsController {
                     result.add(FileUtils.deleteFile(p,UPLOAD_PATH)); // 첨부파일 삭제
                 }
             }
-            result.add(FileUtils.deleteFile(img, UPLOAD_PATH)); // 파일 삭제
+            result.add(FileUtils.deleteFile(img, UPLOAD_PATH)); // 리스트 썸네일 파일 삭제
             if(result.contains("fail")) return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
             return new ResponseEntity<>("delete success" ,HttpStatus.OK);
         }else{
