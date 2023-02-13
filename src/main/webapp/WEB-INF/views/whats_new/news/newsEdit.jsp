@@ -47,8 +47,8 @@
         /* 게시글  */
         .middle-section .title{
             position: relative;
-            border-top: 1px solid #333333;
-            border-bottom: 1px solid #333333;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
             padding: 20px 140px 20px 20px;
             margin-bottom: 20px;
         }
@@ -59,7 +59,7 @@
             width: 80%;
         }
         .listImg {
-            border-bottom: 1px solid #333333;
+            border-bottom: 1px solid #dddddd;
             margin-bottom: 20px;
         }
         .listImg p {

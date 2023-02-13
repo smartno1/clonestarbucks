@@ -190,7 +190,7 @@
     <div class="middle">
         <div class="name">
             <h2>이벤트
-                <a href="/whats_new/event/addEvent">
+                <a href="/whats_new/event/add">
                     <span class="material-symbols-outlined">add</span>
                     <span class="name-add">이벤트 추가</span>
                 </a>

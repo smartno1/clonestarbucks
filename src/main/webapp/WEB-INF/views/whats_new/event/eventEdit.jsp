@@ -21,17 +21,6 @@
       font-weight: bold;
       padding-top: 30px;
     }
-    .top-section > h2 a{
-      margin-left: 20px;
-      padding-left: 10px;
-      font-size: 14px;
-    }
-    .top-section h2 a span{
-      vertical-align: text-bottom;
-    }
-    .top-section h2 a span.news-add{
-      vertical-align: text-top;
-    }
     .nav {
       position: relative;
       padding-bottom: 20px;
@@ -203,7 +192,7 @@
       </div>
       <div class="middle-section">
         <form id="form" action="/whats_new/event/edit" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="newsId" value="${n.eventId}">
+          <input type="hidden" name="eventId" value="${n.eventId}">
           <div class="title clear-fix">
             <div>
               제목 : <input type="text" name="title" value="${n.title}">
@@ -230,7 +219,7 @@
             </select>
           </div>
           <div class="content">
-            <textarea type="text" name="content">${n.content}</textarea>
+            <textarea  name="content">${n.content}</textarea>
           </div>
           <div class="attachList">
             <input type="hidden" name="attach">

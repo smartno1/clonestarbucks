@@ -84,26 +84,26 @@ public class NoticeController {
 
     @Transactional
     @PostMapping("/edit")
-    public String update(Notice notice, Model model){
-        log.info("POST update start - {}", notice);
+    public String update(Notice edit){
+        log.info("POST update start - {}", edit);
 
         // 수정한 첨부파일과 기존의 첨부파일 목록을 비교하여 삭제된 파일경로를 찾아 파일 삭제.
-        Notice n = noticeService.findOne(notice.getNoticeId());
+        Notice n = noticeService.findOne(edit.getNoticeId());
         if(n.getAttach() != null) {
             String[] list = n.getAttach().split(",");
             log.info("list - {}", list);
             for (String p : list) {
                 log.info("p - {}", p);
-                if (!notice.getAttach().contains(p)) {
+                if (!edit.getAttach().contains(p)) {
                     log.info("delete - {}", p);
                     FileUtils.deleteFile(p, UPLOAD_PATH);
                 }
             }
         }
 
-        boolean flag = noticeService.updateService(notice);
+        boolean flag = noticeService.updateService(edit);
 
-        return "redirect:/whats_new/notice/detail?noticeId="+notice.getNoticeId();
+        return "redirect:/whats_new/notice/detail?noticeId="+edit.getNoticeId();
     }
 
     @Transactional

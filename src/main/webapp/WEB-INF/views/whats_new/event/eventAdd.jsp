@@ -222,10 +222,9 @@
                     <div class="kind">
                         <p >분류 : </p>
                         <select name="kind" id="kind" aria-label="">
-                            <option value="PRODUCT">상품 출시</option>
-                            <option value="CULTURE">스타벅스와 문화</option>
-                            <option value="CONTRIBUTE">스타벅스 사회공헌</option>
-                            <option value="CARD">스타벅스 카드출시</option>
+                            <option value="card">스타벅스 카드</option>
+                            <option value="reward">스타벅스 리워드</option>
+                            <option value="online">온라인</option>
                         </select>
                     </div>
                     <p>내용</p>
@@ -517,7 +516,7 @@
             }
         })
     }
-    const type="news";
+    const type="event";
     (function (){
         uploadListImg(type);
         uploadAttachFile(type);

@@ -6,21 +6,30 @@ import com.spring.starbucks.whatsNew.event.service.EventService;
 import com.spring.starbucks.whatsNew.news.domain.News;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @Log4j2
 @RequiredArgsConstructor
+@PropertySource("classpath:upLoadPath.properties")
 @RequestMapping("/whats_new/event")
 public class EventController {
 
+    @Value("${UPLOAD_PATH}")
+    private String UPLOAD_PATH;
     private final EventService eventService;
 
     @GetMapping("/list")
@@ -34,21 +43,46 @@ public class EventController {
 
         return "whats_new/event/eventList";
     }
+    @GetMapping("/add")
+    public String addForm(){
+        return "whats_new/event/eventAdd";
+    }
+
+    @Transactional
+    @PostMapping("/add")
+    public String add(Event e){
+        log.info("POST ADD - {}", e);
+        boolean flag = eventService.saveService(e);
+
+        return "redirect:/whats_new/event/list";
+    }
 
     @GetMapping("/edit")
-    public String editForm(String id, Model model){
-        Event e = eventService.findOneService(Integer.parseInt(id));
+    public String editForm(Integer id, Model model){
+        Event e = eventService.findOneService(id);
         model.addAttribute("n", e);
         return "whats_new/event/eventEdit";
     }
 
     @Transactional
     @PostMapping("/edit")
-    public String edit(Event event) {
-        log.info("POST edit - {}",event);
+    public String edit(Event edit) {
+        log.info("POST edit - {}",edit);
+        Event n = eventService.findOneService(edit.getEventId());
+        if(n.getAttach() != null) {
+            String[] list = n.getAttach().split(",");
+            log.info("list - {}", list);
+            for (String p : list) {
+                log.info("p - {}", p);
+                if (!edit.getAttach().contains(p)) {
+                    log.info("delete - {}", p);
+                    FileUtils.deleteFile(p, UPLOAD_PATH);
+                }
+            }
+        }
 
-        boolean flag=eventService.updateService(event);
-        return "redirect:/whats_new/event/detail?Id="+event.getEventId();
+        boolean flag=eventService.updateService(edit);
+        return "redirect:/whats_new/event/detail?Id="+edit.getEventId();
     }
 
     @GetMapping("/detail")
@@ -60,6 +94,32 @@ public class EventController {
         model.addAttribute("event", event);
         model.addAttribute("events", events);
         return "whats_new/event/eventDetail";
+    }
+
+    @Transactional
+    @PostMapping("/delete")
+    public ResponseEntity<String> deleteImg(@RequestBody String id){
+        log.info("/whats_new/event/delete id - {}", id);
+        int nid = Integer.parseInt(id);
+        Event e = eventService.findOneService(nid); // 이미지경로저장.
+        String img = e.getListImg();
+        String attach = e.getAttach();
+        boolean flag = eventService.deleteService(nid);            // DB 삭제
+
+        if(flag){   //DB 삭제 성공시
+            List<String> result= new ArrayList<>();
+            if(attach != null) {
+                String[] attachList = attach.split(",");
+                for(String p : attachList){
+                    result.add(FileUtils.deleteFile(p,UPLOAD_PATH)); // 첨부파일 삭제
+                }
+            }
+            result.add(FileUtils.deleteFile(img, UPLOAD_PATH)); // 리스트 썸네일 파일 삭제
+            if(result.contains("fail")) return new ResponseEntity<>("fail", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("delete success" ,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
 }
