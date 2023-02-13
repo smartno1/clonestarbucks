@@ -50,14 +50,14 @@ public class FileUtils {
      * @param uploadPath - 서버의 업로드 루트 디렉토리 (E:/sl_dev/upload)
      * @return - 업로드가 완료된 새로운 파일의 full path
      */
-    public static String uploadFile(MultipartFile file, String uploadPath) {
+    public static String uploadFile(MultipartFile file, String uploadPath, String type) {
 
         // 중복이 없는 파일명으로 변경하기
         // ex) 상어.png -> 3dfsfjkdsfds-djksfaqwerij-dsjkfdkj_상어.png
         String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
         // 업로드 경로를 변경
-        String newUploadPath = getNewUploadPath(uploadPath);
+        String newUploadPath = getNewUploadPath(uploadPath, type);
 
         // 파일 업로드 수행
         File f = new File(newUploadPath, newFileName);
@@ -85,28 +85,70 @@ public class FileUtils {
      * @param uploadPath - 원본 업로드 경로
      * @return 일자별 폴더가 포함된 새로운 업로드 경로
      */
-    private static String getNewUploadPath(String uploadPath) {
+    private static String getNewUploadPath(String uploadPath, String type) {
 
         // 폴더 생성
-        String[] pathInfo = {
-                "images"
-                ,"coffee"
-                ,"bean"
-        };
-
+        String[] pathInfo = new String[5];
+        pathInfo[0] = "images";
+        switch (type) {
+            case "coffeeBean":
+                pathInfo[1] = "coffee";
+                pathInfo[2] = "been";
+                break;
+            case "event":
+                pathInfo[1] = "whats_new";
+                pathInfo[2] = "event";
+                break;
+            case "news":
+                pathInfo[1] = "whats_new";
+                pathInfo[2] = "news";
+                break;
+            case "notice":
+                pathInfo[1] = "whats_new";
+                pathInfo[2] = "notice";
+                break;
+        }
         String newUploadPath = uploadPath;
 
         // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성
         // 리눅스 : / ,  윈도우 : \
-        for (String p : pathInfo) {
-            newUploadPath += File.separator + p;
+        for (int i = 0 ; pathInfo[i] != null ; i++) {
+            newUploadPath += File.separator + pathInfo[i];
+            // 해당 경로대로 폴더를 생성
+            File dirName = new File(newUploadPath);
+            if (!dirName.exists()) dirName.mkdir();
+        }
+
+        // 오늘 년,월,일 정보 가져오기
+        LocalDateTime now = LocalDateTime.now();
+        int y = now.getYear();
+        int m = now.getMonthValue();
+        int d = now.getDayOfMonth();
+
+        // 폴더 생성
+        String[] dateInfo = {
+                String.valueOf(y)
+                , len2(m)
+                , len2(d)
+        };
+
+        // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성
+        // 리눅스 : / ,  윈도우 : \
+        for (String date : dateInfo) {
+            newUploadPath += File.separator + date;
 
             // 해당 경로대로 폴더를 생성
             File dirName = new File(newUploadPath);
             if (!dirName.exists()) dirName.mkdir();
         }
 
+
+
         return newUploadPath;
+    }
+    // 한자리수 월, 일 정보를 항상 2자리로 만들어주는 메서드
+    private static String len2(int n) {
+        return new DecimalFormat("00").format(n);
     }
 
     // 파일명을 받아서 확장자를 반환하는 메서드
@@ -115,18 +157,17 @@ public class FileUtils {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
-    public static ResponseEntity<String> deleteFile(String FileName, String UPLOAD_PATH){
+    public static String deleteFile(String FileName, String UPLOAD_PATH){
         try {
-            FileName = FileName.substring(FileName.indexOf("=")+1);
             //파일 삭제
             File delFile = new File(UPLOAD_PATH + FileName);
-            if (!delFile.exists()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (!delFile.exists()) return "not found";
 
             delFile.delete();
             log.info("delete success");
-            return new ResponseEntity<>("delete success", HttpStatus.OK);
+            return "delete success";
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return e.getMessage();
         }
     }
 }

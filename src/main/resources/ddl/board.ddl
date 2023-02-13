@@ -14,8 +14,8 @@ CREATE TABLE starbucks.board_news(
                                      news_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , kind VARCHAR(50)
     , title VARCHAR(50)
-    , list_img VARCHAR(50)
-    , content_img VARCHAR(50)
+    , list_img VARCHAR(500)
+    , content_img LONGBLOB
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

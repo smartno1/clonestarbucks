@@ -4,7 +4,7 @@
 <html>
 <head>
     <%@include file="../../include/static-head.jsp"%>
-    <title>Notice</title>
+    <title>뉴스 | Starbucks Korea</title>
 
     <style>
         /*상위부분 및 검색창   */
@@ -30,7 +30,7 @@
         .top-section h2 a span{
             vertical-align: text-bottom;
         }
-        .top-section h2 a span.notice-add{
+        .top-section h2 a span.news-add{
             vertical-align: text-top;
         }
         .nav {
@@ -58,19 +58,35 @@
         /* 게시글  */
         .middle-section .title{
             position: relative;
-            border-top: 1px solid #333333;
-            border-bottom: 1px solid #333333;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
             padding: 20px 140px 20px 20px;
+            margin-bottom: 20px;
         }
         .middle-section .title input{
-            float: left;
             font-size: 18px;
             font-weight: bold;
             color: #222222;
             width: 80%;
         }
-        .middle-section .title ul{
-            float:right;
+        .listImg {
+            border-bottom: 1px solid #dddddd;
+            margin-bottom: 20px;
+        }
+        .listImg p {
+            margin: 20px 0;
+        }
+        .listImg p input{
+            width: 80%;
+        }
+        .kind{
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dddddd;
+        }
+        .kind p, #kind{
+            margin-right: 20px;
+            display: inline-block;
         }
         .content {
             padding: 30px 10px;
@@ -91,7 +107,12 @@
             margin: 20px 0;
         }
         .attachList input{
+            display: inline-block;
             margin: 10px 0;
+            width: 80%;
+        }
+        .attachList span{
+            cursor: pointer;
         }
         /*버튼 ------------------------------------------*/
         .button{
@@ -127,7 +148,7 @@
             cursor: pointer;
             text-decoration: underline;
         }
-        /*    미리보기 팝업 */
+    /*    미리보기 팝업 */
         .pre-view-section{
             display: none;
             background-color: #fff;
@@ -135,7 +156,7 @@
             min-height: 500px;
             border: 2px solid black ;
             position: absolute;
-            bottom: 20%;
+            bottom: 10%;
             left: 50%;
             transform: translate(-50%,0);
         }
@@ -155,6 +176,7 @@
             cursor: pointer;
             border-radius: 3px;
         }
+
     </style>
 </head>
 <body>
@@ -163,36 +185,56 @@
     <main class="main-wrapper">
         <div class="main">
             <div class="top-section">
-                <h2>공지사항 추가</h2>
+                <h2>뉴스 추가</h2>
                 <nav class="nav">
                     <ul class="nav-ul">
                         <li><a href="/"><img src="/images/icon/icon_home.png" alt="홈으로"></a></li>
                         <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
                         <li><a href="javascript:void(0)" class="en">WHAT'S NEW</a></li>
                         <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
-                        <li><a href="javascript:void(0)"> 공지사항</a></li>
+                        <li><a href="javascript:void(0)"> 뉴스</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="middle-section">
-                <form id="form" action="/whats_new/notice/add" method="POST">
+                <form id="form" action="/whats_new/news/add" method="POST" enctype="multipart/form-data">
                     <div class="title clear-fix">
-                        <input name="title" placeholder="제목을 입력하세요.">
-                        <ul>
-                            <li>
-
-                            </li>
-                        </ul>
+                        <div>
+                            제목 : <input type="text" name="title">
+                        </div>
                     </div>
+                    <div class="listImg">
+                        <input type="hidden" name="originImage">
+                        <p>리스트 이미지</p>
+                        <img src="">
+                        <p>
+                            파일경로 : <input type="text" name="listImg" value="">
+                        </p>
+                        <p>
+                            리스트이미지 파일 추가(260 X 260) : <input type="file" name="listImgFile">
+                        </p>
+
+                    </div>
+                    <div class="kind">
+                        <p >분류 : </p>
+                        <select name="kind" id="kind" aria-label="">
+                            <option value="PRODUCT">상품 출시</option>
+                            <option value="CULTURE">스타벅스와 문화</option>
+                            <option value="CONTRIBUTE">스타벅스 사회공헌</option>
+                            <option value="CARD">스타벅스 카드출시</option>
+                        </select>
+                    </div>
+                    <p>내용</p>
                     <div class="content">
-                        <textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+                        <textarea name="content" placeholder="html 작성"></textarea>
                     </div>
                     <div class="attachList">
                         <input type="hidden" name="attach">
                         <p>첨부파일 <span class="material-symbols-outlined add">add</span></p>
                         <div class="attachFile1">
-                            <input name="attach-file" type="file">
+                            <input name="attach-file" type="file"><br>
                             경로 : <input type="text" name="attach-name" value="none" disabled>
+                                    <span class="del2">삭제</span>
                         </div>
                     </div>
                     <div class="button clear-fix">
@@ -218,6 +260,92 @@
 </div>
 
 <script>
+    function delFile2(){
+        const del2 = document.querySelectorAll('.del2');
+        del2.forEach(function (del2){
+            del2.addEventListener('click',e=>{
+                if(!e.target.matches('.del2'))  return;
+                const path = e.target.previousElementSibling.value;
+                console.log(path);
+                console.log()
+                const reqInfoDel = {
+                    method: 'DELETE',
+                    body: path
+                };
+                if(path === "none") return;
+                fetch('/whats_new/news/deleteFile', reqInfoDel)
+                    .then(res => res.text())
+                    .then(msg => {
+                        console.log(msg);
+                        document.querySelector('.attachList').removeChild(e.target.parentElement);
+                    })
+            })
+        })
+    }
+
+    function uploadListImg(){
+        document.querySelector("input[name='listImgFile']").addEventListener("change",  e => {
+            e.preventDefault();
+            const oldFileName = document.querySelector('.listImg img').getAttribute('src');
+            // 1. 선택된 파일 데이터 읽기
+            console.log(e);
+            const file = e.target.files[0];
+            console.log('file data: ', file);
+
+            // 2. 파일 데이터를 전송하기 위해 FormData객체필요
+            const formData = new FormData();
+
+            // 3. 전송할 파일을 formData안에 포장(form 태그로 submit 을 하지않고 보낼때)
+            formData.append('file',file);
+
+            // 4. 비동기 요청 전송
+            const reqInfo = {
+                method: 'POST',
+                body: formData
+            };
+            fetch('/whats_new/news/upload', reqInfo)
+                .then(res => {
+                    //console.log(res.status);
+                    return res.text();
+                })
+                .then(fileName => {
+                    console.log(fileName);
+                    // 선택한 이미지를 보여주는 함수
+                    showFileData(fileName);
+                    // DB에 파일경로 저장을 위해 input 태그에 파일 경로 저장.
+                    document.querySelector("input[name='listImg']").value = fileName;
+
+                    // 기존의 이미지파일 삭제 비동기 요청
+                    const reqInfoDel = {
+                        method: 'DELETE',
+                        body: oldFileName
+                    };
+                    fetch('/whats_new/news/deleteFile', reqInfoDel)
+                        .then(res => res.text())
+                        .then(msg => {
+                            console.log(msg);
+                        })
+                })
+        })
+    }
+
+    // 업로드 된 이미지파일을 화면에 보여주는 함수------------------------------------------
+    function showFileData(fileName) {
+
+        //원본 파일 명 추출
+        let originFileName = fileName.substring(fileName.lastIndexOf("_") + 1);
+
+        // 이미지면 썸네일을 렌더링
+        const $img = document.querySelector('.listImg img');
+        // 단순히 src 에 파일경로만 적으면 이미지를 불러오지 못함.
+        // 이미지렌더링을 위해 서버로 파일 전송 비동기 요청을 하고 파일을 로드하던지,
+        // 이미지 src의 경로를 적어주고, 스프링에서 WebConfig.java 에서 리소스 경로 매칭을 해주면
+        // 이미지를 불러올 수 있음.
+        $img.setAttribute('src', fileName);
+        $img.setAttribute('alt', originFileName);
+
+    }
+
     // 첨부파일 갯수 추가 --------------------------------------------------------------------
     let num = 2
     function attachFileAdd(){
@@ -228,23 +356,25 @@
             const $div = document.createElement('div')
             $div.classList.add("attachFile"+num);
 
-            $div.innerHTML = `<div class="attachFile`+num+`">
-                                <input name="attach-file" type="file">
-                                경로 : <input type="text" name="name" value="none" disabled>
-                                </div>`;
+            $div.innerHTML = ` <input name="attach-file" type="file"><br>
+                                경로 : <input type="text" name="attach-name" value="none" disabled>
+                                        <span class="del2">삭제</span>
+                                `;
 
             num = num + 1;
             $attachList.appendChild($div);
+            delFile2();
         })
     }
 
-
     // 첨부파일 비동기 업로드 -----------------------------------------------------------
+    let attachList;
     function uploadAttachFile(){
         document.querySelector(".attachList").addEventListener("change",  e => {
             e.preventDefault();
+            console.log("change");
             // 첨부파일 변경시 이전 파일 경로 저장.
-            const oldFileName = e.target.nextElementSibling.value;
+            const oldFileName = e.target.nextElementSibling.nextElementSibling.value;
 
             // 1. 선택된 파일 데이터 읽기
             console.log(e);
@@ -270,10 +400,11 @@
                 .then(fileName => {
                     console.log(fileName);
                     // 파일경로 보여주기
-                    e.target.nextElementSibling.value = fileName;
+                    e.target.nextElementSibling.nextElementSibling.value = fileName;
 
                     // 기존의 이미지파일 삭제 비동기 요청
                     if(oldFileName !== 'none') {
+                        console.log("oldFN : ", oldFileName);
                         const reqInfoDel = {
                             method: 'DELETE',
                             body: oldFileName
@@ -321,25 +452,50 @@
                     })
                 }
             }
+
             if(e.target.matches('#add')) {
                 console.log("add");
+                // 파일은 이미 업로드 되었기때문에 disabled
+                document.querySelector('input[name="listImgFile"]').setAttribute("disabled", "");
+                // = document.querySelector('input[name="file"]').disabled=true;
 
                 const $attachFiles = document.querySelectorAll('input[name="attach-file"]');
-                $attachFiles.forEach(function (a){
-                    a.setAttribute("disabled","");
+                $attachFiles.forEach(function (a) {
+                    a.setAttribute("disabled", "");
                 })
+
+                // 첨부파일 목록 생성 및 담기
+                let attach="";
+                const name = document.querySelectorAll('input[name="attach-name"]');
+                console.log(name);
+                name.forEach(function (n){
+                    console.log("n.value : ", n.value);
+                    if(n.value !== "none") {
+                        if (attach === "") {
+                            attach = attach + n.value;
+                        } else {
+                            attach = attach + "," + n.value;
+                        }
+                    }
+                })
+                console.log("attach : ",attach);
+                document.querySelector('input[name="attach"]').value = attach;
+
                 const $form = document.getElementById('form');
                 $form.submit();
+
             }
+
             if(e.target.matches('#cancel')) {
                 console.log("cancel");
                 // 업로드 된 파일이 있으면 제거
-                const name = document.querySelectorAll('input[name="name"]');
-                const nameList={};
+                let nameList=[];
+                const name = document.querySelectorAll('input[name="attach-name"]');
+                const listImg = document.querySelector('.listImg img').getAttribute("src");
                 name.forEach(function (n){
                     nameList.push(n.value);
                 })
-
+                nameList.push(listImg);
                 if (nameList) {
                     nameList.forEach(function (n){
                         const reqInfoDel = {
@@ -350,22 +506,24 @@
                             .then(res => res.text())
                             .then(msg => {
                                 console.log(msg);
-                                history.go(-1);
                             })
                     })
-                } else {
-                    history.go(-1);
+
                 }
+                history.go(-1);
             }
         })
     }
 
+
     (function (){
+        uploadListImg();
         uploadAttachFile();
         submitData();
         attachFileAdd();
-
+        delFile2();
     })();
+
 </script>
 </body>
 </html>

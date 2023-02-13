@@ -32,8 +32,9 @@ public class CoffeeUploadController {
 
         log.info("/coffee/bean/ajax-upload POST! - {}", file);
 
+        String type="coffeeBean";
         // 클라이언트가 전송한 파일 업로드하기
-        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH);
+        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH, type);
         // 클라이언트에게 전송할 파일경로 리스트
         String fileName = fullPath;
 
@@ -102,8 +103,8 @@ public class CoffeeUploadController {
         if(oldFileName.equals("/images/logo.png")) {
             return new ResponseEntity<>("file is logo", HttpStatus.OK);
         }
-
-        return FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
+        String result = FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }

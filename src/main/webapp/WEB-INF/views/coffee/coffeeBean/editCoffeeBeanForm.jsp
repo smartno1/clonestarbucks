@@ -299,7 +299,10 @@
 				// 현제 렌더링한 이미지가 최초의 이미지가 아니라면 현제 렌더링한 이미지파일 제거
 				const img = document.querySelector('input[name="image"]').value;
 				const originImg = document.querySelector('input[name="originImage"]').value;
+				console.log("image", img);
+				console.log("ori", originImg);
 				if(originImg !== img ){
+					console.log("caca");
 					const reqInfoDel = {
 						method: 'DELETE',
 						body: img
@@ -310,7 +313,10 @@
 								console.log(msg);
 								history.go(-1);
 							})
+				}else{
+					history.go(-1);
 				}
+
 			}
 		})
 	}

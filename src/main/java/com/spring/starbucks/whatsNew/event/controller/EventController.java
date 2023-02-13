@@ -28,7 +28,7 @@ public class EventController {
         log.info("events - {}", events);
         log.info("kind - {}", kind);
 
-        return "board/event/eventList";
+        return "whats_new/event/eventList";
     }
 
     @GetMapping("/detail")
@@ -39,7 +39,7 @@ public class EventController {
         model.addAttribute("kind", kind);
         model.addAttribute("event", event);
         model.addAttribute("events", events);
-        return "board/event/eventDetail";
+        return "whats_new/event/eventDetail";
     }
 
 }

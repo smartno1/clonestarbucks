@@ -4,7 +4,7 @@
 <html>
 <head>
   <%@include file="../../include/static-head.jsp"%>
-  <title>Notice</title>
+  <title>공지사항 | Starbucks Korea</title>
 
   <style>
  /*상위부분 및 검색창   */
@@ -206,7 +206,7 @@
         <div class="search-kind clear-fix">
           <div><a class="search-button" href=javascript:void(0) >검색</a></div>
           <div>
-            <form action="/whats_new/notice/list">
+            <form id="form" action="/whats_new/notice/list">
               <input id="type" name="type" value="title" type="hidden">
               <input id="keyword" name="keyword" value="${s.keyword}" placeholder="검색어를 입력해 주세요.">
             </form>
@@ -296,7 +296,18 @@
     }
   }
 
+  function submit(){
+    document.querySelector(".search-button").addEventListener("click", e => {
+      if(!e.target.matches(".search-button")) return;
+
+      const $form = document.getElementById("form");
+      $form.submit();
+
+    })
+  }
+
   (function (){
+    submit();
     appendPageActive();
   })();
 </script>

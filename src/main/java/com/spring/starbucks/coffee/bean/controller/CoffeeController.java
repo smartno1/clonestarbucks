@@ -69,15 +69,16 @@ public class CoffeeController {
     @Transactional
     @DeleteMapping("/deleteCoffeeBean")
     public ResponseEntity<String> delete(@RequestBody String id){
-        log.info("/coffee/bean/deleteCoffeeBean Get! id - {}", id);
+        log.info("/coffee/bean/deleteCoffeeBean Delete! id - {}", id);
         int nid = Integer.parseInt(id);
         String img = coffeeService.findOneService(nid).getImage(); // 이미지경로저장.
         boolean flag = coffeeService.deleteService(nid);            // DB 삭제
 
         if(flag){   //DB 삭제 성공시
-            return FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+           String result = FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            return new ResponseEntity<>(result, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("fail", HttpStatus.NOT_ACCEPTABLE);
         }
     }
 

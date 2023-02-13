@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,6 +74,7 @@ public class NoticeController {
         return "whats_new/notice/editNotice";
     }
 
+    @Transactional
     @PostMapping("/edit")
     public String update(Notice notice, Model model){
         log.info("POST update start - {}", notice);
@@ -81,6 +83,7 @@ public class NoticeController {
         return "redirect:/whats_new/notice/detail?noticeId="+notice.getNoticeId();
     }
 
+    @Transactional
     @DeleteMapping("/delete")
     @ResponseBody
     public ResponseEntity<String> delete(@RequestBody String id){

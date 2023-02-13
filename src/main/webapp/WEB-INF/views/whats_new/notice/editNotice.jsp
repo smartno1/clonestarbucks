@@ -54,7 +54,7 @@
             padding-top: 7px;
         }
 
-        /* 게시글  */
+        /* 게시글 수정 란 ----------------------------  */
         .middle-section .title{
             position: relative;
             border-top: 1px solid #333333;
@@ -82,11 +82,12 @@
             min-height: 300px;
             resize: none;
         }
+
+        /*버튼 ------------------------------------------*/
         .button{
             position: relative;
             margin-bottom: 50px;
         }
-
         .go-list,
         .submit{
             float: right;
