@@ -1,6 +1,7 @@
 package com.spring.starbucks.whatsNew.event.controller;
 
 import com.spring.starbucks.coffee.bean.upload.FileUtils;
+import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import com.spring.starbucks.whatsNew.event.service.EventService;
 import com.spring.starbucks.whatsNew.news.domain.News;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,11 @@ public class EventController {
     @GetMapping("/list")
     public String list( String kind, Model model){
 
-        List<Event> events =  eventService.findAllService();
+        log.info("list start - {}",kind);
+        if(kind == null){
+            kind = "ALL";
+        }
+        List<Event> events = eventService.findAllService(kind);
         model.addAttribute("events", events);
         model.addAttribute("kind", kind);
         log.info("events - {}", events);
@@ -50,9 +56,13 @@ public class EventController {
 
     @Transactional
     @PostMapping("/add")
-    public String add(Event e){
-        log.info("POST ADD - {}", e);
-        boolean flag = eventService.saveService(e);
+    public String add(Event add){
+        log.info("POST ADD - {}", add);
+
+        add.setBeginDate(LocalDate.parse(add.getBeginDateStr()));
+        add.setEndDate(LocalDate.parse(add.getEndDateStr()));
+
+        boolean flag = eventService.saveService(add);
 
         return "redirect:/whats_new/event/list";
     }
@@ -68,6 +78,10 @@ public class EventController {
     @PostMapping("/edit")
     public String edit(Event edit) {
         log.info("POST edit - {}",edit);
+
+        edit.setBeginDate(LocalDate.parse(edit.getBeginDateStr()));
+        edit.setEndDate(LocalDate.parse(edit.getEndDateStr()));
+
         Event n = eventService.findOneService(edit.getEventId());
         if(n.getAttach() != null) {
             String[] list = n.getAttach().split(",");
@@ -81,14 +95,15 @@ public class EventController {
             }
         }
 
+
         boolean flag=eventService.updateService(edit);
-        return "redirect:/whats_new/event/detail?Id="+edit.getEventId();
+        return "redirect:/whats_new/event/detail?id="+edit.getEventId();
     }
 
     @GetMapping("/detail")
     public String detail(int id, String kind, Model model){
         Event event = eventService.findOneService(id);
-        List<Event> events = eventService.findAllService();
+        List<Event> events = eventService.findAllService("none");
 
         model.addAttribute("kind", kind);
         model.addAttribute("event", event);

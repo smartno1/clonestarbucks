@@ -28,11 +28,15 @@
     <select id="findAll" resultMap="EventMap">
         SELECT *
         FROM starbucks.board_event
+        <if test="kind != 'ALL'">
+            WHERE kind = #{kind}
+        </if>
+        ORDER BY reg_date DESC
     </select>
 
     <update id="update">
         UPDATE starbucks.board_event
-        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content-#{content}, attach=#{attach}
+        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach}
         WHERE event_id=#{eventId}
     </update>
 

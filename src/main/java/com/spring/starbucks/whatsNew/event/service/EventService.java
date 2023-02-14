@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -22,18 +23,18 @@ public class EventService {
         return eventMapper.insert(event);
     }
 
-    public List<Event> findAllService(){
-        List<Event> events = eventMapper.findAll();
-
-        LocalDate current = LocalDate.now();
-
+    public List<Event> findAllService(String kind){
+        List<Event> events = eventMapper.findAll(kind);
+        LocalDate current = LocalDate.now().minusDays(1);
         for(int i=0;i<events.size();i++) {
             Event event = events.get(i);
+
             //  종료날짜 비교하여 이벤트 종료여부 결정
             if (event.getEndDate().isAfter(current)) {
                 log.info("ended");
                 event.setEnded(false);
             }else{
+                log.info("ing");
                 event.setEnded(true);
             }
             // 제목 글자수 20 넘으면 짤라서 저장.

@@ -38,28 +38,29 @@ public class NewsController {
     private final NewsService newsService;
 
     @GetMapping("/list")
-    public String findAll(@ModelAttribute("s") Search search, Page page, Model model){
+    public String findAll(@ModelAttribute("s") Search search, String kind, Model model){
         List<News> nList;
         PageMaker pm;
-        if(search.getKind() == null || search.getKind().equals("") || search.getKind().equals("ALL")) {
+        if(search.getKind() == null || search.getKind().equals("ALL")) {
             log.info("search 1 start - {}",search);
             nList = newsService.findAllService(search);
-            pm = new PageMaker(page, newsService.getTotalCount(search));
+            pm = new PageMaker(search, newsService.getTotalCount(search));
         }else {
             log.info("search 2 start - {}",search);
             nList = newsService.findAllService2(search);
-            pm = new PageMaker(page, newsService.getTotalCount2(search));
+            pm = new PageMaker(search, newsService.getTotalCount2(search));
             log.info("nList - {}", nList);
         }
         model.addAttribute("nList", nList);
         model.addAttribute("pm", pm);
+        model.addAttribute("kind", kind);
 
         return "whats_new/news/newsList";
     }
 
 
     @GetMapping("/detail")
-    public String findOne(String newsId, Search search, Page page, Model model){
+    public String findOne(String newsId, Search search, Model model){
         log.info("GET DETAIL newsID - {}",newsId );
         int nId = Integer.parseInt(newsId);
         News n = newsService.findOne(nId);
@@ -70,7 +71,6 @@ public class NewsController {
         model.addAttribute("next", next);
         model.addAttribute("n",n);
         model.addAttribute("s", search);
-        model.addAttribute("page", page);
 
         return "whats_new/news/newsDetail";
     }

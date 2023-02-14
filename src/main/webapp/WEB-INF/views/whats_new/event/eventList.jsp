@@ -207,10 +207,10 @@
         </div>
         <div class="search-tap">
             <div class="search-kind clear-fix">
-                <div><a data-kinds="all" href=javascript:void(0)>전체</a></div>
-                <div><a data-kinds="card" href=javascript:void(0) >스타벅스 카드</a></div>
-                <div><a data-kinds="reward" href=javascript:void(0) >스타벅스 리워드</a></div>
-                <div><a data-kinds="online" href=javascript:void(0) >온라인</a></div>
+                <div><a data-kinds="ALL" href=javascript:void(0)>전체</a></div>
+                <div><a data-kinds="CARD" href=javascript:void(0) >스타벅스 카드</a></div>
+                <div><a data-kinds="REWARD" href=javascript:void(0) >스타벅스 리워드</a></div>
+                <div><a data-kinds="ONLINE" href=javascript:void(0) >온라인</a></div>
             </div>
         </div>
         <div class="event-wrapper">
@@ -303,16 +303,8 @@
     // 선택된 옵션에 맞는 리스트 보여주기
     function showList(){
         const kind = document.querySelector('.selected').dataset.kinds; // 선택된 kind 값을 가져오고
-        const list = document.querySelectorAll('.event-list li');
-        console.log(list);
-        console.log("kind = ", kind);
-        list.forEach(function (event){
-            if( kind === "all" || event.dataset.kind === kind){
-                event.style.display = "";
-            }else{
-                event.style.display = "none";
-            }
-        })
+
+        location.href = "/whats_new/event/list?kind="+kind;
     }
 
     // 처음 전체 선택되게

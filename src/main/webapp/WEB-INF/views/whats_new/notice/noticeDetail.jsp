@@ -179,7 +179,7 @@
 
                 </div>
                 <div class="go-list">
-                    <a href="/whats_new/notice/list">목록</a>
+                    <a href="/whats_new/notice/list?pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}">목록</a>
                 </div>
             </div>
             <div class="bottom-section">

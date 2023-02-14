@@ -10,7 +10,7 @@ public interface EventMapper {
 
     boolean insert(Event event);
 
-    List<Event> findAll();
+    List<Event> findAll(String kind);
 
     Event findOne(int id);
 

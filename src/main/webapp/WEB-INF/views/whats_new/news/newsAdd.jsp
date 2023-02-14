@@ -217,7 +217,6 @@
                         <p>
                             리스트이미지 파일 추가(260 X 260) : <input type="file" name="listImgFile">
                         </p>
-
                     </div>
                     <div class="kind">
                         <p >분류 : </p>

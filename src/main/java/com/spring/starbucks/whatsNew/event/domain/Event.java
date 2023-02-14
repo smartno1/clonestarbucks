@@ -23,4 +23,7 @@ public class Event {
     private boolean ended;
     private String period;
     private String prettierTitle;
+    private String beginDateStr;
+    private String endDateStr;
+
 }

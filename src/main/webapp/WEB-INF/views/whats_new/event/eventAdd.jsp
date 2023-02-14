@@ -88,6 +88,16 @@
             margin-right: 20px;
             display: inline-block;
         }
+        .period {
+            border-bottom: 1px solid #dddddd;
+            margin-bottom: 20px;
+        }
+        .period p{
+            margin-bottom: 10px;
+        }
+        .period div{
+            margin-bottom: 20px;
+        }
         .content {
             padding: 30px 10px;
             border-bottom: 1px solid #dddddd;
@@ -202,7 +212,7 @@
                 </nav>
             </div>
             <div class="middle-section">
-                <form id="form" action="/whats_new/news/add" method="POST" enctype="multipart/form-data">
+                <form id="form" action="/whats_new/event/add" method="POST" enctype="multipart/form-data">
                     <div class="title clear-fix">
                         <div>
                             제목 : <input type="text" name="title">
@@ -222,10 +232,30 @@
                     <div class="kind">
                         <p >분류 : </p>
                         <select name="kind" id="kind" aria-label="">
-                            <option value="card">스타벅스 카드</option>
-                            <option value="reward">스타벅스 리워드</option>
-                            <option value="online">온라인</option>
+                            <option value="CARD">스타벅스 카드</option>
+                            <option value="REWARD">스타벅스 리워드</option>
+                            <option value="ONLINE">온라인</option>
                         </select>
+                    </div>
+                    <div class="period">
+                        <div class="begin">
+                            <label for="begin">시작 날짜를 선택하세요:
+                                <input type="date"
+                                       id="begin"
+                                       name="beginDateStr"
+                                       max="2077-12-01"
+                                       min="2000-01-01">
+                            </label>
+                        </div>
+                        <div class="end">
+                            <label for="end">종료 날짜를 선택하세요:
+                                <input type="date"
+                                       id="end"
+                                       name="endDateStr"
+                                       max="2077-12-01"
+                                       min="2000-01-01">
+                            </label>
+                        </div>
                     </div>
                     <p>내용</p>
                     <div class="content">
@@ -263,6 +293,7 @@
 </div>
 
 <script>
+
     // 첨부파일 삭제 버튼 ---------------------------------------------------------------
     function delFile2(){
         const del2 = document.querySelectorAll('.del2');
@@ -484,7 +515,6 @@
                 })
                 console.log("attach : ",attach);
                 document.querySelector('input[name="attach"]').value = attach;
-
                 // submit 전송.
                 const $form = document.getElementById('form');
                 $form.submit();
@@ -523,7 +553,7 @@
         submitData();
         attachFileAdd();
         delFile2();
-    })();
+     })();
 
 </script>
 </body>

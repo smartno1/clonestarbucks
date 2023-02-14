@@ -127,12 +127,23 @@
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="/whats_new/event/list">이벤트</a></h4>
-
+                                <h4><a href="/whats_new/event/list?kind=ALL">이벤트</a></h4>
+                                <ul>
+                                    <li><a href="/whats_new/event/list?kind=ALL">전체</a></li>
+                                    <li><a href="/whats_new/event/list?kind=CARD">스타벅스 카드</a></li>
+                                    <li><a href="/whats_new/event/list?kind=REWARD">스타벅스 리워드</a></li>
+                                    <li><a href="/whats_new/event/list?kind=ONLINE">온라인</a></li>
+                                </ul>
                             </li>
                             <li>
-                                <h4><a href="/whats_new/news/list">뉴스</a></h4>
-
+                                <h4><a href="/whats_new/news/list?kind=ALL">뉴스</a></h4>
+                                <ul>
+                                    <li><a href="/whats_new/news/list?kind=ALL">전체</a></li>
+                                    <li><a href="/whats_new/news/list?kind=PRODUCT">상품출시</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CULTURE">스타벅스와 문화</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CONTRIBUTE">스타벅스 사회공헌</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CARD">스타벅스 카드출시</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <h4><a href="/whats_new/notice/list">공지사항</a></h4>

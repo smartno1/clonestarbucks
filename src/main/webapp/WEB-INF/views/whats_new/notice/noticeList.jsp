@@ -228,7 +228,7 @@
               <tr>
                 <td>${n.no}</td>
                 <td class="left">
-                  <a href="/whats_new/notice/detail?noticeId=${n.noticeId}">${n.title}</a>
+                  <a href=/whats_new/notice/detail?noticeId=${n.noticeId}&pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}">${n.title}</a>
                 </td>
                 <td>${n.regDate}</td>
                 <td>${n.viewCnt}</td>

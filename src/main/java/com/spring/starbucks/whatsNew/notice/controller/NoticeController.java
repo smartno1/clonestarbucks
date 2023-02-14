@@ -35,26 +35,37 @@ public class NoticeController {
     final private NoticeMapper noticeMapper;
 
     @GetMapping("/list")
-    public String findAll2(Page page, @ModelAttribute("s") Search search, Model model){
+    public String findAll2(@ModelAttribute("s") Search search, Model model){
 
         List<Notice> nList = noticeService.findAllService(search);
-
-        PageMaker pm = new PageMaker(page, noticeMapper.getTotalCount2(search));
+        log.info("pageNum - {}", search.getPageNum());
+        PageMaker pm = new PageMaker(search, noticeMapper.getTotalCount2(search));
 
         model.addAttribute("nList", nList);
         model.addAttribute("pm", pm);
 
+        log.info("nList - {}",nList);
+
         return "whats_new/notice/noticeList";
+    }
+    @GetMapping("/indexNotice")
+    @ResponseBody
+    public List<Notice> indexNotice(Search search){
+        log.info("amount - {}",search.getAmount());
+        List<Notice> nl = noticeService.findAllService(search);
+        log.info("index nl - {}", nl);
+        return nl;
     }
 
     @GetMapping("/detail")
-    public String findOne(int noticeId, Model model){
+    public String findOne(int noticeId, @ModelAttribute("s") Search search,Model model){
         Notice notice = noticeService.findOne(noticeId);
         Notice prevNotice = noticeService.findOne(noticeId-1);
         Notice nextNotice = noticeService.findOne(noticeId+1);
         model.addAttribute("nt", notice);
         model.addAttribute("prevNt", prevNotice);
         model.addAttribute("nextNt", nextNotice);
+        log.info("search - {}",search);
 
         noticeService.upViewCount(noticeId); // 조회수 카운트
 

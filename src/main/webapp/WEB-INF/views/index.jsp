@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="javascript:void(0)" class="notice-line__more">
+                <a href="/whats_new/notice/list?kind=ALL" class="notice-line__more">
                     <span class="material-symbols-outlined">add_circle</span>
                 </a>
             </div>

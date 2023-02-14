@@ -441,7 +441,7 @@
         }
     }
     // 검색 기능 ----------------------------------------------------------------------
-    function submit() {
+    function search() {
         document.querySelector(".search-button").addEventListener("click", e => {
             if (!e.target.matches(".search-button")) return;
 
@@ -455,7 +455,7 @@
         appendPageActive();
         defaultKind();
         selectKind();
-        submit();
+        search();
     })();
 </script>
 </body>
