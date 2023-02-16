@@ -1,0 +1,358 @@
+.container-wrapper{
+    margin-top: 120px;
+    display:flex;
+    justify-content:center;
+}
+.container{
+    width:100%;
+    max-width:960px;
+    margin-top: 10px;
+}
+.container-name{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.container-name h2{
+    font: bold 36px Avenir;
+    color: #222222;
+    padding-top: 30px;
+}
+.title-home{
+    color:grey;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+}
+.title-home .material-symbols-outlined{
+    font-size:15px;
+}
+.context-top{
+    display:grid;
+    grid-template-columns:40% 60%;
+    padding-bottom:25px;
+    border-bottom:2px solid #d3d3d3;
+}
+.coffee-img{
+    display:block;
+    float: left;
+    justify-content:center;
+    max-height:400px;
+    max-width:400px;
+    object-fit: scale-down;
+    margin-left: 10px;
+}
+.coffee-img img{
+    display:flex;
+    justify-content:center;
+    max-width:300px;
+    max-height:300px;
+}
+.coffee-img2{
+    max-width:100px;
+    max-height:100px;
+    float: left;
+    margin-top: 20px;
+}
+.coffee-img2 img{
+    display:flex;
+    justify-content:center;
+    max-width:100px;
+    max-height:100px;
+}
+.name{
+    display:flex;
+    border-bottom:2px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.name-left{
+    width:85%;
+    display:flex;
+    flex-direction:column;
+}
+.name-left h2{
+    font-size: 18px;
+    font-weight: bold;
+}
+.name-left p{
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+}
+.name-right{
+    display:flex;
+    justify-content:end;
+    width:20%;
+}
+.myDrink a{
+    display: block;
+    width: 138px;
+    height: 28px;
+    line-height: 28px;
+    background: #006633;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+}
+.description-sum{
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    padding-bottom: 55px;
+}
+.type{
+    background: #f4f4f2;
+    border-radius: 3px;
+    color: #666;
+    font-size: 14px;
+    height: 52px;
+    line-height: 52px;
+    margin-bottom: 40px;
+    width: 95%;
+    padding-left: 5%;
+}
+.type img{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    display: inline;
+    vertical-align: middle;
+}
+.type strong{
+    color: #222;
+    font-size: 16px;
+    font-weight: normal;
+    height: 16px;
+    padding-right: 15px;
+    border-right: 1px solid #666;
+    margin-right: 15px;
+}
+.weight{
+    height: 62px;
+    position: relative;
+    border-top:1px solid #a9a9a9;
+    width: 100%;
+    display: block;
+}
+.weight h3{
+  margin-top: 13px;
+  font-weight: bold;
+  width: 34%;
+    float: left;
+}
+.weight p{
+    color: #666;
+    font-size: 16px;
+    font-weight: bold;
+
+    padding-top: 15px;
+    width: 66%;
+
+}
+.jjtext1{
+    display: block;
+    float: right;
+    text-align: end;
+}
+.calorie{
+    width: 100%;
+    float: left;
+    border-top: 1px solid #a9a9a9;
+}
+.box-01{
+    width:48%;
+    float: left;
+    border-right:1px dotted #a9a9a9;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+
+}
+.box-01 h3{
+    display: block;
+    width: 48%;
+    float:left;
+    padding-bottom: 20px;
+}
+.box-01 P{
+    display: block;
+    float: right;
+    width: 45%;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.box-02{
+    width:48%;
+    float: left;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+.box-02 h3{
+    display: block;
+    width: 48%;
+    float:left;
+    padding-bottom: 20px;
+}
+.box-02 P{
+    display: block;
+    float: right;
+    width: 45%;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.more{
+    display:flex;
+    width:100%;
+    justify-content:space-between
+}
+.more img{
+    width:49%;
+    border-radius:5px;
+    max-height:450px;
+}
+
+#delete #edit{
+    cursor:pointer;
+    padding-left:10px;
+}
+.icon img{
+    padding-top:20px;
+    width:32px;
+}
+.icon img:hover{
+    cursor:pointer;
+}
+.context-description-bottom{
+    display:flex;
+    width:100%;
+    padding-top:25px;
+    padding-bottom: 60px;
+}
+.description-bottom-left{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+}
+.description_detail{
+    font-size:12px;
+    padding: 5px 5px 25px;
+}
+.description-bottom-left-bottom{
+    display:flex;
+}
+.design-story img,.tasting-note img{
+    width:95%;
+}
+.design-story, .tasting-note{
+    width:50%;
+    padding:5px;
+}
+.description-bottom-left-bottom h4{
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    margin: 15px 0;
+}
+.description-bottom-left-bottom p{
+    font-size: 11px;
+}
+.description-bottom-right{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:35%;
+    background-color:rgba(244,244,242);
+    height:fit-content;
+    margin-left:20px;
+}
+.right-block{
+    padding: 30px 0 28px 0;
+    width:85%;
+    border-bottom:1px solid #d3d3d3;
+}
+.right-block h4{
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.right-block p{
+    color: #666;
+    font-size: 14px;
+    line-height: 22px;
+}
+.context-bottom{
+    background-color:rgba(244,244,242);
+}
+.context-bottom-common{
+    display:flex;
+    border-bottom:1px solid #d3d3d3;
+    padding: 30px 20px;
+}
+.promotion{
+    width:50%;
+    display:flex;
+}
+.promotion div{
+    width:90%;
+}
+.promotion div h4{
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 15px;
+}
+.promotion ul{
+    list-style: disc;
+    padding-left: 30px;
+}
+.promotion li{
+    font-size:13px;
+    color: #444;
+}
+.order{
+    display:flex;
+    width:50%;
+    align-items:center;
+
+}
+.order img{
+    height:90%;
+    align-self:auto;
+    vertical-align: top;
+}
+.order-right h4{
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 15px;
+}
+.order-right p{
+    font-size:13px;
+    color: #444;
+}
+.order-right{
+    margin-left:20px;
+}
+.axis-indicator{
+    width:1px;
+    background-color:#d3d3d3;
+    height:150px;
+    align-self:center;
+    margin-right:20px;
+}
+.promotion-add{
+    padding-top:20px;
+    transform: scale(1.6);
+    height:40%;
+    color:#808080;
+}
+.promotion-add:hover{
+    cursor:pointer;
+}
