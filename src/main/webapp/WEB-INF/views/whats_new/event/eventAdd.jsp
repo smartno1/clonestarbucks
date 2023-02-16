@@ -200,14 +200,14 @@
     <main class="main-wrapper">
         <div class="main">
             <div class="top-section">
-                <h2>뉴스 추가</h2>
+                <h2>이벤트 추가</h2>
                 <nav class="nav">
                     <ul class="nav-ul">
                         <li><a href="/"><img src="/images/icon/icon_home.png" alt="홈으로"></a></li>
                         <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
                         <li><a href="javascript:void(0)" class="en">WHAT'S NEW</a></li>
                         <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
-                        <li><a href="javascript:void(0)"> 뉴스</a></li>
+                        <li><a href="javascript:void(0)"> 이벤트</a></li>
                     </ul>
                 </nav>
             </div>

@@ -112,7 +112,6 @@
             margin-right: 1.8%;
             align-items:center;
             padding-bottom: 20px;
-
         }
         .event:nth-child(4n){
             margin-right: 0;
@@ -120,17 +119,18 @@
         .event a{
             display: block;
             width: inherit;
-            max-width: 260px;
             vertical-align: baseline;
             overflow: hidden;
             margin-bottom: 15px;
         }
         .event a img{
             width: 100%;
+            height: 100%;
+            max-width: 260px;
+            max-height: 260px;
+            object-fit: contain;
         }
         .event.onGoing a img{
-            width: inherit;
-            object-fit: contain;
             transition: all 0.5s linear;
         }
         .event.onGoing a img:hover{

@@ -103,7 +103,7 @@ public class EventController {
     @GetMapping("/detail")
     public String detail(int id, String kind, Model model){
         Event event = eventService.findOneService(id);
-        List<Event> events = eventService.findAllService("none");
+        List<Event> events = eventService.findAllService("ALL");
 
         model.addAttribute("kind", kind);
         model.addAttribute("event", event);
