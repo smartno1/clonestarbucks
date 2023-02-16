@@ -21,7 +21,13 @@ function onYouTubePlayerAPIReady() {
       // 영상이 준비되었을 때,
       onReady: function (event) {
         event.target.mute() // 음소거!
+        const $flag = document.getElementById('player');
+        let inner = $flag.getAttribute('sandbox');
+        inner = inner + " allow-presentation";
+        $flag.setAttribute('sandbox',inner);
+
       }
     }
   })
+
 }

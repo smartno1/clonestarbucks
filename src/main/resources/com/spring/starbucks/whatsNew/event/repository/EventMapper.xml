@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.whatsNew.event.repository.EventMapper">
+
+    <resultMap id="EventMap" type="com.spring.starbucks.whatsNew.event.domain.Event">
+        <result property="eventId" column="event_id" />
+        <result property="beginDate" column="begin_date" />
+        <result property="endDate" column="end_date" />
+        <result property="listImg" column="list_img" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO starbucks.board_event
+        (kind, title, begin_date, end_date, list_img, content,attach)
+        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach});
+    </insert>
+
+    <select id="findOne" resultMap="EventMap">
+        SELECT *
+        FROM starbucks.board_event
+        WHERE event_id =#{eventId}
+    </select>
+
+    <select id="findAll" resultMap="EventMap">
+        SELECT *
+        FROM starbucks.board_event
+        <if test="kind != 'ALL'">
+            WHERE kind = #{kind}
+        </if>
+        ORDER BY reg_date DESC
+    </select>
+
+    <update id="update">
+        UPDATE starbucks.board_event
+        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach}
+        WHERE event_id=#{eventId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM starbucks.board_event
+        WHERE event_id=#{eventId}
+    </delete>
+</mapper>

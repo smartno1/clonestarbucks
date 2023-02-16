@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.coffee.bean.repository.CoffeeMapper">
+
+    <resultMap id="CoffeeMap" type="com.spring.starbucks.coffee.bean.domain.Coffee">
+        <result property="nameKr" column="name_kr" />
+        <result property="nameEn" column="name_en" />
+        <result property="descriptionSummary" column="description_summary" />
+        <result property="descriptionDetail" column="description_detail" />
+        <result property="designStory" column="design_story" />
+        <result property="coffeeTastingNote" column="coffee_tasting_note" />
+        <result property="tastingNote" column="tasting_note" />
+        <result property="enjoyWith" column="enjoy_with" />
+        <result property="processingMethod" column="processing_method" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+    <select id="findOne" resultMap="CoffeeMap">
+        SELECT *
+        FROM starbucks.coffee_bean
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="CoffeeMap">
+        SELECT *
+        FROM starbucks.coffee_bean
+        <if test="kind == 'bean'">WHERE kind = #{kind};</if>
+        <if test="kind == 'via'">WHERE kind = #{kind};</if>
+        <if test="kind == 'capsule'">WHERE kind = #{kind};</if>
+    </select>
+
+    <select id="findAll2" resultMap="CoffeeMap">
+        SELECT *
+        FROM starbucks.coffee_bean
+        WHERE flavor=#{flavor} AND feel=#{feel} AND degree=#{degree}
+    </select>
+
+    <insert id="save">
+        INSERT INTO starbucks.coffee_bean
+        (price, flavor, feel, degree, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, design_story, coffee_tasting_note, tasting_note, enjoy_with, relative, processing_method)
+        VALUES (#{price}, #{flavor}, #{feel}, #{degree}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{designStory}, #{coffeeTastingNote}, #{tastingNote}, #{enjoyWith}, #{relative}, #{processingMethod})
+    </insert>
+
+    <update id="update">
+        UPDATE starbucks.coffee_bean
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM starbucks.coffee_bean
+        WHERE id=#{id}
+    </delete>
+
+
+</mapper>

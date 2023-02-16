@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.whatsNew.news.repository.NewsMapper">
+
+    <resultMap id="NewsMap" type="com.spring.starbucks.whatsNew.news.domain.News">
+        <result property="newsId" column="news_id" />
+        <result property="listImg" column="list_img" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO starbucks.board_news
+            (kind,title,list_img,content, attach)
+        VALUES (#{kind},#{title},#{listImg},#{content},#{attach})
+    </insert>
+
+    <select id="findOne" resultMap="NewsMap">
+        SELECT *
+        FROM starbucks.board_news
+        WHERE news_id =#{newsId}
+    </select>
+
+    <select id="findAll" resultMap="NewsMap">
+        SELECT *
+        FROM
+        (
+        SELECT @rownum:=@rownum+1  no, A.*
+        FROM starbucks.board_news A,
+        (SELECT @ROWNUM := 0) R
+        <include refid="search"></include>
+        ) list
+        ORDER BY news_id DESC
+        LIMIT #{start}, #{amount}
+    </select>
+
+    <select id="findAll2" resultMap="NewsMap">
+        SELECT *
+        FROM
+        (
+        SELECT @rownum:=@rownum+1  no, A.*
+        FROM starbucks.board_news A,
+        (SELECT @ROWNUM := 0) R
+        <include refid="search"></include>
+        ) list
+        WHERE kind=#{kind}
+        ORDER BY news_id DESC
+        LIMIT #{start}, #{amount}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM starbucks.board_news
+        <include refid="search" />
+    </select>
+
+    <select id="getTotalCount2" resultType="int">
+        SELECT COUNT(*)
+        FROM (SELECT *
+                FROM starbucks.board_news
+                WHERE kind=#{kind}
+                ) A
+        <include refid="search"/>
+    </select>
+
+    <sql id="search">
+        <if test="type == 'title'">WHERE  title LIKE CONCAT('%', #{keyword}, '%')</if>
+    </sql>
+    <sql id="search2">
+        <if test="type == 'title'">WHERE  A.title LIKE CONCAT('%', #{keyword}, '%')</if>
+    </sql>
+
+    <update id="update">
+        UPDATE starbucks.board_news
+        SET kind=#{kind}, title=#{title}, list_img=#{listImg}, content=#{content}, attach=#{attach}
+        WHERE news_id=#{newsId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM starbucks.board_news
+        WHERE news_id=#{newsId}
+    </delete>
+
+
+</mapper>

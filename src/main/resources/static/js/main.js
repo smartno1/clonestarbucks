@@ -40,8 +40,25 @@ fadeEls.forEach(function (fadeEl, index) {
   })
 })
 
+/*
+    * notice 가져오기
+    */
+fetch("/whats_new/notice/indexNotice?amount=4")
+    .then(res => res.json())
+    .then(nl => {
+      console.log("nl : ", nl);
+      const noticeSlides = document.querySelectorAll('.swiper-slide');
+      let i = 0;
+      nl.forEach(function (n){
+        console.log("n : ",n);
+        noticeSlides[i].firstElementChild.setAttribute('href','/whats_new/notice/detail?noticeId=' + n.noticeId);
+        noticeSlides[i].firstElementChild.textContent = n.title;
+        i += 1;
+      })
+    })
 
-/**
+
+/*
  * 슬라이드 요소 관리
  */
 new Swiper('.notice-line .swiper-container', {

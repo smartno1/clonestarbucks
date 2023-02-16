@@ -43,9 +43,9 @@
                             <li>
                                 <h4><a href="/coffee/espresso/list">에스프레소 음료</a></h4>
                                 <ul>
-                                    <li><a href="javascript:void(0)">아메리카노</a></li>
-                                    <li><a href="javascript:void(0)">카푸치노</a></li>
-                                    <li><a href="javascript:void(0)">모카</a></li>
+                                    <li><a href="/coffee/espresso/americano">아메리카노</a></li>
+                                    <li><a href="/coffee/espresso/cappuccino">카푸치노</a></li>
+                                    <li><a href="/coffee/espresso/mocha">모카</a></li>
                                 </ul>
                             </li>
 
@@ -99,15 +99,15 @@
                 </div>
             </li>
             <li class="item menu-3">
-                <div class="item__name"><a href="/kakaoMap/findStore">STORE</a></div>
+                <div class="item__name"><a href="javascript:void(0)">STORE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="/kakaoMap/findStore">매장 찾기</a></h4>
+                                <h4><a href="javascript:void(0)">매장 찾기</a></h4>
                             </li>
                             <li>
-                                <h4><a href="/kakaoMap/findDrive">드라이브 스루</a></h4>
+                                <h4><a href="javascript:void(0)">드라이브 스루</a></h4>
                             </li>
                         </ul>
                     </div>
@@ -127,15 +127,26 @@
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="/board/event/list">이벤트</a></h4>
-
+                                <h4><a href="/whats_new/event/list?kind=ALL">이벤트</a></h4>
+                                <ul>
+                                    <li><a href="/whats_new/event/list?kind=ALL">전체</a></li>
+                                    <li><a href="/whats_new/event/list?kind=CARD">스타벅스 카드</a></li>
+                                    <li><a href="/whats_new/event/list?kind=REWARD">스타벅스 리워드</a></li>
+                                    <li><a href="/whats_new/event/list?kind=ONLINE">온라인</a></li>
+                                </ul>
                             </li>
                             <li>
-                                <h4><a href="/board/event/news">뉴스</a></h4>
-
+                                <h4><a href="/whats_new/news/list?kind=ALL">뉴스</a></h4>
+                                <ul>
+                                    <li><a href="/whats_new/news/list?kind=ALL">전체</a></li>
+                                    <li><a href="/whats_new/news/list?kind=PRODUCT">상품출시</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CULTURE">스타벅스와 문화</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CONTRIBUTE">스타벅스 사회공헌</a></li>
+                                    <li><a href="/whats_new/news/list?kind=CARD">스타벅스 카드출시</a></li>
+                                </ul>
                             </li>
                             <li>
-                                <h4><a href="/board/event/notice">공지사항</a></h4>
+                                <h4><a href="/whats_new/notice/list">공지사항</a></h4>
 
                             </li>
                         </ul>
@@ -153,4 +164,5 @@
         </ul>
     </div>
 </header>
+
 
