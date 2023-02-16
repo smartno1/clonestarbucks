@@ -14,10 +14,10 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-    <form id="form" action="/menu/addMenu" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form id="form" action="/menu/sangpumaddMenu" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="container">
             <div class="container-name">
-                <h2>스타벅스 원두 추가</h2>
+                <h2>스타벅스 상품 추가</h2>
             </div>
             <div class="context-top">
                 <div class="coffee-img">
@@ -31,16 +31,14 @@
                 <div class="coffee-description">
                     <div class="name">
                         <div class="name-left">
-                            <h3>한글이름</h3><input type="text" name="nameKr" />
+                            <h4>한글이름</h4><input type="text" name="nameKr" />
                             <h3>영어이름</h3><input type="text" name="nameEn" />
                         </div>
                         <div class="name-right" >
                             <p>음료 카테고리</p>
                             <select class="form-select type" aria-label="Default select example" name="kind"  onchange="categoryChange(this)">
                                 <option value="">선택안함</option>
-                                <option value="bean">카테고리</option>
-                                <option value="via">테 마</option>
-
+                                <option value="sangpum">상품</option>
 
                             </select>
                             <p>음료 종류</p>
@@ -61,38 +59,38 @@
                         <textarea name="descriptionSummary" ></textarea>
                     </div>
 
-                    <div class="weight">
-                        <h3>ml</h3>
-                        <input type="text" name="weight" />
-                    </div>
-                    <div class="weight2">
-                        <h3>fl oz</h3>
-                        <input type="text" name="weight2" />
-                    </div>
-                    <div class="weight">
-                        <h3>1회 제공량 (kcal)</h3>
-                        <input type="text" name="calorie1" />
-                    </div>
-                    <div class="weight2">
-                        <h3>나트륨 (mg)</h3>
-                        <input type="text" name="calorie2" />
-                    </div>
-                    <div class="weight">
-                        <h3>포화지방 (g)</h3>
-                        <input type="text" name="calorie3" />
-                    </div>
-                    <div class="weight2">
-                        <h3>당류 (g)</h3>
-                        <input type="text" name="calorie4" />
-                    </div>
-                    <div class="weight">
-                        <h3>단백질 (g)</h3>
-                        <input type="text" name="calorie5" />
-                    </div>
-                    <div class="weight2">
-                        <h3>카페인 (mg)</h3>
-                        <input type="text" name="calorie6" />
-                    </div>
+<%--                    <div class="weight">--%>
+<%--                        <h3>ml</h3>--%>
+<%--                        <input type="text" name="weight" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight2">--%>
+<%--                        <h3>fl oz</h3>--%>
+<%--                        <input type="text" name="weight2" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight">--%>
+<%--                        <h3>1회 제공량 (kcal)</h3>--%>
+<%--                        <input type="text" name="calorie1" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight2">--%>
+<%--                        <h3>나트륨 (mg)</h3>--%>
+<%--                        <input type="text" name="calorie2" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight">--%>
+<%--                        <h3>포화지방 (g)</h3>--%>
+<%--                        <input type="text" name="calorie3" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight2">--%>
+<%--                        <h3>당류 (g)</h3>--%>
+<%--                        <input type="text" name="calorie4" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight">--%>
+<%--                        <h3>단백질 (g)</h3>--%>
+<%--                        <input type="text" name="calorie5" />--%>
+<%--                    </div>--%>
+<%--                    <div class="weight2">--%>
+<%--                        <h3>카페인 (mg)</h3>--%>
+<%--                        <input type="text" name="calorie6" />--%>
+<%--                    </div>--%>
 
                 </div>
             </div>
@@ -108,8 +106,8 @@
             </div>
 
             <div class="context-bottom" >
-                <a href="javascript:void(0)"><button id="addData" class="btn btn-primary submit" type="button">추가</button></a></a>
-                <a href="/menu/list"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+                <a href="javascript:void(0)"><button id="addData1" class="btn btn-primary submit" type="button">추가</button></a></a>
+                <a href="/menu/food"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
             </div>
 
         </div>
@@ -121,17 +119,13 @@
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>--%>
 <script>
     function categoryChange(e) {
-        var good_a = ["americano", "coldbrew", "darkroast"];
-        var good_b = ["theme"];
-
-        var good_c = ["선택없음"];
+        var good_a = ["mugcup", "thermos"];
+        var good_b = ["선택안됨"];
 
         var target = document.getElementById("good");
 
-        if(e.value == "bean") var d = good_a;
-        else if(e.value == "via") var d = good_b;
-
-        else if(e.value == "") var d = good_c;
+        if(e.value == "sangpum") var d = good_a;
+        else if(e.value == "") var d = good_b;
 
 
         target.options.length = 0;
@@ -139,16 +133,12 @@
         for (x in d) {
             var opt = document.createElement("option");
             opt.value = d[x];
-            if(d[x] == "americano"){
-                opt.innerHTML = "아메리카노";
-            }else if(d[x] == "coldbrew"){
-                opt.innerHTML = "콜드브루";
-            }else if(d[x] == "darkroast"){
-                opt.innerHTML = "다크로스트";
+            if(d[x] == "mugcup"){
+                opt.innerHTML = "머그컵";
+            }else if(d[x] == "thermos"){
+                opt.innerHTML = "보온병";
             }
-            if(d[x] == "theme") {
-                opt.innerHTML = "테마";
-            }
+
             target.appendChild(opt);
         }
     }
@@ -221,7 +211,7 @@
     function submitData(){
         document.querySelector('.context-bottom').addEventListener('click', e=>{
 
-            if(e.target.matches('#addData')) {
+            if(e.target.matches('#addData1')) {
                 e.preventDefault();
                 document.querySelector('input[name="file"]').setAttribute("disabled", "");
                 // = document.querySelector('input[name="file"]').disabled=true;

@@ -35,6 +35,7 @@ public class MenuService {
         return menuMapper.update(menu);
     }
 
+
     public boolean deleteService(int id){
         return menuMapper.delete(id);
     }

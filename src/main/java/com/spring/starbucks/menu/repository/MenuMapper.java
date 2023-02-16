@@ -11,6 +11,7 @@ public interface MenuMapper {
     boolean insert(Menu menu);
 
     boolean update(Menu menu);
+    boolean reupdate(Menu menu);
 
     boolean delete(int id);
 

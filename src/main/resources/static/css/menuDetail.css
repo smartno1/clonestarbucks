@@ -72,7 +72,7 @@
     flex-direction:column;
 }
 .name-left h2{
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
 }
 .name-left p{
@@ -237,7 +237,7 @@
 .description-bottom-left{
     display:flex;
     flex-direction:column;
-    width:65%;
+    width:100%;
 }
 .description_detail{
     font-size:12px;

@@ -113,7 +113,6 @@ label{
     display:flex;
     flex-direction:column;
     padding-bottom:50px;
-    padding-top: 80px;
 }
 .coffee-type{
     display:flex;
@@ -168,3 +167,4 @@ section{
 header{
     z-index:99;
 }
+#ben1{margin-bottom: 10px; display: none;}

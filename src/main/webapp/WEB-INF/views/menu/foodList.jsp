@@ -7,8 +7,10 @@
 <head>
 
     <%@include file="../include/static-head.jsp"%>
+
+    <link rel="stylesheet" type="text/css" href="/css/coffeeBeanList.css">
     <link rel="stylesheet" type="text/css" href="/css/menulist.css">
-<%--    <script src="/js/menujs.js" defer></script>--%>
+
 
 </head>
 <body>
@@ -16,15 +18,15 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>음료<a href="/menu/addMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">음료추가</span></a></h2>
+            <h2>푸드<a href="/menu/foodaddMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">푸드추가</span></a></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">
                     <li><a href="/"><img src="/images/icon/icon_home.png" alt="홈으로"></a></li>
                     <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
-                    <li><a href="/coffee/bean" class="en"> 음료</a></li>
-
-
+                    <li><a href="/coffee/bean" class="en">FOOD</a></li>
+                    <li><img src="/images/icon/icon_arrow.png" alt="하위메뉴"></li>
+                    <li><a href="/coffee/bean">CAKE</a></li>
                 </ul>
             </nav>
         </div>
@@ -32,36 +34,56 @@
             <p class="tit">분류보기</p>
             <div class="arrow"><img src="/images/icon/list_up_btn.png"></div>
             <div class="search_kind clear-fix">
-                <div><a data-kind="bean" href=javascript:doDisplay1()>카테고리</a></div>
-                <div><a data-kind="via" href="javascript:doDisplay();">테 마</a></div>
+                <div><a data-kind="food" href=javascript:void(0)>FOOD</a></div>
+
 
             </div>
 
 
-            <div class="search_type">
-                <div class="hi-text">
-                <label><input class="all" type="checkbox" value="all">전체 상품보기</label>
-                <label><input class="check" type="checkbox" value="americano">아메리카노</label>
-                <label><input class="check" type="checkbox" value="coldbrew">콜드블루</label>
-                <label><input class="check" type="checkbox" value="darkroast">다크로스트</label>
+            <div class="search_type" >
 
-                </div>
-                <div id="ben1"><img src="/images/ben1.jpg" dist></div>
+                <label><input class="all" type="checkbox">전체보기</label>
+                <label><input class="check" type="checkbox" value="cake" >케이크</label>
+                <label><input class="check" type="checkbox" value="sandwich">샌드위치&샐러드</label>
+<%--                <label><input class="check" type="checkbox" value="dark_roast">다크로스트</label>--%>
+
+
+
             </div>
 
         </div>
         <div class="menu001">
-        <div class="coffee-wrapper americano" >
+        <div class="coffee-wrapper cake" >
             <div class="coffee-list">
                 <div class="coffee-type">
-                    <img src="/images/icon/blondRoast.png"/><p>아메리카노</p>
+                    <img src="/images/icon/blondRoast.png"/><p>케이크</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${list}" var="u">
+                    <c:forEach items="${food}" var="u">
                         <c:choose>
-                            <c:when test="${u.type eq 'americano'}">
+                            <c:when test="${u.type eq 'cake'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
+                                    <a href="/menu/foodListDetail?id=${u.id}">
+                                        <img src="${u.image}"/></a>
+                                    <p class="coffee_bean_name">${u.nameKr}</p>
+                                </li>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
+        <div class="coffee-wrapper sandwich">
+            <div class="coffee-list">
+                <div class="coffee-type">
+                    <img src="/images/icon/mediumRoast.png"/><p>샌드위치&샐러드</p>
+                </div>
+                <ul class="coffee-bean-wrapper">
+                    <c:forEach items="${food}" var="u">
+                        <c:choose>
+                            <c:when test="${u.type eq 'sandwich'}">
+                                <li class="coffee_bean">
+                                    <a href="/menu/foodListDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
@@ -72,68 +94,10 @@
                 </ul>
             </div>
         </div>
-        <div class="coffee-wrapper coldbrew">
-            <div class="coffee-list">
-                <div class="coffee-type">
-                    <img src="/images/icon/mediumRoast.png"/><p>콜드블루</p>
-                </div>
-                <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${list}" var="u">
-                        <c:choose>
-                            <c:when test="${u.type eq 'coldbrew'}">
-                                <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
-                                        <img src="${u.image}"/>
-                                    </a>
-                                    <p class="coffee_bean_name">${u.nameKr}</p>
-                                </li>
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-        <div class="coffee-wrapper darkroast">
-            <div class="coffee-list">
-                <div class="coffee-type">
-                    <img src="/images/icon/darkRoast.png"/><p>다크로스트</p>
-                </div>
-                <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${list}" var="u">
-                        <c:choose>
-                            <c:when test="${u.type eq 'darkroast'}">
-                                <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
-                                        <img src="${u.image}"/></a>
-                                    <p class="coffee_bean_name">${u.nameKr}</p>
-                                </li>
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-
-        </div>
-        <div class="coffee-wrapper1 theme">
-            <div class="coffee-list">
-              <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${list}" var="u">
-                        <c:choose>
-                            <c:when test="${u.type eq 'theme'}">
-                                <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
-                                        <img src="${u.image}"/></a>
-                                    <p class="coffee_bean_name">${u.nameKr}</p>
-                                </li>
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
 
 
+
+        </div>
     </div>
 </section>
 <jsp:include page="../include/footer.jsp"></jsp:include>
@@ -161,18 +125,18 @@
             }
         })
     }
-    function doDisplay(){
-        var con = document.querySelector(".hi-text").style.display = 'none';
-        var con = document.getElementById("ben1").style.display ='block';
-        var con = document.querySelector(".menu001").style.display ='none';
-        var con = document.querySelector(".coffee-wrapper1").style.display ='block';
-    }
-    function doDisplay1(){
-        var con = document.querySelector(".hi-text").style.display ='block';
-        var con = document.getElementById("ben1").style.display ='none';
-        var con = document.querySelector(".menu001").style.display ='block';
-        var con = document.querySelector(".coffee-wrapper1").style.display ='none';
-    }
+    // function doDisplay(){
+    //     var con = document.querySelector(".hi-text").style.display = 'none';
+    //     var con = document.getElementById("ben1").style.display ='block';
+    //     var con = document.querySelector(".menu001").style.display ='none';
+    //     var con = document.querySelector(".coffee-wrapper1").style.display ='block';
+    // }
+    // function doDisplay1(){
+    //     var con = document.querySelector(".hi-text").style.display ='block';
+    //     var con = document.getElementById("ben1").style.display ='none';
+    //     var con = document.querySelector(".menu001").style.display ='block';
+    //     var con = document.querySelector(".coffee-wrapper1").style.display ='none';
+    // }
     /*
     * 원두 비아 캡슐 선택시 해당 리스트 보여주기
     */
@@ -267,16 +231,13 @@
             d.style.display = "none";
         })
 
-        if(${type == "americano"}){
-            console.log("americano");
-            const $type = document.querySelector('input[value="americano"]')
+        if(${type == "cake"}){
+            console.log("cake");
+            const $type = document.querySelector('input[value="cake"]')
             $type.checked = true;
 
-        }else if(${type == "coldbrew"}){
-            const $type = document.querySelector('input[value="coldbrew"]')
-            $type.checked = true;
-        }else if(${type == "darkroast"}){
-            const $type = document.querySelector('input[value="darkroast"]')
+        }else if(${type == "sandwich"}){
+            const $type = document.querySelector('input[value="sandwich"]')
             $type.checked = true;
         }else{
             console.log("All")
@@ -293,15 +254,15 @@
         $kinds[0].firstElementChild.classList.add('selected');
     }
 
-
     (function (){
+
         navShow();
         defaultKind();
         defaultType();
 
         selectKind();
         selectType();
-        doDisplay1();
+
     })();
 </script>
 </html>

@@ -84,6 +84,4 @@ public class CoffeeController {
         model.addAttribute("coffee",coffee);
         return "coffeeBean/editCoffeeBeanForm";
     }
-
-
 }

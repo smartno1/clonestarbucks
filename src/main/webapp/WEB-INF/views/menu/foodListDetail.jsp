@@ -12,26 +12,24 @@
 </head>
 <body>
 	<%@include file="../include/header.jsp"%>
-
+          
 	<main class="container-wrapper">
 		<div class="container">
 			<div class="container-name">
-				<h2>스타벅스 음료</h2>
+				<h2>스타벅스 음식</h2>
 				<span class="title-home">
 					<span class="material-symbols-outlined">home</span>&nbsp;
-					<span> > 음료 >
+					<span> > 음식 >
 						<c:choose>
-							<c:when test="${menu.type eq 'americano'}">
-								아메리카노
+							<c:when test="${menu.type eq 'cake'}">
+								케이크
 							</c:when>
-							<c:when test="${menu.type eq 'coldbrew'}">
-								콜드블루
+							<c:when test="${menu.type eq 'sandwich'}">
+								샌드위치
 							</c:when>
-							<c:when test="${menu.type eq 'darkroast'}">
-								다크로스트
-							</c:when>
-						</c:choose>
-					  > ${menu.nameKr}</span>
+
+						</c:choose>	>
+					   ${menu.nameKr}</span>
 				</span>
 			</div>
 			<div class="context-top">
@@ -49,8 +47,8 @@
 							<p>${menu.nameEn}</p>
 						</div>
 						<div class="name-right">
-							<span class="material-symbols-outlined" id="edit" data-id="${menu.id}">edit</span>
-							<span class="material-symbols-outlined" id ="delete" data-id="${menu.id}">delete</span>
+							<span class="material-symbols-outlined" id="edit1" data-id="${menu.id}">edit</span>
+							<span class="material-symbols-outlined" id ="fooddelete" data-id="${menu.id}">delete</span>
 						</div>
 						<div class="myDrink">
 							<a>나만의 상품으로 등록</a>
@@ -60,34 +58,10 @@
 					<div class="description-sum">
 						<p>${menu.descriptionSummary}</p>
 					</div>
-					<div class="type-wrapper">
-							<c:choose>
-								<c:when test="${menu.type eq 'darkRoast'}">
-									<div class="type">
-										<img src="/images/icon/${menu.type}.png" alt="${menu.nameKr}">
-										<strong>다크 로스트</strong>
-										<span>강렬하고 강인한 맛 Strong & Powerful</span>
-									</div>
-								</c:when>
-								<c:when test="${menu.type eq 'blondRoast'}">
-									<div class="type">
-										<img src="/images/icon/${menu.type}.png" alt="${menu.nameKr}">
-										<strong>블론드 로스트</strong>
-										<span>은은하고 부드러운 맛 Subtle & Mellow</span>
-									</div>
-								</c:when>
-								<c:when test="${menu.type eq 'mediumRoast'}">
-									<div class="type">
-										<img src="/images/icon/${menu.type}.png" alt="${menu.nameKr}">
-										<strong>미디엄 로스트</strong>
-										<span>균형잡힌 부드러움 Balance & Mellow</span>
-									</div>
-								</c:when>
-							</c:choose>
-					</div>
+
 					<div class="weight">
 						<h3>제품 영양 정보</h3>
-						<p class="jjtext1">Tall(톨) / ${menu.weight}ml (${menu.weight2}fl oz)</p>
+						<p class="jjtext1"> ${menu.weight}(g)</p>
 					</div>
 					<div class="calorie">
 						<div class="box-01">

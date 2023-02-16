@@ -45,14 +45,19 @@
 
     <update id="update">
         UPDATE menu
-        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
-        WHERE id = #{id}, weight2=#{weight2}
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
+        WHERE id = #{id}
     </update>
 
     <delete id="delete">
         DELETE FROM menu
         WHERE id=#{id}
     </delete>
+    <update id="reupdate">
+        UPDATE menu
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
+        WHERE id = #{id}, weight2=#{weight2}
+    </update>
 
 
 </mapper>

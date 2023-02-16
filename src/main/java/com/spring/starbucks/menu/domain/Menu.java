@@ -37,4 +37,9 @@ public class Menu {
     private String calorie4;
     private String calorie5;
     private String calorie6;
+    private String detail;
+
+    private String sid;
+
+
 }
