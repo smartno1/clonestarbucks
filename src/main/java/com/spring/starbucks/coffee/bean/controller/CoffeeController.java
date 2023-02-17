@@ -3,7 +3,7 @@ package com.spring.starbucks.coffee.bean.controller;
 import com.spring.starbucks.coffee.bean.domain.Tastedto;
 import com.spring.starbucks.coffee.bean.domain.Coffee;
 import com.spring.starbucks.coffee.bean.service.CoffeeService;
-import com.spring.starbucks.common.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
 package com.spring.starbucks.menu.controller;
 
-import com.spring.starbucks.coffee.upload.FileUtils;
+import com.spring.starbucks.menu.upload.FileUtils;
 import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.menu.service.MenuService;
 import lombok.RequiredArgsConstructor;

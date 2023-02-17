@@ -1,6 +1,6 @@
 package com.spring.starbucks.coffee.bean.controller;
 
-import com.spring.starbucks.common.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;

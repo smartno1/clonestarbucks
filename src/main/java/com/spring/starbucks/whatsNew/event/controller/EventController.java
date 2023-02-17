@@ -1,6 +1,6 @@
 package com.spring.starbucks.whatsNew.event.controller;
 
-import com.spring.starbucks.common.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import com.spring.starbucks.whatsNew.event.service.EventService;
 import lombok.RequiredArgsConstructor;

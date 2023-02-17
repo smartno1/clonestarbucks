@@ -1,6 +1,6 @@
 package com.spring.starbucks.whatsNew.news.controller;
 
-import com.spring.starbucks.common.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.whatsNew.news.domain.News;
