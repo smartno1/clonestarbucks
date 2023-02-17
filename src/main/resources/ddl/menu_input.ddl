@@ -1,5 +1,5 @@
-CREATE table starbucks.menuin(
-                                 id INT(11) NOT NULL AUTO_INCREMENT
+CREATE table starbucks.menu(
+                               id INT(11) NOT NULL AUTO_INCREMENT
     ,price INT(11)
     ,flavor VARCHAR(100)
     ,feel VARCHAR(100)
@@ -8,6 +8,13 @@ CREATE table starbucks.menuin(
     ,name_kr VARCHAR(100)
     ,name_en VARCHAR(100)
     ,weight VARCHAR(30)
+    ,weight2 VARCHAR(30)
+    ,calorie1 VARCHAR(30)
+    ,calorie2 VARCHAR(30)
+    ,calorie3 VARCHAR(30)
+    ,calorie4 VARCHAR(30)
+    ,calorie5 VARCHAR(30)
+    ,calorie6 VARCHAR(30)
     ,kind VARCHAR(30)
     ,type VARCHAR(30)
     ,description_summary VARCHAR(500)
