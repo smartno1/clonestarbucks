@@ -1,6 +1,6 @@
-package com.spring.starbucks.whatsNew.util;
+package com.spring.starbucks.whatsNew.upload;
 
-import com.spring.starbucks.coffee.bean.upload.FileUtils;
+import com.spring.starbucks.common.FileUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
