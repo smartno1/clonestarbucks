@@ -1,10 +1,8 @@
 package com.spring.starbucks.whatsNew.event.controller;
 
-import com.spring.starbucks.coffee.bean.upload.FileUtils;
-import com.spring.starbucks.common.paging.PageMaker;
+import com.spring.starbucks.common.FileUtils;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import com.spring.starbucks.whatsNew.event.service.EventService;
-import com.spring.starbucks.whatsNew.news.domain.News;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

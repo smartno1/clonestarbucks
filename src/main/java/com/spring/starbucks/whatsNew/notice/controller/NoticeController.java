@@ -1,10 +1,8 @@
 package com.spring.starbucks.whatsNew.notice.controller;
 
-import com.spring.starbucks.coffee.bean.upload.FileUtils;
-import com.spring.starbucks.common.paging.Page;
+import com.spring.starbucks.common.FileUtils;
 import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.whatsNew.news.domain.News;
 import com.spring.starbucks.whatsNew.notice.domain.Notice;
 import com.spring.starbucks.whatsNew.notice.repository.NoticeMapper;
 import com.spring.starbucks.whatsNew.notice.service.NoticeService;

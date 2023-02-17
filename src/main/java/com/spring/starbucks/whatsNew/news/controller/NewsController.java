@@ -1,22 +1,16 @@
 package com.spring.starbucks.whatsNew.news.controller;
 
-import com.spring.starbucks.coffee.bean.upload.FileUtils;
-import com.spring.starbucks.common.paging.Page;
+import com.spring.starbucks.common.FileUtils;
 import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.whatsNew.news.domain.Kind;
 import com.spring.starbucks.whatsNew.news.domain.News;
-import com.spring.starbucks.whatsNew.news.domain.SearchKind;
 import com.spring.starbucks.whatsNew.news.service.NewsService;
-import com.spring.starbucks.whatsNew.notice.domain.Notice;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -24,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @Log4j2
