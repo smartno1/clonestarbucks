@@ -88,6 +88,9 @@
     .content {
       padding: 60px 50px 0;
     }
+    .content img{
+      width: 100%;
+    }
     .goList {
       padding-top: 20px;
       position: relative;
@@ -98,6 +101,7 @@
       width: 84px;
       height: 45px;
       float: right;
+      margin-right: 50px;
       background-color: #666666;
       border-radius: 3px;
       text-align: center;
@@ -178,6 +182,7 @@
     }
     .event a img{
       width: 100%;
+      object-fit: contain;
     }
     .event .event-name {
       font-size: 16px;
@@ -254,7 +259,7 @@
                 <c:choose>
                   <c:when test="${!e.ended}">
                     <li class="swiper-slide event onGoing" data-kind="${e.kind}">
-                      <a href="/whats_new/event/detail?id=${e.eventId}&kind=all">
+                      <a href="/whats_new/event/detail?id=${e.eventId}&kind=ALL">
                         <img src="${e.listImg}"/>
                       </a>
                       <p class="event-name">${e.prettierTitle}</p>
@@ -264,7 +269,6 @@
                 </c:choose>
               </c:forEach>
             </ul>
-
           </div>
           <div class="swiper-pagination"></div>
           <div><img  class="swiper-prev" src="/images/whats_new/event/slide_arrow_l.png"></div>
