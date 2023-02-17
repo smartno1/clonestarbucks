@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.menu.repository.MenuMapper">
+
+    <resultMap id="MenuMap" type="com.spring.starbucks.menu.domain.Menu">
+        <result property="nameKr" column="name_kr" />
+        <result property="nameEn" column="name_en" />
+        <result property="descriptionSummary" column="description_summary" />
+        <result property="descriptionDetail" column="description_detail" />
+        <result property="designStory" column="design_story" />
+        <result property="coffeeTastingNote" column="coffee_tasting_note" />
+        <result property="tastingNote" column="tasting_note" />
+        <result property="enjoyWith" column="enjoy_with" />
+        <result property="processingMethod" column="processing_method" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+<!--    <insert id="insert">-->
+<!--        INSERT INTO starbucks.tbl_menu-->
+<!--        (writer, title, content, like_cnt, view_cnt, account)-->
+<!--        VALUES (#{writer}, #{title}, #{content}, #{likeCnt}, #{viewCnt}, #{account}, #{writer})-->
+<!--    </insert>-->
+    <select id="findOne" resultMap="MenuMap">
+        SELECT *
+        FROM menu
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="MenuMap">
+        SELECT *
+        FROM menu
+        <if test="kind == 'bean'">WHERE kind = #{kind};</if>
+        <if test="kind == 'via'">WHERE kind = #{kind};</if>
+
+    </select>
+
+    <insert id="save">
+        INSERT INTO menu
+        (price, flavor, feel, degree, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, design_story, coffee_tasting_note, tasting_note, enjoy_with, relative, processing_method,weight2,calorie1,calorie2,calorie3,calorie4,calorie5,calorie6)
+        VALUES (#{price}, #{flavor}, #{feel}, #{degree}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{designStory}, #{coffeeTastingNote}, #{tastingNote}, #{enjoyWith}, #{relative}, #{processingMethod}, #{weight2}, #{calorie1}, #{calorie2}, #{calorie3}, #{calorie4}, #{calorie5}, #{calorie6})
+    </insert>
+
+    <update id="update">
+        UPDATE menu
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM menu
+        WHERE id=#{id}
+    </delete>
+    <update id="reupdate">
+        UPDATE menu
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
+        WHERE id = #{id}, weight2=#{weight2}
+    </update>
+
+
+</mapper>
