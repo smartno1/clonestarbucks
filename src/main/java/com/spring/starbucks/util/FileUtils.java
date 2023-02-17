@@ -50,14 +50,14 @@ public class FileUtils {
      * @param uploadPath - 서버의 업로드 루트 디렉토리 (E:/sl_dev/upload)
      * @return - 업로드가 완료된 새로운 파일의 full path
      */
-    public static String uploadFile(MultipartFile file, String uploadPath, String type) {
+    public static String uploadFile(MultipartFile file, String uploadPath, String[] pathInfo) {
 
         // 중복이 없는 파일명으로 변경하기
         // ex) 상어.png -> 3dfsfjkdsfds-djksfaqwerij-dsjkfdkj_상어.png
         String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
         // 업로드 경로를 변경
-        String newUploadPath = getNewUploadPath(uploadPath, type);
+        String newUploadPath = getNewUploadPath(uploadPath, pathInfo);
 
         // 파일 업로드 수행
         File f = new File(newUploadPath, newFileName);
@@ -85,29 +85,9 @@ public class FileUtils {
      * @param uploadPath - 원본 업로드 경로
      * @return 일자별 폴더가 포함된 새로운 업로드 경로
      */
-    private static String getNewUploadPath(String uploadPath, String type) {
+    private static String getNewUploadPath(String uploadPath, String[] pathInfo) {
 
-        // 폴더 생성
-        String[] pathInfo = new String[5];
-        pathInfo[0] = "images";
-        switch (type) {
-            case "coffeeBean":
-                pathInfo[1] = "coffee";
-                pathInfo[2] = "been";
-                break;
-            case "event":
-                pathInfo[1] = "whats_new";
-                pathInfo[2] = "event";
-                break;
-            case "news":
-                pathInfo[1] = "whats_new";
-                pathInfo[2] = "news";
-                break;
-            case "notice":
-                pathInfo[1] = "whats_new";
-                pathInfo[2] = "notice";
-                break;
-        }
+
         String newUploadPath = uploadPath;
 
         // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성

@@ -1,6 +1,6 @@
 package com.spring.starbucks.menu.controller;
 
-import com.spring.starbucks.menu.upload.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.menu.service.MenuService;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +66,8 @@ public class MenuController {
         boolean flag = menuService.deleteService(nid);            // DB 삭제
 
         if(flag){   //DB 삭제 성공시
-            return FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            String res = FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            return new ResponseEntity<>(res, HttpStatus.OK);
         }else{
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }
@@ -128,7 +129,8 @@ public class MenuController {
         boolean flag = menuService.deleteService(nid);            // DB 삭제
 
         if(flag){   //DB 삭제 성공시
-            return FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            String res = FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            return new ResponseEntity<>(res, HttpStatus.OK);
         }else{
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }
@@ -189,7 +191,8 @@ public class MenuController {
         boolean flag = menuService.deleteService(nid);            // DB 삭제
 
         if(flag){   //DB 삭제 성공시
-            return FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            String res = FileUtils.deleteFile(img, UPLOAD_PATH); // 파일 삭제
+            return new ResponseEntity<>(res, HttpStatus.OK);
         }else{
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }

@@ -166,7 +166,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/menu/ajax-upload', reqInfo)
+            fetch('/menu/ajax-upload?type=product', reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
