@@ -67,25 +67,25 @@
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="javascript:void(0)">음료</a></h4>
+                                <h4><a href="/menu/list">음료</a></h4>
                                 <ul>
-                                    <li><a href="javascript:void(0)">아메리카노</a></li>
-                                    <li><a href="javascript:void(0)">카푸치노</a></li>
-                                    <li><a href="javascript:void(0)">모카</a></li>
+                                    <li><a href="/menu/list?type=americano">아메리카노</a></li>
+                                    <li><a href="/menu/list?type=coldbrew">콜드블루</a></li>
+                                    <li><a href="/menu/list?type=darkroast">다크로스트</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">푸드</a></h4>
+                                <h4><a href="/menu/food">푸드</a></h4>
                                 <ul>
-                                    <li><a href="javascript:void(0)">케익</a></li>
-                                    <li><a href="javascript:void(0)">샌드위치 & 샐러드</a></li>
+                                    <li><a href="/menu/food?type=cake">케익</a></li>
+                                    <li><a href="/menu/food?type=sandwich">샌드위치 & 샐러드</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">상품</a></h4>
+                                <h4><a href="/menu/sangpum">상품</a></h4>
                                 <ul>
-                                    <li><a href="javascript:void(0)">머그</a></li>
-                                    <li><a href="javascript:void(0)">보온병</a></li>
+                                    <li><a href="/menu/sangpum?type=mugcup">머그컵</a></li>
+                                    <li><a href="/menu/sangpum?type=thermos">보온병</a></li>
                                 </ul>
                             </li>
                         </ul>

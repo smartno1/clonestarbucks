@@ -1,4 +1,4 @@
-CREATE table starbucks.coffee(
+CREATE table starbucks.coffee_bean(
      id INT(11) NOT NULL AUTO_INCREMENT
     ,price INT(11)
     ,flavor VARCHAR(100)

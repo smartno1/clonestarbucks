@@ -17,7 +17,7 @@
     <form id="form" action="/menu/addMenu" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="container">
             <div class="container-name">
-                <h2>스타벅스 원두 추가</h2>
+                <h2>음료 추가</h2>
             </div>
             <div class="context-top">
                 <div class="coffee-img">
@@ -176,7 +176,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/menu/ajax-upload', reqInfo)
+            fetch('/menu/ajax-upload?type=drink', reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
