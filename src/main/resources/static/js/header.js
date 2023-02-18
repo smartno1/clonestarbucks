@@ -54,8 +54,33 @@ function menuSlide() {
         })
     })
 }
+function menuUl(){
+    document.querySelector('.menu-ul').addEventListener('click', e => {
+      if(e.target.matches('#sign-in')){
+        location.href = '/member/sign-in';
+      }
+
+      if(e.target.matches('#sign-out')){
+          if(confirm("로그아웃 하시겠습니까?")) {
+              fetch('/member/sign-out')
+                  .then(res => res.text())
+                  .then(msg => {
+                      if(msg === 'success'){
+                          alert('로그아웃되었습니다.');
+                          location.href = '/';
+                      }
+                  })
+          }
+      }
+
+    })
+}
+function signOut(){
+
+}
 
 (function (){
+    menuUl();
     search();
     menuSlide();
 

@@ -12,10 +12,15 @@
         <div class="sub-menu">
             <ul class="menu-ul">
                 <li>
-                    <a href="/signin">Sign In</a>
+                    <c:if test="${loginUser == null}">
+                    <a href="javascript:void(0)" id="sign-in">Sign In</a>
+                    </c:if>
+                    <c:if test="${loginUser != null}">
+                        <a href="javascript:void(0)" id="sign-out">Sign Out</a>
+                    </c:if>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">My Starbucks</a>
+                    <a href="javascript:void(0)" >My Starbucks</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)">Find a Store</a>

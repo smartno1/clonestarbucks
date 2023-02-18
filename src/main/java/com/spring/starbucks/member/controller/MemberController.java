@@ -128,7 +128,7 @@ public class MemberController {
 
         }
 
-        return "member/sign-in";
+        return "/member/sign-in";
 
     }
 
@@ -141,9 +141,9 @@ public class MemberController {
 
             // 2. 세션을 무효화한다.
             session.invalidate();
-            return "redirect:/";
+            return "success";
         }
-        return "redirect:/";
+        return "success";
     }
 
 
