@@ -1,12 +1,9 @@
 package com.spring.starbucks.member.controller;
 
 
-import com.spring.starbucks.member.service.LoginFlag;
-import static com.spring.starbucks.util.LoginUtils.*;
-
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.dto.LoginDTO;
-
+import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
 
 
 @Controller
@@ -45,7 +44,7 @@ public class MemberController {
     public String signUp(Member member, RedirectAttributes ra) {
         log.info("/member/sign-up POST ! - {}", member);
         boolean flag = memberService.signUp(member);
-        if(flag)ra.addFlashAttribute("msg", "reg-success");
+        if (flag) ra.addFlashAttribute("msg", "reg-success");
         return flag ? "redirect:/member/sign-in" : "redirect:/member/sign-up";
     }
 
@@ -53,12 +52,12 @@ public class MemberController {
     @PostMapping("/modify")
     public String viewMyPage(HttpSession session, String password) {
 
-        log.info("/member/modify Post -{}",password);
+        log.info("/member/modify Post -{}", password);
 
         Member loginUser = (Member) session.getAttribute(LOGIN_FLAG);
-        boolean flag = memberService.validatePassword(password,loginUser);
+        boolean flag = memberService.validatePassword(password, loginUser);
 
-        log.info("/member/modify Post end -{}",flag);
+        log.info("/member/modify Post end -{}", flag);
 
         return flag ? "/member/modify" : "redirect:/member/myPage/";
 
@@ -69,13 +68,15 @@ public class MemberController {
     public String update(Member member, RedirectAttributes ra, HttpSession session) {
         log.info("/member/update POST ! - {}", member);
         boolean flag = memberService.update(member);
-        if(flag){
+        if (flag) {
             ra.addFlashAttribute("msg", "mod-success");
             session.removeAttribute("loginUser");
 
             session.invalidate();
 
-        }else {ra.addFlashAttribute("msg", "mod-failed");}
+        } else {
+            ra.addFlashAttribute("msg", "mod-failed");
+        }
         return flag ? "redirect:/member/sign-in" : "redirect:/member/modify";
     }
 
@@ -108,7 +109,7 @@ public class MemberController {
     // 로그인 요청 처리
     @PostMapping("/sign-in")
     public String signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
-                         , HttpServletResponse response) {
+            , HttpServletResponse response) {
 
         log.info("/member/sign-in POST - {}", inputData);
 //        log.info("session timeout : {}", session.getMaxInactiveInterval());
@@ -122,9 +123,9 @@ public class MemberController {
         if (flag == LoginFlag.SUCCESS) {
             log.info("login success!!");
 
-                String redirectURI = (String) session.getAttribute("redirectURI");
-                if(redirectURI.contains("/member/modify"))return "redirect:/";
-                return "redirect:" + redirectURI;
+            String redirectURI = (String) session.getAttribute("redirectURI");
+            if (redirectURI.contains("/member/modify")) return "redirect:/";
+            return "redirect:" + redirectURI;
 
         }
 
@@ -146,6 +147,10 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @GetMapping("/mystarbucks")
+    public String mystarbucks(){
+        return "member/my-Starbucks";
+}
 
 
 

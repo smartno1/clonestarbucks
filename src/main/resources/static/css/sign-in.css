@@ -1,16 +1,22 @@
-.container-wrapper{
+.container-wrapper1{
 	background-image : url("/images/login_bg.jpg");
 	height:650px;
-	background-attachment: fixed;
+	padding-bottom: 120px;
 	background-size : cover;
+	max-height: 100%;
+
+}
+.container{
+	width:100%;
+	max-width:1100px;
+
+	margin: 0 auto;
 }
 .header-left a img{
     width:100px !important;
     height:100px !important;
 }
-.sub-menu{
-    padding-top:20px;
-}
+
 .container-name{
     padding-bottom:30px;
 }

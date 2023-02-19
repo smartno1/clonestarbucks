@@ -22,13 +22,13 @@
         #{birthDay}, #{email}, #{gender}, #{auth})
     </insert>
 
-    <!-- 회원 가입 기능   -->
-    <insert id="update">
+    <!-- 회원 수정 기능   -->
+    <update id="update">
         UPDATE tbl_member SET
         nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
         birth_day = #{birthDay}, email = #{email}, gender = #{gender}
         WHERE account=#{account}
-    </insert>
+    </update>
 
     <!-- 중복체크 기능 (아이디, 이메일, 전화번호)   -->
     <select id="isDuplicate" resultType="int">
