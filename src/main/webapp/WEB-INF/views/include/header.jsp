@@ -104,15 +104,15 @@
                 </div>
             </li>
             <li class="item menu-3">
-                <div class="item__name"><a href="javascript:void(0)">STORE</a></div>
+                <div class="item__name"><a href="/kakaoMap/findStore">STORE</a></div>
                 <div class="item__contents">
                     <div class="contents__menu">
                         <ul class="inner">
                             <li>
-                                <h4><a href="javascript:void(0)">매장 찾기</a></h4>
+                                <h4><a href="/kakaoMap/findStore">매장 찾기</a></h4>
                             </li>
                             <li>
-                                <h4><a href="javascript:void(0)">드라이브 스루</a></h4>
+                                <h4><a href="/kakaoMap/findDrive">드라이브 스루</a></h4>
                             </li>
                         </ul>
                     </div>

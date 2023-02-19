@@ -5,13 +5,12 @@
 
         <head>
 
-
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                  crossorigin="anonymous">
             <%@include file="../include/static-head.jsp" %>
+            <title>드라이브 스루 | Starbucks Korea</title>
 
-
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-                    crossorigin="anonymous">
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
                 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -27,8 +26,12 @@
 
 
         </head>
+        <body>
+        <%@include file="../include/header.jsp"%>
+        <div class="map_wrap">
         <div id="map" style="width:100%;height:100vh;"></div>
-
+        </div>
+        <jsp:include page="../include/footer.jsp"></jsp:include>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=88309d14c1b9cc591cb9410898d2903f&libraries=services">
             </script>
@@ -62,9 +65,7 @@
                     
                         displayMarker(data);
                         
-                    
-                    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-                    map.setBounds(bounds);
+
                 }
             }
 
@@ -86,7 +87,7 @@
                 var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
                     marker = addMarker(placePosition,i);
 
-                    bounds.extend(placePosition);
+                bounds.extend(placePosition);
 
                 // 마커에 클릭이벤트를 등록합니다
                 (function (marker, places) {
@@ -97,6 +98,7 @@
                 })(marker, places[i]);
 
                 }
+
 
             }
 
@@ -109,9 +111,9 @@
                         position: position, // 마커의 위치
                         image: markerImage
                     });
-
+                console.log("marker",marker);
                 marker.setMap(map); // 지도 위에 마커를 표출합니다
-                markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+                // markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 
                 return marker;
             }

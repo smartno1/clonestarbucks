@@ -26,7 +26,7 @@
 			<div class="login-top"> 
 				<h3 class="welcome">Welcome!</h3><h3>스타벅스 코리아에 오신 것을 환영합니다</h3>
 			</div>
-			<form action="login" method="post" accept-charset="UTF-8" onsubmit="return false;">
+			<form action="/member/sign-in" method="post" accept-charset="UTF-8" onsubmit="return false;">
 			<div class="login-mid"> 
 				<input type="text" name="account" placeholder="아이디를 입력해 주세요."/>
 				<input type="password" name="password" placeholder="비밀번호를 입력해 주세요."/>
@@ -65,23 +65,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
 
-	const msg = '${msg}';
-	if (msg === 'reg-success') {
-		alert('축하합니다. 회원가입에 성공했습니다.');
+	<%--const msg = '${msg}';--%>
+	<%--if (msg === 'reg-success') {--%>
+	<%--	alert('축하합니다. 회원가입에 성공했습니다.');--%>
 
-	}else if(msg==='mod-success'){
-	alert('회원정보가 수정되었습니다. 다시 로그인하세요');
-		}else if(msg==='mod-failed'){
-		  alert('회원정보 수정이 실패하였습니다.');
-		}
-	const loginMsg = '${loginMsg}';
-	if (loginMsg === 'NO_ACC') {
-		alert('존재하지 않는 회원입니다.');
-	} else if (loginMsg === 'NO_PW') {
-		alert('비밀번호가 틀렸습니다.');
-	}else if(loginMsg === "No_EMAIL"){
-		alert('연결된 계정이 없습니다. 회원가입 해주세요');
-	}
+	<%--}else if(msg==='mod-success'){--%>
+	<%--alert('회원정보가 수정되었습니다. 다시 로그인하세요');--%>
+	<%--	}else if(msg==='mod-failed'){--%>
+	<%--	  alert('회원정보 수정이 실패하였습니다.');--%>
+	<%--	}--%>
+	<%--const loginMsg = '${loginMsg}';--%>
+	<%--if (loginMsg === 'NO_ACC') {--%>
+	<%--	alert('존재하지 않는 회원입니다.');--%>
+	<%--} else if (loginMsg === 'NO_PW') {--%>
+	<%--	alert('비밀번호가 틀렸습니다.');--%>
+	<%--}else if(loginMsg === "No_EMAIL"){--%>
+	<%--	alert('연결된 계정이 없습니다. 회원가입 해주세요');--%>
+	<%--}--%>
 
 	const warning = '${warningMsg}';
 	if (warning === 'forbidden') {
