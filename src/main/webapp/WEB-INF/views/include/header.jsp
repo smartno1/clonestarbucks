@@ -20,7 +20,12 @@
                     </c:if>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" >My Starbucks</a>
+                    <c:if test="${loginUser == null}">
+                        <a href="javascript:void(0)">My Starbucks</a>
+                    </c:if>
+                    <c:if test="${loginUser != null}">
+                        <a href="/member/mystarbucks">My Starbucks</a>
+                    </c:if>
                 </li>
                 <li>
                     <a href="javascript:void(0)">Find a Store</a>

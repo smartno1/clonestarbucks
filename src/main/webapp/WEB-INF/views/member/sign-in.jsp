@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8"); %>
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-	<meta charset="UTF-8"  content="text/html;charset=UTF-8">
-    <title>Starbucks Korea</title>
-    <link href="/images/logo.png" rel="shortcut icon" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">        
-    <link rel="stylesheet" type="text/css" href="/css/sign-in.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
- 	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	<%@include file="../include/static-head.jsp"%>
 
- 	<script src="/js/sign-in.js" defer></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<%--	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">--%>
+<%--	<link href="/images/logo.png" rel="shortcut icon" type="image/x-icon">--%>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+	<script src="/js/sign-in.js" defer></script>
+
+	<link rel="stylesheet" type="text/css" href="/css/sign-in.css">
 </head>
 <body>
-<jsp:include page="../include/header.jsp"></jsp:include>
-<main class="container-wrapper">
+<%@include file="../include/header.jsp"%>
+<main class="container-wrapper1">
 	<div class="container">
 		<h2>로그인</h2>
 		<div class="login-wrapper">
@@ -52,7 +52,7 @@
 			</div>
 			</form>
 			<div class="login-bottom">
-				<button onclick="location.href='./sign-up';">회원가입</button>
+				<button onclick="location.href='/member/sign-up';">회원가입</button>
 				<button onclick="location.href='#';">아이디 찾기</button>
 				<button onclick="location.href='#';">비밀번호 찾기</button>
 			</div>

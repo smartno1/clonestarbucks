@@ -1,31 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<% request.setCharacterEncoding("utf-8"); %>
-		<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-			<!DOCTYPE html>
-			<html>
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+		<!DOCTYPE html>
+		<html>
 			<head>
-				<meta charset="UTF-8" content="text/html;charset=UTF-8">
-				<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests "> -->
-				<title>Starbucks Korea</title>
-				<link href="/images/logo.png" rel="shortcut icon" type="image/x-icon">
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-					integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-					crossorigin="anonymous">
-				<link rel="stylesheet" type="text/css" href="/css/sign-up.css">
-				<link rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+				<%@include file="../include/static-head.jsp"%>
+
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<%--					<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">--%>
+					<link href="/images/logo.png" rel="shortcut icon" type="image/x-icon">
 				<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+				<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 				<script src="/js/sign-up.js" defer></script>
+
+				<link rel="stylesheet" type="text/css" href="/css/sign-up.css">
 			</head>
 
 			<body>
-				<jsp:include page="../include/header.jsp"></jsp:include>
+			<jsp:include page="../include/header.jsp"></jsp:include>
 
-				<main class="container-wrapper">
+				<main class="container-wrapper1">
 					<div class="container">
 						<h2>회원가입</h2>
-						<form method="post" accept-charset="UTF-8" onsubmit="return false;">
+						<form action="/member/sign-up" method="post" accept-charset="UTF-8" onsubmit="return false;">
 							<div class="reigister-wrapper">
 
 								<div class="register-top">
@@ -54,11 +53,11 @@
 													aria-label="Basic radio toggle button group">
 													<input type="radio" class="btn-check" name="gender" id="btnradio1" value="M"
 														autocomplete="off" checked>
-													<label class="btn" for="btnradio1">남</label>
+													<label class="btn1 btn" for="btnradio1">남</label>
 
 													<input type="radio" class="btn-check" name="gender" id="btnradio2" value="F"
 														autocomplete="off">
-													<label class="btn" for="btnradio2">여</label>
+													<label class="btn2 btn" for="btnradio2">여</label>
 												</div>
 											</div>
 										</div>
@@ -107,7 +106,7 @@
 										<div class="w-88">
 											<h3>이메일 (필수)</h3>
 											<input type="email" id="email" name="email" pattern="/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/"
-												title="010-XXXX-XXX">
+												title="test@email.com">
 										</div>
 									</div>
 

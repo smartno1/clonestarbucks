@@ -1,0 +1,282 @@
+.container-wrapper{
+    background-attachment: fixed;
+    background-size : cover;
+    padding-bottom: 120px;
+}
+.toptitle{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height: 178px;
+
+}
+.toptitle .toptitle-bg{
+    margin: 0 auto;
+    background-image: url("/images/my_Starbucks/ms_sub_ttl_bg.jpg");
+    height: 178px;
+    width: 100%;
+
+}
+.toptitle .toptitle-bg .toptitle-inner{
+    width: 1100px;
+    height: 178px;
+    margin: 0 auto;
+}
+.toptitle-tt{
+    height: 74px;
+    margin: 0 auto;
+    padding-top: 104px;
+    position: relative;
+    width: 1100px;
+}
+.toptitle-tt h4{
+    font: bold 36px Avenir, Arial, georgia;
+    color: #fefefe;
+    position: relative
+}
+.toptitle-tt .smap{
+     position: absolute;
+     right: 0;
+     top: 128px;
+ }
+.toptitle-tt li{
+    vertical-align: middle;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 2.5px;
+    font: normal 12px Avenir, Arial, georgia;
+
+}
+.toptitle-tt li a{
+    color: #fff;
+}
+.main-all{
+    width: 100%;
+
+}
+.main-all .main-all-bg {
+    width: 1100px;
+
+
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.mybox_lave{
+    width: 828px;
+    height: 290px;
+    margin-top: 20px;
+    padding: 30px;
+    background-color:#f2f2f2;
+    position: relative;
+    margin-bottom: 25px;
+}
+.mycad_roll{
+    background: url("/images/my_Starbucks/card_wave_pattern.png") center bottom no-repeat;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 288px;
+    margin-top: 40px;
+    width: 828px;
+}
+
+.card_head{
+    border-bottom: 1px solid #eae9e6;
+    height: 38px;
+    width: 770px;
+}
+.my_ms_card_inner{
+    float: left;
+    height: 230px;
+    margin: 29px 0 0 29px;
+    width: 770px;
+}
+.my_ms_card_inner .card_head{
+    border-bottom: 1px solid #eae9e6;
+    height: 38px;
+    width: 770px;
+}
+.my_ms_card_inner .card_head h5 {
+    color: #222;
+    float: left;
+    font-size: 18px;
+    display: block;
+    width: 200px;
+}
+.my_ms_card_inner p.recent_card {
+    color: #555;
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 10px;
+}
+.my_ms_card_inner .card_list_btn1 {
+    float: right;
+    margin: -8px 8px 0 0;
+    width: 30px;
+}
+.my_ms_card_inner .card_list_btn1 img{
+    vertical-align: top;
+    max-width: 100%;
+}
+.my_ms_card aside {
+    float: right;
+    height: 19px;
+    width: 71px;
+}
+.card_head aside span {
+    color: #777;
+    font-size: 12px;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    width: 32px;
+}
+.card_head aside p {
+    background: url("images/my_Starbucks/btn_square_arrows.png");
+    float: right;
+    height: 19px;
+    width: 39px;
+}
+.card_head aside p a {
+    float: left;
+    height: 19px;
+    overflow: hidden;
+    text-indent: -20000px;
+}
+.mybox_lave h5 {
+    font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+    font-weight: bold;
+}
+
+.ms_user_info_left {
+    width: 50%;
+    box-sizing: border-box;
+    border-right: 1px solid #dddddb;
+    float: left;
+    height: 230px;
+    position: relative;
+}
+.t_bd9b60 {
+    color: #bd9b60;
+}
+strong {
+    font-weight: bold;
+}
+.ms_user_stat{
+    float: right;
+    position: absolute;
+}
+.ms_user_info_right {
+    float: left;
+    height: 230px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20px 0 0 50px;
+}
+.ms_user_starbg{
+    background-image: url("/images/my_Starbucks/ms_myreward_star_bg.png");
+    background-size: 137px auto;
+    display: block;
+    width: 67.5%;
+    height: 70.1%;
+    position: relative;
+    top: inherit;
+    left: inherit;
+    line-height: inherit;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+.totalStar{
+    font-size: 60px;
+    font-weight: bold;
+}
+ .ms_user_starbg span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-top: 13%;
+    margin-left: -1%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.ms_user_stat{
+    width: 100%;
+}
+ .ms_user_stat span{
+     display: block;
+     width: 100%;
+     height: 100%;
+     padding-top: 13px;
+     font-size: 20px;
+
+ }
+.ms_user_stat strong{
+
+    padding-top: 13px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.ms_user_stat_btns{
+    padding-top: 23%;
+}
+
+
+.btn_black{
+    background-color: #222222;
+}
+.ms_user_stat_btns ul li.btn_gray a {
+    color: #ffffff;
+    background-color: #666;
+    font-size: 12px;
+  }
+.ms_user_stat_btns ul li.btn_black a {
+    color: #ffffff;
+    background-color: #222222;
+    font-size: 12px;
+}
+.ms_user_stat_btns ul li.btn_gray{
+    width: 126px;
+    height: 28px;
+    display: block;
+    background: #666;
+}
+.ms_user_stat_btns ul li.btn_black{
+    width: 126px;
+    height: 28px;
+    display: block;
+    background: #222222;
+}
+
+.ms_user_stat_btns li a{
+    margin-top: 10px;
+    font-size: 12px;
+    color: #222222;
+    font-weight: bold;
+
+}
+.ms_user_stat_btns ul li {
+    background: #e2c383;
+    border: 1px solid #bb9f65;
+    border-radius: 3px;
+    float: left;
+    height: 28px;
+    padding-top: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 126px;
+    text-align: center;
+}
+.ms_user_stat_notice {
+    font-size: 14px;
+    left: 0;
+    line-height: 18px;
+    position: absolute;
+    top: 200px;
+    text-align: center;
+    width: 100%;
+}
