@@ -108,7 +108,8 @@ public class MemberController {
 
     // 로그인 요청 처리
     @PostMapping("/sign-in")
-    public String signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
+    @ResponseBody
+    public LoginFlag signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
             , HttpServletResponse response) {
 
         log.info("/member/sign-in POST - {}", inputData);
@@ -120,16 +121,16 @@ public class MemberController {
         model.addAttribute("loginMsg", flag);
         log.info("memberService.login 종료");
         log.info(flag);
-        if (flag == LoginFlag.SUCCESS) {
-            log.info("login success!!");
+//        if (flag == LoginFlag.SUCCESS) {
+//            log.info("login success!!");
+//
+//            String redirectURI = (String) session.getAttribute("redirectURI");
+//            if (redirectURI.contains("/member/modify")) return "redirect:/";
+//            return "redirect:" + redirectURI;
+//
+//        }
 
-            String redirectURI = (String) session.getAttribute("redirectURI");
-            if (redirectURI.contains("/member/modify")) return "redirect:/";
-            return "redirect:" + redirectURI;
-
-        }
-
-        return "/member/sign-in";
+        return flag;
 
     }
 
