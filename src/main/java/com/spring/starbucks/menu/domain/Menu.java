@@ -20,6 +20,7 @@ public class Menu {
     private String weight;
     private String kind;
     private String type;
+    private String espressoKind;
     private String descriptionSummary;
     private String descriptionDetail;
     private String designStory;

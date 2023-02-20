@@ -41,9 +41,9 @@
             <div class="search_type">
                 <div class="hi-text">
                 <label><input class="all" type="checkbox" value="all">전체 상품보기</label>
-                <label><input class="check" type="checkbox" value="americano">아메리카노</label>
-                <label><input class="check" type="checkbox" value="coldbrew">콜드블루</label>
-                <label><input class="check" type="checkbox" value="darkroast">다크로스트</label>
+                <label><input class="check" type="checkbox" value="espresso">에스프레소</label>
+                <label><input class="check" type="checkbox" value="coldbrew">콜드브루</label>
+                <label><input class="check" type="checkbox" value="brewedcoffee">브루드커피</label>
 
                 </div>
                 <div id="ben1"><img src="/images/ben1.jpg" dist></div>
@@ -51,15 +51,15 @@
 
         </div>
         <div class="menu001">
-        <div class="coffee-wrapper americano" >
+        <div class="coffee-wrapper espresso" >
             <div class="coffee-list">
                 <div class="coffee-type">
-                    <img src="/images/icon/blondRoast.png"/><p>아메리카노</p>
+                    <img src="/images/icon/blondRoast.png"/><p>에스프레소</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
                     <c:forEach items="${list}" var="u">
                         <c:choose>
-                            <c:when test="${u.type eq 'americano'}">
+                            <c:when test="${u.type eq 'espresso'}">
                                 <li class="coffee_bean">
                                     <a href="/menu/menuListDetail?id=${u.id}">
                                         <img src="${u.image}"/>
@@ -75,7 +75,7 @@
         <div class="coffee-wrapper coldbrew">
             <div class="coffee-list">
                 <div class="coffee-type">
-                    <img src="/images/icon/mediumRoast.png"/><p>콜드블루</p>
+                    <img src="/images/icon/mediumRoast.png"/><p>콜드브루</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
                     <c:forEach items="${list}" var="u">
@@ -93,15 +93,15 @@
                 </ul>
             </div>
         </div>
-        <div class="coffee-wrapper darkroast">
+        <div class="coffee-wrapper brewedcoffee">
             <div class="coffee-list">
                 <div class="coffee-type">
-                    <img src="/images/icon/darkRoast.png"/><p>다크로스트</p>
+                    <img src="/images/icon/darkRoast.png"/><p>브루드커피</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
                     <c:forEach items="${list}" var="u">
                         <c:choose>
-                            <c:when test="${u.type eq 'darkroast'}">
+                            <c:when test="${u.type eq 'brewedcoffee'}">
                                 <li class="coffee_bean">
                                     <a href="/menu/menuListDetail?id=${u.id}">
                                         <img src="${u.image}"/></a>
@@ -239,7 +239,7 @@
         if($All.checked){ all = true;  }    // 전체선택이면 true 변수 설정.
 
         $check.forEach(function (check) { // 타입 배열에서 하나씩 꺼냄
-            const show = document.querySelector('.'+check.value); // 타입에 맞는 리스트 가져오기
+            const show = document.querySelector('.'+check.value); // 타입에 맞는 요소 가져오기
             const showContent = show.firstElementChild.lastElementChild.firstElementChild;
             if(check.checked){ // 타입이 체크되었고
                 if(showContent) { // 리스트에 목록이 있으면
@@ -267,16 +267,16 @@
             d.style.display = "none";
         })
 
-        if(${type == "americano"}){
-            console.log("americano");
-            const $type = document.querySelector('input[value="americano"]')
+        if(${type == "espresso"}){
+            console.log("espresso");
+            const $type = document.querySelector('input[value="espresso"]')
             $type.checked = true;
 
         }else if(${type == "coldbrew"}){
             const $type = document.querySelector('input[value="coldbrew"]')
             $type.checked = true;
-        }else if(${type == "darkroast"}){
-            const $type = document.querySelector('input[value="darkroast"]')
+        }else if(${type == "brewedcoffee"}){
+            const $type = document.querySelector('input[value="brewedcoffee"]')
             $type.checked = true;
         }else{
             console.log("All")

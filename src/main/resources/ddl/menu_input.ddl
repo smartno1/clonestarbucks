@@ -17,6 +17,7 @@ CREATE table starbucks.menu(
     ,calorie6 VARCHAR(30)
     ,kind VARCHAR(30)
     ,type VARCHAR(30)
+    ,espresso VARCHAR(30)
     ,description_summary VARCHAR(500)
     ,description_detail VARCHAR(500)
     ,design_story VARCHAR(500)

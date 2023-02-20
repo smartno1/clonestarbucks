@@ -27,6 +27,11 @@ public class MenuService {
         return menuMapper.findAll(kind);
     }
 
+    public List<Menu> findAllService2(String type, String espressoKind){
+        return menuMapper.findAll2(type, espressoKind);
+    }
+
+
     public boolean saveService(Menu menu){
         return menuMapper.save(menu);
     }

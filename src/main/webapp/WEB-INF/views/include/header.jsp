@@ -28,7 +28,7 @@
                     </c:if>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">Find a Store</a>
+                    <a href="/kakaoMap/findStore">Find a Store</a>
                 </li>
             </ul>
             <div class="search">
@@ -79,9 +79,9 @@
                             <li>
                                 <h4><a href="/menu/list">음료</a></h4>
                                 <ul>
-                                    <li><a href="/menu/list?type=americano">아메리카노</a></li>
-                                    <li><a href="/menu/list?type=coldbrew">콜드블루</a></li>
-                                    <li><a href="/menu/list?type=darkroast">다크로스트</a></li>
+                                    <li><a href="/menu/list?kind=category&type=espresso">에스프레소</a></li>
+                                    <li><a href="/menu/list?kind=category&type=coldbrew">콜드브루</a></li>
+                                    <li><a href="/menu/list?kind=category&type=brewedcoffee">브루드커피</a></li>
                                 </ul>
                             </li>
                             <li>

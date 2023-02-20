@@ -11,7 +11,7 @@ CREATE TABLE tbl_member(
     , birth_day int(2) NOT NULL
     , gender VARCHAR(2) NOT NULL
     , auth VARCHAR(20) DEFAULT 'COMMON'
-    , level int(1) DEFAULT 1
+    , level int(1) DEFAULT 5
     , reg_date DATETIME DEFAULT current_timestamp
     , session_id VARCHAR(200) DEFAULT 'none'
     , limit_time DATETIME

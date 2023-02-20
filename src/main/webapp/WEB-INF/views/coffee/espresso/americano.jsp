@@ -88,7 +88,7 @@
             max-width: 1100px;
             margin: 0 auto;
         }
-        .bottom .container p{
+        .bottom .container > p{
             font-size: 18px;
             font-weight: bold;
             color: #333;
@@ -96,8 +96,56 @@
             border-top: 1px solid #ddd;
             margin-bottom: 20px;
         }
-        .bottom .container .list{
+        .bottom .container .product-ul{
+            width: 100%;
             position: relative;
+        }
+        .bottom .container .product-ul .product-li{
+            width: 33%;
+            position: relative;
+            float: left;
+
+        }
+        .bottom .container .product-ul .product-li > a{
+            float: left;
+            width: 44.5%;
+            padding-bottom: 7px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .bottom .container .product-ul .product-li a img{
+            width: inherit;
+            height: inherit;
+        }
+        .bottom .container .product-ul .product-li a img:hover{
+            scale: 1.1;
+            transition: 0.5s;
+        }
+        .bottom .container .product-li div{
+            width: 55.5%;
+            float: left;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .bottom .container .product-li div .product-name {
+            font-size: 14px;
+            color: #222;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .bottom .container .product-li div .product-descriptionSummary{
+            font-size: 12px;
+            margin-bottom: 10%;
+            color: #666;
+            line-height: 1.4;
+        }
+        .bottom .container .product-li div a {
+            vertical-align: middle;
+            padding-left: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            color: #222;
+            border-bottom: 1px dotted black;
         }
     </style>
 </head>
@@ -134,14 +182,27 @@
         <section class="bottom">
             <div class="container">
                 <p>관련 제품</p>
-                <ul class="list clear-fix">
-                    <li class="">
-                    </li>
+                <ul class="product-ul clear-fix">
+                    <c:forEach items="${menuList}" var="u">
+                        <li class="product-li clear-fix" data-kind="${u.kind}">
+                            <a href="/menu/menuListDetail?id=${u.id}">
+                                <img src="${u.image}"/>
+                            </a>
+                            <div>
+                                <p class="product-name">${u.nameKr}</p>
+                                <p class="product-descriptionSummary">${u.descriptionSummary}</p>
+                                <a href="/menu/menuListDetail?id=${u.id}">자세히 보기 ></a>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
         </section>
     </main>
     <%@include file="../../include/footer.jsp"%>
 </div>
+<script>
+    console.info("menu : ", ${menuList});
+</script>
 </body>
 </html>

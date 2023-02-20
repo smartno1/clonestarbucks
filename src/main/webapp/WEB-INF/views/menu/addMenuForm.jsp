@@ -38,22 +38,22 @@
                             <p>음료 카테고리</p>
                             <select class="form-select type" aria-label="Default select example" name="kind"  onchange="categoryChange(this)">
                                 <option value="">선택안함</option>
-                                <option value="bean">카테고리</option>
-                                <option value="via">테 마</option>
-
-
+                                <option value="category">카테고리</option>
+                                <option value="theme">테 마</option>
                             </select>
                             <p>음료 종류</p>
-                            <select class="form-select type"aria-label="Default select example" name="type" id="good">
-<%--                                class="form-select type"--%>
-<%--                                <option value="">선택안함</option>--%>
-<%--                                <option value="blond_roast">아메리카노</option>--%>
-<%--                                <option value="cold_brew">콜드블루</option>--%>
-<%--                                <option value="dark_roast">다크로스트</option>--%>
-
-<%--                                <option value="tema1">테마상품</option>--%>
+                            <select class="form-select type" aria-label="Default select example" name="type" id="good" onchange="typeChange(this)">
                                 <option>선택안됨</option>
                             </select>
+                            <div style="display: none">
+                                <p>에스프레소 종류</p>
+                                <select class="form-select type" aria-label="Default select example" name="espressoKind">
+                                    <option>선택안됨</option>
+                                    <option value="americano">아메리카노</option>
+                                    <option value="cappuccino">카푸치노</option>
+                                    <option value="mocha">모카</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="description-sum">
@@ -120,34 +120,49 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>--%>
 <script>
+    function typeChange(e){
+        if(e.value == "espresso") {
+            e.nextElementSibling.lastElementChild.removeAttribute('disabled');
+            e.nextElementSibling.style.display = "block";
+        }else{
+            e.nextElementSibling.lastElementChild.disabled = true;
+            e.nextElementSibling.style.display = "none";
+        }
+    }
     function categoryChange(e) {
-        var good_a = ["americano", "coldbrew", "darkroast"];
-        var good_b = ["theme"];
+        let d;
+        const good_a = ["", "espresso", "coldbrew", "brewedcoffee"];
+        const good_b = ["theme"];
+        const good_c = ["선택없음"];
 
-        var good_c = ["선택없음"];
+        const target = document.getElementById("good");
 
-        var target = document.getElementById("good");
-
-        if(e.value == "bean") var d = good_a;
-        else if(e.value == "via") var d = good_b;
-
-        else if(e.value == "") var d = good_c;
-
+        if(e.value == "category") {
+            d = good_a;
+        }else if(e.value == "theme") {
+            d = good_b;
+        }else if(e.value == "") {
+            d = good_c;
+        }
 
         target.options.length = 0;
 
-        for (x in d) {
-            var opt = document.createElement("option");
-            opt.value = d[x];
-            if(d[x] == "americano"){
-                opt.innerHTML = "아메리카노";
-            }else if(d[x] == "coldbrew"){
-                opt.innerHTML = "콜드브루";
-            }else if(d[x] == "darkroast"){
-                opt.innerHTML = "다크로스트";
+        for (const x of d) {
+            const opt = document.createElement("option");
+            opt.value = x;
+            console.info("x  ",x);
+            if(x == ""){
+                opt.textContent = "선택없음";
             }
-            if(d[x] == "theme") {
-                opt.innerHTML = "테마";
+            else if(x == "espresso"){
+                opt.textContent = "에스프레소";
+            }else if(x == "coldbrew"){
+                opt.textContent = "콜드브루";
+            }else if(x == "brewedcoffee"){
+                opt.textContent = "브루드커피";
+            }
+            if(x == "theme") {
+                opt.textContent = "테마";
             }
             target.appendChild(opt);
         }

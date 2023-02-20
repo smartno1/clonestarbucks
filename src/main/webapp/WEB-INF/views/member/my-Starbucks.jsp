@@ -33,8 +33,8 @@
                     <nav class="ms_nav" id="msRnb">
                         <ul>
                             <li>
-                                <a href="javascript:void(0);">My 리워드<span class="sbox_arrow_down"></span></a>
-                                <ul>
+                                <a href="javascript:void(0);">My 리워드<span class="sbox_arrow_down" ></span></a>
+                                <ul style="display: none">
                                     <!-- 160609 텍스트 수정 -->
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/reward.do">· 리워드 및 혜택</a></li>
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/reward_star_history.do">· 별 히스토리</a></li>
@@ -43,7 +43,7 @@
                             </li>
                             <li>
                                 <a href="javascript:void(0);">My 스타벅스 카드<span class="sbox_arrow_down"></span></a>
-                                <ul>
+                                <ul style="display: none">
                                     <!-- 160609 텍스트 수정 -->
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_index.do">· 보유 카드</a></li>
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_info_input.do">· 카드 등록</a></li>
@@ -54,7 +54,7 @@
                             </li>
                             <li>
                                 <a href="javascript:void(0);">My 스타벅스 e-Gift Card<span class="sbox_arrow_down"></span></a>
-                                <ul>
+                                <ul style="display: none">
                                     <li><a href="javascript:void(0);" required="login" data-href="/msr/sceGift/gift_step1.do">· 선물하기</a></li>
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard.do">· 선물 내역</a></li>
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard_shopping_bag.do">· 장바구니 내역</a></li>
@@ -62,7 +62,7 @@
                             </li>
                             <li class="msRnb_btn">
                                 <a href="javascript:void(0);" required="login" data-href="javascript:void(0);">My 쿠폰<span class="sbox_arrow_down"></span></a>
-                                <ul>
+                                <ul style="display: none">
                                     <li><a href="/my/ecoupon.do?t=REG">· 등록하기</a></li>
                                     <li><a href="/my/ecoupon.do?t=GIFT">· 선물하기</a></li>
                                     <li><a href="/my/ecoupon.do?t=USE">· 사용하기</a></li>
@@ -99,7 +99,7 @@
                                     <img src="/common/img/util/plcc-logo.png" >
                                 </div>
                                 <figure class="en ms_user_starbg">
-                                    <span class="totalStar">4</span>
+                                    <span class="totalStar">${loginUser.level}</span>
                                 </figure>
                                 <p class="ms_user_stat_notice">
                                     <strong>21</strong>개의 별★이 더 모이면<br>
@@ -108,7 +108,7 @@
                             </article>
                             <article class="ms_user_info_right">
                                 <p class="ms_user_stat">
-                                    <span><strong class="userName">홍길동</strong> 님은</span>
+                                    <span><strong class="userName">${loginUser.name}</strong> 님은</span>
                                     <span>현재 <strong class="en userGrade t_0d5f34">Green Level</strong>이십니다.</span></p>
                                 <div class="plcc-logo" style="display:none;">
                                     <img src="/common/img/util/plcc-logo.png" >
@@ -690,7 +690,7 @@
                 </div>
 
             </div>
-        </section>
+        </div>
         <%--바디 내용끝--%>
         <%--푸터 내용시작--%>
 <%--        <jsp:include page="../include/footer.jsp"></jsp:include>--%>
@@ -713,6 +713,23 @@
                 alert(msg);
             }
         });
+    function msRnbShow() {
+        document.getElementById('msRnb').addEventListener('click', e => {
+            if (e.target.matches('.sbox_arrow_down')) {
+                e.target.parentElement.nextElementSibling.style.display = 'block';
+                e.target.classList.remove('sbox_arrow_down');
+                e.target.classList.add('sbox_arrow_up');
+            }else if (e.target.matches('.sbox_arrow_up')) {
+                e.target.parentElement.nextElementSibling.style.display = 'none';
+                e.target.classList.remove('sbox_arrow_up');
+                e.target.classList.add('sbox_arrow_down');
+            }
+        })
+    }
+    (function (){
+        msRnbShow();
+    })();
+
     </script>
 
 <%--        <script id="cardList" type="text/x-jquery-tmpl">--%>

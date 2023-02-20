@@ -17,6 +17,8 @@ public interface MenuMapper {
 
     List<Menu> findAll(String menu);
 
+    List<Menu> findAll2(String type, String espressoKind);
+
     Menu findOne(int id);
 
     boolean save(Menu coffee);

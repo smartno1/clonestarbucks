@@ -41,8 +41,8 @@
 
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = {
-                    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
+                    center: new kakao.maps.LatLng(35.566826, 126.9786567), // 지도의 중심좌표
+                    level: 13 // 지도의 확대 레벨
                 };
 
             // 지도를 생성합니다    
@@ -52,7 +52,7 @@
             var ps = new kakao.maps.services.Places();
 
             // 키워드로 장소를 검색합니다
-            ps.keywordSearch('스타벅스 드라이브스루', placesSearchCB);
+            ps.keywordSearch('스타벅스 DT', placesSearchCB);
 
             // 키워드 검색 완료 시 호출되는 콜백함수 입니다
             function placesSearchCB(data, status, pagination) {
@@ -68,8 +68,6 @@
 
                 }
             }
-
-
 
             // 지도에 마커를 표시하는 함수입니다
             function displayMarker(places) {
