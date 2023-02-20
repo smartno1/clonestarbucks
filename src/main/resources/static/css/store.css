@@ -193,7 +193,7 @@
 
                         overflow: hidden;
 
-                        min-height: 800px;
+                        min-height: 600px;
 
                         border-radius: 3px;
 
@@ -267,6 +267,7 @@
 
                     #menu_wrap .search {
                         width: 300px;
+                        height: 86vh;
                         /*height: 70vh;*/
 
 
@@ -280,7 +281,7 @@
 
 
                         text-align: center;
-                        line-height: 50px;
+                        line-height: 35px;
 
 
                         box-sizing: border-box;
@@ -292,7 +293,7 @@
 
                     #menu_wrap .search .quick_search_inner {
 
-                        height: 70%;
+                        height: 54%;
                         width: 93%;
 
                         position: absolute;
@@ -330,7 +331,7 @@
                         right: 3%;
 
 
-                        line-height: 40px;
+                        line-height: 32px;
 
 
                         color: #000000;
@@ -358,7 +359,18 @@
 
 
                     }
-
+                    #placesList::-webkit-scrollbar {
+                        width: 5px;
+                    }
+                    #placesList::-webkit-scrollbar-thumb {
+                        background-color: #2f3542;
+                        border-radius: 5px;
+                    }
+                    #placesList::-webkit-scrollbar-track {
+                        background-color: grey;
+                        border-radius: 5px;
+                        box-shadow: inset 0px 0px 5px white;
+                    }
                     #placesList li {
                         list-style: none;
 
@@ -368,7 +380,7 @@
                         position: relative;
                         border-bottom: 1px solid #ddd;
                         overflow: hidden;
-                        height: 100px;
+                        height: 70px;
                     }
 
                     #placesList .item p {
