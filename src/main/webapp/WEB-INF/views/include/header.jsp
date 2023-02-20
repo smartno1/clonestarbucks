@@ -21,10 +21,10 @@
                 </li>
                 <li>
                     <c:if test="${loginUser == null}">
-                        <a href="javascript:void(0)">My Starbucks</a>
+                        <a href="javascript:void(0)" id="signIn">My Starbucks</a>
                     </c:if>
                     <c:if test="${loginUser != null}">
-                        <a href="/member/mystarbucks">My Starbucks</a>
+                        <a href="javascript:void(0)" id="my">My Starbucks</a>
                     </c:if>
                 </li>
                 <li>

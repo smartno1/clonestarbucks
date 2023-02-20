@@ -41,7 +41,7 @@
         <if test="type=='email'">
             WHERE email = #{value}
         </if>
-        <if test="type==phone">
+        <if test="type=='phone'">
             WHERE phone = #{value}
         </if>
 

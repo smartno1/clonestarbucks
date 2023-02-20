@@ -33,14 +33,14 @@
 										<p>화원정보를 입력해주세요</p>
 									</div>
 									<div class="id-wrapper w-100">
-										<input type="text" name="account" id="id" placeholder="아이디" />
+										<input type="text" name="account" id="account" placeholder="아이디"/>
 									</div>
 									<div class="password-wrapper w-100">
-										<input type="password" name="password" id="password" placeholder="비밀번호" />
+										<input type="password" name="password" id="password" placeholder="비밀번호" maxlength="20"/>
 									</div>
 									<div class="passwordCheck-wrapper w-100">
 										<input type="password" name="passwordCheck" id="passwordCheck"
-											placeholder="비밀번호 확인" />
+											placeholder="비밀번호 확인" maxlength="20"/>
 									</div>
 								</div>
 								<div class="register-bottom">
@@ -48,7 +48,7 @@
 										<div class="w-88">
 											<h3>이름 (필수)</h3>
 											<div class="inline">
-												<input type="text" name="name" placeholder="이름" />
+												<input type="text" name="name" placeholder="이름"/>
 												<div class="btn-group" role="group"
 													aria-label="Basic radio toggle button group">
 													<input type="radio" class="btn-check" name="gender" id="btnradio1" value="M"
@@ -97,7 +97,7 @@
 									<div class="phone-wrapper bottom-div">
 										<div class="w-88">
 											<h3>휴대폰 번호 (필수)</h3>
-											<input type="tel" id="phone" name="phone" pattern="010-[0-9]{4}-[0-9]{4}"
+											<input type="tel" id="phone" name="phone"
 												title="010-XXXX-XXX">
 										</div>
 									</div>
@@ -105,8 +105,8 @@
 									<div class="email-wrapper bottom-div">
 										<div class="w-88">
 											<h3>이메일 (필수)</h3>
-											<input type="email" id="email" name="email" pattern="/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/"
-												title="test@email.com">
+											<input type="email" id="email" name="email"
+												title="test@email.com"><br>
 										</div>
 									</div>
 
@@ -145,7 +145,8 @@
 						if (error) {
 							alert(msg);
 						}
-					}); 
+					});
+
 				</script>
 
 			</body>

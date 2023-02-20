@@ -7,6 +7,8 @@ import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.core.StandardReflectionParameterNameDiscoverer;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,11 +43,19 @@ public class MemberController {
 
     // 회원가입 처리 요청
     @PostMapping("/sign-up")
-    public String signUp(Member member, RedirectAttributes ra) {
+    public String signUp(Member member, RedirectAttributes ra, HttpServletRequest request, HttpServletResponse response) {
         log.info("/member/sign-up POST ! - {}", member);
         boolean flag = memberService.signUp(member);
         if (flag) ra.addFlashAttribute("msg", "reg-success");
-        return flag ? "redirect:/member/sign-in" : "redirect:/member/sign-up";
+        String uri = request.getHeader("Referer");
+        log.info("referer - {}",uri);
+        if(request.getSession().getAttribute("redirectURI") != null){
+            uri = (String)request.getSession().getAttribute("redirectURI");
+            log.info("redirectURI - {}",uri);
+        }
+
+
+        return flag ? "redirect:" + uri : "redirect:/member/sign-up";
     }
 
     //패스워드 검증후 회원정보 수정 양식 띄우기
@@ -109,8 +119,8 @@ public class MemberController {
     // 로그인 요청 처리
     @PostMapping("/sign-in")
     @ResponseBody
-    public LoginFlag signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
-            , HttpServletResponse response) {
+    public ResponseEntity<String> signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
+            , HttpServletResponse response){
 
         log.info("/member/sign-in POST - {}", inputData);
 //        log.info("session timeout : {}", session.getMaxInactiveInterval());
@@ -121,34 +131,27 @@ public class MemberController {
         model.addAttribute("loginMsg", flag);
         log.info("memberService.login 종료");
         log.info(flag);
-//        if (flag == LoginFlag.SUCCESS) {
-//            log.info("login success!!");
-//
-//            String redirectURI = (String) session.getAttribute("redirectURI");
-//            if (redirectURI.contains("/member/modify")) return "redirect:/";
-//            return "redirect:" + redirectURI;
-//
-//        }
 
-        return flag;
+        return new ResponseEntity<>(String.valueOf(flag),HttpStatus.OK);
 
     }
 
     @GetMapping("/sign-out")
-    public String signOut(HttpSession session) {
-
+    public ResponseEntity<String> signOut(HttpSession session) {
+        ResponseEntity<String> res = new ResponseEntity<>("success",HttpStatus.OK);
         if (session.getAttribute("loginUser") != null) {
             // 1. 세션에서 정보를 삭제한다.
             session.removeAttribute("loginUser");
 
             // 2. 세션을 무효화한다.
             session.invalidate();
-            return "success";
+
+            return res;
         }
-        return "success";
+        return res;
     }
 
-    @GetMapping("/mystarbucks")
+    @GetMapping("/myStarbucks")
     public String mystarbucks(){
         return "member/my-Starbucks";
 }

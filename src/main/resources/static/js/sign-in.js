@@ -1,33 +1,60 @@
-var count = 0;
+// var count = 0;
 
-function login(form) {
-	$.ajax({
-		type: 'POST',
-		data: $("form").serialize(),
-		datatype: 'json',
-		url: 'sign-in',
-		beforeSend: function () {
-			$("html").css("cursor", "wait");
-		},
-		success: function (result) {
-			if (result = "SUCCESS") {
-				var msg = "로그인 성공";
-				alert(msg);
-				location.href = "./index";
-			} else if (result = "NO_PW") {
-				var msg = "비밀번호가 틀립니다.";
-
-				alert(msg);
-			} else if (result = "NO_ACC") {
-				var msg = "존재하지 않는 아이디입니다."
-			}
-			$("html").css("cursor", "default");
-		},
-		error: function (xhr, status, error) {
-			alert("로그인 로드 실패");
-		}
-	});
-}
+// function login(form) {
+//
+// 	const reqInfo = {
+// 		method:'POST'
+// 		,body:form
+// 	}
+// 	document.querySelector('html').style.cursor="wait";
+//
+// 	fetch('/member/sign-in',reqInfo)
+// 		.then(res => res.text())
+// 		.then(result => {
+//
+// 			if (result === "SUCCESS") {
+// 				var msg = "로그인 성공";
+// 				alert(msg);
+// 				history.go(-1);
+// 			} else if (result === "NO_PW") {
+// 				var msg = "비밀번호가 틀립니다.";
+// 				alert(msg);
+// 			} else if (result === "NO_ACC") {
+// 				var msg = "존재하지 않는 아이디입니다."
+// 				alert(msg);
+// 			} else {
+// 				alert("로그인 로드 실패");
+// 			}
+// 			document.querySelector('html').style.cursor="default";
+//
+// 		})
+	// $.ajax({
+	// 	type: 'POST',
+	// 	data: $("form").serialize(),
+	// 	datatype: 'json',
+	// 	url: 'sign-in',
+	// 	beforeSend: function () {
+	// 		$("html").css("cursor", "wait");
+	// 	},
+	// 	success: function (result) {
+	// 		if (result = "SUCCESS") {
+	// 			var msg = "로그인 성공";
+	// 			alert(msg);
+	// 			location.href = "./index";
+	// 		} else if (result = "NO_PW") {
+	// 			var msg = "비밀번호가 틀립니다.";
+	//
+	// 			alert(msg);
+	// 		} else if (result = "NO_ACC") {
+	// 			var msg = "존재하지 않는 아이디입니다."
+	// 		}
+	// 		$("html").css("cursor", "default");
+	// 	},
+	// 	error: function (xhr, status, error) {
+	// 		alert("로그인 로드 실패");
+	// 	}
+	// });
+// }
 
 $(".save").on('click',function(){
 	if($(".check").css('background-color')=='rgb(0, 128, 0)'){

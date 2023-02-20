@@ -72,11 +72,16 @@ function menuUl(){
                   })
           }
       }
+      if(e.target.matches('#signIn')){
+          if(confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")){
+              location.href='/member/sign-in';
+          }
+      }
+      if(e.target.matches('#my')){
+          location.href='/member/myStarbucks';
+      }
 
     })
-}
-function signOut(){
-
 }
 
 (function (){
