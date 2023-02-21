@@ -16,17 +16,17 @@
     <!-- 회원 가입 기능   -->
     <insert id="register">
         INSERT INTO tbl_member
-        (account, password, nickname, name, phone, birth_year, birth_month, birth_day, email, gender, auth)
+        (account, password, nickname, name, phone, birth_year, birth_month, birth_day, email, gender)
         VALUES
         (#{account}, #{password}, #{nickname}, #{name}, #{phone}, #{birthYear}, #{birthMonth},
-        #{birthDay}, #{email}, #{gender}, #{auth})
+        #{birthDay}, #{email}, #{gender})
     </insert>
 
     <!-- 회원 수정 기능   -->
     <update id="update">
         UPDATE tbl_member SET
         nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
-        birth_day = #{birthDay}, email = #{email}, gender = #{gender}
+        birth_day = #{birthDay}, email = #{email}, gender = #{gender}, auth=#{auth}
         WHERE account=#{account}
     </update>
 

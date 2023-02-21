@@ -48,10 +48,12 @@
 							<h2>${menu.nameKr}</h2>
 							<p>${menu.nameEn}</p>
 						</div>
+						<c:if test="${loginUser.auth == 'ADMIN'}">
 						<div class="name-right">
 							<span class="material-symbols-outlined" id="edit" data-id="${menu.id}">edit</span>
 							<span class="material-symbols-outlined" id ="delete" data-id="${menu.id}">delete</span>
 						</div>
+						</c:if>
 						<div class="myDrink">
 							<a>나만의 상품으로 등록</a>
 						</div>

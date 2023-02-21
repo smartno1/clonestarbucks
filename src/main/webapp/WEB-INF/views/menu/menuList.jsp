@@ -16,7 +16,7 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>음료<a href="/menu/addMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">음료추가</span></a></h2>
+            <h2>음료<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/addMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">음료추가</span></a></c:if></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">

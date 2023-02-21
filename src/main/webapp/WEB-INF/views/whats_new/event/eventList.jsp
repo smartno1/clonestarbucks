@@ -190,10 +190,12 @@
     <div class="middle">
         <div class="name">
             <h2>이벤트
+                <c:if test="${loginUser.auth == 'ADMIN'}">
                 <a href="/whats_new/event/add">
                     <span class="material-symbols-outlined">add</span>
                     <span class="name-add">이벤트 추가</span>
                 </a>
+                </c:if>
             </h2>
             <nav class="nav">
                 <ul class="nav-ul">

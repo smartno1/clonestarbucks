@@ -7,6 +7,7 @@
     <head>
         <%--헤더 잡코딩--%>
         <%@include file="../include/static-head.jsp"%>
+        <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
         <link rel="stylesheet" type="text/css" href="/css/myStarbucks.css">
     </head>

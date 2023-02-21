@@ -40,10 +40,12 @@
 							<h2>${coffee.nameKr}</h2>
 							<p>${coffee.nameEn}</p>
 						</div>
+						<c:if test="${loginUser.auth == 'ADMIN'}">
 						<div class="name-right">
 							<span class="material-symbols-outlined" id="edit" data-id="${coffee.id}">edit</span>
 							<span class="material-symbols-outlined" id ="delete" data-id="${coffee.id}">delete</span>
 						</div>
+						</c:if>
 						<div id="addMyFavorite" data-id="${coffee.id}">
 							<a>나만의 상품으로 등록</a>
 						</div>

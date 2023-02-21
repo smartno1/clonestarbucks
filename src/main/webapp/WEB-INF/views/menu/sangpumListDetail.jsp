@@ -45,21 +45,19 @@
 							<h2>${menu.nameKr}</h2>
 							<p>${menu.nameEn}</p>
 						</div>
+						<c:if test="${loginUser.auth == 'ADMIN'}">
 						<div class="name-right">
 							<span class="material-symbols-outlined" id="edit2" data-id="${menu.id}">edit</span>
 							<span class="material-symbols-outlined" id ="sangpumdelete" data-id="${menu.id}">delete</span>
 						</div>
+						</c:if>
 						<div class="myDrink">
 							<a>나만의 상품으로 등록</a>
 						</div>
-
 					</div>
 					<div class="description-sum">
 						<p>${menu.descriptionSummary}</p>
 					</div>
-
-
-
 					<div class="icon">
 						<%-- <div class="fb-share-button" 
 			                data-href="https://ksh-starbucks-clone.herokuapp.com/coffee_bean_detail.jsp?seq=${coffee.id}" 

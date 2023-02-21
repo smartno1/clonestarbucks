@@ -147,12 +147,14 @@
         <div class="main">
             <div class="top-section">
                 <h2>공지사항
+                    <c:if test="${loginUser.auth == 'ADMIN'}">
                     <a href="/whats_new/notice/edit?noticeId=${nt.noticeId}" id="edit">
                         <span class="edit">수정</span>
                     </a>
                     <a href=javascript:void(0) id="delete">
                         <span class="del" data-id="${nt.noticeId}">삭제</span>
                     </a>
+                    </c:if>
                 </h2>
                 <nav class="nav">
                     <ul class="nav-ul">

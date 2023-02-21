@@ -18,7 +18,7 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>상품<a href="/menu/sangpumaddMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">상품추가</span></a></h2>
+            <h2>상품<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/sangpumaddMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">상품추가</span></a></c:if></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">

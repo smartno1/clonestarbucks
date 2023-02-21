@@ -27,7 +27,6 @@
 							<c:when test="${menu.type eq 'sandwich'}">
 								샌드위치
 							</c:when>
-
 						</c:choose>	>
 					   ${menu.nameKr}</span>
 				</span>
@@ -46,10 +45,12 @@
 							<h2>${menu.nameKr}</h2>
 							<p>${menu.nameEn}</p>
 						</div>
+						<c:if test="${loginUser.auth == 'ADMIN'}">
 						<div class="name-right">
 							<span class="material-symbols-outlined" id="edit1" data-id="${menu.id}">edit</span>
 							<span class="material-symbols-outlined" id ="fooddelete" data-id="${menu.id}">delete</span>
 						</div>
+						</c:if>
 						<div class="myDrink">
 							<a>나만의 상품으로 등록</a>
 						</div>

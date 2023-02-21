@@ -236,10 +236,12 @@
         <div class="main">
             <div class="top-section">
                 <h2>뉴스
+                    <c:if test="${loginUser.auth == 'ADMIN'}">
                     <a href="/whats_new/news/add">
                         <span class="material-symbols-outlined">add</span>
                         <span class="news-add">뉴스 추가</span>
                     </a>
+                    </c:if>
                 </h2>
                 <nav class="nav">
                     <ul class="nav-ul">
