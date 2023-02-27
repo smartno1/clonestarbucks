@@ -1,5 +1,6 @@
 package com.spring.starbucks.whatsNew.event.repository;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,7 @@ public interface EventMapper {
 
     boolean insert(Event event);
 
-    List<Event> findAll(String kind);
+    List<Event> findAll(Search search);
 
     Event findOne(int id);
 

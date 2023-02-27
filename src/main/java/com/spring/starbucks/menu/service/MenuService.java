@@ -1,5 +1,6 @@
 package com.spring.starbucks.menu.service;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.menu.repository.MenuMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,8 @@ public class MenuService {
         return menuMapper.findOne(id);
     }
 
-    public List<Menu> findAllService(String kind){
-        return menuMapper.findAll(kind);
+    public List<Menu> findAllService(Search search){
+        return menuMapper.findAll(search);
     }
 
     public List<Menu> findAllService2(String type, String espressoKind){

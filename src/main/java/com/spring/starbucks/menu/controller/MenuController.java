@@ -1,5 +1,6 @@
 package com.spring.starbucks.menu.controller;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.menu.upload.FileUtils;
 import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.menu.service.MenuService;
@@ -26,13 +27,14 @@ public class MenuController {
     private final MenuService menuService;
 
     @GetMapping("/list")
-    public String menuList(@ModelAttribute("kind") String kind, String type, Model model){
-        log.info("/menu/menuList GET! - kind: {}",kind);
-        log.info("type - {}", type);
-        List<Menu> menus = menuService.findAllService(kind);
+    public String menuList(Search search, Model model){
+        log.info("/menu/menuList GET! - kind: {}",search.getKind());
+        log.info("type - {}", search.getType());
+        List<Menu> menus = menuService.findAllService(search);
         log.info("list - {}",menus);
         model.addAttribute("list",menus);
-        model.addAttribute("type", type);
+        model.addAttribute("type", search.getKeyword());
+        model.addAttribute("kind", search.getKind());
         return "menu/menuList";
     }
 
@@ -93,7 +95,10 @@ public class MenuController {
     public String foodmList(@ModelAttribute("kind") String kind, String type, Model model){
         log.info("/menu/foodList GET! - kind: {}",kind);
         log.info("type - {}", type);
-        List<Menu> menus = menuService.findAllService(kind);
+        Search search = new Search();
+        search.setType("kind");
+        search.setKeyword(kind);
+        List<Menu> menus = menuService.findAllService(search);
         log.info("food - {}",menus);
         model.addAttribute("food",menus);
         model.addAttribute("type", type);
@@ -152,7 +157,10 @@ public class MenuController {
     public String sangpumList(@ModelAttribute("kind") String kind, String type, Model model){
         log.info("/menu/sangpumlist GET! - kind: {}",kind);
         log.info("type - {}", type);
-        List<Menu> menus = menuService.findAllService(kind);
+        Search search = new Search();
+        search.setType("kind");
+        search.setKeyword(kind);
+        List<Menu> menus = menuService.findAllService(search);
         log.info("sangpum - {}",menus);
         model.addAttribute("sangpum",menus);
         model.addAttribute("type", type);

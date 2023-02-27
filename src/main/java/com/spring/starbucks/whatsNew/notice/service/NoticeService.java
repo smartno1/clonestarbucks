@@ -17,6 +17,10 @@ public class NoticeService {
     final private NoticeMapper noticeMapper;
 
     public List<Notice> findAllService(Search search){
+        if(search.getKind() == null || search.getKind() == ""){
+            search.setKind("ALL");
+        }
+
         return noticeMapper.findAll2(search);
     }
 

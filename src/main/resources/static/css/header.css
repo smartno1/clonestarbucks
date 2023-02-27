@@ -63,11 +63,11 @@ header .sub-menu ul.menu-ul li a {
 header .sub-menu ul.menu-ul li a:hover {
     color: #000;
 }
-header .sub-menu .search {
+header .sub-menu .search-all {
     position: relative;
     height: 34px;
 }
-header .sub-menu .search input {
+header .sub-menu .search-all input {
     width: 36px;
     height: inherit;
     padding: 4px 10px;
@@ -80,11 +80,11 @@ header .sub-menu .search input {
     font-size: 12px;
     transition: width .4s;
 }
-header .sub-menu .search input:focus {
+header .sub-menu .search-all input:focus {
     width: 190px;
     border-color: #669900;
 }
-header .sub-menu .search .material-symbols-outlined {
+header .sub-menu .search-all .material-symbols-outlined {
     height: 24px;
     position: absolute;
     top: 0;
@@ -93,7 +93,7 @@ header .sub-menu .search .material-symbols-outlined {
     margin: auto;
     transition: .4s;
 }
-header .sub-menu .search.focused .material-symbols-outlined {
+header .sub-menu .search-all.focused .material-symbols-outlined {
     opacity: 0;
 }
 header .main-menu {

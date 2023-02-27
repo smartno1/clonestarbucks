@@ -1,5 +1,7 @@
 package com.spring.starbucks.whatsNew.event.service;
 
+import com.spring.starbucks.common.search.Search;
+import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.whatsNew.event.repository.EventMapper;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +25,12 @@ public class EventService {
         return eventMapper.insert(event);
     }
 
-    public List<Event> findAllService(String kind){
-        List<Event> events = eventMapper.findAll(kind);
+    public List<Event> findAllService(Search search){
+        if(search.getKind() == null || search.getKind() == ""){
+            search.setKind("ALL");
+        }
+
+        List<Event> events = eventMapper.findAll(search);
         LocalDate current = LocalDate.now().minusDays(1);
         for(int i=0;i<events.size();i++) {
             Event event = events.get(i);

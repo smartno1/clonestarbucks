@@ -10,17 +10,18 @@ import java.time.LocalDate;
 @ToString
 public class Notice {
 
-    int noticeId;
-    String title;
-    String content;
-    String linkTitle;
-    String link;
-    int viewCnt;
-    LocalDate regDate;
-    String attach;
+    private int noticeId;
+    private String title;
+    private String content;
+    private String linkTitle;
+    private String link;
+    private int viewCnt;
+    private LocalDate regDate;
+    private String attach;
 
     //custom
     int no;
+    private String prettierRegDate;
 
 
 

@@ -3,6 +3,7 @@ package com.spring.starbucks.coffee.bean.repository;
 
 import com.spring.starbucks.coffee.bean.domain.Tastedto;
 import com.spring.starbucks.coffee.bean.domain.Coffee;
+import com.spring.starbucks.common.search.Search;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface CoffeeMapper {
 
     Coffee findOne(int id);
 
-    List<Coffee> findAll(String kind);
+    List<Coffee> findAll(Search search);
 
     List<Coffee> findAll2(Tastedto tastedto);
 

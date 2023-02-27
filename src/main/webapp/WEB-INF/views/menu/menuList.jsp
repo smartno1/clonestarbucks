@@ -241,14 +241,9 @@
         $check.forEach(function (check) { // 타입 배열에서 하나씩 꺼냄
             const show = document.querySelector('.'+check.value); // 타입에 맞는 요소 가져오기
             const showContent = show.firstElementChild.lastElementChild.firstElementChild;
-            if(check.checked){ // 타입이 체크되었고
+            if($All.checked || check.checked){ // 타입이 체크되었거나, 전체보기 체크면
                 if(showContent) { // 리스트에 목록이 있으면
                     console.log("show-check: ", showContent);
-                    show.style.display = "block";   // 보여준다
-                }
-            }else if(all){  // 타입체크는 안되있고, 전체보기 체크면
-                if(showContent) { // 리스트에 목록이 있으면
-                    console.log("show-all: ", showContent);
                     show.style.display = "block";   // 보여준다
                 }
             }else{  // 타입체크 x , 전체보기 x
@@ -298,7 +293,6 @@
         navShow();
         defaultKind();
         defaultType();
-
         selectKind();
         selectType();
         doDisplay1();
