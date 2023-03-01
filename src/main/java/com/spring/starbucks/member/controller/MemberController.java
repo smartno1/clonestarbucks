@@ -7,12 +7,8 @@ import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.core.StandardReflectionParameterNameDiscoverer;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
 
@@ -44,6 +37,34 @@ public class MemberController {
     @GetMapping("/sign-up")
     public void signUp() {
         log.info("/member/sign-up GET! - forwarding to sign-up.jsp");
+    }
+    @GetMapping("/find_ID")
+    public void findID() {
+        log.info("/member/find_ID GET! - forwarding to find_ID.jsp");
+    }
+    @GetMapping("/find_PW")
+    public void findPW() {
+        log.info("/member/find_PW GET! - forwarding to find_PW.jsp");
+    }
+    @GetMapping("/my_info")
+    public void myinfo() {
+        log.info("/member/my_info GET! - forwarding to my_info.jsp");
+    }
+    @GetMapping("/myinfo_out")
+    public void myinfo_out() {
+        log.info("/member/myinfo_out GET! - forwarding to myinfo_out.jsp");
+    }
+    @GetMapping("/myinfo_modify_pwd")
+    public void myinfo_modify_pwd() {
+        log.info("/member/myinfo_modify_pwd GET! - forwarding to myinfo_modify_pwd.jsp");
+    }
+    @GetMapping("/vocList")
+    public void vocList() {
+        log.info("/member/vocList GET! - forwarding to vocList.jsp");
+    }
+    @GetMapping("/csQuestion")
+    public void csQuestion() {
+        log.info("/member/csQuestion GET! - forwarding to csQuestion.jsp");
     }
 
     // 회원가입 처리 요청

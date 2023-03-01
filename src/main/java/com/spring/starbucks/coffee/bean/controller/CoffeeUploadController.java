@@ -37,6 +37,7 @@ public class CoffeeUploadController {
                 "coffee",
                 "bean"
         };
+        log.info("path - {}", pathInfo);
         // 클라이언트가 전송한 파일 업로드하기
         String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH, pathInfo);
         // 클라이언트에게 전송할 파일경로 리스트

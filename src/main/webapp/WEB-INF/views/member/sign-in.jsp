@@ -53,8 +53,8 @@
 			</form>
 			<div class="login-bottom">
 				<button onclick="location.href='/member/sign-up';">회원가입</button>
-				<button onclick="location.href='#';">아이디 찾기</button>
-				<button onclick="location.href='#';">비밀번호 찾기</button>
+				<button onclick="location.href='/member/find_ID';">아이디 찾기</button>
+				<button onclick="location.href='/member/find_PW';">비밀번호 찾기</button>
 			</div>
 		</div>
 	</div>

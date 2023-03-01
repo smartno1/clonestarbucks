@@ -47,6 +47,7 @@ public class FileUtils {
      * @return - 업로드가 완료된 새로운 파일의 full path
      */
     public static String uploadFile(MultipartFile file, String uploadPath, String[] pathInfo) {
+        log.info("uploadFile - {}",pathInfo);
 
         // 중복이 없는 파일명으로 변경하기
         // ex) 상어.png -> 3dfsfjkdsfds-djksfaqwerij-dsjkfdkj_상어.png
@@ -88,12 +89,14 @@ public class FileUtils {
 
         // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성
         // 리눅스 : / ,  윈도우 : \
-        for (int i = 0 ; pathInfo[i] != null ; i++) {
+        for (int i = 0 ; i < pathInfo.length ; i++) {
             newUploadPath += File.separator + pathInfo[i];
+            log.info("pathFor - {}", pathInfo[i]);
             // 해당 경로대로 폴더를 생성
             File dirName = new File(newUploadPath);
             if (!dirName.exists()) dirName.mkdir();
         }
+        log.info("newUploadPath - {}",newUploadPath);
 
         // 오늘 년,월,일 정보 가져오기
         LocalDateTime now = LocalDateTime.now();
@@ -107,7 +110,7 @@ public class FileUtils {
                 , len2(m)
                 , len2(d)
         };
-
+        log.info("dateInfo - {}",dateInfo);
         // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성
         // 리눅스 : / ,  윈도우 : \
         for (String date : dateInfo) {
@@ -117,7 +120,7 @@ public class FileUtils {
             File dirName = new File(newUploadPath);
             if (!dirName.exists()) dirName.mkdir();
         }
-
+        log.info("newUploadPath - {}", newUploadPath);
 
 
         return newUploadPath;

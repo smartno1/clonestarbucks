@@ -76,7 +76,7 @@
 
 
                             <li>
-                                <a href="javascript:void(0);" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
+                                <a href="/member/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
                             </li>
                             <!-- <li class="msRnb_btn"><a href="/my/order_status_list.do" required="login">케익 주문 현황</a></li> -->
                             <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/eReceiptList.do">전자영수증</a></li>
@@ -85,9 +85,9 @@
                             <li>
                                 <a href="javascript:void(0);">개인정보관리<span class="sbox_arrow_down"></span></a>
                                 <ul>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/myinfo_modify_login.do">· 개인정보확인 및 수정</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/myinfo_out.do">· 회원 탈퇴</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/myinfo_modify_pwd.do">· 비밀번호 변경</a></li>
+                                    <li><a href="/member/my_info">· 개인정보확인 및 수정</a></li>
+                                    <li><a href="/member/myinfo_out" required="login" data-href="/my/myinfo_out.do">· 회원 탈퇴</a></li>
+                                    <li><a href="/member/myinfo_modify_pwd" required="login" data-href="/my/myinfo_modify_pwd.do">· 비밀번호 변경</a></li>
                                 </ul>
                             </li>
                         </ul>
