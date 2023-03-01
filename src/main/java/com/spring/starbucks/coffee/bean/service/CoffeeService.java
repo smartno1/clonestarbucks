@@ -3,6 +3,7 @@ package com.spring.starbucks.coffee.bean.service;
 import com.spring.starbucks.coffee.bean.domain.Coffee;
 import com.spring.starbucks.coffee.bean.domain.Tastedto;
 import com.spring.starbucks.coffee.bean.repository.CoffeeMapper;
+import com.spring.starbucks.common.search.Search;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,12 @@ public class CoffeeService {
         return coffeeMapper.findOne(id);
     }
 
-    public List<Coffee> findAllService(String kind){
-        return coffeeMapper.findAll(kind);
+    public List<Coffee> findAllService(Search search){
+        if(search.getKind() == null || search.getKind() == ""){
+            search.setKind("ALL");
+        }
+
+        return coffeeMapper.findAll(search);
     }
 
     public List<Coffee> findAll2Service(Tastedto tastedto){

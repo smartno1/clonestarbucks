@@ -1,5 +1,6 @@
 package com.spring.starbucks.menu.repository;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.menu.domain.Menu;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,10 +16,9 @@ public interface MenuMapper {
 
     boolean delete(int id);
 
-    List<Menu> findAll(String menu);
+    List<Menu> findAll(Search search);
 
     List<Menu> findAll2(String type, String espressoKind);
-
     Menu findOne(int id);
 
     boolean save(Menu coffee);

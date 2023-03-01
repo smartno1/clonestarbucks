@@ -31,9 +31,12 @@
                     <a href="/kakaoMap/findStore">Find a Store</a>
                 </li>
             </ul>
-            <div class="search">
-                <input type="text" />
-                <span class="material-symbols-outlined">search</span>
+            <div class="search-all">
+                <form action="/search-all" method="GET">
+                    <input type="hidden" name="type" value="search-all">
+                    <input type="text" name="keyword"/>
+                    <span class="material-symbols-outlined">search</span>
+                </form>
             </div>
         </div>
 
@@ -79,9 +82,9 @@
                             <li>
                                 <h4><a href="/menu/list">음료</a></h4>
                                 <ul>
-                                    <li><a href="/menu/list?kind=category&type=espresso">에스프레소</a></li>
-                                    <li><a href="/menu/list?kind=category&type=coldbrew">콜드브루</a></li>
-                                    <li><a href="/menu/list?kind=category&type=brewedcoffee">브루드커피</a></li>
+                                    <li><a href="/menu/list?type=espressoKind&keyword=espresso">에스프레소</a></li>
+                                    <li><a href="/menu/list?type=espressoKind&keyword=coldbrew">콜드브루</a></li>
+                                    <li><a href="/menu/list?type=espressoKind&keyword=brewedcoffee">브루드커피</a></li>
                                 </ul>
                             </li>
                             <li>

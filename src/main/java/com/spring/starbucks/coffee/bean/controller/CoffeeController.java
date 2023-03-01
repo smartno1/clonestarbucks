@@ -3,6 +3,7 @@ package com.spring.starbucks.coffee.bean.controller;
 import com.spring.starbucks.coffee.bean.domain.Tastedto;
 import com.spring.starbucks.coffee.bean.domain.Coffee;
 import com.spring.starbucks.coffee.bean.service.CoffeeService;
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -31,11 +32,13 @@ public class CoffeeController {
     private final CoffeeService coffeeService;
 
     @GetMapping("/list")
-    public String beanList(@ModelAttribute("kind") String kind, Model model){
-        log.info("/coffee/bean/list GET! - kind: {}",kind);
-        List<Coffee> coffees = coffeeService.findAllService(kind);
+    public String beanList(Search search, Model model){
+        log.info("/coffee/bean/list GET! - kind: {}",search.getKind());
+
+        List<Coffee> coffees = coffeeService.findAllService(search);
         log.info("list - {}",coffees);
         model.addAttribute("list",coffees);
+        model.addAttribute("kind", search.getKind());
         return "coffee/coffeeBean/coffeeBeanList";
     }
 

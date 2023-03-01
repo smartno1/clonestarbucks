@@ -3,7 +3,7 @@
  */
 function search() {
 // 검색창 요소(.search) 찾기.
-    const searchEl = document.querySelector('.search')
+    const searchEl = document.querySelector('.search-all')
     const searchInputEl = searchEl.querySelector('input')
 // 검색창 요소를 클릭하면 실행.
     searchEl.addEventListener('click', function () {
@@ -78,7 +78,7 @@ function menuUl(){
           }
       }
       if(e.target.matches('#my')){
-          location.href='/member/myStarbucks';
+          location.href='/myStarbucks';
       }
 
     })

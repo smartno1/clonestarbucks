@@ -1,5 +1,6 @@
 package com.spring.starbucks.whatsNew.event.controller;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.util.FileUtils;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import com.spring.starbucks.whatsNew.event.service.EventService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Log4j2
@@ -33,17 +35,15 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping("/list")
-    public String list( String kind, Model model){
+    public String list( Search search, Model model){
+        log.info("list start - {}",search.getKind());
 
-        log.info("list start - {}",kind);
-        if(kind == null){
-            kind = "ALL";
-        }
-        List<Event> events = eventService.findAllService(kind);
+        List<Event> events = eventService.findAllService(search);
+
         model.addAttribute("events", events);
-        model.addAttribute("kind", kind);
+        model.addAttribute("kind", search.getKind());
         log.info("events - {}", events);
-        log.info("kind - {}", kind);
+        log.info("kind - {}", search.getKind());
 
         return "whats_new/event/eventList";
     }
@@ -101,7 +101,10 @@ public class EventController {
     @GetMapping("/detail")
     public String detail(int id, String kind, Model model){
         Event event = eventService.findOneService(id);
-        List<Event> events = eventService.findAllService("ALL");
+
+        Search search = new Search();
+        search.setKind("ALL");
+        List<Event> events = eventService.findAllService(search);
 
         model.addAttribute("kind", kind);
         model.addAttribute("event", event);

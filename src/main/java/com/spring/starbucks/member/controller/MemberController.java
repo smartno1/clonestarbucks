@@ -177,10 +177,6 @@ public class MemberController {
         return res;
     }
 
-    @GetMapping("/myStarbucks")
-    public String mystarbucks(){
-        return "member/my-Starbucks";
-}
 
 
 

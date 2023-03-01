@@ -33,8 +33,8 @@
     <select id="findAll" resultMap="MenuMap">
         SELECT *
         FROM menu
-        <if test="kind == 'category'">WHERE kind = #{kind}</if>
-        <if test="kind == 'theme'">WHERE kind = #{kind}</if>
+        <if test="type == 'kind'">WHERE kind = #{kind}</if>
+        <if test="type == 'search-all'">WHERE name_kr LIKE CONCAT('%', #{keyword}, '%') AND description_summary LIKE CONCAT('%', #{keyword}, '%')</if>
     </select>
 
     <select id="findAll2" resultMap="MenuMap">

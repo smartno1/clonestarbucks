@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Log4j2
@@ -31,22 +33,23 @@ public class NewsController {
     private final NewsService newsService;
 
     @GetMapping("/list")
-    public String findAll(@ModelAttribute("s") Search search, String kind, Model model){
+    public String findAll(@ModelAttribute("s") Search search, Model model){
         List<News> nList;
         PageMaker pm;
-        if(search.getKind() == null || search.getKind().equals("ALL")) {
+        if( search.getKind() == null || Objects.equals(search.getKind(), "") || Objects.equals(search.getKind(),"ALL")) {
             log.info("search 1 start - {}",search);
             nList = newsService.findAllService(search);
             pm = new PageMaker(search, newsService.getTotalCount(search));
+            model.addAttribute("kind", "ALL");
         }else {
             log.info("search 2 start - {}",search);
             nList = newsService.findAllService2(search);
             pm = new PageMaker(search, newsService.getTotalCount2(search));
             log.info("nList - {}", nList);
+            model.addAttribute("kind", search.getKind());
         }
         model.addAttribute("nList", nList);
         model.addAttribute("pm", pm);
-        model.addAttribute("kind", kind);
 
         return "whats_new/news/newsList";
     }

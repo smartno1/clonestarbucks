@@ -67,9 +67,9 @@
 
     <sql id="search">
         <if test="type == 'title'">WHERE  title LIKE CONCAT('%', #{keyword}, '%')</if>
-    </sql>
-    <sql id="search2">
-        <if test="type == 'title'">WHERE  A.title LIKE CONCAT('%', #{keyword}, '%')</if>
+        <if test="type == 'search-all'">
+            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR keyword LIKE CONCAT('%', #{keyword}, '%')
+        </if>
     </sql>
 
     <update id="update">

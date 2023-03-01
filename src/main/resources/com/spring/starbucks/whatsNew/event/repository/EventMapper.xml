@@ -28,11 +28,19 @@
     <select id="findAll" resultMap="EventMap">
         SELECT *
         FROM starbucks.board_event
+        <include refid="search" />
+        ORDER BY reg_date DESC
+    </select>
+
+    <sql id="search">
         <if test="kind != 'ALL'">
             WHERE kind = #{kind}
         </if>
-        ORDER BY reg_date DESC
-    </select>
+        <if test="type == 'search-all'">
+            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR keyword LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'title'">WHERE  title LIKE CONCAT('%', #{keyword}, '%')</if>
+    </sql>
 
     <update id="update">
         UPDATE starbucks.board_event

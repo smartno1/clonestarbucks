@@ -18,4 +18,7 @@ public class News {
     private LocalDate regDate;
     private int no;
 
+//    custom
+    private String prettierRegDate;
+
 }
