@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.suggestion.repository.SuggestionMapper">
+
+    <resultMap id="SuggestionMap" type="com.spring.starbucks.suggestion.domain.Suggestion">
+        <result property="regDate" column="reg_date" />
+        <result property="confirmDate" column="confirm_date" />
+        <result property="replyDate" column="reply_date" />
+        <result property="replyDone" column="reply_done" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO starbucks.suggestion
+            (account,title,context,phone)
+        VALUES (#{account},#{title},#{context},#{phone})
+    </insert>
+
+    <select id="findOne" resultMap="SuggestionMap">
+        SELECT *
+        FROM starbucks.suggestion
+        WHERE id =#{id}
+    </select>
+
+    <select id="findAll" resultMap="SuggestionMap">
+        SELECT *
+        FROM
+        (
+        SELECT @rownum:=@rownum+1  no, A.*
+        FROM starbucks.suggestion A,
+        (SELECT @ROWNUM := 0) R
+        <include refid="search"></include>
+        ) list
+        ORDER BY id DESC
+        LIMIT #{start}, #{amount}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM starbucks.suggestion
+        <include refid="search" />
+    </select>
+
+
+    <update id="update">
+        UPDATE starbucks.suggestion
+        <include refid="updateColumn"/>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM starbucks.suggestion
+        <include refid="search" />
+    </delete>
+
+    <sql id="search">
+        <if test="type == 'title'">WHERE  title LIKE CONCAT('%', #{keyword}, '%')</if>
+        <if test="type == 'id'">WHERE  id = #{keyword}</if>
+        <if test="type == 'account'">WHERE  account = #{keyword}</if>
+        <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
+        <if test="type == 'noLogin'"></if>
+        <if test="type == 'search-all'">
+            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR context LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </sql>
+
+    <sql id="updateColumn">
+        <if test="type == 'confirm">
+            SET confirm=#{keyword}, confirm_date= CURRENT_TIMESTAMP
+        </if>
+        <if test="type == 'reply'">
+            SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE
+        </if>
+    </sql>
+
+</mapper>

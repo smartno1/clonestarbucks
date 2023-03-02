@@ -20,11 +20,11 @@
             <div class="toptitle">
                 <div class="toptitle-bg">
                     <div class="toptitle-tt">
-                        <h4><img alt="My 음료/매장" src="//image.istarbucks.co.kr/common/img/util/reward/ms_suggestion_ttl.png"></h4>
+                        <h4><img alt="고객의 소리" src="//image.istarbucks.co.kr/common/img/util/reward/ms_suggestion_ttl.png"></h4>
                         <ul class="smap">
                             <li><a href="/"><img src="//image.istarbucks.co.kr/common/img/common/icon_home_w.png" alt="홈으로"></a></li>
                             <li><img class="arrow" src="//image.istarbucks.co.kr/common/img/common/icon_arrow_w.png" alt="작은 맵 화살표"></li>
-                            <li><a href="/my/index.do">MY 고객의소리</a></li>
+                            <li><a href="/suggestion/vocList">MY 고객의소리</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,63 +33,74 @@
                 <div class="main-all-bg" >
                     <nav class="ms_nav" id="msRnb">
                         <ul>
-                            <li>
-                                <a href="javascript:void(0);">My 리워드<span class="sbox_arrow_down" ></span></a>
-                                <ul style="display: none">
-                                    <!-- 160609 텍스트 수정 -->
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/reward.do">· 리워드 및 혜택</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/reward_star_history.do">· 별 히스토리</a></li>
-                                    <!-- 160609 텍스트 수정 end -->
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">My 스타벅스 카드<span class="sbox_arrow_down"></span></a>
-                                <ul style="display: none">
-                                    <!-- 160609 텍스트 수정 -->
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_index.do">· 보유 카드</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_info_input.do">· 카드 등록</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_charge.do">· 카드 충전</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_lost.do">· 분실신고/잔액이전</a></li>
-                                    <!-- 160609 텍스트 수정 end -->
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">My 스타벅스 e-Gift Card<span class="sbox_arrow_down"></span></a>
-                                <ul style="display: none">
-                                    <li><a href="javascript:void(0);" required="login" data-href="/msr/sceGift/gift_step1.do">· 선물하기</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard.do">· 선물 내역</a></li>
-                                    <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard_shopping_bag.do">· 장바구니 내역</a></li>
-                                </ul>
-                            </li>
-                            <li class="msRnb_btn">
-                                <a href="javascript:void(0);" required="login" data-href="javascript:void(0);">My 쿠폰<span class="sbox_arrow_down"></span></a>
-                                <ul style="display: none">
-                                    <li><a href="/my/ecoupon.do?t=REG">· 등록하기</a></li>
-                                    <li><a href="/my/ecoupon.do?t=GIFT">· 선물하기</a></li>
-                                    <li><a href="/my/ecoupon.do?t=USE">· 사용하기</a></li>
-                                </ul>
-                            </li>
-                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/calendar.do">My 캘린더</a></li>
-                            <!-- <li class="msRnb_btn"><a href="/my/drink_shop.do" required="login">My 음료/매장</a></li> -->
-                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/my_menu.do">My 메뉴</a></li>
-
-
-
-                            <li>
-                                <a href="/member/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
-                            </li>
-                            <!-- <li class="msRnb_btn"><a href="/my/order_status_list.do" required="login">케익 주문 현황</a></li> -->
-                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/eReceiptList.do">전자영수증</a></li>
-                            <li class="msRnb_btn"><a href="javascript:void(0);" onclick="fn_rewardTumblerMsrCheck();">개인컵 리워드 설정</a></li>
-                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/edt/expressDtList.do">My DT Pass</a></li>
-                            <li>
-                                <a href="javascript:void(0);">개인정보관리<span class="sbox_arrow_down"></span></a>
+                            <li class="msRnb_btn"><a href="javascript:void(0)">자주 하는 질문</a></li> <!-- 20210809 수정 -->
+                            <li class="msRnb_btn"><a href="javascript:void(0)">고객의 소리</a></li>
+                            <li class="msRnb_btn"><a href="javascript:void(0)">스토어 케어</a></li>
+                            <li><a href="javascript:void(0);">스타벅스 이용 팁<span class="sbox_arrow_down"></span></a>
                                 <ul>
-                                    <li><a href="/member/my_info">· 개인정보확인 및 수정</a></li>
-                                    <li><a href="/member/myinfo_out" required="login" data-href="/my/myinfo_out.do">· 회원 탈퇴</a></li>
-                                    <li><a href="/member/myinfo_modify_pwd" required="login" data-href="/my/myinfo_modify_pwd.do">· 비밀번호 변경</a></li>
-                                </ul>
-                            </li>
+                                    <li><a href="javascript:void(0)">· 홈페이지 이용 팁</a></li>
+                                    <li><a href="javascript:void(0)">· 애플리케이션 이용 팁</a></li>
+                                    <li><a href="javascript:void(0)">· 제휴카드 안내</a></li>
+                                </ul></li>
+                            <li class="msRnb_btn"><a href="javascript:void(0)">고객 경험 설문조사</a></li> <!-- 20210811 수정 -->
+
+<%--                            <li>--%>
+<%--                                <a href="javascript:void(0);">My 리워드<span class="sbox_arrow_down" ></span></a>--%>
+<%--                                <ul style="display: none">--%>
+<%--                                    <!-- 160609 텍스트 수정 -->--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/reward.do">· 리워드 및 혜택</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/reward_star_history.do">· 별 히스토리</a></li>--%>
+<%--                                    <!-- 160609 텍스트 수정 end -->--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="javascript:void(0);">My 스타벅스 카드<span class="sbox_arrow_down"></span></a>--%>
+<%--                                <ul style="display: none">--%>
+<%--                                    <!-- 160609 텍스트 수정 -->--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_index.do">· 보유 카드</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_info_input.do">· 카드 등록</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_charge.do">· 카드 충전</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_lost.do">· 분실신고/잔액이전</a></li>--%>
+<%--                                    <!-- 160609 텍스트 수정 end -->--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a href="javascript:void(0);">My 스타벅스 e-Gift Card<span class="sbox_arrow_down"></span></a>--%>
+<%--                                <ul style="display: none">--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/msr/sceGift/gift_step1.do">· 선물하기</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard.do">· 선물 내역</a></li>--%>
+<%--                                    <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard_shopping_bag.do">· 장바구니 내역</a></li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            <li class="msRnb_btn">--%>
+<%--                                <a href="javascript:void(0);" required="login" data-href="javascript:void(0);">My 쿠폰<span class="sbox_arrow_down"></span></a>--%>
+<%--                                <ul style="display: none">--%>
+<%--                                    <li><a href="/my/ecoupon.do?t=REG">· 등록하기</a></li>--%>
+<%--                                    <li><a href="/my/ecoupon.do?t=GIFT">· 선물하기</a></li>--%>
+<%--                                    <li><a href="/my/ecoupon.do?t=USE">· 사용하기</a></li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/calendar.do">My 캘린더</a></li>--%>
+<%--                            <!-- <li class="msRnb_btn"><a href="/my/drink_shop.do" required="login">My 음료/매장</a></li> -->--%>
+<%--                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/my_menu.do">My 메뉴</a></li>--%>
+
+
+
+<%--                            <li>--%>
+<%--                                <a href="/myStarbucks/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>--%>
+<%--                            </li>--%>
+<%--                            <!-- <li class="msRnb_btn"><a href="/my/order_status_list.do" required="login">케익 주문 현황</a></li> -->--%>
+<%--                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/eReceiptList.do">전자영수증</a></li>--%>
+<%--                            <li class="msRnb_btn"><a href="javascript:void(0);" onclick="fn_rewardTumblerMsrCheck();">개인컵 리워드 설정</a></li>--%>
+<%--                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/edt/expressDtList.do">My DT Pass</a></li>--%>
+<%--                            <li>--%>
+<%--                                <a href="javascript:void(0);">개인정보관리<span class="sbox_arrow_down"></span></a>--%>
+<%--                                <ul>--%>
+<%--                                    <li><a href="/member/my_info">· 개인정보확인 및 수정</a></li>--%>
+<%--                                    <li><a href="/member/myinfo_out" required="login" data-href="/my/myinfo_out.do">· 회원 탈퇴</a></li>--%>
+<%--                                    <li><a href="/member/myinfo_modify_pwd" required="login" data-href="/my/myinfo_modify_pwd.do">· 비밀번호 변경</a></li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
                         </ul>
                     </nav>
                     <div class="ms_cont">
@@ -107,7 +118,14 @@
                                 <li class="description">※ 최근 3개월 문의내역만 조회 가능합니다.</li> <!-- 추가 220830 -->
                             </ul>
                             <!-- e: 고객의 소리 개선 220615 -->
-                            <p class="btn_suggestion_inquiry"><a href="/member/csQuestion">고객의 소리 문의 하기</a></p>
+                            <p class="btn_suggestion_inquiry">
+                                <c:if test="${loginUser == null}">
+                                    <a href="/member/sign-in">로 그 인</a>
+                                </c:if>
+                                <c:if test="${loginUser != null}">
+                                    <a href="/suggestion/csQuestion" id="suggestionIn">고객의 소리 문의 하기</a>
+                                </c:if>
+                            </p>
                             <!-- e: 220615 문구 수정 -->
                             <!-- <p class="btn_suggestion_inquiry2"><a href="/my/opinionList.do">2017. 12. 22 이전 나의 문의내역</a></p> -->
                         </section>
@@ -162,7 +180,33 @@
                                             </tr>
                                             </thead>
 
-                                            <tbody id="all"><tr><td colspan="6">데이터가 없습니다.</td></tr></tbody>
+                                            <tbody id="all">
+                                                <tr>
+                                                    <c:choose>
+                                                        <c:when test="${sL != null}">
+                                                            <c:forEach items="${sL}" var="s">
+                                                                <td>${s.no}</td>
+                                                                <td><a href="/suggestion/detail?id=${s.id}">${s.title}</a></td>
+                                                                <td>${s.regDate}</td>
+                                                                <td>
+                                                                    <c:if test="${s.replyDone}">
+                                                                        완료
+                                                                    </c:if>
+                                                                    <c:if test="${!s.replyDone}">
+                                                                        대기
+                                                                    </c:if>
+
+                                                                </td>
+                                                            </c:forEach>
+                                                        </c:when>
+                                                        <c:when test="${sL == null}">
+                                                            <td colspan="6">
+                                                                데이터가 없습니다.
+                                                            </td>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                         <!-- (고객의 소리) 목록 end -->
 

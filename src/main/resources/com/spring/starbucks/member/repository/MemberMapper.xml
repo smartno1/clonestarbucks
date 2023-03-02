@@ -25,7 +25,7 @@
     <!-- 회원 수정 기능   -->
     <update id="update">
         UPDATE tbl_member SET
-        nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
+        password=#{password}, nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
         birth_day = #{birthDay}, email = #{email}, gender = #{gender}, auth=#{auth}
         WHERE account=#{account}
     </update>

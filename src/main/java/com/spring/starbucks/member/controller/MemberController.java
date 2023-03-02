@@ -3,12 +3,15 @@ package com.spring.starbucks.member.controller;
 
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.dto.LoginDTO;
+import com.spring.starbucks.member.dto.ModifyPwd;
+import com.spring.starbucks.member.repository.MemberMapper;
 import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.Objects;
+
 import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
+import static com.spring.starbucks.util.LoginUtils.getCurrentMemberAccount;
 
 
 @Controller
@@ -32,6 +38,9 @@ public class MemberController {
 
 
     private final MemberService memberService;
+    private final MemberMapper memberMapper;
+
+    private final BCryptPasswordEncoder encoder;
 
     // 회원가입 양식 띄우기 요청
     @GetMapping("/sign-up")
@@ -58,14 +67,41 @@ public class MemberController {
     public void myinfo_modify_pwd() {
         log.info("/member/myinfo_modify_pwd GET! - forwarding to myinfo_modify_pwd.jsp");
     }
-    @GetMapping("/vocList")
-    public void vocList() {
-        log.info("/member/vocList GET! - forwarding to vocList.jsp");
+
+    @PostMapping("/myinfo_modify_pwd")
+    @ResponseBody
+    public ResponseEntity<String> modify_pwd(ModifyPwd inputData, Model model, HttpSession session // 세션정보 객체
+            , HttpServletResponse response){
+
+        log.info("/member/myinfo_modify_pwd POST - {}", inputData);
+        String msg="";
+        Member m = new Member();
+        // 아이디가 세션의 로그인 아이디와 인풋된 아이디가 일치하는지 검사
+        if(!Objects.equals(getCurrentMemberAccount(session), inputData.getAccount())){
+            msg = "MISSMATCH_ID";
+            return new ResponseEntity<>(msg,HttpStatus.OK);
+        }else{
+            m = memberMapper.findUser(getCurrentMemberAccount(session));
+        }
+        // 세션의 로그인 페스워드와 인풋 패스워드 일치 검사
+        if(!encoder.matches(inputData.getPassword(), m.getPassword())){
+            msg = "MISSMATCH_PW";
+            return new ResponseEntity<>(msg,HttpStatus.OK);
+        }else {
+            // 새로운 패스워드로 변경하고
+            m.setPassword(encoder.encode(inputData.getNew_pw1()));
+        }
+        // 업데이트 시행
+        if(memberService.update(m)) {
+            // 성공하면
+            msg = "SUCCESS";
+        }
+
+        return new ResponseEntity<>(msg,HttpStatus.OK);
+
     }
-    @GetMapping("/csQuestion")
-    public void csQuestion() {
-        log.info("/member/csQuestion GET! - forwarding to csQuestion.jsp");
-    }
+
+
 
     // 회원가입 처리 요청
     @PostMapping("/sign-up")
