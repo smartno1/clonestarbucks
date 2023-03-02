@@ -78,9 +78,11 @@ function menuUl(){
           }
       }
       if(e.target.matches('#my')){
-          location.href='/myStarbucks';
+          location.href='/myStarbucks/index';
       }
-
+      if(e.target.matches('#customerService')){
+          location.href='/suggestion/vocList';
+      }
     })
 }
 
