@@ -72,10 +72,11 @@
     </select>
 
 
-
-
-
-
+    <!--  멤버 삭제 기능  -->
+    <delete id="deleteUser">
+        DELETE FROM tbl_member
+        WHERE account = #{account}
+    </delete>
 
 
 </mapper>

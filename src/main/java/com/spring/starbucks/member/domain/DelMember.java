@@ -21,6 +21,7 @@ public class DelMember {
     private Gender gender;
     private String phone;
     private String nickname;
+    private String delReason;
 
     private Date regDate;
     private Auth auth;

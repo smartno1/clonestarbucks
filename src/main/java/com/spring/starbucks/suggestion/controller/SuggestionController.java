@@ -2,10 +2,12 @@ package com.spring.starbucks.suggestion.controller;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.Member;
+import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.suggestion.domain.Dto;
 import com.spring.starbucks.suggestion.domain.Suggestion;
 import com.spring.starbucks.suggestion.repository.SuggestionMapper;
 import com.spring.starbucks.suggestion.service.SuggestionService;
+import com.spring.starbucks.util.LoginUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -34,7 +36,7 @@ public class SuggestionController {
             search.setType("account");
             search.setKeyword(member.getAccount());
         }else{
-            search.setType("noLogin");
+            return "suggestion/vocList";
         }
 
         List<Suggestion> sL = suggestionService.findAll(search);
@@ -67,12 +69,15 @@ public class SuggestionController {
     }
 
     @GetMapping("/detail")
-    public String detail(int id, Model model){
-        Suggestion suggestion = suggestionService.findOne(id);
+    public String detail(int id, Model model, HttpSession session){
 
-        model.addAttribute("s", suggestion);
+        if(session.getAttribute(LoginUtils.LOGIN_FLAG) != null){
+            Suggestion suggestion = suggestionService.findOne(id);
+            model.addAttribute("s", suggestion);
+            return "suggestion/detail";
+        }
 
-        return "suggestion/detail";
+        return "suggestion/vocList";
     }
 
 }

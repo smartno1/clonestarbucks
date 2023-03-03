@@ -3,6 +3,7 @@ package com.spring.starbucks.member.domain;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -25,7 +26,7 @@ public class Member {
     private String phone;
     private String nickname;
 
-    private Date regDate;
+    private LocalDateTime regDate;
     private Auth auth;
 
 

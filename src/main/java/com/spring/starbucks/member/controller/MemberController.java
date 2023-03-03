@@ -1,9 +1,11 @@
 package com.spring.starbucks.member.controller;
 
 
+import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.dto.LoginDTO;
 import com.spring.starbucks.member.dto.ModifyPwd;
+import com.spring.starbucks.member.repository.DelMemberMapper;
 import com.spring.starbucks.member.repository.MemberMapper;
 import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
@@ -14,16 +16,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
@@ -75,30 +76,36 @@ public class MemberController {
 
         log.info("/member/myinfo_modify_pwd POST - {}", inputData);
         String msg="";
+        boolean flag = false;
         Member m = new Member();
         // 아이디가 세션의 로그인 아이디와 인풋된 아이디가 일치하는지 검사
         if(!Objects.equals(getCurrentMemberAccount(session), inputData.getAccount())){
             msg = "MISSMATCH_ID";
+            // 불일치시 "아이디 불일치 리턴" 문구 저장.
             return new ResponseEntity<>(msg,HttpStatus.OK);
-        }else{
-            m = memberMapper.findUser(getCurrentMemberAccount(session));
+        }else{ // 일치시 비번 검사
+            // 세션 저장된 로그인 멤버 정보 가져오기
+            m = (Member) session.getAttribute(LOGIN_FLAG);
+            // 세션의 로그인 멤버 페스워드와 인풋 패스워드 일치 검사
+            flag = memberService.validatePassword(inputData.getPassword(), m );
         }
-        // 세션의 로그인 페스워드와 인풋 패스워드 일치 검사
-        if(!encoder.matches(inputData.getPassword(), m.getPassword())){
-            msg = "MISSMATCH_PW";
-            return new ResponseEntity<>(msg,HttpStatus.OK);
-        }else {
+        // 비번 일치하면
+        if(flag){
             // 새로운 패스워드로 변경하고
             m.setPassword(encoder.encode(inputData.getNew_pw1()));
-        }
-        // 업데이트 시행
-        if(memberService.update(m)) {
-            // 성공하면
-            msg = "SUCCESS";
+            if(memberService.update(m)) {
+                // 비번 변경 성공시 성공 메시지 저장.
+                msg = "SUCCESS";
+            }else{
+                // 실페시 실패 메시지 저장.
+                msg = "FAIL";
+            }
+        }else{
+            // 비번 불일치시 미스매치 비번 문구저장
+            msg = "MISSMATCH_PW";
         }
 
         return new ResponseEntity<>(msg,HttpStatus.OK);
-
     }
 
 
@@ -213,9 +220,15 @@ public class MemberController {
         return res;
     }
 
+    @PostMapping("/del_account")
+    @ResponseBody
+    public ResponseEntity<String> del_account(@RequestBody String reason, HttpSession session){
+        log.info("reason - {}",reason);
 
+        String msg = memberService.deleteAccount(reason, session);
 
-
+        return new ResponseEntity<String >(msg, HttpStatus.OK);
+    }
 
 
 

@@ -34,9 +34,11 @@ CREATE TABLE del_member(
     , gender VARCHAR(2) NOT NULL
     , auth VARCHAR(20) DEFAULT 'COMMON'
     , level int(1) DEFAULT 1
-    , reg_date DATETIME DEFAULT current_timestamp
+    , reg_date DATETIME
     , session_id VARCHAR(200) DEFAULT 'none'
     , limit_time DATETIME
+    , del_reason VARCHAR(500)
+    , del_reg_date DATETIME DEFAULT current_timestamp
     , CONSTRAINT pk_tbl_user PRIMARY KEY(id)
 
 );
