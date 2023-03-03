@@ -1,15 +1,15 @@
 package com.spring.starbucks.suggestion.domain;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @ToString
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Suggestion {
 
     private int id;

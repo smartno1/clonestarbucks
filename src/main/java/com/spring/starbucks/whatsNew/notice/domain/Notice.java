@@ -1,13 +1,13 @@
 package com.spring.starbucks.whatsNew.notice.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Notice {
 
     private int noticeId;

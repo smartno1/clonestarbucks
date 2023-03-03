@@ -1,13 +1,13 @@
 package com.spring.starbucks.whatsNew.news.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class News {
     private int newsId;
     private String listImg;
