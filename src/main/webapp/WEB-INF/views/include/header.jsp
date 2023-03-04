@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!--HEADER-->
@@ -11,13 +11,24 @@
 
         <div class="sub-menu">
             <ul class="menu-ul">
+                <c:if test="${loginUser.auth == 'ADMIN'}">
+                    <li>
+                        <a>[관리자님 어서오세요.]</a>
+                    </li>
+                </c:if>
                 <li>
-                    <c:if test="${loginUser == null}">
-                    <a href="javascript:void(0)" id="sign-in">Sign In</a>
-                    </c:if>
-                    <c:if test="${loginUser != null}">
+                <c:if test="${loginUser == null}">
+                    <li>
+                        <a href="javascript:void(0)" id="sign-in">Sign In</a>
+                    </li>
+                </c:if>
+                <c:if test="${loginUser != null}">
+                    <li>
                         <a href="javascript:void(0)" id="sign-out">Sign Out</a>
-                    </c:if>
+                    </li>
+                </c:if>
+                <li>
+                    <a href="javascript:void(0)" id="customerService">Customer Service & Ideas</a>
                 </li>
                 <li>
                     <c:if test="${loginUser == null}">

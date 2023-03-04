@@ -1,7 +1,9 @@
 package com.spring.starbucks.member.service;
 
+import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.dto.LoginDTO;
+import com.spring.starbucks.member.repository.DelMemberMapper;
 import com.spring.starbucks.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,9 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.spring.starbucks.member.service.LoginFlag.*;
+import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
+import static com.spring.starbucks.util.LoginUtils.getCurrentMemberAccount;
 
 @Service
 @Log4j2
@@ -23,9 +28,9 @@ import static com.spring.starbucks.member.service.LoginFlag.*;
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final DelMemberMapper delMemberMapper;
 
     private final BCryptPasswordEncoder encoder;
-
 
 
     public boolean signUp(Member member) {
@@ -44,7 +49,8 @@ public class MemberService {
 
     /**
      * 계정과 이메일의 중복을 확인하는 메서드
-     * @param type - 확인할 정보 (ex: account or email)
+     *
+     * @param type  - 확인할 정보 (ex: account or email)
      * @param value - 확인할 값
      * @return 중복이라면 true, 중복이 아니라면 false
      */
@@ -68,7 +74,7 @@ public class MemberService {
 
 
         Member foundMember = new Member();
-        if(inputData.getEmail()==null){
+        if (inputData.getEmail() == null) {
 
             Map<String, Object> findMap = new HashMap<>();
             findMap.put("type", "account");
@@ -76,9 +82,9 @@ public class MemberService {
 
             foundMember = memberMapper.findUser2(findMap);
 
-        }else{
+        } else {
             Map<String, Object> findMap = new HashMap<>();
-            log.info("email : {}",inputData.getEmail());
+            log.info("email : {}", inputData.getEmail());
             findMap.put("type", "email");
             findMap.put("value", inputData.getEmail());
 
@@ -95,7 +101,7 @@ public class MemberService {
         if (foundMember != null) {
             log.info("password : {} ", inputData.getPassword());
             log.info("encodePassword : {} ", foundMember.getPassword());
-            log.info("encoder.matches : {}",encoder.matches(inputData.getPassword(), foundMember.getPassword()));
+            log.info("encoder.matches : {}", encoder.matches(inputData.getPassword(), foundMember.getPassword()));
             if (encoder.matches(inputData.getPassword(), foundMember.getPassword())) { //패스워드 암호화로 매치메소드를 사용해서 비교.
                 // 로그인 성공
                 // 세션에 사용자 정보기록 저장
@@ -115,23 +121,73 @@ public class MemberService {
     }
 
 
-
-
-
     // 마이페이지 validatePassword
 
-    public boolean validatePassword(String password, Member loginuser){
+    public boolean validatePassword(String password, Member loginUser) {
 
-
-        boolean flag = encoder.matches(password,loginuser.getPassword());
+        boolean flag = encoder.matches(password, loginUser.getPassword());
 
         return flag;
+    }
 
+    // 회원 탈퇴 기능
+    public String deleteAccount(String reason, HttpSession session){
+        String msg = "FAIL";
+        try {
+            if (getCurrentMemberAccount(session) != null) {
+                Member member = (Member) session.getAttribute(LOGIN_FLAG);
+                log.info("delAccount start - {}", member);
+                boolean flag = delAccountRegister(member);
 
+                if (flag) {
+                    if (deleteUser(getCurrentMemberAccount(session))) {
+                        Map<String, Object> checkMap = new HashMap<>();
+                        checkMap.put("type", "email");
+                        checkMap.put("value", member.getEmail());
+                        DelMember delMember = delAccountFind2(checkMap);
+                        delMember.setDelReason(reason);
+                        if (delAccountUpdate(delMember)) ;
+                        msg = "SUCCESS";
+                    }
+                }
+            } else {
+                msg = "NO_LOGIN";
+            }
+            return msg;
+        }catch (Exception e){
+            return msg;
+        }
+    }
+
+    // 회원 삭제 기능
+    public boolean deleteUser(String account){
+        return memberMapper.deleteUser(account);
     }
 
 
+    // 탈퇴 회원 테이블 관련 서비스 기능
+    public boolean delAccountRegister(Member member) {
 
+        return delMemberMapper.delAccountRegister(member);
+    }
 
+    public boolean delAccountUpdate(DelMember member) {
 
+        return delMemberMapper.delAccountUpdate(member);
+    }
+
+    public DelMember delAccountFind(String account) {
+        return delMemberMapper.delAccountFind(account);
+    }
+
+    public DelMember delAccountFind2(Map<String, Object> checkMap) {
+
+        return delMemberMapper.delAccountFind2(checkMap);
+
+    }
+
+    public boolean delAccountDelete(String account){
+
+        return delMemberMapper.delAccountDelete(account);
+    }
 }

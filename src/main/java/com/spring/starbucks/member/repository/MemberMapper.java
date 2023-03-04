@@ -25,4 +25,6 @@ public interface MemberMapper {
 
     Member findUser2(Map<String, Object> checkMap);
 
+    boolean deleteUser(String account);
+
 }

@@ -24,7 +24,7 @@
                         <ul class="smap">
                             <li><a href="/"><img src="//image.istarbucks.co.kr/common/img/common/icon_home_w.png" alt="홈으로"></a></li>
                             <li><img class="arrow" src="//image.istarbucks.co.kr/common/img/common/icon_arrow_w.png" alt="작은 맵 화살표"></li>
-                            <li><a href="/my/index.do">My Starbucks</a></li>
+                            <li><a href="/myStarbucks/index">My Starbucks</a></li>
                         </ul>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
 
 
                             <li>
-                                <a href="/member/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
+                                <a href="/myStarbucks/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
                             </li>
                             <!-- <li class="msRnb_btn"><a href="/my/order_status_list.do" required="login">케익 주문 현황</a></li> -->
                             <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/eReceiptList.do">전자영수증</a></li>
@@ -118,8 +118,8 @@
                                     <ul>
                                         <li><a href="./reward.do">리워드 및 혜택</a></li>
                                         <li><a href="./reward_star_history.do">별 히스토리</a></li>
-                                        <li class="btn_black"><a href="./myinfo_modify_login.do">개인정보 수정</a></li>
-                                        <li class="btn_gray"><a class="gray" href="./myinfo_modify_pwd.do">비밀번호 변경</a></li>
+                                        <li class="btn_black"><a href="/member/my_info">개인정보 수정</a></li>
+                                        <li class="btn_gray"><a class="gray" href="/member/myinfo_modify_pwd">비밀번호 변경</a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -714,6 +714,7 @@
                 alert(msg);
             }
         });
+    //  오른쪽 메뉴의 펼치기 기능 ------------------------------------------------
     function msRnbShow() {
         document.getElementById('msRnb').addEventListener('click', e => {
             if (e.target.matches('.sbox_arrow_down')) {

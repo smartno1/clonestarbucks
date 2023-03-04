@@ -31,26 +31,28 @@
                                     <span class="result_txt_sub">새로운 비밀번호로 변경 하실 수 있습니다.</span>
                                 </p>
                             </div>
-                            <div class="renew_input_box1">
-                                <strong>아이디</strong>
+                            <form id="form" action="/member/modify" method="post" >
+                                <div class="renew_input_box1 id">
+                                    <strong>아이디</strong>
 
-                                <input id="user_id" value="">
-                            </div>
-                            <div class="renew_input_box1">
-                                <strong>현재 비밀번호</strong>
-                                <input type="password" name="user_pwd" id="user_pwd" placeholder="비밀번호를 입력해 주세요." autocomplete="off">
-                                <p class="user_pwd_txt input_warn_text" id="warn_user_pwd"></p>
-                            </div>
-                            <div class="renew_input_box1">
-                                <strong>새 비밀번호 </strong>
-                                <input type="password" name="user_pw1" id="user_pwd_new" maxlength="20" placeholder="영문, 숫자 혼합하여 10 ~ 20자리 이내로 입력하세요." data-warn_id="warn_user_pwd_new" autocomplete="off">
-                                <p class="limit_txt user_pwd_new_txt input_warn_text" id="warn_user_pwd_new"></p>
-                                <input type="password" name="user_pw2" id="user_pwd_new_chk" maxlength="20" placeholder="비밀번호를 다시 한번 입력해 주세요." data-warn_id="warn_user_pwd_new_chk" class="mt10" autocomplete="off">
-                                <p class="limit_txt user_pwd_new_chk_txt input_warn_text" id="warn_user_pwd_new_chk"></p>
-                            </div>
+                                    <input id="user_id" name="account" value="">
+                                </div>
+                                <div class="renew_input_box1 pw">
+                                    <strong>현재 비밀번호</strong>
+                                    <input type="password" name="password" id="user_pwd" placeholder="비밀번호를 입력해 주세요." autocomplete="off">
+                                    <p class="user_pwd_txt input_warn_text" id="warn_user_pwd"></p>
+                                </div>
+                                <div class="renew_input_box1 npw">
+                                    <strong>새 비밀번호 </strong>
+                                    <input type="password" name="new_pw1" id="user_pwd_new" maxlength="20" placeholder="영문, 숫자 혼합하여 10 ~ 20자리 이내로 입력하세요." data-warn_id="warn_user_pwd_new" autocomplete="off">
+                                    <p class="limit_txt user_pwd_new_txt input_warn_text" id="warn_user_pwd_new"></p>
+                                    <input type="password" name="new_pw2" id="user_pwd_new_chk" maxlength="20" placeholder="비밀번호를 다시 한번 입력해 주세요." data-warn_id="warn_user_pwd_new_chk" class="mt10" autocomplete="off">
+                                    <p class="limit_txt user_pwd_new_chk_txt input_warn_text" id="warn_user_pwd_new_chk"></p>
+                                </div>
+                            </form>
                         </div>
                         <p class="btn_mem_login">
-                            <a class="btn_ok" href="javascript:void(0);">확인</a>
+                            <a class="btn_ok" href="javascript:void(0);" onclick="check()">확인</a>
                         </p>
 
                     </div>
@@ -81,22 +83,104 @@
                 alert(msg);
             }
         });
-    function msRnbShow() {
-        document.getElementById('msRnb').addEventListener('click', e => {
-            if (e.target.matches('.sbox_arrow_down')) {
-                e.target.parentElement.nextElementSibling.style.display = 'block';
-                e.target.classList.remove('sbox_arrow_down');
-                e.target.classList.add('sbox_arrow_up');
-            }else if (e.target.matches('.sbox_arrow_up')) {
-                e.target.parentElement.nextElementSibling.style.display = 'none';
-                e.target.classList.remove('sbox_arrow_up');
-                e.target.classList.add('sbox_arrow_down');
+
+        const checker = [];
+        function check() {
+            const form = document.getElementById('form');
+            console.info("form : ", form);
+            const pwd = document.getElementById("user_pwd").value;
+            const pwd1 = document.getElementById("user_pwd_new").value;
+            const pwd2 = document.getElementById("user_pwd_new_chk").value;
+            const account = document.getElementById("user_id").value;
+            $("#errorText").remove();
+            $("input").css("border", "1px solid #d3d3d3");
+            if (!account) {
+                const errorText = "<span class =\"subText\" id=\"errorText\" style='color: #006633'>아이디를 입력하세요.</span>"
+                $('.renew_input_box1.id').append(errorText);
+                $('.renew_input_box1.id input').focus();
+                $('.renew_input_box1.id input').css("border", "1px solid");
+
+                return false;
+
+            } else if (!pwd) {
+                const errorText = "<span id=\"errorText\" style='color: #006633'>비밀번호를 입력하세요.</span>"
+                $('.renew_input_box1.pw').append(errorText);
+                $('#user_pwd').css("border", "1px solid");
+                $('#user_pwd').focus();
+
+                return false;
+
+            }else if (!pwd1) {
+                const errorText = "<span id=\"errorText\" style='color: #006633'>새 비밀번호를 입력하세요.</span>"
+                $('.renew_input_box1.npw').append(errorText);
+                $('#user_pwd_new').css("border", "1px solid");
+                $('#user_pwd_new').focus();
+
+                return false;
+
+            }else if (!pwd2) {
+                const errorText = "<span id=\"errorText\" style='color: #006633'>새 비밀번호를 입력하세요.</span>"
+                $('.renew_input_box1.npw').append(errorText);
+                $('#user_pwd_new_chk').css("border", "1px solid");
+                $('#user_pwd_new_chk').focus();
+
+                return false;
+            }else if ( pwd1 !==  pwd2) {
+
+                alert("입력하신 새 비밀번호가 다릅니다.");
+
+                return false;
             }
-        })
-    }
-    (function (){
-        msRnbShow();
-    })();
+
+            const formData = new FormData(form);
+
+            const reqInfo = {
+                method: 'POST'
+                , body: formData
+            }
+
+            fetch('/member/myinfo_modify_pwd', reqInfo)
+                .then(res => res.text())
+                .then(result => {
+                    let msg = "";
+                    if (result === "SUCCESS") {
+                        msg = "비밀번호가 변경되었습니다."
+                        alert(msg);
+                        location.href = "/member/sign-in";
+                    } else if (result === "MISSMATCH_PW") {
+                        msg = "잘못된 비밀번호입니다. \n 비밀번호를 확인해 주세요.";
+                        alert(msg);
+                    } else if (result === "MISSMATCH_ID") {
+                        msg = "잘못된 아이디입니다. \n 아이디를 확인해 주세요."
+                        alert(msg);
+                    }
+                })
+
+        }
+
+
+        $('#user_pwd_new').focusout(patternCheck);
+        $('#user_pwd_new_chk').focusout(patternCheck);
+
+        const regexPW = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{10,20}$/;
+        function patternCheck() {
+            const target = $(event.target);
+            $('.renew_input_box1.npw #errorText').remove();
+            target.css("border", "1px solid #d3d3d3");
+
+            if (!regexPW.test(target.val())) {
+                const errorText = "<span  id=\"errorText\">영문, 숫자 혼합하여 10~20자리 이내로 입력하세요.</span>"
+                target.parent().append(errorText);
+                target.focus();
+                target.css("border", "1px solid");
+                checker.push(false);
+            }
+
+        }
+
+        (function (){
+
+        })();
 
     </script>
 

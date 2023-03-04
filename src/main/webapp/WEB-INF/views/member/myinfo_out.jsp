@@ -95,7 +95,7 @@
                     <div class="mem_info_wrap">
                         <div class="mem_txt_zone">
                             <p class="p1">
-                                <span class="s1 userName">아톰봉봉</span>님의
+                                <span class="s1 userName">${loginUser.name}</span>님의
                                 <span class="year">2023</span>년
                                 <span class="month">2</span>월
                                 <span class="date">26</span>일
@@ -154,7 +154,7 @@
                                 <li>단체 주문 배달 서비스의 진행 중인 예약 주문 건이 있는 경우, 배달 완료 후 탈퇴할 수 있습니다.</li> <!-- 230215 추가 -->
                                 <li class="last">회원 탈퇴한 날로부터 30일 이후 회원가입이 가능합니다.</li>
                             </ul>
-                            <textarea class="textArea" name="DS_VOC_CN" onpaste="fnPaste(); return false;" oncopy="fnCopy(); return false;" placeholder="탈퇴사유를 적어주세요"></textarea>
+                            <textarea class="textArea" id="del_reason" name="del_reason" placeholder="탈퇴사유를 적어주세요"></textarea>
                         </div>
                         <p class="agree_txt">
                         <div class="ez-checkbox">
@@ -166,7 +166,7 @@
                     </div>
 
                         <div class="ms_btn">
-                            <p><a href="javascript:void(0)">스타벅스 리워드 <!-- 및 e-프리퀀시 --> 서비스 이용내역 일괄삭제</a></p>
+                            <p><a href="javascript:void(0)" id="del_btn">스타벅스 리워드 <!-- 및 e-프리퀀시 --> 서비스 이용내역 일괄삭제</a></p>
                         </div>
                     </div>
 
@@ -189,36 +189,76 @@
 
 <%--자바스크릡트 공간입니다.--%>
 
-    <jsp:include page="../include/footer.jsp"></jsp:include>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var error = "${error}";
+                var msg = "error is " + error;
+                if (error) {
+                    alert(msg);
+                }
+            });
+            // 오늘 날짜 십입
+            const today = new Date()
+            const year = today.getFullYear();
+            const month = today.getMonth()+1;
+            const date = today.getDate();
+            console.info("date : ", today,year,month,date);
+            document.querySelector('.year').textContent =""+year;
+            document.querySelector('.month').textContent =""+month;
+            document.querySelector('.date').textContent =""+date;
+
+            // 회원탈퇴 클릭시 동의 체크 후 submit
+            document.getElementById('del_btn').addEventListener('click', e => {
+                if(!e.target.matches("#del_btn")) return;
+                console.log("del start");
+                if(document.getElementById('agree1').checked){  // 동의가 체크 되었으면
+                    const reason = document.getElementById('del_reason').value;
+                    const formData = new FormData;
+                    const reqInfo = {
+                        method : "POST",
+                        body : reason
+                    }
+                    fetch("/member/del_account", reqInfo)
+                        .then(res => res.text())
+                        .then(msg => {
+                            if(msg === "SUCCESS"){
+                                alert("회원탈퇴가 완료되었습니다. \n그동안 이용해 주셔서 감사합니다.");
+                                location.href = "/";
+                            }else if(msg === "FAIL"){
+                                alert("회원탈퇴 과정에 문제가 발생하였습니다.");
+                            }else if(msg === "NO_LOGIN"){
+                                alert("로그인 중이 아닙니다.");
+                            }
+                        })
+                }else{
+                    alert("스타벅스 리워드 혜택 및 등록한 스타벅스 카드의 소유권 상실 동의에 체크해 주십시오.")
+                }
+            })
+
+
+            //    오른쪽 메뉴창 안에 아래 화살표 클릭시 펼치기
+            function msRnbShow() {
+                document.getElementById('msRnb').addEventListener('click', e => {
+                    if (e.target.matches('.sbox_arrow_down')) {
+                        e.target.parentElement.nextElementSibling.style.display = 'block';
+                        e.target.classList.remove('sbox_arrow_down');
+                        e.target.classList.add('sbox_arrow_up');
+                    }else if (e.target.matches('.sbox_arrow_up')) {
+                        e.target.parentElement.nextElementSibling.style.display = 'none';
+                        e.target.classList.remove('sbox_arrow_up');
+                        e.target.classList.add('sbox_arrow_down');
+                    }
+                })
+            }
+            (function (){
+                msRnbShow();
+            })();
+
+        </script>
+        <jsp:include page="../include/footer.jsp"></jsp:include>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var error = "${error}";
-            var msg = "error is " + error;
-            if (error) {
-                alert(msg);
-            }
-        });
-    function msRnbShow() {
-        document.getElementById('msRnb').addEventListener('click', e => {
-            if (e.target.matches('.sbox_arrow_down')) {
-                e.target.parentElement.nextElementSibling.style.display = 'block';
-                e.target.classList.remove('sbox_arrow_down');
-                e.target.classList.add('sbox_arrow_up');
-            }else if (e.target.matches('.sbox_arrow_up')) {
-                e.target.parentElement.nextElementSibling.style.display = 'none';
-                e.target.classList.remove('sbox_arrow_up');
-                e.target.classList.add('sbox_arrow_down');
-            }
-        })
-    }
-    (function (){
-        msRnbShow();
-    })();
-
-    </script>
 
 <%--        <script id="cardList" type="text/x-jquery-tmpl">--%>
 <%--                                            <li>--%>

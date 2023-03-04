@@ -81,7 +81,7 @@
 					if (result === "SUCCESS") {
 						var msg = "로그인 성공";
 						alert(msg);
-						location.href = "/";
+						location.href = "${redirectURI}";
 					} else if (result === "NO_PW") {
 						var msg = "비밀번호가 틀립니다.";
 						alert(msg);

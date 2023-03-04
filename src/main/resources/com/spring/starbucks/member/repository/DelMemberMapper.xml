@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.starbucks.member.repository.DelMemberMapper">
+
+    <resultMap id="memberMap" type="com.spring.starbucks.member.domain.DelMember">
+        <result column="reg_date" property="regDate" />
+        <result column="birth_year" property="birthYear"/>
+        <result column="birth_year" property="birthMonth"/>
+        <result column="birth_year" property="birthDay"/>
+        <result column="del_reason" property="delReason"/>
+
+    </resultMap>
+
+    <!-- 탈퇴 회원 등록 기능   -->
+    <insert id="delAccountRegister">
+        INSERT INTO del_member
+        (account, password, nickname, name, phone, birth_year, birth_month, birth_day, email, gender,reg_date)
+        VALUES
+            (#{account}, #{password}, #{nickname}, #{name}, #{phone}, #{birthYear}, #{birthMonth},
+             #{birthDay}, #{email}, #{gender},#{regDate})
+    </insert>
+
+    <!-- 탈퇴 회원 수정 기능   -->
+    <update id="delAccountUpdate">
+        UPDATE del_member SET
+        password=#{password}, nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
+        birth_day = #{birthDay}, email = #{email}, gender = #{gender}, auth=#{auth}, del_reason = #{delReason}, reg_date =#{regDate}
+        WHERE account=#{account}
+    </update>
+
+    <!-- 탈퇴 회원 조회 기능   -->
+    <select id="delAccountFind" resultMap="memberMap">
+
+        SELECT *
+        FROM del_member
+        WHERE account = #{account}
+
+    </select>
+
+    <select id="delAccountFind2" resultMap="memberMap">
+
+        SELECT *
+        FROM del_member
+        <if test="type=='account'">
+            WHERE account = #{value}
+        </if>
+        <if test="type=='email'">
+            WHERE email = #{value}
+        </if>
+        <if test="type==phone">
+            WHERE phone = #{value}
+        </if>
+
+    </select>
+
+
+    <!--  멤버 삭제 기능  -->
+    <delete id="delAccountDelete">
+        DELETE FROM del_member
+        WHERE account = #{account}
+    </delete>
+
+
+
+
+
+</mapper>
