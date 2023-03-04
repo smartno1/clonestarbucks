@@ -66,6 +66,10 @@ public class MemberController {
     public void csQuestion() {
         log.info("/member/csQuestion GET! - forwarding to csQuestion.jsp");
     }
+    @GetMapping("/member_admin")
+    public void member_admin() {
+        log.info("/member/member_admin GET! - forwarding to member_admin.jsp");
+    }
 
     // 회원가입 처리 요청
     @PostMapping("/sign-up")
