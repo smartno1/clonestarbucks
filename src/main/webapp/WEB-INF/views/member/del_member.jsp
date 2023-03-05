@@ -9,7 +9,7 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/m_admin.css">
+        <link rel="stylesheet" type="text/css" href="/css/del_member.css">
     </head>
         <body>
         <%--헤더 메뉴코너--%>
@@ -38,7 +38,7 @@
                         </nav>
 
                         <div class="cheak-box">
-                            <h3>회원관리</h3>
+                            <h3>탈퇴회원</h3>
                             <div class="voc_info_input_guide">
                                 <p class="memdwecu">현재 회원수 : </p>
                                 <b> 00 </b>

@@ -181,31 +181,33 @@
                                             </thead>
 
                                             <tbody id="all">
-                                                <tr>
-                                                    <c:choose>
-                                                        <c:when test="${sL != null}">
-                                                            <c:forEach items="${sL}" var="s">
-                                                                <td>${s.no}</td>
-                                                                <td><a href="/suggestion/detail?id=${s.id}">${s.title}</a></td>
-                                                                <td>${s.regDate}</td>
-                                                                <td>
-                                                                    <c:if test="${s.replyDone}">
-                                                                        완료
-                                                                    </c:if>
-                                                                    <c:if test="${!s.replyDone}">
-                                                                        대기
-                                                                    </c:if>
+                                            <c:choose>
+                                                <c:when test="${sL != null}">
+                                                    <c:forEach items="${sL}" var="s">
+                                                        <tr>
+                                                            <td>${s.no}</td>
+                                                            <td><a href="/suggestion/detail?id=${s.id}">${s.title}</a></td>
+                                                            <td>${s.regDate}</td>
+                                                            <td>
+                                                                <c:if test="${s.replyDone}">
+                                                                    완료
+                                                                </c:if>
+                                                                <c:if test="${!s.replyDone}">
+                                                                    대기
+                                                                </c:if>
 
-                                                                </td>
-                                                            </c:forEach>
-                                                        </c:when>
-                                                        <c:when test="${sL == null}">
-                                                            <td colspan="6">
-                                                                데이터가 없습니다.
                                                             </td>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </tr>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:when test="${sL == null}">
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            데이터가 없습니다.
+                                                        </td>
+                                                    </tr>
+                                                </c:when>
+                                            </c:choose>
                                             </tbody>
                                         </table>
                                         <!-- (고객의 소리) 목록 end -->

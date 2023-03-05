@@ -1,11 +1,9 @@
 package com.spring.starbucks.member.controller;
 
 
-import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.dto.LoginDTO;
 import com.spring.starbucks.member.dto.ModifyPwd;
-import com.spring.starbucks.member.repository.DelMemberMapper;
 import com.spring.starbucks.member.repository.MemberMapper;
 import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
@@ -22,9 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
@@ -111,8 +106,18 @@ public class MemberController {
     public void member_admin() {
         log.info("/member/member_admin GET! - forwarding to member_admin.jsp");
     }
-
-
+    @GetMapping("/del_member")
+    public void del_member() {
+        log.info("/del_member GET! - forwarding to del_member.jsp");
+    }
+    @GetMapping("/suggestion")
+    public void suggestion() {
+        log.info("/member/suggestion GET! - forwarding to suggestion.jsp");
+    }
+    @GetMapping("/suggesion_dt")
+    public void suggestion_dt() {
+        log.info("/member/suggesion_dt GET! - forwarding to suggesion_dt.jsp");
+    }
 
     // 회원가입 처리 요청
     @PostMapping("/sign-up")

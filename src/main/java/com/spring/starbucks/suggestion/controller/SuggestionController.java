@@ -2,10 +2,8 @@ package com.spring.starbucks.suggestion.controller;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.Member;
-import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.suggestion.domain.Dto;
 import com.spring.starbucks.suggestion.domain.Suggestion;
-import com.spring.starbucks.suggestion.repository.SuggestionMapper;
 import com.spring.starbucks.suggestion.service.SuggestionService;
 import com.spring.starbucks.util.LoginUtils;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +63,7 @@ public class SuggestionController {
         log.info("suggestion - {}",suggestion);
         boolean flag = suggestionService.insert(suggestion);
 
-        return flag ? "/suggestion/vocList" : "/suggestion/csQuestion";
+        return flag ? "redirect:/suggestion/vocList" : "/suggestion/csQuestion";
     }
 
     @GetMapping("/detail")
@@ -78,6 +76,10 @@ public class SuggestionController {
         }
 
         return "suggestion/vocList";
+    }
+    @GetMapping("/detail_admin")
+    public void detail_admin() {
+        log.info("/detail_admin GET! - forwarding to detail_admin.jsp");
     }
 
 }

@@ -111,7 +111,7 @@
                                             <div class="sel_wrap">
                                                 <p class="phone_sel_wrap">
                                                     <label for="phone1">010</label>
-                                                    <select id="phone1" required>
+                                                    <select id="phone1" name="phone1" required>
                                                         <option value="010" selected="">010</option><option value="011">011</option><option value="016">016</option><option value="017">017</option><option value="018">018</option><option value="019">019</option></select>
                                                 </p>
                                                 <p class="cell_hyphen">-</p>

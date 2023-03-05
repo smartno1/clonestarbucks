@@ -15,7 +15,7 @@
     margin: 0 auto ;
 }
 .tt_sh{margin-bottom: 2px; float: right; display: block; width: 300px; height: 30px; margin-top: -2px}
-.tt_sh button{height: 25px; width: 50px; border-radius:20px; background-color: #64a70b; color: #FFFFFF}
+.tt_sh button{height: 25px; width: 50px; border-radius:20px; background-color: #2C2A29; color: #FFFFFF}
 /*머리글 코드*/
 .toptitle-bg {
     background:#231a11;
@@ -107,27 +107,6 @@
     margin-bottom: 20px;
     font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
 }
-.btt_ck1{
-    border-radius:10px;
-    border: 0.5px solid #8a8a8a;
-    font-weight: bold;
-    font-size: 15px;
-    background-color:#d90000;
-    color: #FFFFFF;
-}
-.btt_ck2{
-    border-radius:10px;
-    border: 0.5px solid #8a8a8a;
-    font-weight: bold;
-    font-size: 15px;
-    background-color:#00abf1;
-    color: #FFFFFF;
-}
-
-
-
-
-
 table img{
     float:left;
     display: block;
@@ -3733,9 +3712,9 @@ p.info_use_agree { background:#f4f4f2; border-radius:3px; color:#666; font-size:
 
 .voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
 .voc_info_input_btns table tr{height: 40px;}
-.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
-.voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF; }
-.voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
+.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #2C2A29;}
+.voc_info_input_btns table tbody tr{ background-color: #4c4c50; color:#FFFFFF;}
+.voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8a8a8a; color: #FFFFFF;}
 .voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
 
 

@@ -9,7 +9,7 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/m_admin.css">
+        <link rel="stylesheet" type="text/css" href="/css/suggesion_dt.css">
     </head>
         <body>
         <%--헤더 메뉴코너--%>
@@ -38,39 +38,23 @@
                         </nav>
 
                         <div class="cheak-box">
-                            <h3>회원관리</h3>
-                            <div class="voc_info_input_guide">
-                                <p class="memdwecu">현재 회원수 : </p>
-                                <b> 00 </b>
-                                    <div class="tt_sh">
-                                        <input type="search">
-                                        <button>검색</button>
-                                    </div>
-                            </div>
+                            <h3>문의관리</h3>
                             <div class="voc_info_input_btns">
                                 <table>
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>아이디</th>
-                                        <th>고객이름</th>
-                                        <th>전화번호</th>
-                                        <th>이메일</th>
-                                    </tr>
                                     <tbody>
                                     <tr>
-                                        <td>01</td>
-                                        <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
+                                        <th>아이디</th>
+                                        <td><input id="user_id" name="account" value=""></td>
                                     </tr>
                                     <tr>
-                                        <td>01</td>
-                                        <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
+                                        <th>제목</th>
+                                        <td><input  name="account" value=""></td>
                                     </tr>
+                                    <tr >
+                                        <th class="text_tt1">문의내용</th>
+                                        <td><textarea></textarea></td>
+                                    </tr>
+
                                     </tbody>
                                 </table>
                             </div>

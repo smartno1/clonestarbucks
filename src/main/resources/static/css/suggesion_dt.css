@@ -2142,9 +2142,9 @@ div.info_btn_box p.btn_close a:hover { transform: rotate(180deg); -webkit-transf
 
 div.m_tooltip { display:none; }
 
-/* 150527 성연욱 - 폼 추가 수정 */
 
-input { vertical-align:middle; }
+
+
 
 .myinfo_birth div.myinfo_birth_wrap { width:330px; }
 .myinfo_birth div.myinfo_birth_wrap:after { content:""; display:block; clear:both; }
@@ -3731,13 +3731,19 @@ p.info_use_agree { background:#f4f4f2; border-radius:3px; color:#666; font-size:
     margin-left: 5px;
 }
 
-.voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
+.voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:20px; }
 .voc_info_input_btns table tr{height: 40px;}
-.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
-.voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF; }
-.voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
+.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; color: #FFFFFF; background-color: #007042;}
+.voc_info_input_btns table tbody th{ background-color: #669900; color:#FFFFFF;border-bottom: 1px solid #FFFFFF; width: 150px;}
+.voc_info_input_btns table tbody th:nth-child(2n){ background-color: #FFFFFF; border-bottom: 1px solid #8a8a8a;}
 .voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
-
+.voc_info_input_btns table tbody th input{width: 500px; float: left; margin-left: 15px;}
+/*.text_aa textarea{width: 500px; margin-bottom: 20px; height: 300px; float: left; margin-left: 15px;}*/
+.text_tt1 {
+    background: #f4f4f2;
+    color: #222;
+    margin: 0 auto;
+    width:400px;}
 
 .file_section { margin-bottom:15px; }
 

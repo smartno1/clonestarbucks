@@ -38,9 +38,9 @@
                         </nav>
 
                         <div class="cheak-box">
-                            <h3>회원관리</h3>
+                            <h3>문의관리</h3>
                             <div class="voc_info_input_guide">
-                                <p class="memdwecu">현재 회원수 : </p>
+                                <p class="memdwecu">확인안한 문의 : </p>
                                 <b> 00 </b>
                                     <div class="tt_sh">
                                         <input type="search">
@@ -52,25 +52,24 @@
                                     <tr>
                                         <th>번호</th>
                                         <th>아이디</th>
-                                        <th>고객이름</th>
-                                        <th>전화번호</th>
-                                        <th>이메일</th>
+                                        <th>문의내용</th>
+                                        <th>답변여부</th>
+
                                     </tr>
                                     <tbody>
                                     <tr>
                                         <td>01</td>
                                         <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
+                                        <td>자가장장</td>
+                                        <td><a href="/suggestion/detail_admin"><button class="btt_ck1">답변대기</button></a></td>
                                     </tr>
                                     <tr>
                                         <td>01</td>
                                         <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
+                                        <td>자가장장</td>
+                                        <td><button class="btt_ck2">답변완료</button></td>
                                     </tr>
+
                                     </tbody>
                                 </table>
                             </div>
