@@ -8,19 +8,20 @@
     <resultMap id="memberMap" type="com.spring.starbucks.member.domain.DelMember">
         <result column="reg_date" property="regDate" />
         <result column="birth_year" property="birthYear"/>
-        <result column="birth_year" property="birthMonth"/>
-        <result column="birth_year" property="birthDay"/>
+        <result column="birth_month" property="birthMonth"/>
+        <result column="birth_day" property="birthDay"/>
         <result column="del_reason" property="delReason"/>
+        <result column="del_reg_date" property="delRegDate"/>
 
     </resultMap>
 
     <!-- 탈퇴 회원 등록 기능   -->
     <insert id="delAccountRegister">
         INSERT INTO del_member
-        (account, password, nickname, name, phone, birth_year, birth_month, birth_day, email, gender,reg_date)
+        (account, password, nickname, name, phone, birth_year, birth_month, birth_day,sl, email, gender,reg_date)
         VALUES
             (#{account}, #{password}, #{nickname}, #{name}, #{phone}, #{birthYear}, #{birthMonth},
-             #{birthDay}, #{email}, #{gender},#{regDate})
+             #{birthDay}, #{sl}, #{email}, #{gender},#{regDate})
     </insert>
 
     <!-- 탈퇴 회원 수정 기능   -->
@@ -31,6 +32,22 @@
         WHERE account=#{account}
     </update>
 
+    <!-- 중복체크 기능 (아이디, 이메일, 전화번호)   -->
+    <select id="isDuplicate" resultType="int">
+
+        SELECT COUNT(*)
+        FROM del_member
+        <if test="type=='account'">
+            WHERE account = #{value}
+        </if>
+        <if test="type=='email'">
+            WHERE email = #{value}
+        </if>
+        <if test="type=='phone'">
+            WHERE phone = #{value}
+        </if>
+
+    </select>
     <!-- 탈퇴 회원 조회 기능   -->
     <select id="delAccountFind" resultMap="memberMap">
 
@@ -56,6 +73,40 @@
 
     </select>
 
+    <!-- 조건에 맞는 회원목록 조회 -->
+    <select id="findAll" resultMap="memberMap">
+        SELECT *
+        FROM
+        (
+        SELECT @rownum:=@rownum+1  no, A.*
+        FROM starbucks.del_member A,
+        (SELECT @ROWNUM := 0) R
+        <include refid="search"></include>
+        ) list
+        ORDER BY id DESC
+        LIMIT #{start}, #{amount}
+    </select>
+
+    <!--  조건에 맞는 총 회원수  -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM starbucks.del_member
+        <include refid="search" />
+    </select>
+
+    <!--  조건에 맞는 WHERE 절 매칭  -->
+    <sql id="search">
+        <if test="type == 'id'">WHERE  id = #{keyword}</if>
+        <if test="type == 'account'">WHERE  account = #{keyword}</if>
+        <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
+        <if test="type == 'email'">WHERE  email = #{keyword}</if>
+        <if test="type == 'name'">WHERE  name = #{keyword}</if>
+        <if test="type == 'noLogin'"></if>
+        <if test="type == 'search'">
+            WHERE  account LIKE CONCAT('%', #{keyword}, '%') OR phone LIKE CONCAT('%', #{keyword}, '%')
+            OR name LIKE CONCAT('%', #{keyword}, '%') OR email LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </sql>
 
     <!--  멤버 삭제 기능  -->
     <delete id="delAccountDelete">

@@ -1,11 +1,11 @@
 package com.spring.starbucks.suggestion.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter @Setter @ToString
-public class Dto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class suggestionDto {
     private String phone1;
     private String phone2;
     private String phone3;

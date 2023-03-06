@@ -11262,6 +11262,17 @@ i.icon_method2 { background:url("../img/util/icon_tel.png") no-repeat; backgroun
 .voc_input_tbl table tr td textarea { background:#fff; border:1px solid #ddd; border-radius:3px; height:73px; padding:5px; width:502px; resize:none; }
 
 
+/*버튼 ---------------------------------------*/
+.button_box{
+    width: 830px;
+    margin-top: 15px;
+    height: 20px;
+
+}
+.button_box li{
+    float: right;
+    margin-left: 10px
+}
 
 
 /*foodboot*/

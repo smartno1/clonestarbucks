@@ -51,7 +51,8 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM starbucks.suggestion
+        UPDATE starbucks.suggestion
+        SET
         <include refid="search" />
     </delete>
 
@@ -60,18 +61,23 @@
         <if test="type == 'id'">WHERE  id = #{keyword}</if>
         <if test="type == 'account'">WHERE  account = #{keyword}</if>
         <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
+        <if test="type == 'new'">WHERE  confirm = false</if>
         <if test="type == 'noLogin'"></if>
-        <if test="type == 'search-all'">
+        <if test="type == 'search'">
             WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR context LIKE CONCAT('%', #{keyword}, '%')
+            OR account LIKE CONCAT('%', #{keyword}, '%') OR phone LIKE CONCAT('%', #{keyword}, '%')
         </if>
     </sql>
 
     <sql id="updateColumn">
-        <if test="type == 'confirm">
-            SET confirm=#{keyword}, confirm_date= CURRENT_TIMESTAMP
+        <if test="type == 'confirm'">
+            SET confirm=true, confirm_date= CURRENT_TIMESTAMP
         </if>
         <if test="type == 'reply'">
             SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE
+        </if>
+        <if test="type == 'deleteReply'">
+            SET reply=null, reply_date=null, reply_done=FAlSE
         </if>
     </sql>
 

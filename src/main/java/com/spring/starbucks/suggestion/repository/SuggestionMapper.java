@@ -2,6 +2,7 @@ package com.spring.starbucks.suggestion.repository;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.suggestion.domain.Suggestion;
+import com.spring.starbucks.suggestion.domain.suggestionUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,11 +16,11 @@ public interface SuggestionMapper {
 
     boolean insert(Suggestion suggestion);
 
-    boolean update(Suggestion suggestion);
+    boolean update(suggestionUpdateDto dto);
 
     boolean delete(Search search);
 
     int getTotalCount(Search search);
 
-    int getTotalCount2(Search search);
+
 }

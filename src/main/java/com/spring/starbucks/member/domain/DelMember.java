@@ -2,6 +2,7 @@ package com.spring.starbucks.member.domain;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter @Getter @ToString
@@ -14,6 +15,7 @@ public class DelMember {
     private int birthMonth;
     private int birthDay;
     private int level;
+    private String sl;
     private String name;
     private String account;
     private String password;
@@ -22,9 +24,14 @@ public class DelMember {
     private String phone;
     private String nickname;
     private String delReason;
+    private LocalDateTime delRegDate;
 
     private Date regDate;
     private Auth auth;
+
+    //----------
+    private int no;
+    private String prettierDate;
 
 
 }

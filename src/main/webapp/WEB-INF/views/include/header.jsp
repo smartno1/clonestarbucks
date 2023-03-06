@@ -13,7 +13,7 @@
             <ul class="menu-ul">
                 <c:if test="${loginUser.auth == 'ADMIN'}">
                     <li>
-                        <a href="/member/member_admin">Admin Menu</a>
+                        <a href="/admin/member">Admin Menu</a>
                     </li>
                 </c:if>
                 <li>

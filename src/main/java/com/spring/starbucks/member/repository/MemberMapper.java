@@ -1,9 +1,12 @@
 package com.spring.starbucks.member.repository;
 
 
+import com.spring.starbucks.common.search.Search;
+import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -11,6 +14,9 @@ public interface MemberMapper {
 
     // 회원 가입 기능
     boolean register(Member member);
+
+    // 회원 복구기능
+    boolean recovery(DelMember member);
 
     //정보 수정 기능
     boolean update(Member member);
@@ -23,8 +29,12 @@ public interface MemberMapper {
     // 회원 조회 기능
     Member findUser(String account);
 
+    List<Member> findAll(Search search);
+
     Member findUser2(Map<String, Object> checkMap);
 
     boolean deleteUser(String account);
+
+    int getTotalCount(Search search);
 
 }

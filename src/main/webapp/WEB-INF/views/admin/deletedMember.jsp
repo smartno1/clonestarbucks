@@ -10,6 +10,10 @@
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
         <link rel="stylesheet" type="text/css" href="/css/m_admin.css">
+        <script>
+            // 페이징에 넘겨줄 주소 저장.
+            const href = "/admin/deleted_member";
+        </script>
     </head>
         <body>
         <%--헤더 메뉴코너--%>
@@ -28,26 +32,22 @@
                         </ul>
                     </div>
                     <div class="body-box"><%--body-box--%>
-                        <nav class="ms_nav" id="msRnb">
-                            <ul>
-                                <li class="msRnb_btn"><a href="/member/member_admin">회원관리</a></li>
-                                <li class="msRnb_btn"><a href="/member/del_member">탈퇴회원관리</a></li>
-                                <li class="msRnb_btn"><a href="/member/suggestion">문의관리</a></li>
-
-                            </ul>
-                        </nav>
+                        <%@include file="rightMenu.jsp"%>
 
                         <div class="cheak-box">
-                            <h3>회원관리</h3>
+                            <h3>탈퇴회원</h3>
                             <div class="voc_info_input_guide">
-                                <p class="memdwecu">현재 회원수 : </p>
-                                <b> 00 </b>
+                                <p class="memdwecu">현재 탈퇴 회원수 : </p>
+                                <b class="del_member_count"> ${pm.totalCount} </b>
                                     <div class="tt_sh">
-                                        <input type="search">
-                                        <button>검색</button>
+                                        <form id="search_form" >
+                                            <input id="type" type="hidden" name="type" value="search">
+                                            <input id="keyword" type="text" name="keyword" value="${s.keyword}" placeholder="검색어를 입력하세요.">
+                                            <button type="button" class="search-button">검색</button>
+                                        </form>
                                     </div>
                             </div>
-                            <div class="voc_info_input_btns">
+                            <div class="voc_info_input_btns del">
                                 <table>
                                     <tr>
                                         <th>번호</th>
@@ -57,24 +57,21 @@
                                         <th>이메일</th>
                                     </tr>
                                     <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>test</td>
-                                        <td>홍길동</td>
-                                        <td>010-9400-8754</td>
-                                        <td>tesr@gmail.com</td>
-                                    </tr>
+                                    <c:forEach items="${memberList}" var="m">
+                                        <tr onclick="detail('${m.account}')">
+                                            <td>${m.no}</td>
+                                            <td>${m.account}</td>
+                                            <td>${m.name}</td>
+                                            <td>${m.phone}</td>
+                                            <td>${m.email}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-
+                            <%-- 페이징 시작--%>
+                            <%@include file="../include/paging.jsp"%>
+                            <%-- 페이징 끝--%>
                         </div>
                     </div><%--body-box end--%>
 
@@ -117,22 +114,36 @@
                 alert(msg);
             }
         });
-    function msRnbShow() {
-        document.getElementById('msRnb').addEventListener('click', e => {
-            if (e.target.matches('.sbox_arrow_down')) {
-                e.target.parentElement.nextElementSibling.style.display = 'block';
-                e.target.classList.remove('sbox_arrow_down');
-                e.target.classList.add('sbox_arrow_up');
-            }else if (e.target.matches('.sbox_arrow_up')) {
-                e.target.parentElement.nextElementSibling.style.display = 'none';
-                e.target.classList.remove('sbox_arrow_up');
-                e.target.classList.add('sbox_arrow_down');
-            }
-        })
-    }
-    (function (){
-        msRnbShow();
-    })();
+
+        // 메시지 있을때 띄우기
+        if(${msg == "recovery_success"} || ${msg == "recovery_fail"} ){
+            alert("${msg}");
+        }
+
+        // 검색기능 ---------------------------------------------------//
+        function search(){
+            document.querySelector(".search-button").addEventListener("click", e => {
+
+                if(!e.target.matches(".search-button")) return
+                const search = document.getElementById('search_form');
+                console.log("search : ", search);
+                search.setAttribute("action","/admin/deleted_member");
+                search.setAttribute("method","GET");
+                search.submit();
+
+
+            });
+        }
+
+        //  상세페이지 이동--------------------------------------------------//
+        function detail(account){
+            location.href = "/admin/deleted_member_detail?account="+account+"&pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
+        }
+
+        (function (){
+            search();
+
+        })();
 
     </script>
 

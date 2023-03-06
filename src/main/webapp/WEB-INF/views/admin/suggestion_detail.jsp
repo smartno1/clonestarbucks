@@ -28,35 +28,39 @@
                         </ul>
                     </div>
                     <div class="body-box"><%--body-box--%>
-                        <nav class="ms_nav" id="msRnb">
-                            <ul>
-                                <li class="msRnb_btn"><a href="/member/member_admin">회원관리</a></li>
-                                <li class="msRnb_btn"><a href="/member/del_member">탈퇴회원관리</a></li>
-                                <li class="msRnb_btn"><a href="/member/suggestion">문의관리</a></li>
-
-                            </ul>
-                        </nav>
+                        <%@include file="rightMenu.jsp"%>
 
                         <div class="cheak-box">
-                            <h3>문의관리</h3>
+                            <h3>문의내용</h3>
                             <div class="voc_info_input_btns">
                                 <table>
                                     <tbody>
                                     <tr>
                                         <th>아이디</th>
-                                        <td><input id="user_id" name="account" value=""></td>
+                                        <td>${suggestion.id}</td>
                                     </tr>
                                     <tr>
                                         <th>제목</th>
-                                        <td><input  name="account" value=""></td>
+                                        <td>${suggestion.title}</td>
                                     </tr>
                                     <tr >
                                         <th class="text_tt1">문의내용</th>
-                                        <td><textarea></textarea></td>
+                                        <td>${suggestion.context}</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
+                            </div>
+                            <br><br>
+                            <h3>답변하기</h3>
+                            <div>
+                                <textarea name="reply" id="reply" cols="115" rows="10" style="resize: none">${suggestion.reply}</textarea>
+                            </div>
+                            <div class="button_box" data-id="${suggestion.id}">
+                                <ul>
+                                    <li><button id="saveReply">답변저장</button></li>
+                                    <li><button id="deleteReply">답변삭제</button></li>
+                                    <li><button id="cancel">취소</button></li>
+                                </ul>
                             </div>
 
                         </div>
@@ -114,8 +118,68 @@
             }
         })
     }
+    function button(){
+        document.querySelector('.button_box').addEventListener('click',e=>{
+            const id = document.querySelector('.button_box').dataset.id;
+            const SUCCESS = "/admin/suggestion?pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
+            const FAIL = "/admin/suggestion_detail?id"+id+"&pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
+            if(e.target.matches('#saveReply')){
+                const context = document.getElementById('reply').value;
+                const formData = new FormData;
+                formData.set('type', 'reply');
+                formData.set('keyword', context);
+                formData.set('id', id);
+                console.log("formData : ",formData.get("keyword"));
+                const reqInfo = {
+                    method:'POST',
+                    body:formData
+                }
+                fetch("/admin/suggestion_reply", reqInfo)
+                    .then(res => res.text())
+                    .then(msg => {
+                        if(msg === "SUCCESS"){
+                            alert("답변이 등록되었습니다.")
+                            location.href=SUCCESS;
+                        }else{
+                            alert("답변 등록에 실패하였습니다.")
+                            location.href=FAIL;
+                        }
+
+                    })
+            }
+            if(e.target.matches('#deleteReply')){
+                const formData = new FormData();
+
+                formData.set('id', id);
+                formData.set('type', 'deleteReply');
+                console.log("formData : ",formData);
+                const reqInfo = {
+                    method:'POST',
+                    body:formData
+                }
+                fetch("/admin/suggestion_reply_delete", reqInfo)
+                    .then(res => res.text())
+                    .then(msg => {
+                        if(msg === "SUCCESS"){
+                            alert("답변이 삭제되었습니다.")
+                            location.href=SUCCESS;
+                        }else{
+                            alert("답변 삭제에 실패하였습니다.")
+                            location.href=FAIL;
+                        }
+
+                    })
+
+            }
+            if(e.target.matches('#cancel')){
+                location.href=SUCCESS;
+            }
+        })
+    }
+
     (function (){
         msRnbShow();
+        button();
     })();
 
     </script>

@@ -9,6 +9,7 @@ CREATE TABLE tbl_member(
     , birth_year int(4) NOT NULL
     , birth_month int(2) NOT NULL
     , birth_day int(2) NOT NULL
+    , sl VARCHAR(10) NOT NULL
     , gender VARCHAR(2) NOT NULL
     , auth VARCHAR(20) DEFAULT 'COMMON'
     , level int(1) DEFAULT 5
@@ -31,6 +32,7 @@ CREATE TABLE del_member(
     , birth_year int(4) NOT NULL
     , birth_month int(2) NOT NULL
     , birth_day int(2) NOT NULL
+    , sl VARCHAR(10) NOT NULL
     , gender VARCHAR(2) NOT NULL
     , auth VARCHAR(20) DEFAULT 'COMMON'
     , level int(1) DEFAULT 1

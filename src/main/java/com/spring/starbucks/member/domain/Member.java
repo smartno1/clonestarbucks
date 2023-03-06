@@ -13,10 +13,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class Member {
 
-
+    private int id;
     private int birthYear;
     private int birthMonth;
     private int birthDay;
+    private String sl;
     private int level;
     private String name;
     private String account;
@@ -29,6 +30,8 @@ public class Member {
     private LocalDateTime regDate;
     private Auth auth;
 
+    //--------------
+    private int no;
 
 
 }

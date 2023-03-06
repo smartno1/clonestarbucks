@@ -102,34 +102,23 @@ public class MemberController {
 
         return new ResponseEntity<>(msg,HttpStatus.OK);
     }
-    @GetMapping("/member_admin")
-    public void member_admin() {
-        log.info("/member/member_admin GET! - forwarding to member_admin.jsp");
-    }
-    @GetMapping("/del_member")
-    public void del_member() {
-        log.info("/del_member GET! - forwarding to del_member.jsp");
-    }
-    @GetMapping("/suggestion")
-    public void suggestion() {
-        log.info("/member/suggestion GET! - forwarding to suggestion.jsp");
-    }
-    @GetMapping("/suggesion_dt")
-    public void suggestion_dt() {
-        log.info("/member/suggesion_dt GET! - forwarding to suggesion_dt.jsp");
-    }
+
 
     // 회원가입 처리 요청
     @PostMapping("/sign-up")
-    public String signUp(Member member, RedirectAttributes ra, HttpServletRequest request, HttpServletResponse response) {
+    public String signUp(Member member, RedirectAttributes ra, HttpServletRequest request) {
         log.info("/member/sign-up POST ! - {}", member);
         boolean flag = memberService.signUp(member);
         if (flag) ra.addFlashAttribute("msg", "reg-success");
         String uri = request.getHeader("Referer");
         log.info("referer - {}",uri);
+        log.info("referer - {}",request.getSession().getAttribute("redirectURI"));
         if(request.getSession().getAttribute("redirectURI") != null){
             uri = (String)request.getSession().getAttribute("redirectURI");
             log.info("redirectURI - {}",uri);
+        }
+        if(uri.contains("/sign-up")){
+            uri="/";
         }
 
 
@@ -190,7 +179,6 @@ public class MemberController {
         String referer = request.getHeader("Referer");
         log.info("referer: {}", referer);
 
-
         request.getSession().setAttribute("redirectURI", referer);
     }
 
@@ -234,7 +222,7 @@ public class MemberController {
     public ResponseEntity<String> del_account(@RequestBody String reason, HttpSession session){
         log.info("reason - {}",reason);
 
-        String msg = memberService.deleteAccount(reason, session);
+        String msg = memberService.deleteAccount(getCurrentMemberAccount(session), reason);
 
         return new ResponseEntity<String >(msg, HttpStatus.OK);
     }

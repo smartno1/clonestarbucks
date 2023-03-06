@@ -141,6 +141,7 @@
    text-align: left;
    padding: 17px 0 17px 20px;
  }
+
  /* 페이징 */
  .bottom-section {
    margin-top: 50px;
@@ -298,7 +299,7 @@
     }
   }
 
-  function submit(){
+  function search(){
     document.querySelector(".search-button").addEventListener("click", e => {
       if(!e.target.matches(".search-button")) return;
 
@@ -309,7 +310,7 @@
   }
 
   (function (){
-    submit();
+    search();
     appendPageActive();
   })();
 </script>
