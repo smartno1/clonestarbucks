@@ -73,7 +73,7 @@ h2{
 	align-items:center;
 	border-top:1px solid #d3d3d3;
 }
-form{
+.container form{
 	padding-top:30px;
 	width:100%;
 }

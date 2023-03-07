@@ -60,7 +60,7 @@
                                     <c:forEach items="${memberList}" var="m">
                                     <tr onclick="detail('${m.account}')">
                                         <td>${m.no}</td>
-                                        <td>${m.account}</td>
+                                        <td class="account" data-auth="${m.auth}">${m.account}</td>
                                         <td>${m.name}</td>
                                         <td>${m.phone}</td>
                                         <td>${m.email}</td>
@@ -142,9 +142,22 @@
             console.log("account: ", account);
             location.href = "/admin/member_detail?account="+account+"&pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
         }
+    //     관리자 표시------------------------------------// 2023-03-07 박상준 처리
+        function adminck(){
+           const list=document.querySelectorAll(".account");
+           for(let z of list){
+               if(z.dataset.auth == "ADMIN"){
+                    z.innerHTML += `<span style="color:red;">[관리자]</span>`
+               }
+           }
+
+        }
+        //     관리자 표시------------------------------------// 2023-03-07 박상준 완
+
 
     (function (){
         search();
+        adminck();
 
     })();
 
