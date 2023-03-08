@@ -62,7 +62,8 @@
         <if test="type == 'account'">WHERE  account = #{keyword}</if>
         <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
         <if test="type == 'new'">WHERE  confirm = false</if>
-        <if test="type == 'noLogin'"></if>
+        <if test="type == 'no_reply'">WHERE  reply_done = false</if>
+        <if test="type == 'no_login'"></if>
         <if test="type == 'search'">
             WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR context LIKE CONCAT('%', #{keyword}, '%')
             OR account LIKE CONCAT('%', #{keyword}, '%') OR phone LIKE CONCAT('%', #{keyword}, '%')

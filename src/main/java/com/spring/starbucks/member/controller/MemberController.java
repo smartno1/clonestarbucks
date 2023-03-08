@@ -136,25 +136,37 @@ public class MemberController {
 
         log.info("/member/modify Post end -{}", flag);
 
-        return flag ? "/member/modify" : "redirect:/member/myPage/";
-
+        return flag ? "/member/modify" : "redirect:/myStarbucks";
     }
 
     // 회원정보수정
     @PostMapping("/update")
     public String update(Member member, RedirectAttributes ra, HttpSession session) {
         log.info("/member/update POST ! - {}", member);
+
+        boolean reSignIn = true; // 비밀번호 변경시 다시로그인을 위한 flag
+        Member m = (Member) session.getAttribute(LOGIN_FLAG);
+//        회원 권한과 레벨은 인풋데이터로 받지 않고 기존의 것을 대입.
+        member.setAuth(m.getAuth());
+        member.setLevel(m.getLevel());
+        if(member.getPassword() == null || member.getPassword() == ""){
+//            패스워드를 변경하지 않아 널이 오면 기존의 패스워드를 대입. 재로그인 플래그는 폴스
+            member.setPassword(m.getPassword());
+            reSignIn = false;
+        }
+//        회원정보 업데이트
         boolean flag = memberService.update(member);
+//        재로그인 , 업데이트 모두 true 면 세션 비우기
         if (flag) {
             ra.addFlashAttribute("msg", "mod-success");
-            session.removeAttribute("loginUser");
-
-            session.invalidate();
-
+            if(reSignIn) {
+                session.removeAttribute("loginUser");
+                session.invalidate();
+            }
         } else {
             ra.addFlashAttribute("msg", "mod-failed");
         }
-        return flag ? "redirect:/member/sign-in" : "redirect:/member/modify";
+        return reSignIn&&flag ? "redirect:/member/sign-in" : "redirect:/myStarbucks/index";
     }
 
     // 아이디, 이메일 중복확인 비동기 요청 처리
@@ -202,6 +214,7 @@ public class MemberController {
 
     }
 
+    // 로그아웃
     @GetMapping("/sign-out")
     public ResponseEntity<String> signOut(HttpSession session) {
         ResponseEntity<String> res = new ResponseEntity<>("success",HttpStatus.OK);
@@ -217,16 +230,20 @@ public class MemberController {
         return res;
     }
 
+//    회원 탈퇴
     @PostMapping("/del_account")
     @ResponseBody
     public ResponseEntity<String> del_account(@RequestBody String reason, HttpSession session){
         log.info("reason - {}",reason);
 
-        String msg = memberService.deleteAccount(getCurrentMemberAccount(session), reason);
-
+        String msg = memberService.deleteAccount(getCurrentMemberAccount(session), reason, session);
+        if (msg == "SUCCESS") {
+            // 1. 세션에서 정보를 삭제한다.
+            session.removeAttribute("loginUser");
+            // 2. 세션을 무효화한다.
+            session.invalidate();
+        }
         return new ResponseEntity<String >(msg, HttpStatus.OK);
     }
-
-
 
 }

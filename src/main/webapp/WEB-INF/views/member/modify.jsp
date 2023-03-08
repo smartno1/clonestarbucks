@@ -13,6 +13,8 @@
 				<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 				<script src="https://accounts.google.com/gsi/client" async defer></script>
 
+				<script src="/js/modify.js" defer></script>
+
 				<link rel="stylesheet" type="text/css" href="/css/sign-up.css">
 			</head>
 
@@ -21,38 +23,53 @@
 
 				<main class="container-wrapper1">
 					<div class="container">
+						<h2>회원가입</h2>
+						<form action="/member/sign-up" method="post" accept-charset="UTF-8" onsubmit="return false;">
 							<div class="reigister-wrapper">
 
 								<div class="register-top">
 									<div class="w-100 info">
 										<img src="/images/icon_find_sally.png" />
-										<p>탈퇴 화원정보 입니다.</p>
+										<p>화원정보를 수정 할 수 있습니다.</p>
 									</div>
 									<div class="id-wrapper w-100">
-										아이디 <br> <input type="text" name="account" id="account" placeholder="아이디"/>
+										<input type="text" name="account" id="account" placeholder="아이디" readonly/>
 									</div>
-<%--									<div class="password-wrapper w-100">--%>
-<%--										비밀번호 <br> <input type="password" name="password" id="password" placeholder="비밀번호" maxlength="20"/>--%>
-<%--									</div>--%>
-<%--									<div class="passwordCheck-wrapper w-100">--%>
-<%--										비밀번호 확인 <br> <input type="password" name="passwordCheck" id="passwordCheck"--%>
-<%--											   placeholder="비밀번호 확인" maxlength="20"/>--%>
-<%--									</div>--%>
+									<div class="password-wrapper w-100">
+										<input type="password" name="password" id="password" placeholder="새로운 비밀번호를 입력하세요." maxlength="20"/>
+									</div>
+									<div class="passwordCheck-wrapper w-100">
+										<input type="password"  id="passwordCheck"
+											placeholder="새로운 비밀번호 확인" maxlength="20"/>
+									</div>
 								</div>
 								<div class="register-bottom">
 									<div class="name-wrapper bottom-div">
+										<div class="level-wrapper bottom-div">
+											<div class="w-88">
+												<h3>회원 레벨 | ${loginUser.level} Lev</h3>
+											</div>
+										</div>
+										<div class="auth-wrapper bottom-div">
+											<div class="w-88">
+												<h3>회원 권한 |
+													<c:if test="${loginUser.auth == 'COMMON'}">일반회원</c:if>
+													<c:if test="${loginUser.auth == 'ADMIN'}">관리자</c:if>
+												</h3>
+											</div>
+										</div>
 										<div class="w-88">
 											<h3>이름 (필수)</h3>
 											<div class="inline">
 												<input type="text" name="name" placeholder="이름"/>
 												<div class="btn-group" role="group"
-													 aria-label="Basic radio toggle button group">
+													aria-label="Basic radio toggle button group">
 													<input type="radio" class="btn-check" name="gender" id="btnradio1" value="M"
-														   autocomplete="off" checked>
+														autocomplete="off" checked>
 													<label class="btn1 btn" for="btnradio1">남</label>
 
 													<input type="radio" class="btn-check" name="gender" id="btnradio2" value="F"
-														   autocomplete="off">
+														autocomplete="off">
 													<label class="btn2 btn" for="btnradio2">여</label>
 												</div>
 											</div>
@@ -87,8 +104,7 @@
 											</div>
 										</div>
 										<div class="w-88 ymd-subtext">
-											<p></p>
-										</div>
+									</div>
 									</div>
 									<div class="phone-wrapper bottom-div">
 										<div class="w-88">
@@ -105,6 +121,10 @@
 												title="test@email.com"><br>
 										</div>
 									</div>
+
+									<div class="bottom-div nickname-img">
+
+									</div>
 									<div class="bottom-div">
 										<div class="nickname-wrapper w-88">
 											<div class="inline">
@@ -112,29 +132,23 @@
 												<span class="material-symbols-outlined error-icon">error</span>
 											</div>
 											<input type="text" id="nickname" name="nickname"
-												   placeholder="닉네이이 없습니다."/>
-										</div>
-										<div class="w-88">
-											<h3>탈퇴 사유</h3>
-											<p style="color: red">${member.delReason}</p>
+												placeholder="한글 6자리 이내로 입력하세요." />
 										</div>
 									</div>
 								</div>
 								<div class="w-95">
-									<p id="pastTime">* 복구 가능 날짜는 <span style="color: orangered">${member.prettierDate}</span> 까지 입니다.</p>
+									<p>* 선택항목은 입력하지 않거나 동의하지 않아도 회원 가입이 가능합니다.</p>
 								</div>
-								<button class="submit" onclick="check('${member.account}')">회원 복구</button>
+								<button class="submit" onclick="check(this.form)">회원 정보 수정</button>
 								<br>
-								<button class="submit" onclick="history.go(-1)">목록으로</button>
+								<button class="submit" onclick="location.href='/myStarbucks/index'">마이 스타벅스</button>
 							</div>
-
+						</form>
 					</div>
 				</main>
 
 
 				<jsp:include page="../include/footer.jsp"></jsp:include>
-
-
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 					integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 					crossorigin="anonymous"></script>
@@ -146,37 +160,21 @@
 							alert(msg);
 						}
 					});
-					document.querySelector("input[name='account']").value = '${member.account}';
-					document.querySelector("input[name='name']").value = '${member.name}';
-					document.querySelector("input[value='${member.gender}'].btn-check").checked = true;
-					document.querySelector("select[name='sl'] option[value='${member.sl}']").selected = true;
-					document.querySelector("select[name='birthYear'] option[value='${member.birthYear}']").selected = true;
-					document.querySelector("select[name='birthMonth'] option[value='${member.birthMonth}']").selected = true;
-					document.querySelector("select[name='birthDay'] option[value='${member.birthDay}']").selected = true;
-					document.querySelector("input[name='phone']").value = '${member.phone}';
-					document.querySelector("input[name='email']").value = '${member.email}';
-					if(${!empty member.nickname}){
-						document.querySelector("input[name='nickname']").value = '${member.nickname}';
+
+					document.querySelector("input[name='account']").value = '${loginUser.account}';
+					document.querySelector("input[name='name']").value = '${loginUser.name}';
+					document.querySelector("input[value='${loginUser.gender}'].btn-check").checked = true;
+					document.querySelector("select[name='birthYear'] option[value='${loginUser.birthYear}']").selected = true;
+					document.querySelector("select[name='birthMonth'] option[value='${loginUser.birthMonth}']").selected = true;
+					document.querySelector("select[name='birthDay'] option[value='${loginUser.birthDay}']").selected = true;
+					document.querySelector("select[name='sl'] option[value='${loginUser.sl}']").selected = true;
+					document.querySelector("input[name='phone']").value = '${loginUser.phone}';
+					document.querySelector("input[name='email']").value = '${loginUser.email}';
+					if(${!empty loginUser.nickname}){
+						document.querySelector("input[name='nickname']").value = '${loginUser.nickname}';
 					}
 
-					function check(account){
-						if(confirm("해당 탈퇴 회원을 복구하시겠습니까?")) {
-							fetch("/admin/deleted_member_recovery",{
-								method:'POST',
-								body: account
-							})
-									.then(res => res.text())
-									.then(msg => {
-										if(msg === 'success'){
-											alert("탈퇴 회원이 복구되었습니다.");
-											const uri = "${redirectUri}";
-											location.href="/admin/deleted_member?"+uri;
-										}else{
-											alert("탈퇴 회원 복구에 실패하였습니다.");
-										}
-									})
-						}
-					}
+
 
 				</script>
 

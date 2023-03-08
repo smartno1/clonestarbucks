@@ -3736,7 +3736,7 @@ p.info_use_agree { background:#f4f4f2; border-radius:3px; color:#666; font-size:
 .voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
 .voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF;cursor: pointer }
 .voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
-.voc_info_input_btns table tbody tr:hover{ background-color: #007042; color:#FFFFFF;cursor: pointer }
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000; cursor: pointer }
 .voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
 
 .voc_info_input_btns.del table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
@@ -3744,7 +3744,7 @@ p.info_use_agree { background:#f4f4f2; border-radius:3px; color:#666; font-size:
 .voc_info_input_btns.del table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #2C2A29;}
 .voc_info_input_btns.del table tbody tr{ background-color: #4c4c50; color:#FFFFFF;}
 .voc_info_input_btns.del table tbody tr:nth-child(2n){background-color: #8a8a8a; color: #FFFFFF;}
-.voc_info_input_btns table tbody tr:hover{ background-color: #007042; color:#FFFFFF;cursor: pointer }
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000;cursor: pointer }
 .voc_info_input_btns.del table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
 
 .file_section { margin-bottom:15px; }

@@ -34,7 +34,7 @@
                     <nav class="ms_nav" id="msRnb">
                         <ul>
                             <li>
-                                <a href="javascript:void(0);">My 리워드<span class="sbox_arrow_down" ></span></a>
+                                <a href="javascript:void(0);" class="sbox">My 리워드<span class="sbox_arrow_down" ></span></a>
                                 <ul style="display: none">
                                     <!-- 160609 텍스트 수정 -->
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/reward.do">· 리워드 및 혜택</a></li>
@@ -43,7 +43,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">My 스타벅스 카드<span class="sbox_arrow_down"></span></a>
+                                <a href="javascript:void(0);" class="sbox">My 스타벅스 카드<span class="sbox_arrow_down"></span></a>
                                 <ul style="display: none">
                                     <!-- 160609 텍스트 수정 -->
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/mycard_index.do">· 보유 카드</a></li>
@@ -54,7 +54,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">My 스타벅스 e-Gift Card<span class="sbox_arrow_down"></span></a>
+                                <a href="javascript:void(0);" class="sbox">My 스타벅스 e-Gift Card<span class="sbox_arrow_down"></span></a>
                                 <ul style="display: none">
                                     <li><a href="javascript:void(0);" required="login" data-href="/msr/sceGift/gift_step1.do">· 선물하기</a></li>
                                     <li><a href="javascript:void(0);" required="login" data-href="/my/egiftCard.do">· 선물 내역</a></li>
@@ -62,7 +62,7 @@
                                 </ul>
                             </li>
                             <li class="msRnb_btn">
-                                <a href="javascript:void(0);" required="login" data-href="javascript:void(0);">My 쿠폰<span class="sbox_arrow_down"></span></a>
+                                <a href="javascript:void(0);" class="sbox" required="login" data-href="javascript:void(0);">My 쿠폰<span class="sbox_arrow_down"></span></a>
                                 <ul style="display: none">
                                     <li><a href="/my/ecoupon.do?t=REG">· 등록하기</a></li>
                                     <li><a href="/my/ecoupon.do?t=GIFT">· 선물하기</a></li>
@@ -83,7 +83,7 @@
                             <li class="msRnb_btn"><a href="javascript:void(0);" onclick="fn_rewardTumblerMsrCheck();">개인컵 리워드 설정</a></li>
                             <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/edt/expressDtList.do">My DT Pass</a></li>
                             <li>
-                                <a href="javascript:void(0);">개인정보관리<span class="sbox_arrow_down"></span></a>
+                                <a href="javascript:void(0);" class="sbox">개인정보관리<span class="sbox_arrow_down"></span></a>
                                 <ul>
                                     <li><a href="/member/my_info">· 개인정보확인 및 수정</a></li>
                                     <li><a href="/member/myinfo_out" required="login" data-href="/my/myinfo_out.do">· 회원 탈퇴</a></li>
@@ -714,18 +714,33 @@
                 alert(msg);
             }
         });
-    //  오른쪽 메뉴의 펼치기 기능 ------------------------------------------------
+
+        // 회원정보 수정시 메시지 띄우기 ------------------------------------//
+        if(${msg == "mod-success"}){
+            alert("회원 정보가 수정되었습니다.");
+        }else if(${msg == "mod-failed"}){
+            alert("회원 정보 수정에 실패하였습니다");
+        }
+    //  오른쪽 메뉴의 펼치기 기능 ------------------------------------------------//
     function msRnbShow() {
         document.getElementById('msRnb').addEventListener('click', e => {
             if (e.target.matches('.sbox_arrow_down')) {
                 e.target.parentElement.nextElementSibling.style.display = 'block';
-                e.target.classList.remove('sbox_arrow_down');
-                e.target.classList.add('sbox_arrow_up');
+                e.target.classList.replace('sbox_arrow_down','sbox_arrow_up');
             }else if (e.target.matches('.sbox_arrow_up')) {
                 e.target.parentElement.nextElementSibling.style.display = 'none';
-                e.target.classList.remove('sbox_arrow_up');
-                e.target.classList.add('sbox_arrow_down');
+                e.target.classList.replace('sbox_arrow_up','sbox_arrow_down');
+            }else if(e.target.matches('.sbox')){
+                e.target.nextElementSibling.style.display = 'block';
+                e.target.classList.replace('sbox','sbox_up');
+                e.target.firstElementChild.classList.replace('sbox_arrow_down','sbox_arrow_up');
+            }else if(e.target.matches('.sbox_up')){
+                e.target.nextElementSibling.style.display = 'none';
+                e.target.classList.replace('sbox_up','sbox');
+                e.target.firstElementChild.classList.replace('sbox_arrow_up','sbox_arrow_down');
             }
+
+
         })
     }
     (function (){

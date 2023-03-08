@@ -31,13 +31,15 @@
                             <li><a href="#"><span class="kor">관리자 메뉴</span></a></li>
                         </ul>
                     </div>
-                    <div class="body-box"><%--body-box--%>
+                    <div class="body-box clear-fix"><%--body-box--%>
                         <%@include file="rightMenu.jsp"%>
 
                         <div class="cheak-box">
                             <h3>회원관리</h3>
                             <div class="voc_info_input_guide">
-                                <p class="memdwecu">현재 회원수 : </p>
+                                <p class="memdwecu"><a href="/admin/member">현재 회원수 : </a></p>
+                                <b class="member_count"> ${totalCount} </b>
+                                <p class="memdwecu">검색된 회원수 : </p>
                                 <b class="member_count"> ${pm.totalCount} </b>
                                 <div class="tt_sh">
                                     <form id="search_form" >
@@ -116,11 +118,6 @@
             }
         });
 
-        // 메시지 있을때 띄우기
-        if(${msg == "recovery_success"} || ${msg == "recovery_fail"} ){
-            alert("${msg}");
-        }
-
 
         // 검색기능 ---------------------------------------------------//
         function search(){
@@ -149,10 +146,12 @@
                if(z.dataset.auth == "ADMIN"){
                     z.innerHTML += `<span style="color:red;">[관리자]</span>`
                }
+               if(z.textContent == '${loginUser.account}'){
+                   z.innerHTML += `<span style="color:white;">(본인)</span>`
+               }
            }
 
         }
-        //     관리자 표시------------------------------------// 2023-03-07 박상준 완
 
 
     (function (){

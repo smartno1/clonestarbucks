@@ -198,7 +198,7 @@
       overflow: hidden;
       margin-bottom: 15px;
     }
-    .list .list-img img{
+    .list .list-img > img{
       width: 100%;
       height: 100%;
       max-width: 260px;

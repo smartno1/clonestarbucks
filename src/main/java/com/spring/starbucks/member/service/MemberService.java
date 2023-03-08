@@ -22,8 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.spring.starbucks.member.service.LoginFlag.*;
-import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
-import static com.spring.starbucks.util.LoginUtils.getCurrentMemberAccount;
+import static com.spring.starbucks.util.LoginUtils.*;
 
 @Service
 @Log4j2
@@ -144,7 +143,7 @@ public class MemberService {
     }
 
     // 회원 탈퇴 기능
-    public String deleteAccount(String account, String reason){
+    public String deleteAccount(String account, String reason, HttpSession session){
         String msg = "FAIL";
         try {
             if (account != null) {
@@ -158,8 +157,9 @@ public class MemberService {
                         checkMap.put("value", member.getEmail());
                         DelMember delMember = delAccountFind2(checkMap);
                         delMember.setDelReason(reason);
-                        if (delAccountUpdate(delMember)) ;
-                        msg = "SUCCESS";
+                        if (delAccountUpdate(delMember)) {
+                            msg = "SUCCESS";
+                        }
                     }
                 }
             } else {

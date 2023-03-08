@@ -46,7 +46,7 @@
                 <form action="/search-all" method="GET">
                     <input type="hidden" name="type" value="search-all">
                     <input type="text" name="keyword"/>
-                    <span class="material-symbols-outlined">search</span>
+                    <span class="material-symbols-outlined search-icon">search</span>
                 </form>
             </div>
         </div>

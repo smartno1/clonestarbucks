@@ -28,7 +28,7 @@
     <update id="delAccountUpdate">
         UPDATE del_member SET
         password=#{password}, nickname = #{nickname} , name = #{name}, phone = #{phone}, birth_year = #{birthYear}, birth_month = #{birthMonth},
-        birth_day = #{birthDay}, email = #{email}, gender = #{gender}, auth=#{auth}, del_reason = #{delReason}, reg_date =#{regDate}
+        birth_day = #{birthDay}, sl=#{sl}, email = #{email}, gender = #{gender}, auth=#{auth}, del_reason = #{delReason}, reg_date =#{regDate}
         WHERE account=#{account}
     </update>
 

@@ -21,25 +21,44 @@
 
 				<main class="container-wrapper1">
 					<div class="container">
-							<div class="reigister-wrapper">
-
+						<div class="reigister-wrapper">
+							<form onsubmit="return false">
 								<div class="register-top">
 									<div class="w-100 info">
 										<img src="/images/icon_find_sally.png" />
-										<p>화원정보 입니다.</p>
+										<p>회원정보 입니다.</p>
 									</div>
 									<div class="id-wrapper w-100">
-										아이디 <br> <input type="text" name="account" id="account" placeholder="아이디"/>
+										<h3>아이디</h3> <input type="text" name="account" id="account" placeholder="아이디" readonly/>
 									</div>
-									<div class="password-wrapper w-100">
-										비밀번호 <br> <input type="password" name="password" id="password" placeholder="비밀번호" maxlength="20"/>
-									</div>
-									<div class="passwordCheck-wrapper w-100">
-										비밀번호 확인 <br> <input type="password" name="passwordCheck" id="passwordCheck"
-											   placeholder="비밀번호 확인" maxlength="20"/>
-									</div>
+<%--									<div class="password-wrapper w-100">--%>
+<%--										비밀번호 <br> <input type="password" name="password" id="password" placeholder="비밀번호" maxlength="20"/>--%>
+<%--									</div>--%>
+<%--									<div class="passwordCheck-wrapper w-100">--%>
+<%--										비밀번호 확인 <br> <input type="password" name="passwordCheck" id="passwordCheck"--%>
+<%--											   placeholder="비밀번호 확인" maxlength="20"/>--%>
+<%--									</div>--%>
 								</div>
 								<div class="register-bottom">
+									<div class="level-wrapper bottom-div">
+										<div class="w-88">
+											<h3>회원 레벨</h3>
+											<select name="level">
+												<c:forEach begin="1" end="5" var="i">
+													<option value="${i}">${i}레벨</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="auth-wrapper bottom-div">
+										<div class="w-88">
+											<h3>회원 권한</h3>
+											<select name="auth">
+												<option value="COMMON">일반회원</option>
+												<option value="ADMIN">관리자</option>
+											</select>
+										</div>
+									</div>
 									<div class="name-wrapper bottom-div">
 										<div class="w-88">
 											<h3>이름 (필수)</h3>
@@ -111,7 +130,7 @@
 												<h3>닉네임 (선택)</h3>
 												<span class="material-symbols-outlined error-icon">error</span>
 											</div>
-											<input type="text" id="nickname" name="nickname" value="닉네임이 없습니다."
+											<input type="text" id="nickname" name="nickname"
 												   placeholder="한글 6자리 이내로 입력하세요."/>
 										</div>
 										<div class="w-88">
@@ -127,12 +146,14 @@
 
 								</div>
 								<button class="submit" onclick="check(this.form)">회원 정보 수정</button>
-								<br>
-								<button class="submit" onclick="memberDelete('${member.account}')">회원 탈퇴 처리</button>
-								<br>
+								<br><br>
+								<c:if test="'${member.account}'!='${loginUser.account}'">
+									<button class="submit" onclick="memberDelete('${member.account}')">회원 탈퇴 처리</button>
+									<br><br>
+								</c:if>
 								<button class="submit" onclick="history.go(-1)">목록으로</button>
-							</div>
-
+							</form>
+						</div>
 					</div>
 				</main>
 
@@ -151,8 +172,10 @@
 							alert(msg);
 						}
 					});
-					console.info("m: ",'${member.birthMonth}');
+
 					document.querySelector("input[name='account']").value = '${member.account}';
+					document.querySelector("select[name='level'] option[value='${member.level}']").selected = true;
+					document.querySelector("select[name='auth'] option[value='${member.auth}']").selected = true;
 					document.querySelector("input[name='name']").value = '${member.name}';
 					document.querySelector("input[value='${member.gender}'].btn-check").checked = true;
 					document.querySelector("select[name='birthYear'] option[value='${member.birthYear}']").selected = true;
@@ -166,44 +189,43 @@
 					}
 
 					function check(form){
-						var pwd = form.password.value;
-						var pwd2 = form.passwordCheck.value;
-						var account = form.account.value;
+						// var pwd = form.password.value;
+						// var pwd2 = form.passwordCheck.value;
 						$("#errorText").remove();
 						$("input").css("border","1px solid #d3d3d3");
-						if(!account){
-							var errorText = "<span class =\"subText\" id=\"errorText\">아이디를 입력하세요.</span>"
-							$('.id-wrapper').append(errorText);
-							$('.id-wrapper input').css("border","1px solid red");
-							$('.id-wrapper input').focus();
+						// if(!account){
+						// 	var errorText = "<span class =\"subText\" id=\"errorText\">아이디를 입력하세요.</span>"
+						// 	$('.id-wrapper').append(errorText);
+						// 	$('.id-wrapper input').css("border","1px solid red");
+						// 	$('.id-wrapper input').focus();
+						//
+						// 	return false;
+						// }
+						// else if($('#account').data('accept')!='true') {
+						// 	$(".id-wrapper .subText").remove();
+						// 	var errorText = "<span class =\"subText\" id=\"errorText\">사용가능한 아이디를 입력하세요.</span>"
+						// 	$('.id-wrapper').append(errorText);
+						// 	$('.id-wrapper input').css("border", "1px solid red");
+						// 	$('.id-wrapper input').focus();
+						//
+						// 	return false;
 
-							return false;
-						}
-						else if($('#account').data('accept')!='true') {
-							$(".id-wrapper .subText").remove();
-							var errorText = "<span class =\"subText\" id=\"errorText\">사용가능한 아이디를 입력하세요.</span>"
-							$('.id-wrapper').append(errorText);
-							$('.id-wrapper input').css("border", "1px solid red");
-							$('.id-wrapper input').focus();
-
-							return false;
-
-						}else if(!pwd){
-							var errorText = "<span id=\"errorText\">비밀번호를 입력하세요.</span>"
-							$('.password-wrapper').append(errorText);
-							$('#password').css("border","1px solid red");
-							$('#password').focus();
-							return false;
-						}
-						else if(pwd != pwd2){
-							var errorText = "<span id=\"errorText\">입력하신 비밀번호가 다릅니다.</span>"
-							$('.passwordCheck-wrapper').append(errorText);
-							$('#passwordCheck').css("border","1px solid red");
-							$('#passwordCheck').focus();
-
-							return false;
-						}
-						else if(!form.name.value){
+						// }else if(!pwd){
+						// 	var errorText = "<span id=\"errorText\">비밀번호를 입력하세요.</span>"
+						// 	$('.password-wrapper').append(errorText);
+						// 	$('#password').css("border","1px solid red");
+						// 	$('#password').focus();
+						// 	return false;
+						// }
+						// else if(pwd != pwd2){
+						// 	var errorText = "<span id=\"errorText\">입력하신 비밀번호가 다릅니다.</span>"
+						// 	$('.passwordCheck-wrapper').append(errorText);
+						// 	$('#passwordCheck').css("border","1px solid red");
+						// 	$('#passwordCheck').focus();
+						//
+						// 	return false;
+						// }else
+						if(!form.name.value){
 							var errorText = "<span class =\"subText\" id=\"errorText\">이름을 입력하세요.</span>"
 							$('.name-wrapper .w-88').append(errorText);
 							$('input[name = name]').css("border","1px solid red");
@@ -335,23 +357,23 @@
 								const errorText = "<span  id=\"errorText\">영문,한글,숫자를 사용하여 2~20자리 이내로 입력하세요.</span>"
 								target.parent().append(errorText);
 								target.css("border", "1px solid red");
-								target.focus();
+								// target.focus();
 								return false;
 							}
-						}else if(target.attr('name') === 'password'){
-							if(!regexPW.test(target.val())) {
-								const errorText = "<span  id=\"errorText\">영문, 숫자 혼합하여 10~20자리 이내로 입력하세요.</span>"
-								target.parent().append(errorText);
-								target.css("border", "1px solid red");
-								target.focus();
-								return false;
-							}
+						// }else if(target.attr('name') === 'password'){
+						// 	if(!regexPW.test(target.val())) {
+						// 		const errorText = "<span  id=\"errorText\">영문, 숫자 혼합하여 10~20자리 이내로 입력하세요.</span>"
+						// 		target.parent().append(errorText);
+						// 		target.css("border", "1px solid red");
+						// 		// target.focus();
+						// 		return false;
+						// 	}
 						}else if(target.attr('name') === 'phone'){
 							if(!regexP.test(target.val())) {
 								const errorText = "<span  id=\"errorText\">010-XXXX(XXX)-XXXX 형식으로 숫자를 입력하세요.</span>"
 								target.parent().append(errorText);
 								target.css("border", "1px solid red");
-								target.focus();
+								// target.focus();
 								return false;
 							}
 						}else if(target.attr('name') === 'email'){
@@ -359,13 +381,14 @@
 								const errorText = "<span  id=\"errorText\" style='display: block'>email 형식에 맞게 입력하세요(ex star@starbucks.com)</span>"
 								target.parent().append(errorText);
 								target.css("border", "1px solid red");
-								target.focus();
+								// target.focus();
 								return false;
 							}
 						}
 						target.css("color", "");
 						return true;
 					}
+
 					function memberDelete(account){
 						if(confirm("해당 회원을 탈퇴 처리 하시겠습니까?")){
 							const delReason = document.querySelector('textarea[name="delReason"]').value;
@@ -378,10 +401,11 @@
 							})
 									.then(res => res.text())
 									.then(msg => {
-										const uri = '${redirectUri}';
 										if(msg === 'SUCCESS'){
 											alert("해당 회원을 탈퇴처리 하였습니다.");
-											location.href="/admin/member?"+ uri;
+											history.go(-1);
+										}else if(msg === 'same-account'){
+											alert("본인은 탈퇴처리하지 못합니다.")
 										}else{
 											alert("탈퇴 처리에 실패하였습니다.")
 										}

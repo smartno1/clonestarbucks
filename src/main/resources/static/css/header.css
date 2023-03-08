@@ -67,7 +67,7 @@ header .sub-menu .search-all {
     position: relative;
     height: 34px;
 }
-header .sub-menu .search-all input {
+header .sub-menu .search-all input[name="keyword"] {
     width: 36px;
     height: inherit;
     padding: 4px 10px;
@@ -80,18 +80,19 @@ header .sub-menu .search-all input {
     font-size: 12px;
     transition: width .4s;
 }
-header .sub-menu .search-all input:focus {
+header .sub-menu .search-all input[name="keyword"]:focus {
     width: 190px;
     border-color: #669900;
 }
 header .sub-menu .search-all .material-symbols-outlined {
     height: 24px;
     position: absolute;
-    top: 0;
+    top: -25%;
     bottom: 0;
     right: 5px;
     margin: auto;
     transition: .4s;
+    cursor: pointer;
 }
 header .sub-menu .search-all.focused .material-symbols-outlined {
     opacity: 0;

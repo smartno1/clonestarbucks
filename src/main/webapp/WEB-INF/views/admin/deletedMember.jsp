@@ -37,15 +37,17 @@
                         <div class="cheak-box">
                             <h3>탈퇴회원</h3>
                             <div class="voc_info_input_guide">
-                                <p class="memdwecu">현재 탈퇴 회원수 : </p>
-                                <b class="del_member_count"> ${pm.totalCount} </b>
-                                    <div class="tt_sh">
-                                        <form id="search_form" >
-                                            <input id="type" type="hidden" name="type" value="search">
-                                            <input id="keyword" type="text" name="keyword" value="${s.keyword}" placeholder="검색어를 입력하세요.">
-                                            <button type="button" class="search-button">검색</button>
-                                        </form>
-                                    </div>
+                                <p class="memdwecu"><a href="/admin/deleted_member">현재 회원수 : </a></p>
+                                <b class="member_count"> ${totalCount} </b>
+                                <p class="memdwecu">검색된 회원수 : </p>
+                                <b class="member_count"> ${pm.totalCount} </b>
+                                <div class="tt_sh">
+                                    <form id="search_form" >
+                                        <input id="type" type="hidden" name="type" value="search">
+                                        <input id="keyword" type="text" name="keyword" value="${s.keyword}" placeholder="검색어를 입력하세요.">
+                                        <button type="button" class="search-button">검색</button>
+                                    </form>
+                                </div>
                             </div>
                             <div class="voc_info_input_btns del">
                                 <table>

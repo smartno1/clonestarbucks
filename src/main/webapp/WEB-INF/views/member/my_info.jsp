@@ -46,14 +46,30 @@
                                             <p class="p2">본인 명의의 휴대폰으로 본인 인증을 통해, 개인정보 확인 및 수정하실 수 있습니다.</p>
                                             <p class="p3"><a href="javascript:void(0)" class="cert1" title="휴대폰 인증을 위한 새창 열기">인증하기</a></p><!-- 접근성_20171120 수정 -->
                                         </li>
-                                        <li>
+                                        <li class="li2">
                                             <figure class="fig3 cert2"><img src="//image.istarbucks.co.kr/common/img/util/mem/icon_find2.jpg" alt="아이핀 아이콘"></figure>
                                             <p class="p1">아이핀 (i-PIN) 인증</p>
                                             <p class="p2">아이핀 본인 인증을 통해, 개인정보 확인 및 수정하실 수 있습니다.</p>
-                                            <p class="p3"><a href="javascript:void(0)" class="cert2" title="아이핀 본인 인증을 위한 새창 열기 ">인증하기</a></p><!-- 접근성_201711 수정 -->
+                                            <p class="p3"><a href="javascript:void(0)" class="cert2" title="아이핀 본인 인증을 위한 새창 열기">인증하기</a></p><!-- 접근성_201711 수정 -->
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="find_mem_name bd_none">
+                                <p style="color:#666; font-size:14px; margin:0 0 10px 0;">본인 패스워드를 통한 인증 방법입니다.</p>
+                                <form action="/member/modify" method="POST" >
+                                    <div class="mem_cert_wrap_v2">
+                                        <ul class="pro2">
+                                            <li class="li2" style="width: 100%;">
+                                                <figure class="fig3 cert2"></figure>
+                                                <p class="p1">패스워드 본인 인증</p>
+                                                <input name="password" type="password" placeholder="패스워드를 입력해주세요">
+                                                <br>
+                                                <p class="p3"><button type="submit" class="cert3" title="패스워드를 이용한 인증">인증하기</button></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -85,22 +101,8 @@
                 alert(msg);
             }
         });
-    function msRnbShow() {
-        document.getElementById('msRnb').addEventListener('click', e => {
-            if (e.target.matches('.sbox_arrow_down')) {
-                e.target.parentElement.nextElementSibling.style.display = 'block';
-                e.target.classList.remove('sbox_arrow_down');
-                e.target.classList.add('sbox_arrow_up');
-            }else if (e.target.matches('.sbox_arrow_up')) {
-                e.target.parentElement.nextElementSibling.style.display = 'none';
-                e.target.classList.remove('sbox_arrow_up');
-                e.target.classList.add('sbox_arrow_down');
-            }
-        })
-    }
-    (function (){
-        msRnbShow();
-    })();
+
+
 
     </script>
 

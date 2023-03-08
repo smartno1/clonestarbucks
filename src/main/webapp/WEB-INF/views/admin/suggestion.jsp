@@ -37,16 +37,23 @@
 
                         <div class="cheak-box">
                             <h3>문의관리</h3>
-                            <div class="voc_info_input_guide">
-                                <p>확인안한 문의 : </p>
-                                <b class="no_confirm_count">  </b>
-                                    <div class="tt_sh">
-                                        <form id="search_form" >
-                                            <input id="type" type="hidden" name="type" value="search">
-                                            <input id="keyword" type="text" name="keyword" value="${s.keyword}" placeholder="검색어를 입력하세요.">
-                                            <button type="button" class="search-button">검색</button>
-                                        </form>
-                                    </div>
+                            <div class="voc_info_input_guide" style="padding: 20px 20px 40px 20px">
+                                <p><a href="/admin/suggestion">총 문의 : </a></p>
+                                <b>${totalCount}</b>
+                                <p><a href="/admin/suggestion?type=new">확인안한 문의 : </a></p>
+                                <b class="no_confirm_count"> ${NewSg} </b>
+                                <p><a href="/admin/suggestion?type=no_reply">답변대기 문의 : </a></p>
+                                <b class="no_reply_count"> ${NoReplySg} </b>
+                                <p>검색된 문의 : </p>
+                                <b>${pm.totalCount}  </b>
+                                <br>
+                                <div class="tt_sh" style="width: 100%;text-align: right">
+                                    <form id="search_form" style="padding: 20px" >
+                                        <input id="type" type="hidden" name="type" value="search">
+                                        <input id="keyword" type="text" name="keyword" value="${s.keyword}" placeholder="검색어를 입력하세요.">
+                                        <button type="button" class="search-button">검색</button>
+                                    </form>
+                                </div>
                             </div>
                             <div class="voc_info_input_btns">
                                 <table>
@@ -131,9 +138,8 @@
             });
         }
 
-        //답변여부 및 확인안한 문의 카운트 ------------------------------------//
-        function confirmCount(){
-            let count = 0;
+        //답변여부 및 확인안한 문의 표시 ------------------------------------//
+        function confirmCheck(){
 
             const suggestionList = document.querySelectorAll('#confirm');
             // 답변 여부 확인하여 답변여부 텍스트 변경.
@@ -150,7 +156,6 @@
                 if(su.dataset.confirm === "false"){ // 문의내용 확인여부 검사하여 false면 카운트
                     su.previousElementSibling.innerHTML += `<span style='color:blue'> [new]</span>`
                     console.log("count");
-                    count += 1;
                 }
             }
             // 답변대기인 갯수 적용.
@@ -164,7 +169,7 @@
         }
 
         (function (){
-            confirmCount();
+            confirmCheck();
             search();
         })();
 

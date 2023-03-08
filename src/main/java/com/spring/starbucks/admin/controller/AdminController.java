@@ -45,10 +45,13 @@ public class AdminController {
 
         List<Member> memberList = memberService.findAll(search);
         PageMaker pm = new PageMaker(search, memberService.getTotalCount(search));
+        search.setType("total");
+        int totalMember = memberService.getTotalCount(search);
 
         model.addAttribute("memberList", memberList);
         model.addAttribute("pm",pm);
         model.addAttribute("s", search);
+        model.addAttribute("totalCount", totalMember);
 
         return "admin/member";
     }
@@ -66,8 +69,11 @@ public class AdminController {
     public String memberModify(Member member, HttpServletRequest request, HttpSession session){
         log.info("/admin/member_modify POST ! - {}", member);
         String redirectUri = request.getHeader("Referer");
+        redirectUri = redirectUri.substring(redirectUri.indexOf("pageNum"));
+        Member m = memberService.findUser(member.getAccount());
+        member.setPassword(m.getPassword());
         boolean flag = memberService.update(member);
-        return "redirect:"+redirectUri;
+        return "redirect:/admin/member?"+redirectUri;
     }
 
     @PostMapping("/member_delete")
@@ -75,10 +81,17 @@ public class AdminController {
     public ResponseEntity<String> memberDelete(@RequestBody DelMember member, Model model, HttpServletRequest request){
         log.info("/admin/member_delete  reason: {}", member.getAccount() );
         log.info("/admin/member_delete  reason: {}", member.getDelReason() );
+        HttpSession session = request.getSession();
         String redirectUri = request.getHeader("Referer");
         redirectUri = redirectUri.substring(redirectUri.indexOf("pageNum"));
         log.info("referer : {}",redirectUri);
-        String msg = memberService.deleteAccount(member.getAccount(), member.getDelReason());
+//      탈퇴 시키는 회원과 로그인된 회원이 같은 경우 탈퇴시키지않고 리턴
+        if(member.getAccount() == LoginUtils.getCurrentMemberAccount(session)){
+            session.removeAttribute("loginUser");
+            session.invalidate();
+            return new ResponseEntity<String >("same-account", HttpStatus.OK);
+        }
+        String msg = memberService.deleteAccount(member.getAccount(), member.getDelReason(), session);
         model.addAttribute("redirectUri",redirectUri);
         return new ResponseEntity<String >(msg, HttpStatus.OK);
     }
@@ -89,7 +102,10 @@ public class AdminController {
         log.info("/admin/deleted_member GET! - forwarding to deletedMember.jsp");
         List<DelMember> delMemberList = memberService.delFindAll(search);
         PageMaker pm = new PageMaker(search, memberService.delGetTotalCount(search));
+        search.setType("total");
+        int totalMember = memberService.delGetTotalCount(search);
 
+        model.addAttribute("totalCount", totalMember);
         model.addAttribute("memberList", delMemberList);
         model.addAttribute("pm",pm);
         model.addAttribute("s", search);
@@ -136,7 +152,18 @@ public class AdminController {
     public String suggestion(Search search, Model model) {
         List<Suggestion> suggestionsList = suggestionService.findAll(search);
         PageMaker pm = new PageMaker(search, suggestionService.getTotalCount(search));
-
+//        총 문의수
+        search.setType("total");
+        int totalSuggestion = suggestionService.getTotalCount(search);
+//        확인안한 새로운 문의 수
+        search.setType("new");
+        int NewSg = suggestionService.getTotalCount(search);
+//        답변대기 문의 수
+        search.setType("no_reply");
+        int NoReplySg = suggestionService.getTotalCount(search);
+        model.addAttribute("totalCount", totalSuggestion);
+        model.addAttribute("NewSg", NewSg);
+        model.addAttribute("NoReplySg", NoReplySg);
         model.addAttribute("suggestionList" , suggestionsList);
         model.addAttribute("pm", pm);
         model.addAttribute("s", search);
