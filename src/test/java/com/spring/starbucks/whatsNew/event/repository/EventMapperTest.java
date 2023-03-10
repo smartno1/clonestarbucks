@@ -1,7 +1,7 @@
-package com.spring.starbucks.board.event.repository;
+package com.spring.starbucks.whatsNew.event.repository;
 
+import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.whatsNew.event.domain.Event;
-import com.spring.starbucks.whatsNew.event.repository.EventMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ class EventMapperTest {
         Event event = new Event();
         event.setKind("card");
         event.setListImg("/images/whats_new/event/e1.jpg");
-        event.setContentImg("/images/whats_new/event/e1-1.jpg");
+        event.setContent("/images/whats_new/event/e1-1.jpg");
         event.setBeginDate(beginDate);
         event.setEndDate(endDate);
         for(int i = 0; i<20 ; i++){
@@ -45,7 +45,7 @@ class EventMapperTest {
     @Test
     @DisplayName("전체 게시물 조회, 반환된 리스트 사이즈는 20 이어야한다.")
     void findAll() {
-        List<Event> list = eventMapper.findAll();
+        List<Event> list = eventMapper.findAll(new Search());
 
         assertEquals(20, list.size());
     }
@@ -73,7 +73,7 @@ class EventMapperTest {
         event.setKind("card");
         event.setTitle("이벤트1");
         event.setListImg("/images/whats_new/event/e1.jpg");
-        event.setContentImg("/images/whats_new/event/e1-1.jpg");
+        event.setContent("/images/whats_new/event/e1-1.jpg");
         event.setBeginDate(beginDate);
         event.setEndDate(endDate);
 
