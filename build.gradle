@@ -61,6 +61,6 @@ dependencies {
 
 tasks.named('test') {
 //	useJUnitPlatform()
-	exlude '**/*' // test skip 설정.
+	exclude '**/*' // test skip 설정.
 }
 
