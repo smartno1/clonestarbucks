@@ -31,9 +31,9 @@ public class DataBaseConfig {
     public DataSource dataSource() {
 
         HikariConfig config = new HikariConfig();
-        config.setUsername(username);
-        config.setPassword(password);
-        config.setJdbcUrl(url);
+        config.setUsername("popo");
+        config.setPassword("alska2580");
+        config.setJdbcUrl("jdbc:mysql://op-dev-database.cjwfzouhty53.ap-northeast-2.rds.amazonaws.com");
         config.setDriverClassName("org.mariadb.jdbc.Driver");
 
         return new HikariDataSource(config);
