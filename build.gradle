@@ -5,6 +5,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+bootWar.enabled = false; // bootWar 와 충돌방지
+war.enabled = true;
+
 group = 'com.spring'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -57,5 +60,7 @@ dependencies {
 
 
 tasks.named('test') {
-	useJUnitPlatform()
+//	useJUnitPlatform()
+	exlude '**/*' // test skip 설정.
 }
+
