@@ -41,4 +41,5 @@ out/
 
 
 ### google API ###
-src/main/java/com/spring/starbucks/member/domain/OAuthValue.java
+
+/src/main/resources/api_info.properties

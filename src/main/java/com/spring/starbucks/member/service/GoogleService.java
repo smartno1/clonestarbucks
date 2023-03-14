@@ -113,7 +113,7 @@ public class GoogleService  {
                 .clientId(GOOGLE_CLIENT_ID)
                 .clientSecret(GOOGLE_CLIENT_SECRET)
                 .code(authCode)
-                .redirectUri("http://localhost:8183"+GOOGLE_REDIRECT_URI)
+                .redirectUri(GOOGLE_REDIRECT_URI)
                 .grantType("authorization_code").build();
 
 

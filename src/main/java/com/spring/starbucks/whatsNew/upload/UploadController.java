@@ -28,7 +28,7 @@ public class UploadController {
 
         // 폴더 생성
         String[] pathInfo = new String[5];
-        pathInfo[0] = "images";
+        pathInfo[0] = "img";
         switch (type) {
             case "event":
                 pathInfo[1] = "whats_new";

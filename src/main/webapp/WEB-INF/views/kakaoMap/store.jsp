@@ -67,8 +67,7 @@
                                 <article>
                                     <ul id="placesList"></ul>
                                     <div id="pagination"></div>
-                                </articl>
-                            </article>
+                                </article>
 
 
                             <!-- <header id="find_road_warp">
@@ -81,7 +80,7 @@
 
 
                             </article> -->
-
+                            </article>
                         </div>
                     </div>
                 </section>
@@ -89,7 +88,7 @@
             <!-- <jsp:include page="../include/footer.jsp"></jsp:include> -->
 
             <script type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=88309d14c1b9cc591cb9410898d2903f&libraries=services">
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea0d6c26755c5b272c54def7dd9e584&libraries=services">
                 </script>
             <script>
 

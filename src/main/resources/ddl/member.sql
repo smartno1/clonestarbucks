@@ -1,6 +1,7 @@
 CREATE TABLE tbl_member(
 
-    account VARCHAR(50)
+    id INT NOT NULL auto_increment
+    , account VARCHAR(50) NOT NULL UNIQUE
     , password VARCHAR(150) NOT NULL
     , nickname VARCHAR(5) NOT NULL
     , name VARCHAR(50) NOT NULL
@@ -23,7 +24,7 @@ CREATE TABLE tbl_member(
 CREATE TABLE del_member(
 
                            id INT NOT NULL auto_increment
-    , account VARCHAR(50)
+    , account VARCHAR(50) NOT NULL UNIQUE
     , password VARCHAR(150) NOT NULL
     , nickname VARCHAR(5) NOT NULL
     , name VARCHAR(50) NOT NULL

@@ -33,19 +33,19 @@
         </div>
         <jsp:include page="../include/footer.jsp"></jsp:include>
         <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=88309d14c1b9cc591cb9410898d2903f&libraries=services">
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea0d6c26755c5b272c54def7dd9e584&libraries=services">
             </script>
 
         <script>
             var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                 mapOption = {
                     center: new kakao.maps.LatLng(35.566826, 126.9786567), // 지도의 중심좌표
                     level: 13 // 지도의 확대 레벨
                 };
 
-            // 지도를 생성합니다    
+            // 지도를 생성합니다
             var map = new kakao.maps.Map(mapContainer, mapOption);
 
             // 장소 검색 객체를 생성합니다

@@ -2,9 +2,12 @@ package com.spring.starbucks.member.controller;
 
 
 import com.spring.starbucks.member.domain.Member;
+import com.spring.starbucks.member.domain.SNSLogin;
 import com.spring.starbucks.member.dto.LoginDTO;
 import com.spring.starbucks.member.dto.ModifyPwd;
 import com.spring.starbucks.member.repository.MemberMapper;
+import com.spring.starbucks.member.service.GoogleService;
+import com.spring.starbucks.member.service.KakaoService;
 import com.spring.starbucks.member.service.LoginFlag;
 import com.spring.starbucks.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
-import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
-import static com.spring.starbucks.util.LoginUtils.getCurrentMemberAccount;
+import static com.spring.starbucks.util.LoginUtils.*;
 
 
 @Controller
@@ -35,6 +37,8 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberMapper memberMapper;
+    private final KakaoService kakaoService;
+    private final GoogleService googleService;
 
     private final BCryptPasswordEncoder encoder;
 
@@ -216,11 +220,19 @@ public class MemberController {
 
     // 로그아웃
     @GetMapping("/sign-out")
-    public ResponseEntity<String> signOut(HttpSession session) {
+    public ResponseEntity<String> signOut(HttpSession session) throws Exception {
         ResponseEntity<String> res = new ResponseEntity<>("success",HttpStatus.OK);
         if (session.getAttribute("loginUser") != null) {
             // 1. 세션에서 정보를 삭제한다.
             session.removeAttribute("loginUser");
+
+            if(session.getAttribute(LOGIN_FROM) == SNSLogin.KAKAO){
+                log.info("kakao logout");
+                // 카카오 로그아웃 처리
+                kakaoService.logout((String) session.getAttribute("accessToken"));
+            }else if(session.getAttribute(LOGIN_FROM) == SNSLogin.GOOGLE){
+
+            }
 
             // 2. 세션을 무효화한다.
             session.invalidate();

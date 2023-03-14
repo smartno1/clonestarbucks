@@ -18,6 +18,7 @@ CREATE table starbucks.menu(
     ,kind VARCHAR(30)
     ,type VARCHAR(30)
     ,espresso VARCHAR(30)
+    ,espresso_kind VARCHAR(30)
     ,description_summary VARCHAR(500)
     ,description_detail VARCHAR(500)
     ,design_story VARCHAR(500)

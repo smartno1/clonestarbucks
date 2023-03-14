@@ -25,15 +25,16 @@ public class KakaoController {
 
     private final KakaoService kakaoService;
 
-    @GetMapping("/kakao-test")
-    public void kakoTest(Model model) {
-        log.info("forward to kakao-test.jsp!");
+    @GetMapping("/kakao-login")
+    public String kako(Model model) {
+        log.info("redirect to kakao-login.jsp!");
         model.addAttribute("appKey", KAKAO_APP_KEY);
         model.addAttribute("redirectUri", KAKAO_REDIRECT_URI);
+        return "redirect:https://kauth.kakao.com/oauth/authorize?client_id="+KAKAO_APP_KEY+"&redirect_uri="+KAKAO_REDIRECT_URI+"&response_type=code";
     }
 
     // 카카오 인증서버가 보내준 인가코드를 받아서 처리할 메서드
-    @GetMapping(KAKAO_REDIRECT_URI)
+    @GetMapping("/oauth/kakao")
     public String kakaoLogin(String code, HttpSession session) throws Exception {
         log.info("{} GET!! code - {}", KAKAO_REDIRECT_URI, code);
 

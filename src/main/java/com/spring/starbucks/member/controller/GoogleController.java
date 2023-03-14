@@ -30,6 +30,10 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 import static com.spring.starbucks.member.domain.OAuthValue.*;
+import static com.spring.starbucks.member.domain.SNSLogin.GOOGLE;
+import static com.spring.starbucks.member.domain.SNSLogin.KAKAO;
+import static com.spring.starbucks.util.LoginUtils.LOGIN_FLAG;
+import static com.spring.starbucks.util.LoginUtils.LOGIN_FROM;
 
 
 @Controller
@@ -42,8 +46,17 @@ public class GoogleController {
     private final MemberService memberService;
 
 
+    @GetMapping("/google-login")
+    public String google(){
 
-    @GetMapping(GOOGLE_REDIRECT_URI)
+        return "redirect:https://accounts.google.com/o/oauth2/v2/auth?client_id=" +GOOGLE_CLIENT_ID
+                + "&redirect_uri="+GOOGLE_REDIRECT_URI
+                + "&response_type=code"
+                + "&scope=email%20profile%20openid"
+                + "&access_type=offline"
+                + "&prompt=consent";
+    }
+    @GetMapping("/oauth/google")
     public String googleLogin(String code, HttpSession session, HttpServletResponse response, Model model) throws Exception{
 
         log.info("Google Login Start, id token : {}",code);
@@ -64,44 +77,49 @@ public class GoogleController {
 
         Member googleUser = googleService.getGoogleUserInfo(jwtToken,mapper,restTemplate);
 
-        String type = "email";
-        String value = googleUser.getEmail();
+        if(googleUser != null) {
 
-
-        boolean isMember = memberService.checkSignUpValue(type, value);
-        if(googleUser!=null) {
-            if (isMember) {
-
-                LoginDTO data = new LoginDTO();
-
-                data.setEmail(value);
-
-                LoginFlag flag = memberService.login(data, session, response);
-                log.info(flag);
-                model.addAttribute("loginMsg", flag);
-                if (flag == LoginFlag.SUCCESS) {
-                    log.info("google login success!!");
-
-                    String redirectURI = (String) session.getAttribute("redirectURI");
-                    if (redirectURI.contains("/member/modify")) return "redirect:/";
-                    return "redirect:" + redirectURI;
-
-                }
-
-            } else if (!isMember) {
-
-//                boolean signUpFlag = memberService.signUp(googleUser);
-
-                log.info("구글 이메일과 연결 된 계정 없음");
-                model.addAttribute("loginMsg", LoginFlag.No_EMAIL);
-
-                return "redirect:/member/sign-in";
-
-            }
-
+            session.setAttribute(LOGIN_FLAG, googleUser);
+            session.setAttribute(LOGIN_FROM, GOOGLE);
+            session.setAttribute("jwtToken", jwtToken);
         }
+        return "redirect:" + (String)session.getAttribute("redirectURI");
 
-        return null;
+//        String type = "email";
+//        String value = googleUser.getEmail();
+//        boolean isMember = memberService.checkSignUpValue(type, value);
+//        if(googleUser!=null) {
+//            if (isMember) {
+//
+//                LoginDTO data = new LoginDTO();
+//
+//                data.setEmail(value);
+//
+//                LoginFlag flag = memberService.login(data, session, response);
+//                log.info(flag);
+//                model.addAttribute("loginMsg", flag);
+//                if (flag == LoginFlag.SUCCESS) {
+//                    log.info("google login success!!");
+//
+//                    String redirectURI = (String) session.getAttribute("redirectURI");
+//                    if (redirectURI.contains("/member/modify")) return "redirect:/";
+//                    return "redirect:" + redirectURI;
+//
+//                }
+//
+//            } else if (!isMember) {
+//
+////                boolean signUpFlag = memberService.signUp(googleUser);
+//
+//                log.info("구글 이메일과 연결 된 계정 없음");
+//                model.addAttribute("loginMsg", LoginFlag.No_EMAIL);
+//
+//                return "redirect:/member/sign-in";
+//
+//            }
+//        }
+
+//        return null;
 
 
     }

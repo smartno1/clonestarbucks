@@ -36,15 +36,15 @@
 					</div>
 					<button class="submit" type="submit" onclick=login()>로그인</button>
 					<div id="kakao-login">
-						<a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=9520940ca17f122c962a25e65e9c5030&redirect_uri=http://localhost:8183/oauth/kakao&response_type=code">
+						<a id="custom-login-btn" href="/kakao-login">
 							<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 						</a>
 					</div>
 					<div id="buttonDiv">
 						<fieldset>
-							<div id="googleLoginBtn" style="cursor: pointer">
+							<a id="googleLoginBtn" href="/google-login" style="cursor: pointer">
 								<img id="googleLoginImg" src="/images/icon/btn_google_signin.png" width="300">
-							</div>
+							</a>
 						</fieldset>
 					</div>
 					<p>* 타 사이트와 비밀번호를 동일하게 사용할 경우 도용의 위험이 있으므로, 정기적인 비밀번호 변경을 해주시길 바랍니다.</p>
@@ -117,18 +117,10 @@
 		alert('로그인 후 사용할 수 있습니다.');
 	}
 
-	const onClickGoogleLogin = (e) => {
-    	//구글 인증 서버로 인증코드 발급 요청
- 		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?"+
-        "client_id=916741122216-rfs53tl1hd2k6vh8fa5uvspmt348hcn4.apps.googleusercontent.com"+
-        "&redirect_uri=http://localhost:8183/oauth/google"+
-        "&response_type=code"+
-        "&scope=email%20profile%20openid"+
-        "&access_type=offline")
- 	}
-	
-	const googleLoginBtn = document.getElementById("googleLoginBtn");
-	googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+	const loginMsg = '${loginMsg}'
+	if(${!empty loginMsg}){
+		alert("${loginMsg}");
+	}
 
 </script>
 </body>
