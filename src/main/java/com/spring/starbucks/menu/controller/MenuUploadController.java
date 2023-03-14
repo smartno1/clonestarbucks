@@ -1,7 +1,7 @@
 package com.spring.starbucks.menu.controller;
 
 
-import com.spring.starbucks.menu.upload.FileUtils;
+import com.spring.starbucks.util.FileUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,12 +29,27 @@ public class MenuUploadController {
     // 비동기 요청 파일 업로드 처리
     @PostMapping("/ajax-upload")
     @ResponseBody
-    public ResponseEntity<String> ajaxUpload(@RequestBody MultipartFile file) throws NullPointerException{
+    public ResponseEntity<String> ajaxUpload(@RequestBody MultipartFile file, String type) throws NullPointerException{
 
         log.info("/ajax-upload POST! - {}", file);
 
+        String[] pathInfo = new String[5];
+        pathInfo[0] = "img";
+        pathInfo[1] = "menu";
+        switch (type) {
+            case "drink":
+                pathInfo[2] = "drink";
+                break;
+            case "food":
+                pathInfo[2] = "food";
+                break;
+            case "sangpum":
+                pathInfo[2] = "sangpum";
+                break;
+        }
+
         // 클라이언트가 전송한 파일 업로드하기
-        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH);
+        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH, pathInfo);
         // 클라이언트에게 전송할 파일경로 리스트
         String fileName = fullPath;
 
@@ -100,11 +115,14 @@ public class MenuUploadController {
 
         log.info("/menu/deleteFile DELETE! oldFileName - {}",oldFileName);
 
-        if(oldFileName.equals("/images/logo.png")) {
-            return new ResponseEntity<>("file is logo", HttpStatus.OK);
+        String result = FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
+        if(result == "delete success") {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }else if(result == "not found") {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         }
-
-        return FileUtils.deleteFile(oldFileName,UPLOAD_PATH);
     }
 
 }

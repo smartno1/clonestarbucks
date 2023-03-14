@@ -33,7 +33,7 @@ public class CoffeeUploadController {
         log.info("/coffee/bean/ajax-upload POST! - {}", file);
 
         String[] pathInfo= new String[]{
-                "images",
+                "img",
                 "coffee",
                 "bean"
         };
