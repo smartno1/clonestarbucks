@@ -1,0 +1,150 @@
+.container-wrapper{
+    background-attachment: fixed;
+    background-size : cover;
+    padding-bottom: 120px;
+    margin-top: 130px;
+    width: 100%;
+    height: 900px;
+    background-color: #c69214;
+
+}
+.all-mo{
+    width: 100%;
+    display: block;
+    height: 1000px;
+    margin: 0 auto ;
+}
+.tt_sh{margin-bottom: 2px; float: right; display: block; width: 300px; height: 30px; margin-top: -2px}
+.tt_sh button{height: 25px; width: 50px; border-radius:20px; background-color: #64a70b; color: #FFFFFF}
+/*머리글 코드*/
+.toptitle-bg {
+    background:#231a11;
+    height:178px;
+    position:relative;
+    width:100%;
+
+}
+.toptittle {
+    background:url("/images/my_Starbucks/ms_sub_ttl_bg.jpg");
+    height:178px;
+    left:50%;
+    margin-left: -1000px;
+    position:absolute;
+    width:2000px;
+}
+.ms_sub_tit_inner {
+    height:74px;
+    margin:0 auto;
+    padding-top:104px;
+    position:relative;
+    width:1100px; }
+.ms_sub_tit_inner h4 {
+    font:bold 36px Avenir, Arial, georgia;
+    color:#fefefe;
+    position:relative;
+}
+
+.ms_sub_tit_inner ul.smap { position:absolute; right:0; top:128px; }
+.ms_sub_tit_inner ul.smap li { vertical-align:middle; float:left; height:16px; line-height:16px; margin:0 2.5px; }
+.ms_sub_tit_inner ul.smap a { font:normal 12px Avenir, Arial, georgia; color:#fff; }
+.ms_sub_tit_inner ul.smap a.this { color:#fff; font-size:12px; font-weight:bold; }
+.ms_sub_tit_inner ul.smap img.arrow { position:relative; top:2px; }
+.body-box{
+    width: 1100px;
+
+    margin: 0 auto;
+    margin-top: 40px;
+
+}
+.cheak-box{
+    width: 830px;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 100%;
+    display: block;
+    float: left;
+
+}
+.cheak-box h3{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+}
+.btt_ck1{
+    border-radius:10px;
+    border: 0.5px solid #8a8a8a;
+    font-weight: bold;
+    font-size: 15px;
+    background-color:#d90000;
+    color: #FFFFFF;
+}
+.btt_ck2{
+    border-radius:10px;
+    border: 0.5px solid #8a8a8a;
+    font-weight: bold;
+    font-size: 15px;
+    background-color:#00abf1;
+    color: #FFFFFF;
+}
+table img{
+    float:left;
+    display: block;
+}
+.voc_info_input_guide { border:1px solid #ddd;
+    border-radius:3px;
+    float:left;
+    padding:20px;
+    width:788px; }
+.voc_info_input_guide ul { margin-top:-5px; }
+.voc_info_input_guide ul li{ background:url("../img/util/bullet_grey.gif") 0 5px no-repeat; color:#666; float:left; font-size:14px; line-height:16px; margin-top:5px; padding-left:10px; width:100%; box-sizing: border-box; }
+.voc_info_input_guide p{
+    color: #224989;
+    font-size: 15px;
+    float: left;
+}
+.voc_info_input_guide b{
+    color: #224989;
+    font-size: 15px;
+    display: block;
+    float: left;
+    width: 100px;
+    height: 20px;
+    border: 1px solid #8a8a8a;
+    text-align: center;
+    line-height: inherit;
+    margin-left: 5px;
+}
+.ms_nav { float:right; font-weight:bold; width:220px; margin-bottom:90px; }
+.ms_nav > ul { border-top:2px solid #222; }
+.ms_nav > ul > li { border-bottom:1px solid #ddd; width:220px; }
+.ms_nav > ul > li > a { color:#444; display:block; font-size:14px; padding:20px 30px 20px 15px; position:relative; width:175px; }
+.ms_nav > ul > li > a:hover { color:#006633; }
+.ms_nav > ul > li > a > span { height:7px; margin-top:-3px; position:absolute; right:15px; top:50%; width:12px; }
+.ms_nav > ul > li > a span.sbox_arrow_down { background:url("/images/my_Starbucks/sbox_arrow_down.png"); }
+.ms_nav > ul > li > a span.sbox_arrow_up { background:url("../img/util/sbox_arrow_up.png"); }
+.ms_nav > ul > li > ul { border:none; display:none; padding-bottom:14px; }
+.ms_nav > ul > li > ul > li { width:220px; }
+.ms_nav > ul > li > ul > li > a { color:#444; display:block; font-size:12px; padding:6px 0 6px 15px; width:205px; }
+
+.voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
+.voc_info_input_btns table tr{height: 40px;}
+.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
+.voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF;cursor: pointer }
+.voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000; cursor: pointer }
+.voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
+
+.voc_info_input_btns.del table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
+.voc_info_input_btns.del table tr{height: 40px;}
+.voc_info_input_btns.del table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #2C2A29;}
+.voc_info_input_btns.del table tbody tr{ background-color: #4c4c50; color:#FFFFFF;}
+.voc_info_input_btns.del table tbody tr:nth-child(2n){background-color: #8a8a8a; color: #FFFFFF;}
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000;cursor: pointer }
+.voc_info_input_btns.del table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
+/*foodboot*/
+.foodboot_end{
+    width:100%;
+    float: left;
+    display: block;
+}

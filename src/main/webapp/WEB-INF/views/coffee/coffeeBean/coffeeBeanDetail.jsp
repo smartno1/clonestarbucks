@@ -5,7 +5,7 @@
 <head>
 	<%@include file="../../include/static-head.jsp"%>
 	<title>커피 | Starbucks Korea</title>
-	<link rel="stylesheet" type="text/css" href="/css/coffeeBeanDetail.css">
+	<link rel="stylesheet" type="text/css" href="/css/coffee/bean/coffeeBeanDetail.css">
 
 </head>
 <body>
@@ -157,6 +157,6 @@
 </div>
  	<script src="/js/crud.js"></script>
   	<script src="/js/share.js"></script>
-  	<script src="/js/coffeeDetail.js"></script>
+  	<script src="/js/coffee/bean/coffeeDetail.js"></script>
 </body>
 </html>	

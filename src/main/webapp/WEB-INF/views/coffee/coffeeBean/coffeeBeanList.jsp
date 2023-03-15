@@ -4,41 +4,8 @@
 <html>
 <head>
     <%@include file="../../include/static-head.jsp"%>
-    <link rel="stylesheet" type="text/css" href="/css/coffeeBeanList.css">
     <title>커피 | Starbucks Korea</title>
-    <style>
-        .coffee-bean-wrapper{
-            width: 100%;
-            display:grid;
-            height:fit-content;
-            grid-template-columns:repeat(4,1fr);
-        }
-        .coffee_bean{
-            width: 100%;
-            max-width: 275px;
-            min-width: 200px;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            margin-top: 15px;
-        }
-        .coffee_bean a{
-            width: inherit;
-            max-width: 260px;
-            height: inherit;
-            max-height: 245px;
-            vertical-align: baseline;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        .coffee_bean a img{
-            width: 100%;
-            max-width: 260px;
-            height: 271px;
-            object-fit: contain;
-            transition: all 0.5s linear;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/coffee/bean/coffeeBeanList.css">
 </head>
 <body>
 <%@include file="../../include/header.jsp"%>

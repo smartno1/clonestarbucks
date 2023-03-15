@@ -9,7 +9,7 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/voc_Q.css">
+        <link rel="stylesheet" type="text/css" href="/css/suggestion/voc_Q.css">
     </head>
         <body>
         <%--헤더 메뉴코너--%>
@@ -73,38 +73,6 @@
                                         <col width="630">
                                     </colgroup>
                                     <tbody>
-
-<%--                                    <tr id="trProd" style="display:none;">--%>
-<%--                                        <th scope="row">제품/상품</th>--%>
-<%--                                        <td>--%>
-
-<%--                                            <div class="prod_section">--%>
-
-<%--                                                <div class="prod_wrap" id="prod_wrap1">--%>
-<%--                                                    <div class="input_wrap"><input class="voc_prod_input" readonly="" type="text" id="NM_GOODS1"></div><!--  고객의 소리 개선 220615 -->--%>
-<%--                                                    <div class="voc_prod_btn">--%>
-<%--                                                        <input class="voc_prod_input_btn" type="button" value="상품찾기" idx="1"><!-- 고객의 소리 개선 수정 220830 스크립트에서 수정 필요 -->--%>
-<%--                                                        <input class="voc_prod_input_hidden" type="hidden" name="CD_GOODS" id="CD_GOODS1">--%>
-<%--                                                    </div>--%>
-<%--                                                    <!-- <a class="prod_add" href="javascript:void(0);" onClick="$voc.prodInsert(); return false;">더하기 </a> 고객의 소리 개선 수정 220830 스크립트에서 삭제 필요 -->--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-
-<%--                                        </td>--%>
-<%--                                    </tr>--%>
-<%--                                    <tr style="display:none;">--%>
-<%--                                        <th scope="row">답변 알림 서비스<img alt="필수입력" src="//image.istarbucks.co.kr/common/img/common/bullet_star_red.gif"></th>--%>
-<%--                                        <td>--%>
-<%--                                            <div class="tbl_radio_wrap">--%>
-<%--                                                <input id="TP_CSTMR_RPLY1" name="TP_CSTMR_RPLY" type="radio" value="N">--%>
-<%--                                                <label for="TP_CSTMR_RPLY1">받지 않음</label>--%>
-<%--                                                <input id="TP_CSTMR_RPLY2" name="TP_CSTMR_RPLY" type="radio" value="Y" checked="checked">--%>
-<%--                                                <label for="TP_CSTMR_RPLY2">받음 (APP Push)</label>--%>
-<%--                                            </div>--%>
-
-<%--                                        </td>--%>
-<%--                                    </tr>--%>
-                                    <!-- 고객의 소리 개선 수정 220830 휴대폰 추가 -->
                                     <tr class="trCellphone">
                                         <th scope="row">휴대폰<img alt="필수입력" src="//image.istarbucks.co.kr/common/img/common/bullet_star_red.gif"></th>
                                         <td>

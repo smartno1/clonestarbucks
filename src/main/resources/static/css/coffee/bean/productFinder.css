@@ -1,0 +1,125 @@
+.findWrap{
+    width: 100%;
+    letter-spacing: -0.5px;
+}
+.findHeader {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.findHeader .container-name{
+    /*margin-top: 120px;*/
+    margin-bottom: 20px;
+    width: 100%;
+    height: 98px;
+    background: #ffffff;
+    position: relative;
+}
+.findHeader .container-name h2{
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 30px;
+}
+.findHeader .container-name p {
+    font-size: 16px;
+    color: #666;
+    padding-top: 20px;
+}
+.findHeader .nav .nav-ul{
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
+.findHeader .nav .nav-ul li{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #666666;
+    vertical-align: middle;
+}
+.findHeader .nav .nav-ul li img {
+    padding-top: 4px;
+}
+.findHeader .nav .nav-ul li > img{
+    padding-top: 7px;
+}
+.findListWrap {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    position: relative;
+    background: url("/images/coffee/bean/findWrap_bg.jpg") 50% 0;
+}
+.findListWrap .findList{
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+
+}
+.findListWrap .findList .findSections{
+    width: inherit;
+    position: absolute;
+    transition: 1s;
+}
+.findListWrap .findList .findSection{
+    width: 100%;
+    max-width: 1100px;
+
+    height: 469px;
+    padding-top: 85px;
+    position: absolute;
+
+}
+.findListWrap .findList .findSection > p{
+    margin-bottom: 90px;
+    position: relative;
+    text-align: center;
+}
+.findListWrap .findList .findSection > p img {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 524px;
+    cursor: pointer;
+}
+.findListWrap .findList .findSection > ul {
+    position: absolute;
+    top: 700px;
+    width: 100%;
+    max-width: 1100px;
+    justify-content: center;
+}
+.findListWrap .findList .findSection > ul li {
+    float: left;
+    width: 100%;
+    max-width: 22%;
+    margin-right: 4%;
+    position: relative;
+}
+.findListWrap .findList .findSection > ul li:last-child{
+    margin-right: 0;
+}
+.findListWrap .findList .findSection > ul li img{
+    width: 100%;
+    max-width: 242px;
+}
+.findListWrap .findList .findSection > ul li p {
+    padding-top: 15px;
+    font-size: 14px;
+    font-weight: bolder;
+    text-align: center;
+}
+.findListWrap .findList .section2{
+    top: 700px;
+}
+.findTaste2 li:first-child, .findTaste3 li:first-child{
+    padding-left: 13%;
+}
+.findListWrap .findList .section3{
+    top: 1400px;
+}
+.findListWrap .findList .section3 ul{
+
+}

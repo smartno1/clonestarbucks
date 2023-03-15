@@ -7,40 +7,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<%@include file="../../include/static-head.jsp"%>
 	<title>커피 | Starbucks Korea</title>
-	<link rel="stylesheet" type="text/css" href="/css/coffeeBeanAdd.css">
-<style>
-	.container{
-		width:100%;
-		max-width:1100px;
-		padding-bottom:100px;
-		padding-top:40px;
-	}
-	.container-name{
-		padding-bottom:30px;
-		display:flex;
-		justify-content:space-between;
-		align-items:center;
-	}
-	.context-top{
-		padding-bottom:25px;
-		border-bottom:2px solid #d3d3d3;
-		display:grid;
-		grid-template-columns:40% 60%
-	}
-
-	.coffee-img{
-		display:flex;
-		flex-direction:column;
-		justify-content:space-between;
-
-		max-height:450px;
-	}
-	.coffee-img img{
-		width: 100%;
-		max-width:300px;
-
-	}
-</style>
+	<link rel="stylesheet" type="text/css" href="/css/coffee/bean/coffeeBeanAdd.css">
 </head>
 <body>
 <%@include file="../../include/header.jsp"%>

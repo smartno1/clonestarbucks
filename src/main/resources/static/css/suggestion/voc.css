@@ -1,0 +1,186 @@
+.container-wrapper{
+    background-attachment: fixed;
+    background-size : cover;
+    padding-bottom: 120px;
+}
+.toptitle{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height: 178px;
+
+}
+.my_suggestion_detail{
+    width: 830px;
+    margin-top: 20px;
+}
+.title{
+    width: 830px;
+    border-top: 2px solid #2C2A29;
+    border-bottom: 2px solid #2C2A29;
+    height: 40px;
+}
+.title div{
+    width: 50%;
+    height: 40px;
+    font-size: 15px;
+    float: left;
+
+    font-weight: bold;
+    }
+.title_box p{
+    margin-top: 10px;
+    float: left;
+    margin-left: 10px;
+}
+.day_box p{
+    margin-top:10px;
+    float: right;
+    margin-right: 10px;
+}
+
+.reply{
+    border-radius: 10px;
+    display: block;
+    border: 1px solid #8a8a8a;
+    font-size: 15px;
+    height: 100%;
+    margin-top: 15px;
+}
+.button_box{
+    width: 830px;
+    margin-top: 15px;
+    height: 20px;
+
+}
+.button_box li{
+    float: right;
+    margin-left: 10px
+}
+.re_textdata{
+    margin: 15px ;
+}
+.no_textdata{
+    margin: 15px ;
+}
+.context .text_box{
+    width: 830px;
+    height: 100%;
+    border: 1px solid #8a8a8a;
+    border-radius: 10px;
+    margin-top: 20px;
+
+
+}
+.context .text_box .cs_textall{
+    width: 830px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    height: 26px;
+    margin-top: 15px;
+
+}
+.context .text_box .cs_texttt{
+    font-size: 15px;
+    height: 100%;
+    margin: 15px;
+
+}
+.toptitle .toptitle-bg{
+    margin: 0 auto;
+    background-image: url("/images/my_Starbucks/ms_sub_ttl_bg.jpg");
+    height: 178px;
+    width: 100%;
+
+}
+.toptitle .toptitle-bg .toptitle-inner{
+    width: 1100px;
+    height: 178px;
+    margin: 0 auto;
+}
+.toptitle-tt{
+    height: 74px;
+    margin: 0 auto;
+    padding-top: 104px;
+    position: relative;
+    width: 1100px;
+}
+.toptitle-tt h4{
+    font: bold 36px Avenir, Arial, georgia;
+    color: #fefefe;
+    position: relative
+}
+.toptitle-tt .smap{
+     position: absolute;
+     right: 0;
+     top: 128px;
+ }
+.toptitle-tt li{
+    vertical-align: middle;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 2.5px;
+    font: normal 12px Avenir, Arial, georgia;
+
+}
+.toptitle-tt li a{
+    color: #fff;
+}
+.main-all{
+    width: 100%;
+    height: 100%;
+
+}
+.main-all .main-all-bg {
+    width: 1100px;
+    margin: 0 auto;
+    padding-top: 30px;
+    height: 100%;
+    margin-bottom: 30px;
+}
+.my_suggestion_inquiry { width:770px; height:150px; padding:26px 30px; border-radius:3px; background:#f4f4f2 url("/images/my_Starbucks/jjon.png") 589px bottom no-repeat; }
+.my_suggestion_inquiry dl { width:520px; }
+.my_suggestion_inquiry dl dt { color:#222; font-size:18px; font-weight:bold; padding-bottom:14px; }
+.my_suggestion_inquiry dl dd { color:#444; font-size:14px; line-height:20px; padding-bottom:10px; }
+.my_suggestion_inquiry ul.inquiry_date li span { color:#444; font-size:12px; line-height:16px; background:url("/images/my_Starbucks/s_bot.png") no-repeat 0 center / 3px; padding-left:12px; }
+
+section.my_suggestion_list { position: relative; padding-top:30px; margin-bottom: 500px;}
+
+table.suggestion_use_info_tbl { border-top:1px solid #333; font-size:14px; margin-top:10px; text-align:center; } /* 고객의소리 개선 수정 220830 */
+table.suggestion_use_info_tbl caption { font-size:0; height:0; line-height:0; margin:0; overflow:hidden; padding:0; text-indent:-20000px; width:0; }
+table.suggestion_use_info_tbl thead tr th { border-bottom:1px solid #333; color:#222; height:46px; vertical-align:middle; }
+table.suggestion_use_info_tbl thead tr th span{ color:#666; font-weight:normal; }
+table.suggestion_use_info_tbl tbody tr td { border-bottom:1px solid #dbdbdb; color:#666; height:46px; padding:7px 0; vertical-align:middle; }
+table.suggestion_use_info_tbl tbody tr td.tr { text-align:left; padding:7px 20px 7px 20px; }
+table.suggestion_use_info_tbl tbody tr td span.ck1 { color:#006633; }
+table.suggestion_use_info_tbl tbody tr td span.ck2 { color:#a41f35; }
+table.suggestion_use_info_tbl tbody tr td span.ck3 { color:#bd9b60; }
+table.suggestion_use_info_tbl tbody tr td span.ck4 { color:#444; }
+table.suggestion_use_info_tbl tbody tr td span.file_on { display:block; width:82px; height:18px; background:url("../img/util/reward/icon_file_on.png") 50% 50% no-repeat; text-indent:-20000px; }
+
+table.suggestion_use_info_tbl td p.icon_prepare span { background:#666; border-radius:3px; color:#fff; text-align:center; padding:5px 10px 5px 10px; }
+table.suggestion_use_info_tbl td p.icon_complete span { background:#006633; border-radius:3px; color:#fff; text-align:center; padding:5px 15px 5px 15px; }
+table.suggestion_use_info_tbl td p.icon_receive span { background:#b7312c; border-radius:3px; color:#fff; text-align:center; padding:5px 15px 5px 15px; }
+
+p.btn_suggestion_inquiry { border-radius:3px; height:28px; width:136px; background:#e2c383; border:1px solid #bb9f65; margin:10px 0 0 0; } /* ê³ ê°ì˜ì†Œë¦¬ ê°œì„  ìˆ˜ì • 220830 */
+p.btn_suggestion_inquiry a { display:block; font-size:12px; font-weight:bold; height:28px; line-height:28px; text-align:center; width:141px;  color:#222; }
+
+.en {
+    font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+}
+
+
+.ms_nav { float:right; font-weight:bold; width:220px; margin-bottom:90px; }
+.ms_nav > ul { border-top:2px solid #222; }
+.ms_nav > ul > li { border-bottom:1px solid #ddd; width:220px; }
+.ms_nav > ul > li > a { color:#444; display:block; font-size:14px; padding:20px 30px 20px 15px; position:relative; width:175px; }
+.ms_nav > ul > li > a:hover { color:#006633; }
+.ms_nav > ul > li > a > span { height:7px; margin-top:-3px; position:absolute; right:15px; top:50%; width:12px; }
+.ms_nav > ul > li > a span.sbox_arrow_down { background:url("/images/my_Starbucks/sbox_arrow_down.png"); }
+.ms_nav > ul > li > a span.sbox_arrow_up { background:url("/images/my_Starbucks/sbox_arrow_up.png"); }
+.ms_nav > ul > li > ul { border:none; display:none; padding-bottom:14px; }
+.ms_nav > ul > li > ul > li { width:220px; }
+.ms_nav > ul > li > ul > li > a { color:#444; display:block; font-size:12px; padding:6px 0 6px 15px; width:205px; }

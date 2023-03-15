@@ -13,7 +13,7 @@ $('#delete').click(function(){
 				console.log(msg);
 				if(msg === "delete success"){
 					alert("삭제에 성공하였습니다.");
-					location.href = "/coffee/bean/list";
+					location.href = "../css/coffee/bean/list";
 				}else{
 					alert("삭제에 실패하였습니다.");
 				}

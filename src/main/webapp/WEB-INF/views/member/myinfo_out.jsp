@@ -9,7 +9,7 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/myinfo_out.css">
+        <link rel="stylesheet" type="text/css" href="/css/member/myinfo_out.css">
     </head>
         <body>
         <%--헤더 메뉴코너--%>

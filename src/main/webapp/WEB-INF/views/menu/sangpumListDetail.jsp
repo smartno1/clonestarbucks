@@ -7,7 +7,7 @@
 <html>
 <head>
 		<%@include file="../include/static-head.jsp"%>
-        <link rel="stylesheet" type="text/css" href="/css/menuDetail.css">
+        <link rel="stylesheet" type="text/css" href="/css/menu/menuDetail.css">
 
 </head>
 <body>

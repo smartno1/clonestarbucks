@@ -13,7 +13,7 @@
 				<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 				<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-				<link rel="stylesheet" type="text/css" href="/css/sign-up.css">
+				<link rel="stylesheet" type="text/css" href="/css/member/sign-up.css">
 			</head>
 
 			<body>

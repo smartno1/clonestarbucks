@@ -9,7 +9,7 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/m_admin.css">
+        <link rel="stylesheet" type="text/css" href="/css/admin/m_admin.css">
         <script>
             // 페이징에 넘겨줄 주소 저장.
             const href = "/admin/suggestion";
@@ -146,20 +146,16 @@
             for(let su of suggestionList){
                 console.log("replyDone : ",su.dataset.replydone);
                 if(su.dataset.replydone === "true"){
-                    console.log("true");
                     su.firstElementChild.classList.replace("btt_ck1","btt_ck2");
                     su.firstElementChild.textContent="답변완료";
                 }else{
-                    console.log("false");
                     su.firstElementChild.textContent="답변대기";
                 }
-                if(su.dataset.confirm === "false"){ // 문의내용 확인여부 검사하여 false면 카운트
+                if(su.dataset.confirm === "false"){ // 문의내용 확인여부 검사하여 false면 new 표시
                     su.previousElementSibling.innerHTML += `<span style='color:blue'> [new]</span>`
                     console.log("count");
                 }
             }
-            // 답변대기인 갯수 적용.
-            document.querySelector('.no_confirm_count').textContent =""+ count;
 
         }
 

@@ -1,0 +1,118 @@
+.container-wrapper{
+    background-attachment: fixed;
+    background-size : cover;
+    padding-bottom: 120px;
+    margin-top: 130px;
+    width: 100%;
+    height: 900px;
+    background-color: #c69214;
+
+}
+.all-mo{
+    width: 100%;
+    display: block;
+    height: 800px;
+    margin: 0 auto ;
+}
+.tt_sh{margin-bottom: 2px; float: right; display: block; width: 300px; height: 30px; margin-top: -2px}
+.tt_sh button{height: 25px; width: 50px; border-radius:20px; background-color: #64a70b; color: #FFFFFF}
+/*머리글 코드*/
+.toptitle-bg {
+    background:#231a11;
+    height:178px;
+    position:relative;
+    width:100%;
+
+}
+.toptittle {
+    background:url("/images/my_Starbucks/ms_sub_ttl_bg.jpg");
+    height:178px;
+    left:50%;
+    margin-left: -1000px;
+    position:absolute;
+    width:2000px;
+}
+.ms_sub_tit_inner {
+    height:74px;
+    margin:0 auto;
+    padding-top:104px;
+    position:relative;
+    width:1100px; }
+.ms_sub_tit_inner h4 {
+    font:bold 36px Avenir, Arial, georgia;
+    color:#fefefe;
+    position:relative;
+}
+
+.ms_sub_tit_inner ul.smap { position:absolute; right:0; top:128px; }
+.ms_sub_tit_inner ul.smap li { vertical-align:middle; float:left; height:16px; line-height:16px; margin:0 2.5px; }
+.ms_sub_tit_inner ul.smap a { font:normal 12px Avenir, Arial, georgia; color:#fff; }
+.ms_sub_tit_inner ul.smap a.this { color:#fff; font-size:12px; font-weight:bold; }
+.ms_sub_tit_inner ul.smap img.arrow { position:relative; top:2px; }
+.body-box{
+    width: 1100px;
+
+    margin: 0 auto;
+    margin-top: 40px;
+
+}
+.cheak-box{
+    width: 830px;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 100%;
+    display: block;
+    float: left;
+
+}
+.cheak-box h3{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+}
+.btt_ck1{
+    border-radius:10px;
+    border: 0.5px solid #8a8a8a;
+    font-weight: bold;
+    font-size: 15px;
+    background-color:#d90000;
+    color: #FFFFFF;
+}
+.btt_ck2{
+    border-radius:10px;
+    border: 0.5px solid #8a8a8a;
+    font-weight: bold;
+    font-size: 15px;
+    background-color:#00abf1;
+    color: #FFFFFF;
+}
+table img{
+    float:left;
+    display: block;
+}
+.text_tt1 {
+    background: #f4f4f2;
+    color: #222;
+    margin: 0 auto;
+    width:400px;}
+
+/*버튼 ---------------------------------------*/
+.button_box{
+    width: 830px;
+    margin-top: 15px;
+    height: 20px;
+
+}
+.button_box li{
+    float: right;
+    margin-left: 10px
+}
+
+
+/*foodboot*/
+.foodboot_end{
+    width:100%;
+    float: left;
+    display: block;
+}

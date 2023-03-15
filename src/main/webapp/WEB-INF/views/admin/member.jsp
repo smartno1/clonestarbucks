@@ -9,13 +9,13 @@
         <%@include file="../include/static-head.jsp"%>
         <title>마이 스타벅스 | Starbucks Korea</title>
         <%--마이페이지 CSS--%>
-        <link rel="stylesheet" type="text/css" href="/css/m_admin.css">
+        <link rel="stylesheet" type="text/css" href="/css/admin/m_admin.css">
         <script>
             // 페이징에 넘겨줄 주소 저장.
             const href = "/admin/member";
         </script>
     </head>
-        <body>
+    <body>
         <%--헤더 메뉴코너--%>
         <%@include file="../include/header.jsp"%>
         <%--헤더 메뉴코너끝--%>
@@ -31,6 +31,7 @@
                             <li><a href="#"><span class="kor">관리자 메뉴</span></a></li>
                         </ul>
                     </div>
+
                     <div class="body-box clear-fix"><%--body-box--%>
                         <%@include file="rightMenu.jsp"%>
 
@@ -74,35 +75,16 @@
                             <%-- 페이징 시작--%>
                             <%@include file="../include/paging.jsp"%>
                             <%-- 페이징 끝--%>
-
                         </div>
                     </div><%--body-box end--%>
-
-                    </div>
-
-                </div><%-- 머리글 Rmx--%>
-
-
-
-            </div><%-- 바디 전체틀 끝--%>
-
-
-
-
-
-        </div>
-        <%--바디 내용끝--%>
-
-
-
-
-
-
-        <%--푸터 내용시작--%>
-
-<div class="foodboot_end">
-    <jsp:include page="../include/footer.jsp"></jsp:include>
-</div><%--푸터 내용끝--%>
+                </div>
+            </div><%-- 머리글 Rmx--%>
+        </div><%-- 바디 전체틀 끝--%>
+    </body>
+    <%--푸터 내용시작--%>
+    <div class="foodboot_end">
+        <jsp:include page="../include/footer.jsp"></jsp:include>
+    </div><%--푸터 내용끝--%>
 
         <%--자바스크릡트 공간입니다.--%>
 
@@ -163,6 +145,6 @@
     </script>
 
 
-    </body>
+
 
 </html>

@@ -7,7 +7,7 @@
 <head>
 
     <%@include file="../include/static-head.jsp"%>
-    <link rel="stylesheet" type="text/css" href="/css/menuList.css">
+    <link rel="stylesheet" type="text/css" href="/css/menu/menuList.css">
 <%--    <script src="/js/menujs.js" defer></script>--%>
 
 </head>
