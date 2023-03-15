@@ -9,7 +9,7 @@
     <%@include file="../include/static-head.jsp"%>
 
     <link rel="stylesheet" type="text/css" href="/css/coffeeBeanList.css">
-    <link rel="stylesheet" type="text/css" href="/css/menulist.css">
+    <link rel="stylesheet" type="text/css" href="/css/menuList.css">
 
 
 </head>

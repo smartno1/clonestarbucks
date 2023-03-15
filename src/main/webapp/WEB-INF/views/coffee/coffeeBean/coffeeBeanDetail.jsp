@@ -118,7 +118,7 @@
 				<div class="description-bottom-right">
 					<div class="right-block tasting_notes">
 						<h4>Tasting Notes</h4>
-						<p>${coffee.tastingNote}</p>
+						<p>${coffee.tastingNotes}</p>
 					</div>
 					<div class="right-block enjoy_with">
 						<h4>Enjoy With</h4>

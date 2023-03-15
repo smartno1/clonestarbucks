@@ -92,7 +92,7 @@
 				<div class="description-bottom-right">
 					<div class="right-block tasting_notes">
 						<h4>Tasting Notes</h4>
-						<textarea name=tastingNotes >${coffee.tastingNote}</textarea>
+						<textarea name=tastingNotes >${coffee.tastingNotes}</textarea>
 					</div>
 					<div class="right-block enjoy_with">
 						<h4>Enjoy With</h4>

@@ -14,7 +14,7 @@ CREATE table starbucks.coffee_bean(
     ,description_detail VARCHAR(500)
     ,design_story VARCHAR(500)
     ,coffee_tasting_note VARCHAR(500)
-    ,tasting_note VARCHAR(500)
+    ,tasting_notes VARCHAR(500)
     ,enjoy_with VARCHAR(500)
     ,relative VARCHAR(500)
     ,processing_method VARCHAR(500)

@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        // 리소스 경로 매칭을 해주지 않으면 상품등록 후 리스트로 갔을 때 이미지가 나오지 않음.
-        registry.addResourceHandler("/img/**").addResourceLocations("/home/ec2-user/sl_dev/upload/img/");
+        registry.addResourceHandler("/img/**").addResourceLocations("file:///home/ec2-user/sl_dev/upload/img/");
 //        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 //        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
