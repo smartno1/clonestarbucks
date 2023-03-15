@@ -60,7 +60,9 @@
                             <li>
                                 <h4><a href="/coffee/bean/list">커피</a></h4>
                                 <ul>
-                                    <li><a href="/coffee/bean/list">스타벅스 원두</a></li>
+                                    <li><a href="/coffee/bean/list?kind=bean">스타벅스 원두</a></li>
+                                    <li><a href="/coffee/bean/list?kind=via">스타벅스 비아</a></li>
+                                    <li><a href="/coffee/bean/list?kind=capsule">스타벅스앳홈 by 캡슐 </a></li>
                                     <li><a href="/coffee/bean/productFinder">나와 어울리는 커피</a></li>
                                 </ul>
                             </li>

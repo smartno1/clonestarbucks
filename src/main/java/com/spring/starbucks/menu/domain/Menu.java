@@ -25,7 +25,7 @@ public class Menu {
     private String descriptionDetail;
     private String designStory;
     private String coffeeTastingNote;
-    private String tastingNote;
+    private String tastingNotes;
     private String enjoyWith;
     private String relative;
     private String processingMethod;

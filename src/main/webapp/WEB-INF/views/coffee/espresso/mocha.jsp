@@ -113,8 +113,7 @@
             overflow: hidden;
         }
         .bottom .container .product-ul .product-li a img{
-            width: inherit;
-            height: inherit;
+            width: 100%;
         }
         .bottom .container .product-ul .product-li a img:hover{
             scale: 1.1;

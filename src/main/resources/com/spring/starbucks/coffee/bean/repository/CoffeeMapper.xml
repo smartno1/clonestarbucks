@@ -31,7 +31,6 @@
     </select>
 
     <sql id="search">
-        <if test="kind != 'ALL'">WHERE kind = #{kind}</if>
         <if test="type == 'search-all'">WHERE name_kr LIKE CONCAT('%', #{keyword}, '%') OR description_summary LIKE CONCAT('%', #{keyword}, '%')</if>
     </sql>
 

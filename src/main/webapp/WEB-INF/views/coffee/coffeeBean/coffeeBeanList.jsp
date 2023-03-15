@@ -271,6 +271,9 @@
                 $All.checked = false;
             }
         })
+        // 체크 된 옵션을 보여주기, 체크해제된것은 안보이게,
+        showList();
+
     }
 
     // type 체크시 체크된 타입의 리스트 요청
@@ -279,10 +282,6 @@
         document.querySelector('.search_type').addEventListener('change', e => {
             console.info("check-{}",e.target);
             inputChecker(e.target);
-
-            // 체크 된 옵션을 보여주기, 체크해제된것은 안보이게,
-            showList();
-
         })
     }
     // 선택된 옵션에 맞는 리스트 보여주기
@@ -333,14 +332,18 @@
     // 처음 원두 선택되게
     function defaultKind(){
         const $kinds = [...document.querySelector('.search_kind').children];
-        $kinds[0].firstElementChild.classList.add('selected');
+        for(let k of $kinds){
+            if(k.firstElementChild.dataset.kinds === "${kind}"){
+                k.firstElementChild.classList.add('selected');
+            }
+        }
+        defaultType();
     }
 
 
 
     (function (){
         defaultKind();
-        defaultType();
         navShow();
         selectKind();
         selectType();

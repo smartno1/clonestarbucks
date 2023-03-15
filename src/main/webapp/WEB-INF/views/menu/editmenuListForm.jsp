@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -127,7 +128,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
 	function typeChange(e){
+		console.info("typechange :", e.value);
 		if(e.value == "espresso") {
+			defaultEspressoKind();
 			e.nextElementSibling.lastElementChild.removeAttribute('disabled');
 			e.nextElementSibling.style.display = "block";
 		}else{
@@ -142,7 +145,7 @@
 		const good_c = ["선택없음"];
 
 		const target = document.getElementById("good");
-
+		console.info("e.value :",e.value );
 		if(e.value == "category") {
 			d = good_a;
 		}else if(e.value == "theme") {
@@ -170,59 +173,48 @@
 			if(x == "theme") {
 				opt.textContent = "테마";
 			}
+			// 일치하는 값의 kind에 맞는 type을 생성해주고
 			target.appendChild(opt);
+			// 일치하는 값의 type 를 셀렉트해준다
+			defaultTypes();
 		}
 	}
 
 	function defaultKinds(){
-		const list = [...document.querySelector('select[name="kind"]').children];
-		for(const k of list){
-			if(k.value === "${menu.kind}"){
-				k.setAttribute("selected","");
-				break;
-			}
-		}
+		const kinds = document.querySelector('select[name="kind"]');
+		kinds.value = "${menu.kind}";
+		categoryChange(kinds);
 	}
 	function defaultTypes(){
-		const list = [...document.querySelector('select[name="type"]').children];
-		for(const k of list){
-			if(k.value === "${menu.type}"){
-				k.setAttribute("selected","");
-				break;
-			}
-		}
+		const type = document.querySelector('select[name="type"]');
+		type.value = "${menu.type}"
+		typeChange(type);
 	}
 
-	function defaultEspressokind(){
-		if(${menu.espressoKind != null}){
-			const list = [...document.querySelector('select[name="espressoKind"]').children];
-			for(const k of list){
-				if(k.value === "${menu.espressoKind}"){
-					k.setAttribute("selected","");
-					break;
-				}
-			}
-		}
+	function defaultEspressoKind(){
+		console.log("defalt espresso : ", "${menu.espressoKind}");
+		const type = document.querySelector('select[name="espressoKind"]');
+		type.value = "${menu.espressoKind}";
 	}
 
-	function valueOfKinds(){
-		const kinds = [...document.querySelector('select[name="kind"]').children];
-		for(const k of kinds){
-			if(k.value === "${menu.kind}"){
-				k.classList.add('selected');
-				break;
-			}
-		}
-	}
-	function valueOfTypes(){
-		const kinds = [...document.querySelector('select[name="type"]').children];
-		for(const k of kinds){
-			if(k.value === "${menu.type}"){
-				k.classList.add('selected');
-				break;
-			}
-		}
-	}
+	<%--function valueOfKinds(){--%>
+	<%--	const kinds = [...document.querySelector('select[name="kind"]').children];--%>
+	<%--	for(const k of kinds){--%>
+	<%--		if(k.value === "${menu.kind}"){--%>
+	<%--			k.classList.add('selected');--%>
+	<%--			break;--%>
+	<%--		}--%>
+	<%--	}--%>
+	<%--}--%>
+	<%--function valueOfTypes(){--%>
+	<%--	const kinds = [...document.querySelector('select[name="type"]').children];--%>
+	<%--	for(const k of kinds){--%>
+	<%--		if(k.value === "${menu.type}"){--%>
+	<%--			k.classList.add('selected');--%>
+	<%--			break;--%>
+	<%--		}--%>
+	<%--	}--%>
+	<%--}--%>
 
 
 
@@ -317,16 +309,12 @@
 	}
 
 	(function (){
-		valueOfKinds();
-		valueOfTypes();
+		// valueOfKinds();
+		// valueOfTypes();
 		noDragAndRightClick();
 		uploadImg();
 		submitData();
 		defaultKinds();
-		defaultTypes();
-		defaultEspressokind();
-		categoryChange();
-		typeChange();
 	})();
 </script>
 </body>

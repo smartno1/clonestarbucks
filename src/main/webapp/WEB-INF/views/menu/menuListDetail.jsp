@@ -8,6 +8,7 @@
 <head>
 		<%@include file="../include/static-head.jsp"%>
         <link rel="stylesheet" type="text/css" href="/css/menuDetail.css">
+		<title>메뉴수정 | Strarbucks Korea</title>
 
 </head>
 <body>
@@ -147,7 +148,7 @@
 	</main>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
  	<script src="/js/menu/crud2.js"></script>
-  	<script src="/js/menu/share.js"></script>
+  	<script src="/js/share.js"></script>
   	<script src="/js/menu/coffeeDetail.js"></script>
 </body>
 </html>	
