@@ -125,12 +125,13 @@
         function adminck(){
            const list=document.querySelectorAll(".account");
            for(let z of list){
-               if(z.dataset.auth == "ADMIN"){
-                    z.innerHTML += `<span style="color:red;">[관리자]</span>`
+               if(z.dataset.auth === "ADMIN"){
+                   if(z.textContent === '${loginUser.account}'){
+                       z.innerHTML += `<span style="color:red;">[관리자]</span><span style="color:blue;">[본인]</span>`                   }else {
+                       z.innerHTML += `<span style="color:red;">[관리자]</span>`
+                   }
                }
-               if(z.textContent == '${loginUser.account}'){
-                   z.innerHTML += `<span style="color:white;">(본인)</span>`
-               }
+
            }
 
         }
