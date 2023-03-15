@@ -12,7 +12,7 @@
         <result property="descriptionDetail" column="description_detail" />
         <result property="designStory" column="design_story" />
         <result property="coffeeTastingNote" column="coffee_tasting_note" />
-        <result property="tastingNote" column="tasting_note" />
+        <result property="tastingNotes" column="tasting_notes" />
         <result property="enjoyWith" column="enjoy_with" />
         <result property="processingMethod" column="processing_method" />
         <result property="regDate" column="reg_date" />
@@ -49,7 +49,7 @@
 
     <update id="update">
         UPDATE starbucks.coffee_bean
-        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
+        SET price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_notes=#{tastingNotes}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
         WHERE id = #{id}
     </update>
 
