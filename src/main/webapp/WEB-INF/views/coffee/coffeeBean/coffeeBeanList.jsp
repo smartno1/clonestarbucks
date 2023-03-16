@@ -238,8 +238,6 @@
                 $All.checked = false;
             }
         })
-        // 체크 된 옵션을 보여주기, 체크해제된것은 안보이게,
-        showList();
 
     }
 
@@ -249,6 +247,9 @@
         document.querySelector('.search_type').addEventListener('change', e => {
             console.info("check-{}",e.target);
             inputChecker(e.target);
+            // 체크 된 옵션을 보여주기, 체크해제된것은 안보이게,
+            showList();
+
         })
     }
     // 선택된 옵션에 맞는 리스트 보여주기
@@ -259,21 +260,41 @@
 
         $check.forEach(function (check) { // 타입 배열에서 하나씩 꺼냄
             const show = document.querySelector('.'+check.value); // 타입이 속한 부모 div 요소 가져오기
-            const showContent = show.firstElementChild.lastElementChild.firstElementChild; // 타입이 속한 li 요소 가져오기
-            const showKind = showContent ? showContent.dataset.kind : "";   // null 값 오류제거를 위해 값이 있으면 값, 없으면 빈문자열
+            const showContent = [...show.firstElementChild.lastElementChild.children]; // 타입이 속한 li 요소들 가져오기
+            let existChild = false;
             if(check.checked){ // 타입이 체크되었고
-                if(showKind && showKind === kind) { // 목록의 kind 가 선택된 kind 이면
-                    console.log("show-check: ", showContent);
-                    show.style.display = "block";   // 보여준다
+                for (let sc of showContent){
+                    const showKind = sc ? sc.dataset.kind : "";   // null 값 오류제거를 위해 값이 있으면 값, 없으면 빈문자열
+                    if(showKind === kind) { // 목록의 kind 가 선택된 kind 이면
+                        console.log("show-check: ", showContent);
+                        existChild = true;
+                        sc.style.display="block"; // li 보여준다
+                    }else{
+                        console.log("no show: ",show);
+                        sc.style.display = "none"; // li 보여준다
+                    }
                 }
             }else if(all){  // 타입체크는 안되있고, 전체보기 체크면
-                if(showKind && showKind === kind) { // 목록의 kind 가 선택된 kind 이면
-                    console.log("show-all: ", showContent);
-                    show.style.display = "block";   // 보여준다
+                for (let sc of showContent) {
+                    const showKind = sc ? sc.dataset.kind : "";   // null 값 오류제거를 위해 값이 있으면 값, 없으면 빈문자열
+                    if (showKind === kind) { // 목록의 kind 가 선택된 kind 이면
+                        console.log("show-check: ", showContent);
+                        existChild = true;
+                        sc.style.display = "block"; // li 보여준다
+                    } else {
+                        console.log("no show: ", show);
+                        sc.style.display = "none"; // li 보여준다
+                    }
                 }
             }else{  // 타입체크 x , 전체보기 x
                 console.log("no show: ",show);
-                show.style.display = "none";    // 숨긴다.
+                existChild = false;
+            }
+            // 보여줄 사직이 이 있는지 여부에 따라 보여주기
+            if(existChild){
+                show.style.display="block";
+            }else{
+                show.style.display="none";
             }
         })
     }
@@ -290,8 +311,7 @@
         })
         const e = document.querySelector('input.all');
         e.checked = true;
-        // 전체선택시 다른 체크 해제
-        inputChecker(e);
+
         // 선택된 옵션에 맞는 타입 보여주기
         showList();
     }
