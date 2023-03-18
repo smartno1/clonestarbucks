@@ -9,6 +9,7 @@
         <result property="eventId" column="event_id" />
         <result property="beginDate" column="begin_date" />
         <result property="endDate" column="end_date" />
+        <result property="endPoint" column="end_point" />
         <result property="listImg" column="list_img" />
         <result property="searchWord" column="search_word" />
         <result property="regDate" column="reg_date" />
@@ -16,8 +17,8 @@
 
     <insert id="insert">
         INSERT INTO starbucks.board_event
-        (kind, title, begin_date, end_date, list_img, content,attach,search_word)
-        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach}, #{searchWord});
+        (kind, title, begin_date, end_date, list_img, content,attach,search_word,end_point)
+        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach}, #{searchWord},#{endPoint});
     </insert>
 
     <select id="findOne" resultMap="EventMap">
@@ -45,7 +46,7 @@
 
     <update id="update">
         UPDATE starbucks.board_event
-        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach},search_word=#{searchWord}
+        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach},search_word=#{searchWord}, end_point=#{endPoint}
         WHERE event_id=#{eventId}
     </update>
 

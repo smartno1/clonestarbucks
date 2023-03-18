@@ -5,6 +5,7 @@ CREATE TABLE starbucks.board_event(
     , title VARCHAR(50)
     , begin_date DATETIME
     , end_date DATETIME
+    , end_point VARCHAR(300)
     , list_img VARCHAR(800)
     , content VARCHAR(800)
     , attach VARCHAR(800)

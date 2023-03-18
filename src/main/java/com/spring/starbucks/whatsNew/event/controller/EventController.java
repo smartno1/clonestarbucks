@@ -56,9 +56,13 @@ public class EventController {
     @PostMapping("/add")
     public String add(Event add){
         log.info("POST ADD - {}", add);
-
-        add.setBeginDate(LocalDate.parse(add.getBeginDateStr()));
-        add.setEndDate(LocalDate.parse(add.getEndDateStr()));
+        // 문자열로 들어오는 날짜를 LocalDate 로 파싱
+        if(add.getBeginDateStr().length() == 10) {
+            add.setBeginDate(LocalDate.parse(add.getBeginDateStr()));
+        }
+        if(add.getEndDateStr().length() == 10) {
+            add.setEndDate(LocalDate.parse(add.getEndDateStr()));
+        }
 
         boolean flag = eventService.saveService(add);
 

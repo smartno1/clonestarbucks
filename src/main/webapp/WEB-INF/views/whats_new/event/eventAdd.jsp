@@ -57,7 +57,8 @@
                                        id="begin"
                                        name="beginDateStr"
                                        max="2077-12-01"
-                                       min="2000-01-01">
+                                       min="2000-01-01"
+                                        required>
                             </label>
                         </div>
                         <div class="end">
@@ -68,6 +69,9 @@
                                        max="2077-12-01"
                                        min="2000-01-01">
                             </label>
+                        </div>
+                        <div>
+                            종료 시점 : <input type="text" name="endPoint">
                         </div>
                     </div>
                     <div class="search-word">

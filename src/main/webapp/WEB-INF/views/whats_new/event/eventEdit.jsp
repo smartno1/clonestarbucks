@@ -70,8 +70,12 @@
                        name="endDateStr"
                        max="2077-12-01"
                        min="2000-01-01"
-                       value="${n.endDate}">
+                       value="${n.endDate}"
+                        required>
               </label>
+            </div>
+            <div>
+              종료 시점 : <input type="text" name="endPoint" value="${n.endPoint}">
             </div>
           </div>
           <div class="search-word">

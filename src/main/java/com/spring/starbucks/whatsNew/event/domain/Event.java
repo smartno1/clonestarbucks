@@ -14,6 +14,7 @@ public class Event {
     private String title;
     private LocalDate beginDate;
     private LocalDate endDate;
+    private String endPoint;
     private String listImg;
     private String content;
     private String attach;
