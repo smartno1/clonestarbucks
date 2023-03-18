@@ -52,7 +52,7 @@
                                 <a href="javascript:void(0)" data-id="${e.eventId}">
                                     <img src="${e.listImg}"/>
                                 </a>
-                                <p class="event-name">${e.prettierTitle}</p>
+                                <p class="event-name">${e.title}</p>
                                 <p class="event-period">${e.period}</p>
                             </li>
                         </c:when>
@@ -73,7 +73,7 @@
                                     <i><img src="/images/whats_new/event/icon_end_event.png" alt=""></i>
                                     <img src="${e.listImg}"/>
                                 </a>
-                                <p class="event-name">${e.prettierTitle}</p>
+                                <p class="event-name">${e.title}</p>
                                 <p class="event-period">${e.period}</p>
                             </li>
                         </c:when>

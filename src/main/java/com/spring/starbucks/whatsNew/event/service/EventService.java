@@ -29,9 +29,6 @@ public class EventService {
         if(search.getKind() == null || search.getKind() == ""){
             search.setKind("ALL");
         }
-        // 이벤트 기간 저장 변수
-        String begin="",end="",endP="";
-
         // 리스트 가져오기
         List<Event> events = eventMapper.findAll(search);
         LocalDate current = LocalDate.now().minusDays(1);
@@ -40,17 +37,18 @@ public class EventService {
 
             //  종료날짜 비교하여 이벤트 종료여부 결정
             if(event.getEndDate() != null) { // null 을 검증
-                end = event.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); //이벤트 종료날짜 저장.
                 if (event.getEndDate().isAfter(current)) {
-                    log.info("ended");
+                    log.info("ing");
                     event.setEnded(false);
+                }else{
+                    log.info("ended");
+                    event.setEnded(true);
                 }
             }else { // 종료날짜가 정해지지 않았으면
-                log.info("ing");
-                event.setEnded(true);
+                event.setEnded(false);
             }
             // 제목 글자수 20 넘으면 짤라서 안넘으면 제목 그대로 따로 저장.
-            event.setPrettierTitle(prettierDate(event.getTitle()));
+//            event.setPrettierTitle(prettierDate(event.getTitle())); => CSS로 대체
 
             // 이벤트 기간 저장.
             event.setPeriod(period(event.getBeginDate(), event.getEndDate(), event.getEndPoint()));
@@ -61,7 +59,7 @@ public class EventService {
     public Event findOneService(int id){
         Event event = eventMapper.findOne(id);
         // 제목 글자수 20 넘으면 짤라서 안넘으면 제목 그대로 따로 저장.
-        event.setPrettierTitle(prettierDate(event.getTitle()));
+//        event.setPrettierTitle(prettierDate(event.getTitle())); ==> CSS로 대체
         // 이벤트 기간 저장.
         event.setPeriod(period(event.getBeginDate(), event.getEndDate(), event.getEndPoint()));
 
@@ -77,8 +75,8 @@ public class EventService {
     }
 
     public String prettierDate(String title){
-        if(title.length()>20){
-            title = title.substring(0,20)+"...";
+        if(title.length()>16){
+            title = title.substring(0,16)+"...";
         }
         return title;
     }

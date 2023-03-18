@@ -17,7 +17,7 @@ CREATE TABLE starbucks.board_news(
                                      news_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , kind VARCHAR(50)
     , title VARCHAR(50)
-    , list_img VARCHAR(500)
+    , list_img VARCHAR(800)
     , content VARCHAR(800)
     , attach VARCHAR(800)
     , search_word VARCHAR(800)
