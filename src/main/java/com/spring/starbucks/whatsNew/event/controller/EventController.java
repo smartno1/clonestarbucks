@@ -42,7 +42,6 @@ public class EventController {
 
         model.addAttribute("events", events);
         model.addAttribute("kind", search.getKind());
-        log.info("events - {}", events);
         log.info("kind - {}", search.getKind());
 
         return "whats_new/event/eventList";
@@ -87,7 +86,6 @@ public class EventController {
         Event n = eventService.findOneService(edit.getEventId());
         if(n.getAttach() != null) {
             String[] list = n.getAttach().split(",");
-            log.info("list - {}", list);
             for (String p : list) {
                 log.info("p - {}", p);
                 if (!edit.getAttach().contains(p)) {

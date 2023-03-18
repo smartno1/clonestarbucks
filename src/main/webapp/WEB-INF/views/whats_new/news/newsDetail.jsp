@@ -87,11 +87,12 @@
 <script src="/js/share.js"></script>
 <script>
     function contentShow(){
-        console.log("${n.content}");
+        console.log('${n.content}');
         document.querySelector('.content').innerHTML = `${n.content}`;
     }
 
     function deleteEvent(){
+        if(document.getElementById('delete') === null) return;
         document.getElementById('delete').addEventListener('click', e => {
             if(!e.target.matches('.del')) return;
 

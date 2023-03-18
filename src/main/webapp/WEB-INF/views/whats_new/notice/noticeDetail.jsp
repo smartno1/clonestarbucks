@@ -91,6 +91,7 @@
     }
 
     function deleteEvent(){
+        if(document.getElementById('delete') === null) return;
         document.getElementById('delete').addEventListener('click', e => {
             if(!e.target.matches('.del')) return;
 

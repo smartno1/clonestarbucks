@@ -12,8 +12,8 @@
 
     <insert id="insert">
         INSERT INTO starbucks.board_notice
-        (title,content,attach,view_cnt)
-        VALUES (#{title},#{content},#{attach},#{viewCnt};
+        (title,content,attach)
+        VALUES (#{title},#{content},#{attach});
     </insert>
 
     <select id="findOne" resultMap="NoticeMap">
@@ -25,7 +25,7 @@
     <select id="findAll" resultMap="NoticeMap">
         SELECT *
         FROM starbucks.board_notice
-        ORDER BY notice_id DESC
+        ORDER BY reg_date DESC
         LIMIT (#{pageNum} - 1) * #{amount}, (#{pageNum} * #{amount})
     </select>
 
