@@ -89,7 +89,7 @@ public class FileUtils {
 
         // File.separator : 운영체제에 맞는 디렉토리 경로구분문자를 생성
         // 리눅스 : / ,  윈도우 : \
-        for (int i = 0 ; i < pathInfo.length ; i++) {
+        for (int i = 0 ; pathInfo[i] != null; i++) {
             newUploadPath += File.separator + pathInfo[i];
             log.info("pathFor - {}", pathInfo[i]);
             // 해당 경로대로 폴더를 생성

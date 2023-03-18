@@ -13,7 +13,7 @@
     <insert id="insert">
         INSERT INTO starbucks.board_notice
         (title,content,attach,view_cnt)
-        VALUES (#{title},#{content},#{attach},#{viewCnt});
+        VALUES (#{title},#{content},#{attach},#{viewCnt};
     </insert>
 
     <select id="findOne" resultMap="NoticeMap">
@@ -56,7 +56,7 @@
     <sql id="search">
         <if test="type == 'title'">WHERE title LIKE CONCAT('%', #{keyword}, '%')</if>
         <if test="type == 'search-all'">
-            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR keyword LIKE CONCAT('%', #{keyword}, '%')
+            WHERE  title LIKE CONCAT('%', #{keyword}, '%')
         </if>
     </sql>
 

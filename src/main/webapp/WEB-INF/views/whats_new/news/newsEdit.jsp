@@ -53,8 +53,11 @@
                             <option value="CARD">스타벅스 카드출시</option>
                         </select>
                     </div>
-                    <p>내용</p>
+                    <div class="search-word">
+                        검색 키워드( , 로 구분) : <input type="text" name="searchWord" value="${n.searchWord}">
+                    </div>
                     <div class="content">
+                        <p>내용</p>
                         <textarea name="content">${n.content}</textarea>
                     </div>
                     <div class="attachList">

@@ -16,6 +16,7 @@ public class News {
     private String content;
     private String attach;
     private LocalDate regDate;
+    private String searchWord;
     private int no;
 
 //    custom

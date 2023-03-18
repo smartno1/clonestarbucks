@@ -63,16 +63,16 @@ ul.nav-ul{
 .middle-section .title ul{
     float:right;
 }
-.content {
-    padding: 30px 10px;
+#form > div {
     border-bottom: 1px solid #dddddd;
-    font-size: 14px;
+    padding: 20px;
 }
 .content textarea{
     width: 100%;
     height: fit-content;
     min-height: 300px;
     resize: none;
+    font-size: 14px;
 }
 .attachList p .add{
     vertical-align: text-bottom;

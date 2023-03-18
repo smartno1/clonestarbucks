@@ -49,28 +49,18 @@ ul.nav-ul{
     color: #222222;
     width: 80%;
 }
-.listImg {
+#form > div {
     border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 .listImg p {
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 .listImg p input{
     width: 80%;
 }
-.kind{
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #dddddd;
-}
 .kind p, #kind{
-    margin-right: 20px;
     display: inline-block;
-}
-.period {
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 20px;
 }
 .period p{
     margin-bottom: 10px;
@@ -78,16 +68,18 @@ ul.nav-ul{
 .period div{
     margin-bottom: 20px;
 }
-.content {
-    padding: 30px 10px;
-    border-bottom: 1px solid #dddddd;
-    font-size: 14px;
+.search-word input{
+    width: 80%;
+}
+.content p {
+    margin-bottom: 20px;
 }
 .content textarea{
     width: 100%;
     height: fit-content;
     min-height: 300px;
     resize: none;
+    font-size: 14px;
 }
 .attachList p .add{
     vertical-align: text-bottom;

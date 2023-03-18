@@ -10,13 +10,14 @@
         <result property="beginDate" column="begin_date" />
         <result property="endDate" column="end_date" />
         <result property="listImg" column="list_img" />
+        <result property="searchWord" column="search_word" />
         <result property="regDate" column="reg_date" />
     </resultMap>
 
     <insert id="insert">
         INSERT INTO starbucks.board_event
-        (kind, title, begin_date, end_date, list_img, content,attach)
-        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach});
+        (kind, title, begin_date, end_date, list_img, content,attach,search_word)
+        VALUES (#{kind},#{title},#{beginDate},#{endDate},#{listImg},#{content},#{attach}, #{searchWord});
     </insert>
 
     <select id="findOne" resultMap="EventMap">
@@ -37,14 +38,14 @@
             WHERE kind = #{kind}
         </if>
         <if test="type == 'search-all'">
-            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR keyword LIKE CONCAT('%', #{keyword}, '%')
+            WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR search_word LIKE CONCAT('%', #{keyword}, '%')
         </if>
         <if test="type == 'title'">WHERE  title LIKE CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
     <update id="update">
         UPDATE starbucks.board_event
-        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach}
+        SET kind=#{kind}, title=#{title}, begin_date=#{beginDate}, end_date=#{endDate}, list_img=#{listImg}, content=#{content}, attach=#{attach},search_word=#{searchWord}
         WHERE event_id=#{eventId}
     </update>
 

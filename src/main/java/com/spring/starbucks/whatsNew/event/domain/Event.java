@@ -17,6 +17,7 @@ public class Event {
     private String listImg;
     private String content;
     private String attach;
+    private String searchWord;
     private LocalDateTime regDate;
 
     // custom

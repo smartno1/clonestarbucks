@@ -70,8 +70,11 @@
                             </label>
                         </div>
                     </div>
-                    <p>내용</p>
+                    <div class="search-word">
+                        검색 키워드( , 로 구분) : <input type="text" name="searchWord">
+                    </div>
                     <div class="content">
+                        <p>내용</p>
                         <textarea name="content" placeholder="html 작성"></textarea>
                     </div>
                     <div class="attachList">

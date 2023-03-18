@@ -31,7 +31,7 @@
     </select>
 
     <sql id="search">
-        <if test="type == 'search-all'">WHERE name_kr LIKE CONCAT('%', #{keyword}, '%') OR description_summary LIKE CONCAT('%', #{keyword}, '%')</if>
+        <if test="type == 'search-all'">WHERE name_kr LIKE CONCAT('%', #{keyword}, '%') OR name_en LIKE CONCAT('%', #{keyword}, '%') OR description_summary LIKE CONCAT('%', #{keyword}, '%')</if>
     </sql>
 
     <select id="findAll2" resultMap="CoffeeMap">

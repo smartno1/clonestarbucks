@@ -80,7 +80,7 @@
 							</c:choose>
 					</div>
 					<div class="weight">
-						<p>${coffee.weight}g</p>
+						<p>${coffee.weight}</p>
 					</div>
 					<div class="more">
 						<img src="/images/icon/more_left.jpg"/>
