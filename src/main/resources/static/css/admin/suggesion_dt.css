@@ -97,6 +97,35 @@ table img{
     margin: 0 auto;
     width:400px;}
 
+.ms_nav { float:right; font-weight:bold; width:220px; margin-bottom:90px; }
+.ms_nav > ul { border-top:2px solid #222; }
+.ms_nav > ul > li { border-bottom:1px solid #ddd; width:220px; }
+.ms_nav > ul > li > a { color:#444; display:block; font-size:14px; padding:20px 30px 20px 15px; position:relative; width:175px; }
+.ms_nav > ul > li > a:hover { color:#006633; }
+.ms_nav > ul > li > a > span { height:7px; margin-top:-3px; position:absolute; right:15px; top:50%; width:12px; }
+.ms_nav > ul > li > a span.sbox_arrow_down { background:url("/images/my_Starbucks/sbox_arrow_down.png"); }
+.ms_nav > ul > li > a span.sbox_arrow_up { background:url("../img/util/sbox_arrow_up.png"); }
+.ms_nav > ul > li > ul { border:none; display:none; padding-bottom:14px; }
+.ms_nav > ul > li > ul > li { width:220px; }
+.ms_nav > ul > li > ul > li > a { color:#444; display:block; font-size:12px; padding:6px 0 6px 15px; width:205px; }
+
+.voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:20px; }
+.voc_info_input_btns table tr{height: 40px;}
+.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
+.voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF;cursor: pointer }
+.voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000; cursor: pointer }
+.voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
+
+.voc_info_input_btns.del table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
+.voc_info_input_btns.del table tr{height: 40px;}
+.voc_info_input_btns.del table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #2C2A29;}
+.voc_info_input_btns.del table tbody tr{ background-color: #4c4c50; color:#FFFFFF;}
+.voc_info_input_btns.del table tbody tr:nth-child(2n){background-color: #8a8a8a; color: #FFFFFF;}
+.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000;cursor: pointer }
+.voc_info_input_btns.del table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
+
+
 /*버튼 ---------------------------------------*/
 .button_box{
     width: 830px;
