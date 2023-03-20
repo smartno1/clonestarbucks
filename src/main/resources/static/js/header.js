@@ -63,10 +63,10 @@ function menuUl(){
       if(e.target.matches('#sign-out')){
           if(confirm("로그아웃 하시겠습니까?")) {
               fetch('/member/sign-out')
-                  .then(res => res.text())
-                  .then(msg => {
-                      if(msg === 'success'){
-                          alert('로그아웃되었습니다.');
+                  .then(res => res.json())
+                  .then(result => {
+                      if(result.msg === 'success'){
+                          alert(result.name + ' 님 이용해주셔서 감사합니다.');
                           location.href = '/';
                       }
                   })

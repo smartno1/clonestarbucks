@@ -1,7 +1,7 @@
 package com.spring.starbucks.config;
 
 
-import com.spring.starbucks.interceptor.AdminInterceptor;
+import com.spring.starbucks.interceptor.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,6 +18,19 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         //관리자 메뉴 인터셉터 설정
         registry.addInterceptor(adminInterceptor)
-                .addPathPatterns("/admin/**");
+                .addPathPatterns("/admin/*")
+
+        //메뉴 인터셉터 추가
+                .addPathPatterns("/menu/*")
+                .excludePathPatterns("/menu/list", "/menu/menuListDetail","/menu/food", "/menu/foodListDetail","/menu/sangpum","/menu/sangpumListDetail")
+        // 커피 인터셉터 추가
+                .addPathPatterns("/coffee/bean/addCoffee","/coffee/bean/deleteCoffeeBean","/coffee/bean/editCoffeeBeanForm","/coffee/bean/editCoffeeBean")
+        //왓츠뉴 인터셉터추가
+                // 이벤트
+                .addPathPatterns("/whats_new/event/add","/whats_new/event/edit","/whats_new/event/delete")
+                // 뉴스
+                .addPathPatterns("/whats_new/news/add","/whats_new/news/edit","/whats_new/news/delete")
+                // 공지사항
+                .addPathPatterns("/whats_new/notice/add","/whats_new/notice/edit","/whats_new/notice/delete");
     }
 }

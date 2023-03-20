@@ -71,31 +71,6 @@
     margin-bottom: 20px;
     font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
 }
-.btt_ck1{
-    border-radius:10px;
-    border: 0.5px solid #8a8a8a;
-    font-weight: bold;
-    font-size: 15px;
-    background-color:#d90000;
-    color: #FFFFFF;
-}
-.btt_ck2{
-    border-radius:10px;
-    border: 0.5px solid #8a8a8a;
-    font-weight: bold;
-    font-size: 15px;
-    background-color:#00abf1;
-    color: #FFFFFF;
-}
-table img{
-    float:left;
-    display: block;
-}
-.text_tt1 {
-    background: #f4f4f2;
-    color: #222;
-    margin: 0 auto;
-    width:400px;}
 
 .ms_nav { float:right; font-weight:bold; width:220px; margin-bottom:90px; }
 .ms_nav > ul { border-top:2px solid #222; }
@@ -109,22 +84,12 @@ table img{
 .ms_nav > ul > li > ul > li { width:220px; }
 .ms_nav > ul > li > ul > li > a { color:#444; display:block; font-size:12px; padding:6px 0 6px 15px; width:205px; }
 
-.voc_info_input_btns table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:20px; }
+.voc_info_input_btns table{width:100%; border: 1px solid #8a8a8a; text-align: center;  margin-top:20px; }
 .voc_info_input_btns table tr{height: 40px;}
-.voc_info_input_btns table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
+.voc_info_input_btns table th{width:25%; font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #007042;}
 .voc_info_input_btns table tbody tr{ background-color: #669900; color:#FFFFFF;cursor: pointer }
 .voc_info_input_btns table tbody tr:nth-child(2n){background-color: #8fd404; color: #FFFFFF;}
-.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000; cursor: pointer }
 .voc_info_input_btns table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
-
-.voc_info_input_btns.del table{width:830px; border: 1px solid #8a8a8a; text-align: center;  margin-top:80px; }
-.voc_info_input_btns.del table tr{height: 40px;}
-.voc_info_input_btns.del table th{font-weight: bold; padding-top: 10px; border-bottom: 1px solid #8a8a8a; color: #FFFFFF; background-color: #2C2A29;}
-.voc_info_input_btns.del table tbody tr{ background-color: #4c4c50; color:#FFFFFF;}
-.voc_info_input_btns.del table tbody tr:nth-child(2n){background-color: #8a8a8a; color: #FFFFFF;}
-.voc_info_input_btns table tbody tr:hover{ background-color: #FFFFFF; color:#000000;cursor: pointer }
-.voc_info_input_btns.del table tbody td{padding-top: 10px; border-bottom: 1px solid #8a8a8a; }
-
 
 /*버튼 ---------------------------------------*/
 .button_box{

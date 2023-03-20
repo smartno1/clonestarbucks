@@ -54,7 +54,6 @@ public class NoticeController {
     public List<Notice> indexNotice(Search search){
         log.info("amount - {}",search.getAmount());
         List<Notice> nl = noticeService.findAllService(search);
-        log.info("index nl - {}", nl);
         return nl;
     }
 

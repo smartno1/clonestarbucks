@@ -34,6 +34,10 @@
 						<span class="material-symbols-outlined check">check</span>
 						<h3>아이디 저장</h3>
 					</div>
+					<div class="auto">
+						<span class="material-symbols-outlined check2">check</span>
+						<h3>자동 로그인</h3>
+					</div>
 					<button class="submit" type="submit" onclick=login()>로그인</button>
 					<div id="kakao-login">
 						<a id="custom-login-btn" href="/kakao-login">
@@ -76,16 +80,18 @@
 		}
 
 		fetch('/member/sign-in', reqInfo)
-				.then(res => res.text())
+				.then(res => res.json())
 				.then(result => {
-					if (result === "SUCCESS") {
+					console.info("result : ", result);
+					console.info("result.loginMsg : ", result.loginMsg);
+					if (result.loginMsg === "SUCCESS") {
 						var msg = "로그인 성공";
-						alert(msg);
-						location.href = "/";
-					} else if (result === "NO_PW") {
+						alert(result.name + " 님 환영합니다.");
+						location.href = result.redirectUri;
+					} else if (result.loginMsg === "NO_PW") {
 						var msg = "비밀번호가 틀립니다.";
 						alert(msg);
-					} else if (result === "NO_ACC") {
+					} else if (result.loginMsg === "NO_ACC") {
 						var msg = "존재하지 않는 아이디입니다."
 						alert(msg);
 					} else {

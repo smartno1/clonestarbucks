@@ -38,6 +38,10 @@ public class AdminController {
     private final MemberService memberService;
     private final SuggestionService suggestionService;
 
+    @GetMapping("")
+    public String admin(){
+        return "redirect:/admin/member";
+    }
 
     @GetMapping("/member")
     public String member(Search search, Model model) {

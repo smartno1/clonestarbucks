@@ -20,7 +20,13 @@ public class AdminInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
 
-        log.info("admin interceptor preHandel start");
+        log.info("admin interceptor preHandle start");
+        if(!LoginUtils.isLogin(session)){
+            log.info("로그인해주세요.");
+            request.getSession().setAttribute("redirectURI",request.getRequestURI());
+            response.sendRedirect("/member/sign-in");
+            return false;
+        }
 
         if(!Objects.equals(LoginUtils.getCurrentMemberAuth(session), "" + Auth.ADMIN)){
             log.info("관리자가 아닙니다.");

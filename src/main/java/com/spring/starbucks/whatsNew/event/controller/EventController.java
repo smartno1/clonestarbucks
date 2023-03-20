@@ -94,8 +94,6 @@ public class EventController {
                 }
             }
         }
-
-
         boolean flag=eventService.updateService(edit);
         return "redirect:/whats_new/event/detail?id="+edit.getEventId();
     }

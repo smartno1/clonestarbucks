@@ -10,11 +10,6 @@
         <result property="nameEn" column="name_en" />
         <result property="descriptionSummary" column="description_summary" />
         <result property="descriptionDetail" column="description_detail" />
-        <result property="designStory" column="design_story" />
-        <result property="coffeeTastingNote" column="coffee_tasting_note" />
-        <result property="tastingNotes" column="tasting_notes" />
-        <result property="enjoyWith" column="enjoy_with" />
-        <result property="processingMethod" column="processing_method" />
         <result property="espressoKind" column="espresso_kind"/>
         <result property="regDate" column="reg_date" />
     </resultMap>
@@ -44,13 +39,13 @@
 
     <insert id="save">
         INSERT INTO menu
-        ( espresso_kind, price, flavor, feel, degree, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, design_story, coffee_tasting_note, tasting_notes, enjoy_with, relative, processing_method,weight2,calorie1,calorie2,calorie3,calorie4,calorie5,calorie6)
-        VALUES (#{espressoKind}, #{price}, #{flavor}, #{feel}, #{degree}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{designStory}, #{coffeeTastingNote}, #{tastingNotes}, #{enjoyWith}, #{relative}, #{processingMethod}, #{weight2}, #{calorie1}, #{calorie2}, #{calorie3}, #{calorie4}, #{calorie5}, #{calorie6})
+        ( espresso_kind, price, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, weight2,calorie1,calorie2,calorie3,calorie4,calorie5,calorie6)
+        VALUES (#{espressoKind}, #{price}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{weight2}, #{calorie1}, #{calorie2}, #{calorie3}, #{calorie4}, #{calorie5}, #{calorie6})
     </insert>
 
     <update id="update">
         UPDATE menu
-        SET espresso_kind=#{espressoKind}, price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_notes=#{tastingNotes}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}, weight2=#{weight2}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
+        SET espresso_kind=#{espressoKind}, price=#{price}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, weight2=#{weight2}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
         WHERE id = #{id}
     </update>
 
@@ -58,11 +53,5 @@
         DELETE FROM menu
         WHERE id=#{id}
     </delete>
-    <update id="reupdate">
-        UPDATE menu
-        SET espresso_kind=#{espressoKind}, price=#{price}, flavor=#{flavor}, feel=#{feel}, degree=#{degree}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, design_story=#{designStory}, coffee_tasting_note=#{coffeeTastingNote}, tasting_note=#{tastingNote}, enjoy_with=#{enjoyWith}, relative=#{relative}, processing_method=#{processingMethod}
-        WHERE id = #{id}, weight2=#{weight2}
-    </update>
-
 
 </mapper>

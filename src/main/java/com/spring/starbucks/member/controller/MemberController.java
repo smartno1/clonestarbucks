@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.spring.starbucks.util.LoginUtils.*;
@@ -192,7 +194,10 @@ public class MemberController {
 
         // 요청 정보 헤더 안에는 Referer라는 키가 있는데
         // 여기 안에는 이 페이지로 진입할 때 어디에서 왔는지 URI정보가 들어있음.
-        String referer = request.getHeader("Referer");
+        String referer = (String)request.getSession().getAttribute("redirectURI");
+        if(referer == null){
+            referer = request.getHeader("Referer");
+        }
         log.info("referer: {}", referer);
 
         request.getSession().setAttribute("redirectURI", referer);
@@ -201,28 +206,34 @@ public class MemberController {
     // 로그인 요청 처리
     @PostMapping("/sign-in")
     @ResponseBody
-    public ResponseEntity<String> signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
+    public ResponseEntity<Map<String, String>> signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
             , HttpServletResponse response){
 
         log.info("/member/sign-in POST - {}", inputData);
 //        log.info("session timeout : {}", session.getMaxInactiveInterval());
-
+        Map<String,String> map = new HashMap<>();
         log.info("memberService.login 시작");
-        // 로그인 서비스 호출
-        LoginFlag flag = memberService.login(inputData, session, response);
+        // 로그인 서비스 호출 하여 결과값 저장.
+        String flag = memberService.login(inputData, session, response).toString();
         model.addAttribute("loginMsg", flag);
-        log.info("memberService.login 종료");
-        log.info(flag);
 
-        return new ResponseEntity<>(String.valueOf(flag),HttpStatus.OK);
+        map.put("loginMsg", flag);
+        map.put("name", getCurrentMemberName(session));
+        map.put("redirectUri", session.getAttribute("redirectURI").toString());
+        log.info("memberService.login 종료");
+
+        return new ResponseEntity<>(map,HttpStatus.OK);
 
     }
 
     // 로그아웃
     @GetMapping("/sign-out")
-    public ResponseEntity<String> signOut(HttpSession session) throws Exception {
-        ResponseEntity<String> res = new ResponseEntity<>("success",HttpStatus.OK);
+    public ResponseEntity<Map<String, String>> signOut(HttpSession session) throws Exception {
+        Map<String, String> map = new HashMap<>();
+
         if (session.getAttribute("loginUser") != null) {
+            // 세션 삭제전 로그인되어있는 유저 네임 가져오기
+            map.put("name",getCurrentMemberName(session));
             // 1. 세션에서 정보를 삭제한다.
             session.removeAttribute("loginUser");
 
@@ -236,10 +247,9 @@ public class MemberController {
 
             // 2. 세션을 무효화한다.
             session.invalidate();
-
-            return res;
+            map.put("msg", "success");
         }
-        return res;
+        return new ResponseEntity<>( map, HttpStatus.OK);
     }
 
 //    회원 탈퇴

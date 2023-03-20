@@ -64,6 +64,14 @@ $(".save").on('click',function(){
 		$(".check").css('background-color','green');
 	}
 });
+$(".auto").on('click',function(){
+	if($(".check2").css('background-color')=='rgb(0, 128, 0)'){
+		$(".check2").css('background-color','grey');
+	}
+	else{
+		$(".check2").css('background-color','green');
+	}
+});
 // function handleCredentialResponse(response) {
 //     console.log("Encoded JWT ID token: " + response.credential);
 //         $.ajax({
