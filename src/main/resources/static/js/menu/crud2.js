@@ -86,3 +86,29 @@ $('#editProduct').click(function(){
 	console.log(link);
 	location.href= link
 });
+
+$('#addMyFavorite').click(function(){
+	if(!confirm("나만의 상품으로 등록 하시겠습니까?")) return;
+	const id = $('#addMyFavorite').data('id');
+	const type = "menu";
+	const param = { "id":id, "type":type};
+	const reqInfo = {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	}
+
+	fetch('/myStarbucks/favorite/add', reqInfo)
+		.then(res => res.text())
+		.then(msg => {
+			if (msg === 'success') {
+				alert("나만의 상품으로 등록하였습니다.");
+			}else if(msg === 'exist'){
+				alert("나만의 상품으로 이미 등록되어있습니다.")
+			}else{
+				alert("상품등록에 실패하였습니다.");
+			}
+		})
+})

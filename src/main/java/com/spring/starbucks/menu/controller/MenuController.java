@@ -95,7 +95,7 @@ public class MenuController {
         log.info("/menu/foodList GET! - kind: {}",search.getKind());
         List<Menu> menus = menuService.findAllService(search);
         log.info("list - {}",menus);
-        model.addAttribute("list",menus);
+        model.addAttribute("food",menus);
         model.addAttribute("type", search.getKeyword());
         model.addAttribute("kind", search.getKind());
         return "menu/foodList";
@@ -162,7 +162,7 @@ public class MenuController {
         log.info("/menu/productList GET! - kind: {}",search.getKind());
         List<Menu> menus = menuService.findAllService(search);
         log.info("list - {}",menus);
-        model.addAttribute("list",menus);
+        model.addAttribute("products",menus);
         model.addAttribute("type", search.getKeyword());
         model.addAttribute("kind", search.getKind());
         return "menu/productList";

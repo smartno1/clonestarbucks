@@ -1,4 +1,4 @@
-package com.spring.starbucks.favorite.domain;
+package com.spring.starbucks.myStarbucks.myMenu.domain;
 
 import lombok.*;
 

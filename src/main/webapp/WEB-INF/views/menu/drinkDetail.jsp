@@ -55,8 +55,8 @@
 							<span class="material-symbols-outlined" id ="deleteDrink" data-id="${menu.id}">delete</span>
 						</div>
 						</c:if>
-						<div class="myDrink">
-							<a>나만의 상품으로 등록</a>
+						<div id="addMyFavorite"  data-id="${menu.id}">
+							<a href="javascript:void(0)">나만의 상품으로 등록</a>
 						</div>
 
 					</div>
@@ -149,6 +149,6 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
  	<script src="/js/menu/crud2.js"></script>
   	<script src="/js/share.js"></script>
-  	<script src="/js/menu/coffeeDetail.js"></script>
+  	<script src="/js/menu/menuDetail.js"></script>
 </body>
 </html>	

@@ -209,7 +209,7 @@
           <div class="list-main">
             <ul class="list-box">
               <c:forEach items="${menu}" var="e">
-                <c:if test="${e.kind == 'sangpum'}">
+                <c:if test="${e.kind == 'product'}">
                   <li class="list clear-fix">
                     <div class="list-img">
                       <img src="${e.image}"/>

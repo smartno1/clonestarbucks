@@ -47,7 +47,7 @@
 						</div>
 						</c:if>
 						<div id="addMyFavorite" data-id="${coffee.id}">
-							<a>나만의 상품으로 등록</a>
+							<a href="javascript:void(0)">나만의 상품으로 등록</a>
 						</div>
 
 					</div>

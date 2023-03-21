@@ -39,7 +39,7 @@
 							<p>음료 카테고리</p>
 							<select class="form-select type" aria-label="Default select example" name="kind" onchange="categoryChange(this)">
 								<option value="">선택안함</option>
-								<option value="sangpum">상품</option>
+								<option value="product">상품</option>
 
 							</select>
 							<p>음료 종류</p>

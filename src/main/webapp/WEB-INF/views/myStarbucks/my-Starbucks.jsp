@@ -71,12 +71,12 @@
                             </li>
                             <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/calendar.do">My 캘린더</a></li>
                             <!-- <li class="msRnb_btn"><a href="/my/drink_shop.do" required="login">My 음료/매장</a></li> -->
-                            <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/my_menu.do">My 메뉴</a></li>
+                            <li class="msRnb_btn"><a href="/myStarbucks/favorite/list" required="login" data-href="/my/my_menu.do">My 메뉴</a></li>
 
 
 
                             <li>
-                                <a href="/myStarbucks/vocList" required="login" data-href="/my/vocList.do">My 고객의 소리</a>
+                                <a href="/suggestion/vocList" required="login" data-href="/suggestion/vocList">My 고객의 소리</a>
                             </li>
                             <!-- <li class="msRnb_btn"><a href="/my/order_status_list.do" required="login">케익 주문 현황</a></li> -->
                             <li class="msRnb_btn"><a href="javascript:void(0);" required="login" data-href="/my/eReceiptList.do">전자영수증</a></li>

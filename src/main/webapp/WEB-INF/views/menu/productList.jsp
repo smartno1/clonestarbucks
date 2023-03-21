@@ -53,7 +53,7 @@
                     <img src="/images/icon/blondRoast.png"/><p>머그컵</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${sangpum}" var="u">
+                    <c:forEach items="${products}" var="u">
                         <c:choose>
                             <c:when test="${u.type eq 'mugcup'}">
                                 <li class="coffee_bean">
@@ -74,7 +74,7 @@
                     <img src="/images/icon/mediumRoast.png"/><p>보온병</p>
                 </div>
                 <ul class="coffee-bean-wrapper">
-                    <c:forEach items="${sangpum}" var="u">
+                    <c:forEach items="${products}" var="u">
                         <c:choose>
                             <c:when test="${u.type eq 'thermos'}">
                                 <li class="coffee_bean">

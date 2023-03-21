@@ -24,7 +24,7 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("auto login prehandle");
+//        log.info("auto login prehandle");
         //1. 자동로그인 쿠키 탐색
         Cookie c = getAutoLoginCookie(request);
 
@@ -32,11 +32,11 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
         //2. 자동로그인 쿠키가 발견될 경우 쿠키값을 읽어서 세션아이디를 확인
         if (c != null) {
             String sessionId = c.getValue();
-            log.info("auto sid : {}", sessionId);
+//            log.info("auto sid : {}", sessionId);
 
             //3. 쿠키에 저장된 세션아이디와 같은 값을 가진 회원정보 조회
             Member member = memberMapper.findMemberBySessionId(sessionId);
-            log.info("auto member : {}", member);
+//            log.info("auto member : {}", member);
             if (member != null) {
                 // 4. 세션에 해당 회원정보를 저장
                 request.getSession().setAttribute(LOGIN_FLAG, member);

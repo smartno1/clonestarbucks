@@ -85,7 +85,7 @@
     justify-content:end;
     width:20%;
 }
-.myDrink a{
+#addMyFavorite a{
     display: block;
     width: 138px;
     height: 28px;

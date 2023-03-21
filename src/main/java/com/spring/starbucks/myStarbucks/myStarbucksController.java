@@ -1,4 +1,4 @@
-package com.spring.starbucks.myStarbucks.controller;
+package com.spring.starbucks.myStarbucks;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/myStarbucks")
 public class myStarbucksController {
-
 
     @GetMapping("/index")
     public String myStarbucks(){

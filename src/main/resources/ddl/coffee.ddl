@@ -26,7 +26,7 @@ CREATE table starbucks.coffee_bean(
 
 
 CREATE TABLE starbucks.myfavorite(
-    my_favorit_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    my_favorite_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY
     , account VARCHAR(50)
     , type VARCHAR(50)
     , type_id INT(11)

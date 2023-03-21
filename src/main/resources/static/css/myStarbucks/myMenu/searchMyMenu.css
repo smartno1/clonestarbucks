@@ -1,0 +1,242 @@
+
+.main{
+    float: left;
+    width:100%;
+    max-width:880px;
+    margin: 0 auto;
+}
+/*myStarbucks.css*/
+.container-wrapper{
+    background-attachment: fixed;
+    background-size : cover;
+    padding-bottom: 120px;
+}
+.toptitle{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height: 178px;
+
+}
+.toptitle .toptitle-bg{
+    margin: 0 auto;
+    background-image: url("/images/my_Starbucks/ms_sub_ttl_bg.jpg");
+    height: 178px;
+    width: 100%;
+
+}
+.toptitle .toptitle-bg .toptitle-inner{
+    width: 1100px;
+    height: 178px;
+    margin: 0 auto;
+}
+.toptitle-tt{
+    height: 74px;
+    margin: 0 auto;
+    padding-top: 104px;
+    position: relative;
+    width: 1100px;
+}
+.toptitle-tt h4{
+    font: bold 36px Avenir, Arial, georgia;
+    color: #fefefe;
+    position: relative
+}
+.toptitle-tt .smap{
+    position: absolute;
+    right: 0;
+    top: 128px;
+}
+.toptitle-tt li{
+    vertical-align: middle;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 2.5px;
+    font: normal 12px Avenir, Arial, georgia;
+
+}
+.toptitle-tt li a{
+    color: #fff;
+}
+.main-all{
+    width: 100%;
+    height: 100%;
+
+}
+.main-all .main-all-bg {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 30px;
+    height: 100%;
+    margin-bottom: 30px;
+}
+.main-all .main-all-bg > h1 {
+    padding: 50px 30px 30px 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+/*==========================================================================================================nav*/
+.ms_nav { float:right; font-weight:bold; width: 100%; max-width:220px; margin-bottom:90px; }
+.ms_nav > ul { border-top:2px solid #222; }
+.ms_nav > ul > li { border-bottom:1px solid #ddd; width:220px; }
+.ms_nav > ul > li > a { color:#444; display:block; font-size:14px; padding:20px 30px 20px 15px; position:relative; width:175px; }
+.ms_nav > ul > li > a:hover { color:#006633; }
+.ms_nav > ul > li > a > span { height:7px; margin-top:-3px; position:absolute; right:15px; top:50%; width:12px; }
+.ms_nav > ul > li > a span.sbox_arrow_down { background:url("/images/my_Starbucks/sbox_arrow_down.png"); }
+.ms_nav > ul > li > a span.sbox_arrow_up { background:url("/images/my_Starbucks/sbox_arrow_up.png"); }
+.ms_nav > ul > li > ul { border:none; display:none; padding-bottom:14px; }
+.ms_nav > ul > li > ul > li { width:220px; }
+.ms_nav > ul > li > ul > li > a { color:#444; display:block; font-size:12px; padding:6px 0 6px 15px; width:205px; }
+/*==========================================================================================================nav*/
+
+
+/*kind 셀렉트-----------------------------------------------------*/
+.kind{
+    padding: 20px 30px;
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 40px;
+}
+.kind .select-kind{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.select-kind div a{
+    float: left;
+    background: #f4f4f1;
+    color: black;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 19%;
+    min-width: fit-content;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+.select-kind div:last-child a{
+    margin-right: 0;
+}
+.kind div a:hover{
+    text-decoration-line:underline;
+    cursor: pointer;
+}
+.kind div a.selected {
+    background: #006633;
+    color: #fff;
+}
+/* 리스트 공통 부분 ------------------------------*/
+.middle-section > div {
+    padding:0 30px;
+    margin-bottom: 40px;
+}
+.list-top {
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    height: 40px;
+}
+.list-top p {
+    float: left;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+.list-top a {
+    display: block;
+    float: right;
+    background: #666;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 20px;
+}
+
+.list-main{
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.list-box{
+
+}
+.list{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    margin-right: 1.8%;
+    align-items:center;
+    padding-bottom: 20px;
+}
+.list > div {
+    float: left;
+    margin-right: 30px;
+}
+.list .list-img{
+    width: 100%;
+    max-width: 23.65%;
+    vertical-align: baseline;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.list .list-img > img{
+    width: 100%;
+    height: 100%;
+    max-width: 260px;
+    max-height: 260px;
+    object-fit: contain;
+}
+.list .list-context {
+    width: 70%;
+}
+.list .list-context .list-title {
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.8;
+}
+.list .list-context .list-title span{
+    display: inline-block;
+    background: #006633;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 9px;
+    text-align: center;
+    width: 43px;
+}
+.list .list-context a{
+    display: inline-block;
+    margin-top: 30px;
+    background: #006633;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    height: 20px;
+    line-height: 20px;
+    width: 20%;
+    margin-left: 9px;
+    text-align: center;
+    cursor: pointer;
+}
+.list .list-context .list-sub{
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+}
+.empty{
+    text-align: center;
+    padding-top: 10px;
+
+}
