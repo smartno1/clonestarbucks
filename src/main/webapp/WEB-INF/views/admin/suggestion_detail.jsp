@@ -121,7 +121,7 @@
     function button(){
         document.querySelector('.button_box').addEventListener('click',e=>{
             const id = document.querySelector('.button_box').dataset.id;
-            const SUCCESS = "/admin/suggestion?pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
+            const SUCCESS = "/admin/suggestion?pageNum=${s.pageNum}&amount=${s.amount}&type=search&keyword=${s.keyword}";
             const FAIL = "/admin/suggestion_detail?id"+id+"&pageNum=${s.pageNum}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}&kind=${s.kind}";
             if(e.target.matches('#saveReply')){
                 const context = document.getElementById('reply').value;
@@ -180,7 +180,10 @@
         if(${!empty suggestion.checker}){
             const div = document.getElementById('reply').parentElement;
             const p = document.createElement('p');
-            p.textContent = "확인자: " + ${suggestion.checker} + " 확인일: " + ${suggestion.checkDate};
+            let date = "${suggestion.checkDate}";
+            date = date.substring(0,10);
+            console.log("ch date :",checkDate );
+            p.textContent = "확인자: ${suggestion.checker} 확인일: "+date;
             div.appendChild(p);
         }
     }
@@ -188,7 +191,9 @@
         if(${!empty suggestion.replyer}){
             const div = document.getElementById('reply').parentElement;
             const p = document.createElement('p');
-            p.textContent = "작성자: " + ${suggestion.replyer} + " 작성일: " + ${suggestion.replyDate};
+            let date = "${suggestion.replyDate}";
+            date = date.substring(0,10);
+            p.textContent = "작성자: ${suggestion.replyer} 작성일: "+date;
             div.appendChild(p);
         }
     }

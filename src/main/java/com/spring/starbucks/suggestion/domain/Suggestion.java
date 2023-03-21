@@ -18,7 +18,7 @@ public class Suggestion {
     private String context;
     private String phone;
     private LocalDate regDate;
-    private boolean check;
+    private boolean checked;
     private String checker;
     private LocalDateTime checkDate;
     private String reply;

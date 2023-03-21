@@ -182,7 +182,7 @@ public class AdminController {
         Suggestion suggestion = suggestionService.findOne(Integer.parseInt(id));
 
         //  확인 여부 컬럼에 폴스면 트루 설정 업데이트
-        if(!suggestion.isCheck() ){
+        if(!suggestion.isChecked() ){
             suggestionService.update(new suggestionUpdateDto(id, "check", "true", "", LoginUtils.getCurrentMemberAccount(session)));
         }
 
@@ -194,7 +194,7 @@ public class AdminController {
 
     @PostMapping("/suggestion_reply")
     @ResponseBody
-    public ResponseEntity<String> saveReply(suggestionUpdateDto dto, HttpSession session){
+    public ResponseEntity<String> saveReply(suggestionUpdateDto dto, HttpSession session, HttpServletRequest request){
         log.info("/suggestion_reply start - {}",dto);
         String msg;
         dto.setReplyer(LoginUtils.getCurrentMemberAccount(session));

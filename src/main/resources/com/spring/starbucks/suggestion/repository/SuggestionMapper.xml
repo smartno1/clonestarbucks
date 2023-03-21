@@ -61,8 +61,8 @@
         <if test="type == 'id'">WHERE  id = #{keyword}</if>
         <if test="type == 'account'">WHERE  account = #{keyword}</if>
         <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
-        <if test="type == 'new'">WHERE  check = false</if>
-        <if test="type == 'no_reply'">WHERE  reply_done = false</if>
+        <if test="type == 'new'">WHERE  checked = FAlSE</if>
+        <if test="type == 'no_reply'">WHERE  reply_done = FALSE</if>
         <if test="type == 'no_login'"></if>
         <if test="type == 'search'">
             WHERE  title LIKE CONCAT('%', #{keyword}, '%') OR context LIKE CONCAT('%', #{keyword}, '%')
@@ -72,7 +72,7 @@
 
     <sql id="updateColumn">
         <if test="type == 'check'">
-            SET check=true, check_date= CURRENT_TIMESTAMP, checker=#{checker}        </if>
+            SET checked = TRUE, check_date= CURRENT_TIMESTAMP, checker=#{checker}        </if>
         <if test="type == 'reply'">
             SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE, replyer = #{replyer}
         </if>
