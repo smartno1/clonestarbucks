@@ -3,6 +3,7 @@ package com.spring.starbucks.member.service;
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
+import com.spring.starbucks.member.dto.AutoLoginDTO;
 import com.spring.starbucks.member.dto.LoginDTO;
 import com.spring.starbucks.member.repository.DelMemberMapper;
 import com.spring.starbucks.member.repository.MemberMapper;
@@ -12,11 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,10 +84,10 @@ public class MemberService {
     }
 
     // 로그인 처리
-    public LoginFlag login(LoginDTO inputData, HttpSession session, HttpServletResponse response) {
+    public LoginFlag login(LoginDTO inputData, HttpServletRequest request, HttpServletResponse response) {
         // 회원가입 여부 확인
 //        Member foundMember = memberMapper.findUser(inputData.getAccount());
-
+        HttpSession session = request.getSession();
 
         Member foundMember = new Member();
         if (inputData.getEmail() == null) {
@@ -111,9 +115,6 @@ public class MemberService {
         log.info("멤버 : {}", foundMember);
 
         if (foundMember != null) {
-            log.info("password : {} ", inputData.getPassword());
-            log.info("encodePassword : {} ", foundMember.getPassword());
-            log.info("encoder.matches : {}", encoder.matches(inputData.getPassword(), foundMember.getPassword()));
             if (encoder.matches(inputData.getPassword(), foundMember.getPassword())) { //패스워드 암호화로 매치메소드를 사용해서 비교.
                 // 로그인 성공
                 // 세션에 사용자 정보기록 저장
@@ -121,6 +122,12 @@ public class MemberService {
 
                 // 세션 타임아웃 설정
                 session.setMaxInactiveInterval(60 * 60); // 1시간
+
+                // 자동 로그인 처리
+                if (inputData.isAutoLogin()) {
+                    log.info("checked auto login user!!");
+                    keepLogin(foundMember.getAccount(), session, response);
+                }
                 return SUCCESS;
             } else {
                 // 비번 틀림
@@ -129,6 +136,47 @@ public class MemberService {
         } else {
             // 아이디 없음
             return NO_ACC;
+        }
+    }
+
+    // 자동 로그인 처리
+    private void keepLogin(String account, HttpSession session, HttpServletResponse response) {
+        log.info("keepLogin");
+        // 1. 자동로그인 쿠키 생성 - 쿠키의 값으로 현재 세션의 아이디를 저장
+        String sessionId = session.getId();
+        Cookie c = new Cookie(LOGIN_COOKIE, sessionId);
+        // 2. 쿠키 설정 (수명, 사용 경로)
+        int limitTime = 60 * 60 * 24 * 90; // 90일에 대한 초
+        c.setMaxAge(limitTime);
+        c.setPath("/"); // 전체경로
+        // 3. 로컬에 쿠키 전송
+        response.addCookie(c);
+
+        // 4. DB에 쿠키값과 수명 저장
+        // 자동로그인 유지시간(초)을 날짜로 변환
+        long nowTime = System.currentTimeMillis();
+        Date limitDate = new Date(nowTime + ((long) limitTime * 1000));
+
+        AutoLoginDTO dto = new AutoLoginDTO(account, sessionId, limitDate);
+
+        memberMapper.saveSessionValue(dto);
+    }
+
+    // 자동로그인 해제
+    public void autoLogout(String account, HttpServletRequest request, HttpServletResponse response) {
+
+        //1. 자동로그인 쿠키를 불러온 뒤 수명을 0초로 세팅해서 클라이언트에 돌려보낸다
+        Cookie c = getAutoLoginCookie(request);
+        if (c != null) {
+            log.info("cookie dead : {}",c.getValue());
+            c.setMaxAge(0);
+            c.setValue("");
+            log.info("cookie dead2 : {}",c.getValue());
+            response.addCookie(c);
+
+            //2. 데이터베이스 처리
+            AutoLoginDTO dto = new AutoLoginDTO(account, "none", new Date());   // 세션 정보 삭제
+            memberMapper.saveSessionValue(dto);
         }
     }
 
@@ -147,19 +195,14 @@ public class MemberService {
         String msg = "FAIL";
         try {
             if (account != null) {
-                Member member = memberMapper.findUser(account);
-                log.info("delAccount start - {}", member);
-                boolean flag = delAccountRegister(member);
+                DelMember delMember = (DelMember)memberMapper.findUser(account);
+                delMember.setDelReason(reason);
+                delMember.setDeleter(getCurrentMemberAccount(session));
+                log.info("delAccount start - {}", delMember);
+                boolean flag = delAccountRegister(delMember);
                 if (flag) {
                     if (deleteUser(account)) {
-                        Map<String, Object> checkMap = new HashMap<>();
-                        checkMap.put("type", "email");
-                        checkMap.put("value", member.getEmail());
-                        DelMember delMember = delAccountFind2(checkMap);
-                        delMember.setDelReason(reason);
-                        if (delAccountUpdate(delMember)) {
                             msg = "SUCCESS";
-                        }
                     }
                 }
             } else {
@@ -172,8 +215,9 @@ public class MemberService {
     }
 
     // 회원 복구 기능
-    public boolean recoveryAccount(String account){
+    public boolean recoveryAccount(String account, HttpSession session){
         DelMember member = delAccountFind(account);
+        member.setRecoverer(getCurrentMemberAccount(session));
         boolean flag = memberMapper.recovery(member);
         if(flag){
             boolean flag2 = delMemberMapper.delAccountDelete(account);
@@ -197,7 +241,7 @@ public class MemberService {
 
 
     // 탈퇴 회원 테이블 관련 서비스 기능
-    public boolean delAccountRegister(Member member) {
+    public boolean delAccountRegister(DelMember member) {
 
         return delMemberMapper.delAccountRegister(member);
     }

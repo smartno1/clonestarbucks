@@ -4,6 +4,7 @@ import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.menu.upload.FileUtils;
 import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.menu.service.MenuService;
+import com.spring.starbucks.util.LoginUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +27,8 @@ public class MenuController {
     private String UPLOAD_PATH;
     private final MenuService menuService;
 
-    @GetMapping("/list")
-    public String menuList(Search search, Model model){
+    @GetMapping("/drinkList")
+    public String drinkList(Search search, Model model){
         log.info("/menu/menuList GET! - kind: {}",search.getKind());
         log.info("type - {}", search.getType());
         List<Menu> menus = menuService.findAllService(search);
@@ -35,34 +36,33 @@ public class MenuController {
         model.addAttribute("list",menus);
         model.addAttribute("type", search.getKeyword());
         model.addAttribute("kind", search.getKind());
-        return "menu/menuList";
+        return "menu/drinkList";
     }
 
-    @GetMapping("/addMenu")
-    public String addMenuForm() {
+    @GetMapping("/drinkAdd")
+    public String drinkAddFrom() {
 
-        return "menu/addMenuForm";
+        return "menu/drinkAddForm";
     }
-    @PostMapping("/addMenu")
-    public String addMenu(Menu menu, HttpSession session){
+    @PostMapping("/drinkAdd")
+    public String drinkAdd(Menu menu, HttpSession session){
         log.info("/menu/addMenuFrom POST! - {}", menu);
-        log.info(menu.getNameEn());
-        log.info(menu.getDesignStory());
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = menuService.saveService(menu);
-        return "redirect:/menu/list";
+        return "redirect:/menu/drinkList";
 
     }
-    @GetMapping("/menuListDetail")
-    public String detail(int id, Model model){
-        log.info("/menu/menuListDetail GET! - id:{}",id);
+    @GetMapping("/drinkDetail")
+    public String drinkDetail(int id, Model model){
+        log.info("/menu/drinkDetail GET! - id:{}",id);
         Menu menu = menuService.findOneService(id);
         model.addAttribute("menu", menu);
 
-        return "menu/menuListDetail";
+        return "menu/drinkDetail";
     }
-    @DeleteMapping("/deleteMenulist")
-    public ResponseEntity<String> delete(@RequestBody String id){
-        log.info("/menu/deleteMenulist Get! id - {}", id);
+    @DeleteMapping("/drinkDelete")
+    public ResponseEntity<String> drinkDelete(@RequestBody String id){
+        log.info("/menu/deleteDrink Get! id - {}", id);
         int nid = Integer.parseInt(id);
         String img = menuService.findOneService(nid).getImage(); // 이미지경로저장.
         boolean flag = menuService.deleteService(nid);            // DB 삭제
@@ -73,61 +73,65 @@ public class MenuController {
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    @GetMapping("/editmenuListForm")
-    public String editmenuListForm(String id, Model model){
+    @GetMapping("/drinkEdit")
+    public String drinkEditForm(String id, Model model){
         Menu menu = menuService.findOneService(Integer.parseInt(id));
         model.addAttribute("menu",menu);
-        return "menu/editmenuListForm";
+        return "menu/drinkEditForm";
     }
-    @PostMapping("/update")
-    public String edit(Menu menu, HttpSession session){
+    @PostMapping("/drinkEdit")
+    public String drinkEdit(Menu menu, HttpSession session){
         menu.setId(Integer.parseInt(menu.getSid()));
-        log.info("/menu/editmenuListForm POST! - {}", menu);
-        log.info(menu.getNameEn());
-        log.info(menu.getDesignStory());
+        log.info("/menu/editDrink POST! - {}", menu);
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = menuService.updateService(menu);
 
-        return "redirect:/menu/menuListDetail?id="+menu.getId();
+        return "redirect:/menu/drinkDetail?id="+menu.getId();
 
     }
 
-    @GetMapping("/food")
-    public String foodmList(@ModelAttribute("kind") String kind, String type, Model model){
-        log.info("/menu/foodList GET! - kind: {}",kind);
-        log.info("type - {}", type);
-        Search search = new Search();
-        search.setType("kind");
-        search.setKeyword(kind);
+    @GetMapping("/foodList")
+    public String foodList(Search search, Model model){
+        log.info("/menu/foodList GET! - kind: {}",search.getKind());
         List<Menu> menus = menuService.findAllService(search);
-        log.info("food - {}",menus);
-        model.addAttribute("food",menus);
-        model.addAttribute("type", type);
+        log.info("list - {}",menus);
+        model.addAttribute("list",menus);
+        model.addAttribute("type", search.getKeyword());
+        model.addAttribute("kind", search.getKind());
         return "menu/foodList";
     }
-    @GetMapping("/foodeditListForm")
-    public String foodeditListForm(String id, Model model){
+    @GetMapping("/foodEdit")
+    public String foodEditForm(String id, Model model){
         Menu menu = menuService.findOneService(Integer.parseInt(id));
         model.addAttribute("menu",menu);
-        return "menu/foodeditListForm";
+        return "menu/foodEditForm";
     }
-    @GetMapping("/foodaddMenu")
-    public String foodaddMenuForm() {
+    @PostMapping("/foodEdit")
+    public String foodEdit(Menu menu, HttpSession session){
+        menu.setId(Integer.parseInt(menu.getSid()));
+        log.info("/menu/foodEdit POST! - {}", menu);
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
+        boolean flag = menuService.updateService(menu);
 
-        return "menu/foodaddMenuForm";
+        return "redirect:/menu/foodDetail?id="+menu.getId();
     }
-    @PostMapping("/foodaddMenu")
-    public String foodaddMenu(Menu menu, HttpSession session){
-        log.info("/menu/foodaddMenuFrom POST! - {}", menu);
-        log.info(menu.getNameEn());
-        log.info(menu.getDesignStory());
+    @GetMapping("/foodAdd")
+    public String foodAddForm() {
+
+        return "menu/foodAddForm";
+    }
+    @PostMapping("/foodAdd")
+    public String foodAdd(Menu menu, HttpSession session){
+        log.info("/menu/foodAdd POST! - {}", menu);
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = menuService.saveService(menu);
         return "redirect:/menu/food";
 
     }
 
-    @DeleteMapping("/fooddeleteMenulist")
-    public ResponseEntity<String> fooddelete(@RequestBody String id){
-        log.info("/menu/fooddeleteMenulist Get! id - {}", id);
+    @DeleteMapping("/foodDelete")
+    public ResponseEntity<String> foodDelete(@RequestBody String id){
+        log.info("/menu/foodDelete id - {}", id);
         int nid = Integer.parseInt(id);
         String img = menuService.findOneService(nid).getImage(); // 이미지경로저장.
         boolean flag = menuService.deleteService(nid);            // DB 삭제
@@ -138,13 +142,13 @@ public class MenuController {
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    @GetMapping("/foodListDetail")
-    public String foodListDetail(int id, Model model){
+    @GetMapping("/foodDetail")
+    public String foodDetail(int id, Model model){
         log.info("/menu/foodListDetail GET! - id:{}",id);
         Menu menu = menuService.findOneService(id);
         model.addAttribute("menu", menu);
 
-        return "menu/foodListDetail";
+        return "menu/foodDetail";
     }
 
 
@@ -153,45 +157,41 @@ public class MenuController {
 
 
 
-    @GetMapping("/sangpum")
-    public String sangpumList(@ModelAttribute("kind") String kind, String type, Model model){
-        log.info("/menu/sangpumlist GET! - kind: {}",kind);
-        log.info("type - {}", type);
-        Search search = new Search();
-        search.setType("kind");
-        search.setKeyword(kind);
+    @GetMapping("/productList")
+    public String productList(Search search, Model model){
+        log.info("/menu/productList GET! - kind: {}",search.getKind());
         List<Menu> menus = menuService.findAllService(search);
-        log.info("sangpum - {}",menus);
-        model.addAttribute("sangpum",menus);
-        model.addAttribute("type", type);
-        return "menu/sangpumlist";
+        log.info("list - {}",menus);
+        model.addAttribute("list",menus);
+        model.addAttribute("type", search.getKeyword());
+        model.addAttribute("kind", search.getKind());
+        return "menu/productList";
     }
-    @GetMapping("/sangpumaddMenu")
-    public String sangpumaddMenuForm() {
+    @GetMapping("/productAdd")
+    public String productAddForm() {
 
-        return "menu/sangpumaddMenuForm";
+        return "menu/productAddForm";
     }
-    @PostMapping("/sangpumaddMenu")
-    public String fsangpumaddMenu(Menu menu, HttpSession session){
-        log.info("/menu/sangpumaddMenuFrom POST! - {}", menu);
-        log.info(menu.getNameEn());
-        log.info(menu.getDesignStory());
+    @PostMapping("/productAdd")
+    public String productAdd(Menu menu, HttpSession session){
+        log.info("/menu/productAdd POST! - {}", menu);
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = menuService.saveService(menu);
-        return "redirect:/menu/sangpum";
+        return "redirect:/menu/productList";
 
     }
 
-    @GetMapping("/sangpumListDetail")
-    public String sangpumListDetail(int id, Model model){
-        log.info("/menu/sangpumListDetail GET! - id:{}",id);
+    @GetMapping("/productDetail")
+    public String productDetail(int id, Model model){
+        log.info("/menu/productDetail GET! - id:{}",id);
         Menu menu = menuService.findOneService(id);
         model.addAttribute("menu", menu);
 
-        return "menu/sangpumListDetail";
+        return "menu/productDetail";
     }
-    @DeleteMapping("/sangpumMenulist")
-    public ResponseEntity<String> sangpumdelete(@RequestBody String id){
-        log.info("/menu/sangpumMenulist Get! id - {}", id);
+    @DeleteMapping("/productDelete")
+    public ResponseEntity<String> productDelete(@RequestBody String id){
+        log.info("/menu/productDelete  id - {}", id);
         int nid = Integer.parseInt(id);
         String img = menuService.findOneService(nid).getImage(); // 이미지경로저장.
         boolean flag = menuService.deleteService(nid);            // DB 삭제
@@ -202,10 +202,19 @@ public class MenuController {
             return new ResponseEntity<>("fail",HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    @GetMapping("/sangpumeditListForm")
-    public String sangpumeditListForm(String id, Model model){
+    @GetMapping("/productEdit")
+    public String productEditForm(String id, Model model){
         Menu menu = menuService.findOneService(Integer.parseInt(id));
         model.addAttribute("menu",menu);
-        return "menu/sangpumeditListForm";
+        return "menu/productEditForm";
+    }
+    @PostMapping("/productEdit")
+    public String productEdit(Menu menu, HttpSession session){
+        menu.setId(Integer.parseInt(menu.getSid()));
+        log.info("/menu/productEdit POST! - {}", menu);
+        menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
+        boolean flag = menuService.updateService(menu);
+
+        return "redirect:/menu/productDetail?id="+menu.getId();
     }
 }

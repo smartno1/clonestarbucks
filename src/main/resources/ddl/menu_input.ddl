@@ -17,7 +17,10 @@ CREATE table starbucks.menu(
     ,espresso_kind VARCHAR(30)
     ,description_summary VARCHAR(500)
     ,description_detail VARCHAR(500)
+    ,register VARCHAR(50)
     ,reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 
     ,CONSTRAINT pk_coffee PRIMARY KEY (id)
 );
+ALTER TABLE menu
+    ADD FOREIGN KEY (register) REFERENCES tbl_member(account) ON DELETE SET NULL;

@@ -14,10 +14,10 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-    <form id="form" action="/menu/addMenu" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form id="form" action="/menu/foodAdd" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="container">
             <div class="container-name">
-                <h2>음료 추가</h2>
+                <h2>푸드 추가</h2>
             </div>
             <div class="context-top">
                 <div class="coffee-img">
@@ -38,22 +38,20 @@
                             <p>음료 카테고리</p>
                             <select class="form-select type" aria-label="Default select example" name="kind"  onchange="categoryChange(this)">
                                 <option value="">선택안함</option>
-                                <option value="category">카테고리</option>
-                                <option value="theme">테 마</option>
+                                <option value="food">푸드</option>
+
                             </select>
                             <p>음료 종류</p>
-                            <select class="form-select type" aria-label="Default select example" name="type" id="good" onchange="typeChange(this)">
+                            <select class="form-select type"aria-label="Default select example" name="type" id="good">
+<%--                                class="form-select type"--%>
+<%--                                <option value="">선택안함</option>--%>
+<%--                                <option value="blond_roast">아메리카노</option>--%>
+<%--                                <option value="cold_brew">콜드블루</option>--%>
+<%--                                <option value="dark_roast">다크로스트</option>--%>
+
+<%--                                <option value="tema1">테마상품</option>--%>
                                 <option>선택안됨</option>
                             </select>
-                            <div style="display: none">
-                                <p>에스프레소 종류</p>
-                                <select class="form-select type" aria-label="Default select example" name="espressoKind">
-                                    <option>선택안됨</option>
-                                    <option value="americano">아메리카노</option>
-                                    <option value="cappuccino">카푸치노</option>
-                                    <option value="mocha">모카</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                     <div class="description-sum">
@@ -62,13 +60,10 @@
                     </div>
 
                     <div class="weight">
-                        <h3>ml</h3>
+                        <h3>g</h3>
                         <input type="text" name="weight" />
                     </div>
-                    <div class="weight2">
-                        <h3>fl oz</h3>
-                        <input type="text" name="weight2" />
-                    </div>
+
                     <div class="weight">
                         <h3>1회 제공량 (kcal)</h3>
                         <input type="text" name="calorie1" />
@@ -108,8 +103,8 @@
             </div>
 
             <div class="context-bottom" >
-                <a href="javascript:void(0)"><button id="addData" class="btn btn-primary submit" type="button">추가</button></a></a>
-                <a href="/menu/list"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+                <a href="javascript:void(0)"><button id="addData1" class="btn btn-primary submit" type="button">추가</button></a></a>
+                <a href="/menu/food"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
             </div>
 
         </div>
@@ -120,50 +115,27 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>--%>
 <script>
-    function typeChange(e){
-        if(e.value == "espresso") {
-            e.nextElementSibling.lastElementChild.removeAttribute('disabled');
-            e.nextElementSibling.style.display = "block";
-        }else{
-            e.nextElementSibling.lastElementChild.disabled = true;
-            e.nextElementSibling.style.display = "none";
-        }
-    }
     function categoryChange(e) {
-        let d;
-        const good_a = ["", "espresso", "coldbrew", "brewedcoffee"];
-        const good_b = ["theme"];
-        const good_c = ["선택없음"];
+        var good_a = ["cake", "sandwich"];
+        var good_b = ["선택안됨"];
 
-        const target = document.getElementById("good");
+        var target = document.getElementById("good");
 
-        if(e.value == "category") {
-            d = good_a;
-        }else if(e.value == "theme") {
-            d = good_b;
-        }else if(e.value == "") {
-            d = good_c;
-        }
+        if(e.value == "food") var d = good_a;
+        else if(e.value == "") var d = good_b;
+
 
         target.options.length = 0;
 
-        for (const x of d) {
-            const opt = document.createElement("option");
-            opt.value = x;
-            console.info("x  ",x);
-            if(x == ""){
-                opt.textContent = "선택없음";
+        for (x in d) {
+            var opt = document.createElement("option");
+            opt.value = d[x];
+            if(d[x] == "cake"){
+                opt.innerHTML = "케이크";
+            }else if(d[x] == "sandwich"){
+                opt.innerHTML = "샌드위치";
             }
-            else if(x == "espresso"){
-                opt.textContent = "에스프레소";
-            }else if(x == "coldbrew"){
-                opt.textContent = "콜드브루";
-            }else if(x == "brewedcoffee"){
-                opt.textContent = "브루드커피";
-            }
-            if(x == "theme") {
-                opt.textContent = "테마";
-            }
+
             target.appendChild(opt);
         }
     }
@@ -191,7 +163,7 @@
                 method: 'POST',
                 body: formData
             };
-            fetch('/menu/ajax-upload?type=drink', reqInfo)
+            fetch('/menu/ajax-upload?type=food', reqInfo)
                 .then(res => {
                     //console.log(res.status);
                     return res.text();
@@ -209,7 +181,7 @@
                 method: 'DELETE',
                 body: oldFileName
             };
-            fetch('/menu/deleteFile',reqInfoDel)
+            fetch('/menu/fooddeleteFile',reqInfoDel)
                 .then(res => res.text())
                 .then(msg =>{
                     console.log(msg);
@@ -236,7 +208,7 @@
     function submitData(){
         document.querySelector('.context-bottom').addEventListener('click', e=>{
 
-            if(e.target.matches('#addData')) {
+            if(e.target.matches('#addData1')) {
                 e.preventDefault();
                 document.querySelector('input[name="file"]').setAttribute("disabled", "");
                 // = document.querySelector('input[name="file"]').disabled=true;

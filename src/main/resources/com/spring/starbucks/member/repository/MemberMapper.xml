@@ -10,6 +10,9 @@
         <result column="birth_year" property="birthYear"/>
         <result column="birth_month" property="birthMonth"/>
         <result column="birth_day" property="birthDay"/>
+        <result column="session_id" property="sessionId"/>
+        <result column="limit_Time" property="limitTime"/>
+        <result column="recovery_Time" property="recoveryTime"/>
 
     </resultMap>
 
@@ -26,10 +29,10 @@
     <insert id="recovery">
         INSERT INTO tbl_member
         (account, password, nickname, name, phone, birth_year, birth_month, birth_day, email, gender,
-         sl, level, reg_date, auth)
+         sl, level, reg_date, auth,recoverer, recovery_time)
         VALUES
             (#{account}, #{password}, #{nickname}, #{name}, #{phone}, #{birthYear}, #{birthMonth},
-             #{birthDay}, #{email}, #{gender}, #{sl}, #{level}, #{regDate}, #{auth})
+             #{birthDay}, #{email}, #{gender}, #{sl}, #{level}, #{regDate}, #{auth},#{recoverer}, CURRENT_TIMESTAMP)
     </insert>
 
     <!-- 회원 수정 기능   -->
@@ -124,5 +127,20 @@
         WHERE account = #{account}
     </delete>
 
+    <!-- 자동 로그인 정보 추가   -->
+    <update id="saveSessionValue">
+
+        UPDATE tbl_member
+        SET session_id = #{sessionId}, limit_time = #{limitTime}
+        WHERE account = #{account}
+
+    </update>
+
+    <select id="findMemberBySessionId" resultMap="memberMap">
+
+        SELECT * FROM tbl_member
+        WHERE session_id = #{sessionId}
+
+    </select>
 
 </mapper>

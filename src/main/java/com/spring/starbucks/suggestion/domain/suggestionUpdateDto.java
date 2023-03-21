@@ -9,4 +9,6 @@ public class suggestionUpdateDto {
     private String id;
     private String type;
     private String keyword;
+    private String replyer;
+    private String checker;
 }

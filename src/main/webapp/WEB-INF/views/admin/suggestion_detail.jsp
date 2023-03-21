@@ -176,10 +176,27 @@
             }
         })
     }
-
+    function checker(){
+        if(${!empty suggestion.checker}){
+            const div = document.getElementById('reply').parentElement;
+            const p = document.createElement('p');
+            p.textContent = "확인자: " + ${suggestion.checker} + " 확인일: " + ${suggestion.checkDate};
+            div.appendChild(p);
+        }
+    }
+    function replyer(){
+        if(${!empty suggestion.replyer}){
+            const div = document.getElementById('reply').parentElement;
+            const p = document.createElement('p');
+            p.textContent = "작성자: " + ${suggestion.replyer} + " 작성일: " + ${suggestion.replyDate};
+            div.appendChild(p);
+        }
+    }
     (function (){
         msRnbShow();
         button();
+        replyer();
+        checker();
     })();
 
     </script>

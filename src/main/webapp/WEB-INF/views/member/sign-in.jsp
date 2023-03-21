@@ -28,14 +28,17 @@
 			</div>
 			<form id="form" action="/member/sign-in" method="post" accept-charset="UTF-8" onsubmit="return false">
 				<div class="login-mid">
-					<input type="text" name="account" placeholder="아이디를 입력해 주세요."/>
+					<input id="userId" type="text" name="account" placeholder="아이디를 입력해 주세요." />
 					<input type="password" name="password" placeholder="비밀번호를 입력해 주세요."/>
 					<div class="save">
-						<span class="material-symbols-outlined check">check</span>
+						<input id="saveId" type="checkbox" name="saveId">
+						<label for="saveId" class="material-symbols-outlined check">check</label>
 						<h3>아이디 저장</h3>
 					</div>
 					<div class="auto">
-						<span class="material-symbols-outlined check2">check</span>
+						<input id="autoLogin" type="checkbox" name="autoLogin">
+						<label for="autoLogin" class="material-symbols-outlined check2">check
+						</label>
 						<h3>자동 로그인</h3>
 					</div>
 					<button class="submit" type="submit" onclick=login()>로그인</button>
@@ -68,7 +71,7 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
-
+	console.info("saveid : ", "${saveAccount}");
 	// document.querySelector('.submit').addEventListener('click', login);
 	console.info("reuri : ","${redirectURI}");
 	function login() {
@@ -100,6 +103,94 @@
 				})
 	}
 
+	function autoCheck(){
+		document.querySelector('.auto').addEventListener('click', e => {
+			if (!e.target.matches(".auto *")) return;
+			const auto = document.getElementById("autoLogin");
+			if (auto.checked) {
+				auto.checked = false;
+			} else {
+				auto.checked = true;
+			}
+		})
+	}
+	function saveCheck(){
+		document.querySelector('.save').addEventListener('click', e => {
+			if (!e.target.matches(".save *")) return;
+			const save = document.getElementById("saveId");
+			if (save.checked) {
+				save.checked = false;
+			} else {
+				save.checked = true;
+			}
+		})
+	}
+	function saveId() {
+
+		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 쿠키값 없으면 공백.
+		const userLoginId = getCookie("userLoginId");
+		document.getElementById('userId').value = userLoginId;
+
+		// ID가 있는경우 아이디 저장 체크박스 체크
+		if(document.getElementById('userId').value != ""){
+			document.getElementById("saveId").checked = true;
+		}
+
+		// 아이디 저장하기 체크박스 onchange
+		const checkId = document.getElementById("saveId");
+
+		checkId.onchange = function (event) {
+			if(checkId.checked){ //checked true
+				const userLoginId = document.getElementById('userId').value;
+				setCookie("userLoginId", userLoginId, 30); // 30일 동안 쿠키 보관
+			}else{ //checked false
+				deleteCookie("userLoginId");
+			}
+		};
+
+		// 아이디 저장하기가  눌린상태에서, ID를 입력한 경우
+		const idInput = document.getElementById("saveId");
+
+		idInput.addEventListener("keyup", function(e) {
+			if(checkId.checked){ //checked true
+				let userLoginId = document.getElementById("saveId").value;
+				setCookie("userLoginId", userLoginId, 30); // 30일 동안 쿠키 보관
+			}
+		})
+	}
+	function setCookie(cookieName, value, exDays){
+		let exDate = new Date();
+		exDate.setDate(exDate.getDate() + exDays);
+		let cookieValue = escape(value) + ((exDays==null) ? "" : "; expires=" + exDate.toUTCString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+
+	function deleteCookie(cookieName){
+		let expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires=" + expireDate.toUTCString();
+	}
+
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		const cookieData = document.cookie;
+		let start = cookieData.indexOf(cookieName);
+		let cookieValue = '';
+		if(start != -1){
+			start += cookieName.length;
+			let end = cookieData.indexOf(';', start);
+			if(end == -1)end = cookieData.length;
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}
+
+
+	(function (){
+		autoCheck();
+		saveCheck();
+		window.onload = saveId();
+	})();
 	<%--const msg = '${msg}';--%>
 	<%--if (msg === 'reg-success') {--%>
 	<%--	alert('축하합니다. 회원가입에 성공했습니다.');--%>

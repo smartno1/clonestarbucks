@@ -26,9 +26,13 @@ public class Member {
     private Gender gender;
     private String phone;
     private String nickname;
-
+    private String sessionId;
+    private LocalDateTime limitTime;
     private LocalDateTime regDate;
     private Auth auth;
+    private String modifier;
+    private String recoverer;
+    private LocalDateTime recoveryTime;
 
     //--------------
     private int no;

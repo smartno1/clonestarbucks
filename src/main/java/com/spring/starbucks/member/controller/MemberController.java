@@ -206,15 +206,16 @@ public class MemberController {
     // 로그인 요청 처리
     @PostMapping("/sign-in")
     @ResponseBody
-    public ResponseEntity<Map<String, String>> signIn(LoginDTO inputData, Model model, HttpSession session // 세션정보 객체
+    public ResponseEntity<Map<String, String>> signIn(LoginDTO inputData, Model model, HttpServletRequest request // 세션정보 객체
             , HttpServletResponse response){
 
         log.info("/member/sign-in POST - {}", inputData);
 //        log.info("session timeout : {}", session.getMaxInactiveInterval());
+        HttpSession session = request.getSession();
         Map<String,String> map = new HashMap<>();
         log.info("memberService.login 시작");
         // 로그인 서비스 호출 하여 결과값 저장.
-        String flag = memberService.login(inputData, session, response).toString();
+        String flag = memberService.login(inputData, request, response).toString();
         model.addAttribute("loginMsg", flag);
 
         map.put("loginMsg", flag);
@@ -228,22 +229,40 @@ public class MemberController {
 
     // 로그아웃
     @GetMapping("/sign-out")
-    public ResponseEntity<Map<String, String>> signOut(HttpSession session) throws Exception {
+    public ResponseEntity<Map<String, String>> signOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
         Map<String, String> map = new HashMap<>();
 
-        if (session.getAttribute("loginUser") != null) {
+        if (isLogin(session)) {
             // 세션 삭제전 로그인되어있는 유저 네임 가져오기
             map.put("name",getCurrentMemberName(session));
-            // 1. 세션에서 정보를 삭제한다.
-            session.removeAttribute("loginUser");
 
-            if(session.getAttribute(LOGIN_FROM) == SNSLogin.KAKAO){
-                log.info("kakao logout");
-                // 카카오 로그아웃 처리
-                kakaoService.logout((String) session.getAttribute("accessToken"));
-            }else if(session.getAttribute(LOGIN_FROM) == SNSLogin.GOOGLE){
-
+            // 만약 자동로그인 상태라면 해제한다.
+            if (hasAutoLoginCookie(request)) {
+                log.info("auto");
+                memberService.autoLogout(getCurrentMemberAccount(session), request, response);
             }
+
+            // SNS 로그인 상태라면 해당 SNS 로그아웃
+            SNSLogin from = (SNSLogin) session.getAttribute(LOGIN_FROM);
+
+            if(from != null){
+                switch (from){
+                    case KAKAO:
+                        log.info("kakao logout");
+                        // 카카오 로그아웃 처리
+                        kakaoService.logout((String) session.getAttribute("accessToken"));
+                        break;
+                    case GOOGLE:
+                        break;
+                    case NAVER:
+                        break;
+                    case FACEBOOK:
+                        break;
+                }
+            }
+            //세션에서 정보 삭제
+            session.removeAttribute("loginUser");
 
             // 2. 세션을 무효화한다.
             session.invalidate();

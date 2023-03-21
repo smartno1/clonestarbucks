@@ -5,6 +5,7 @@ import com.spring.starbucks.coffee.bean.domain.Coffee;
 import com.spring.starbucks.coffee.bean.service.CoffeeService;
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.util.FileUtils;
+import com.spring.starbucks.util.LoginUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,8 +53,7 @@ public class CoffeeController {
     @PostMapping("/addCoffee")
     public String addCoffee(Coffee coffee, HttpSession session){
         log.info("/coffee/bean/addCoffee POST! - {}", coffee);
-        log.info(coffee.getNameEn());
-        log.info(coffee.getDesignStory());
+        coffee.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = coffeeService.saveService(coffee);
 
         return "redirect:/coffee/bean/list";
@@ -95,6 +95,7 @@ public class CoffeeController {
     @PostMapping("/editCoffeeBean")
     public String editCoffeeBean(Coffee coffee, HttpSession session){
         log.info("/coffee/bean/editCoffeeBean POST! - {}", coffee);
+        coffee.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = coffeeService.updateService(coffee);
 
         return "redirect:/coffee/bean/coffeeBeanDetail?id="+coffee.getId();

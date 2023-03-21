@@ -70,7 +70,7 @@
                                             <td>${su.no}</td>
                                             <td>${su.account}</td>
                                             <td>${su.title}</td>
-                                            <td id="confirm"  data-confirm="${su.confirm}" data-replydone="${su.replyDone}"><button class="btt_ck1">답변대기</button></td>
+                                            <td id="check"  data-check="${su.check}" data-replydone="${su.replyDone}"><button class="btt_ck1">답변대기</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -141,7 +141,7 @@
         //답변여부 및 확인안한 문의 표시 ------------------------------------//
         function confirmCheck(){
 
-            const suggestionList = document.querySelectorAll('#confirm');
+            const suggestionList = document.querySelectorAll('#check');
             // 답변 여부 확인하여 답변여부 텍스트 변경.
             for(let su of suggestionList){
                 console.log("replyDone : ",su.dataset.replydone);
@@ -151,7 +151,7 @@
                 }else{
                     su.firstElementChild.textContent="답변대기";
                 }
-                if(su.dataset.confirm === "false"){ // 문의내용 확인여부 검사하여 false면 new 표시
+                if(su.dataset.check === "false"){ // 문의내용 확인여부 검사하여 false면 new 표시
                     su.previousElementSibling.innerHTML += `<span style='color:blue'> [new]</span>`
                     console.log("count");
                 }

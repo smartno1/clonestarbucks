@@ -110,9 +110,17 @@ h2{
 	padding-left:10px;
 	padding-top:15px;
 	margin-bottom:10px;
+	position: relative;
+	cursor: pointer;
 }
-.save:hover, .auto:hover{
-	cursor:pointer;
+#autoLogin, #saveId{
+	display: none;
+}
+#autoLogin + label, #saveId + label{
+	cursor: pointer;
+}
+#autoLogin:checked + label, #saveId:checked + label{
+	background-color: green;
 }
 .submit{
 	width:95%;

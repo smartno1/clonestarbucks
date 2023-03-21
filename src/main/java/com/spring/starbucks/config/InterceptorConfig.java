@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class InterceptorConfig implements WebMvcConfigurer {
 
     private final AdminInterceptor adminInterceptor;
+    private final AutoLoginInterceptor autoLoginInterceptor;
+    private final AfterLoginInterceptor afterLoginInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -32,5 +34,16 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .addPathPatterns("/whats_new/news/add","/whats_new/news/edit","/whats_new/news/delete")
                 // 공지사항
                 .addPathPatterns("/whats_new/notice/add","/whats_new/notice/edit","/whats_new/notice/delete");
+
+
+        // 오토 로그인 인터셉터
+        registry.addInterceptor(autoLoginInterceptor)
+                        .addPathPatterns("/**");
+
+        // 로그인 후, 로그인중일때 로그인, 회원가입 차단. 인터셉터
+        registry.addInterceptor(afterLoginInterceptor)
+                .addPathPatterns("/member/sign-in","/member/sign-up");
+
+
     }
 }

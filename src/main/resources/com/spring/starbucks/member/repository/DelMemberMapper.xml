@@ -18,10 +18,10 @@
     <!-- 탈퇴 회원 등록 기능   -->
     <insert id="delAccountRegister">
         INSERT INTO del_member
-        (account, password, nickname, name, phone, birth_year, birth_month, birth_day,sl, email, gender,reg_date)
+        (account, password, nickname, name, phone, birth_year, birth_month, birth_day,sl, email, gender,reg_date, deleter)
         VALUES
             (#{account}, #{password}, #{nickname}, #{name}, #{phone}, #{birthYear}, #{birthMonth},
-             #{birthDay}, #{sl}, #{email}, #{gender},#{regDate})
+             #{birthDay}, #{sl}, #{email}, #{gender},#{regDate}, #{deleter})
     </insert>
 
     <!-- 탈퇴 회원 수정 기능   -->

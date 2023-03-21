@@ -7,7 +7,7 @@
 
     <resultMap id="SuggestionMap" type="com.spring.starbucks.suggestion.domain.Suggestion">
         <result property="regDate" column="reg_date" />
-        <result property="confirmDate" column="confirm_date" />
+        <result property="checkDate" column="check_date" />
         <result property="replyDate" column="reply_date" />
         <result property="replyDone" column="reply_done" />
     </resultMap>
@@ -61,7 +61,7 @@
         <if test="type == 'id'">WHERE  id = #{keyword}</if>
         <if test="type == 'account'">WHERE  account = #{keyword}</if>
         <if test="type == 'phone'">WHERE  phone = #{keyword}</if>
-        <if test="type == 'new'">WHERE  confirm = false</if>
+        <if test="type == 'new'">WHERE  check = false</if>
         <if test="type == 'no_reply'">WHERE  reply_done = false</if>
         <if test="type == 'no_login'"></if>
         <if test="type == 'search'">
@@ -71,14 +71,13 @@
     </sql>
 
     <sql id="updateColumn">
-        <if test="type == 'confirm'">
-            SET confirm=true, confirm_date= CURRENT_TIMESTAMP
-        </if>
+        <if test="type == 'check'">
+            SET check=true, check_date= CURRENT_TIMESTAMP, checker=#{checker}        </if>
         <if test="type == 'reply'">
-            SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE
+            SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE, replyer = #{replyer}
         </if>
         <if test="type == 'deleteReply'">
-            SET reply=null, reply_date=null, reply_done=FAlSE
+            SET reply=null, reply_date=null, reply_done=FAlSE, replyer=#{replyer}
         </if>
     </sql>
 

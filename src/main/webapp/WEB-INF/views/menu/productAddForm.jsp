@@ -14,7 +14,7 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-    <form id="form" action="/menu/sangpumaddMenu" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form id="form" action="/menu/productAdd" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="container">
             <div class="container-name">
                 <h2>스타벅스 상품 추가</h2>

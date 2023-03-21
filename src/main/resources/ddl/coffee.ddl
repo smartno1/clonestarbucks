@@ -18,6 +18,7 @@ CREATE table starbucks.coffee_bean(
     ,enjoy_with VARCHAR(500)
     ,relative VARCHAR(500)
     ,processing_method VARCHAR(500)
+    ,register VARCHAR(50)
     ,reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 
     ,CONSTRAINT pk_coffee PRIMARY KEY (id)
@@ -31,3 +32,7 @@ CREATE TABLE starbucks.myfavorite(
     , type_id INT(11)
     , reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+ALTER TABLE coffee_bean
+    ADD FOREIGN KEY (register) REFERENCES tbl_member(account) ON DELETE SET NULL;
+ALTER TABLE myfavorite
+    ADD FOREIGN KEY (account) REFERENCES tbl_member(account) ON DELETE SET NULL;

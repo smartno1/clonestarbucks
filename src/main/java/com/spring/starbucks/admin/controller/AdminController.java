@@ -76,6 +76,7 @@ public class AdminController {
         redirectUri = redirectUri.substring(redirectUri.indexOf("pageNum"));
         Member m = memberService.findUser(member.getAccount());
         member.setPassword(m.getPassword());
+        member.setModifier(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = memberService.update(member);
         return "redirect:/admin/member?"+redirectUri;
     }
@@ -143,7 +144,7 @@ public class AdminController {
         String redirectUri = request.getHeader("Referer");
         redirectUri = redirectUri.substring(redirectUri.indexOf("pageNum"));
         log.info("referer : {}",redirectUri);
-        if(memberService.recoveryAccount(account)){
+        if(memberService.recoveryAccount(account, request.getSession())){
             msg="success";
         };
         log.info("msg - {}", msg);
@@ -176,13 +177,13 @@ public class AdminController {
     }
 
     @GetMapping("/suggestion_detail")
-    public String suggestion_dt(@RequestParam("id") String id, Search search, Model model) {
+    public String suggestion_dt(@RequestParam("id") String id, Search search, Model model, HttpSession session) {
         log.info("/admin/suggestion_dt GET! - forwarding to suggestion_detail.jsp");
         Suggestion suggestion = suggestionService.findOne(Integer.parseInt(id));
 
         //  확인 여부 컬럼에 폴스면 트루 설정 업데이트
-        if(!suggestion.isConfirm() ){
-            suggestionService.update(new suggestionUpdateDto(id, "confirm", "true"));
+        if(!suggestion.isCheck() ){
+            suggestionService.update(new suggestionUpdateDto(id, "check", "true", "", LoginUtils.getCurrentMemberAccount(session)));
         }
 
         model.addAttribute("suggestion", suggestion);
@@ -193,9 +194,10 @@ public class AdminController {
 
     @PostMapping("/suggestion_reply")
     @ResponseBody
-    public ResponseEntity<String> saveReply(suggestionUpdateDto dto){
+    public ResponseEntity<String> saveReply(suggestionUpdateDto dto, HttpSession session){
         log.info("/suggestion_reply start - {}",dto);
         String msg;
+        dto.setReplyer(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = suggestionService.update(dto);
         if(flag){
             msg = "SUCCESS";
@@ -207,8 +209,9 @@ public class AdminController {
 
     @PostMapping("/suggestion_reply_delete")
     @ResponseBody
-    public ResponseEntity<String> deleteReply(suggestionUpdateDto dto){
+    public ResponseEntity<String> deleteReply(suggestionUpdateDto dto, HttpSession session){
         String msg;
+        dto.setReplyer(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = suggestionService.update(dto);
         if(flag){
             msg = "SUCCESS";

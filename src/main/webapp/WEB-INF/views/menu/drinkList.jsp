@@ -16,7 +16,7 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>음료<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/addMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">음료추가</span></a></c:if></h2>
+            <h2>음료<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/drinkAdd"><span class="material-symbols-outlined">add</span> <span class="name-add">음료추가</span></a></c:if></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">
@@ -61,7 +61,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'espresso'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
+                                    <a href="/menu/drinkDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
@@ -82,7 +82,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'coldbrew'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
+                                    <a href="/menu/drinkDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
@@ -103,7 +103,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'brewedcoffee'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
+                                    <a href="/menu/drinkDetail?id=${u.id}">
                                         <img src="${u.image}"/></a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
                                 </li>
@@ -122,7 +122,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'theme'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/menuListDetail?id=${u.id}">
+                                    <a href="/menu/drinkDetail?id=${u.id}">
                                         <img src="${u.image}"/></a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
                                 </li>

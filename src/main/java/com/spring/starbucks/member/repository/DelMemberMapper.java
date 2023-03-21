@@ -12,7 +12,7 @@ import java.util.Map;
 public interface DelMemberMapper {
 
     //  탈퇴 회원 등록 기능
-    boolean delAccountRegister(Member member);
+    boolean delAccountRegister(DelMember member);
 
     //정보 수정 기능
     boolean delAccountUpdate(DelMember member);

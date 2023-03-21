@@ -51,8 +51,8 @@
 						</div>
 						<c:if test="${loginUser.auth == 'ADMIN'}">
 						<div class="name-right">
-							<span class="material-symbols-outlined" id="edit" data-id="${menu.id}">edit</span>
-							<span class="material-symbols-outlined" id ="delete" data-id="${menu.id}">delete</span>
+							<span class="material-symbols-outlined" id="editDrink" data-id="${menu.id}">edit</span>
+							<span class="material-symbols-outlined" id ="deleteDrink" data-id="${menu.id}">delete</span>
 						</div>
 						</c:if>
 						<div class="myDrink">

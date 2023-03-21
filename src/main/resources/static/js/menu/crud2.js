@@ -1,19 +1,19 @@
-$('#delete').click(function(){
-	console.log($('#delete').data('id'));
+$('#deleteDrink').click(function(){
+	console.log($('#deleteDrink').data('id'));
 	if(confirm("정말로 삭제하시겠습니까?")){
-		var id = $('#delete').data('id');
+		var id = $('#deleteDrink').data('id');
 		console.log(id);
 		const reqInfo = {
 			method:"DELETE"
 			,body:id
 		};
-		fetch("/menu/deleteMenulist",reqInfo)
+		fetch("/menu/drinkDelete",reqInfo)
 			.then(res => res.text())
 			.then(msg => {
 				console.log(msg);
 				if(msg === "delete success"){
 					alert("삭제에 성공하였습니다.");
-					location.href = "/menu/list"
+					location.href = "/menu/drinkList"
 				}else{
 					alert("삭제에 실패하였습니다.");
 				}
@@ -23,22 +23,22 @@ $('#delete').click(function(){
 });
 
 
-$('#fooddelete').click(function(){
-	console.log($('#fooddelete').data('id'));
+$('#deleteFood').click(function(){
+	console.log($('#deleteFood').data('id'));
 	if(confirm("정말로 삭제하시겠습니까?")){
-		var id = $('#fooddelete').data('id');
+		var id = $('#deleteFood').data('id');
 		console.log(id);
 		const reqInfo = {
 			method:"DELETE"
 			,body:id
 		};
-		fetch("/menu/fooddeleteMenulist",reqInfo)
+		fetch("/menu/foodDelete",reqInfo)
 			.then(res => res.text())
 			.then(msg => {
 				console.log(msg);
 				if(msg === "delete success"){
 					alert("삭제에 성공하였습니다.");
-					location.href = "/menu/food"
+					location.href = "/menu/foodList"
 				}else{
 					alert("삭제에 실패하였습니다.");
 				}
@@ -47,22 +47,22 @@ $('#fooddelete').click(function(){
 	}
 });
 
-$('#sangpumdelete').click(function(){
-	console.log($('#sangpumdelete').data('id'));
+$('#deleteProduct').click(function(){
+	console.log($('#deleteProduct').data('id'));
 	if(confirm("정말로 삭제하시겠습니까?")){
-		var id = $('#sangpumdelete').data('id');
+		var id = $('#deleteProduct').data('id');
 		console.log(id);
 		const reqInfo = {
 			method:"DELETE"
 			,body:id
 		};
-		fetch("/menu/sangpumMenulist",reqInfo)
+		fetch("/menu/productDelete",reqInfo)
 			.then(res => res.text())
 			.then(msg => {
 				console.log(msg);
 				if(msg === "delete success"){
 					alert("삭제에 성공하였습니다.");
-					location.href = "/menu/sangpum"
+					location.href = "/menu/productList"
 				}else{
 					alert("삭제에 실패하였습니다.");
 				}
@@ -70,19 +70,19 @@ $('#sangpumdelete').click(function(){
 
 	}
 });
-$('#edit').click(function(){
-	var link = "/menu/editmenuListForm?id="+$('#edit').data('id');
+$('#editDrink').click(function(){
+	var link = "/menu/drinkEdit?id="+$('#edit').data('id');
 	console.log(link);
 	location.href= link
 });
 
-$('#edit1').click(function(){
-	var link = "/menu/foodeditListForm?id="+$('#edit1').data('id');
+$('#editFood').click(function(){
+	var link = "/menu/foodEdit?id="+$('#edit1').data('id');
 	console.log(link);
 	location.href= link
 });
-$('#edit2').click(function(){
-	var link = "/menu/sangpumeditListForm?id="+$('#edit2').data('id');
+$('#editProduct').click(function(){
+	var link = "/menu/productEdit?id="+$('#edit2').data('id');
 	console.log(link);
 	location.href= link
 });

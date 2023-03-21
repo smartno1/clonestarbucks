@@ -11,9 +11,6 @@ public class Menu {
 
     private int id;
     private int price;
-    private String flavor;
-    private String feel;
-    private String degree;
     private String image;
     private String nameKr;
     private String nameEn;
@@ -23,13 +20,8 @@ public class Menu {
     private String espressoKind;
     private String descriptionSummary;
     private String descriptionDetail;
-    private String designStory;
-    private String coffeeTastingNote;
-    private String tastingNotes;
-    private String enjoyWith;
-    private String relative;
-    private String processingMethod;
     private Date regDate;
+    private String register;
     private MultipartFile file;
     private String weight2;
     private String calorie1;

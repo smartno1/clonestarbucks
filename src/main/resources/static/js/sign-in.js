@@ -56,22 +56,22 @@
 	// });
 // }
 
-$(".save").on('click',function(){
-	if($(".check").css('background-color')=='rgb(0, 128, 0)'){
-		$(".check").css('background-color','grey');
-	}
-	else{
-		$(".check").css('background-color','green');
-	}
-});
-$(".auto").on('click',function(){
-	if($(".check2").css('background-color')=='rgb(0, 128, 0)'){
-		$(".check2").css('background-color','grey');
-	}
-	else{
-		$(".check2").css('background-color','green');
-	}
-});
+// $(".save").on('click',function(){
+// 	if($(".check").css('background-color')=='rgb(0, 128, 0)'){
+// 		$(".check").css('background-color','');
+// 	}
+// 	else{
+// 		$(".check").css('background-color','green');
+// 	}
+// });
+// $(".auto").on('click',function(){
+// 	if($(".check2").css('background-color')=='rgb(0, 128, 0)'){
+// 		$(".check2").css('background-color','');
+// 	}
+// 	else{
+// 		$(".check2").css('background-color','green');
+// 	}
+// });
 // function handleCredentialResponse(response) {
 //     console.log("Encoded JWT ID token: " + response.credential);
 //         $.ajax({

@@ -16,7 +16,7 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>푸드<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/foodaddMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">푸드추가</span></a></c:if></h2>
+            <h2>푸드<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/foodAdd"><span class="material-symbols-outlined">add</span> <span class="name-add">푸드추가</span></a></c:if></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">
@@ -61,7 +61,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'cake'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/foodListDetail?id=${u.id}">
+                                    <a href="/menu/foodDetail?id=${u.id}">
                                         <img src="${u.image}"/></a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
                                 </li>
@@ -81,7 +81,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'sandwich'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/foodListDetail?id=${u.id}">
+                                    <a href="/menu/foodDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>

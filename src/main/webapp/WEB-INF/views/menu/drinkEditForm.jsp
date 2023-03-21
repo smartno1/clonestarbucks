@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,10 +16,10 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-	<form id="form" action="/menu/update" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+	<form id="form" action="/menu/drinkEdit" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
 		<div class="container">
 			<div class="container-name">
-				<h2>스타벅스 원두 추가</h2>
+				<h2>음료 수정</h2>
 			</div>
 			<div class="context-top">
 				<div class="coffee-img">
@@ -39,20 +40,22 @@
 							<p>음료 카테고리</p>
 							<select class="form-select type" aria-label="Default select example" name="kind" onchange="categoryChange(this)">
 								<option value="">선택안함</option>
-								<option value="food">푸드</option>
-
+								<option value="category">음료 카테고리</option>
+								<option value="theme">음료 테 마</option>
 							</select>
 							<p>음료 종류</p>
-							<select class="form-select type"aria-label="Default select example" name="type" id="good">
-								<%--                                class="form-select type"--%>
-								<%--                                <option value="">선택안함</option>--%>
-								<%--                                <option value="blond_roast">아메리카노</option>--%>
-								<%--                                <option value="cold_brew">콜드블루</option>--%>
-								<%--                                <option value="dark_roast">다크로스트</option>--%>
-
-								<%--                                <option value="tema1">테마상품</option>--%>
+							<select class="form-select type" aria-label="Default select example" name="type" id="good" onchange="typeChange(this)">
 								<option>선택안됨</option>
 							</select>
+							<div style="display: none">
+								<p>에스프레소 종류</p>
+								<select class="form-select type" aria-label="Default select example" name="espressoKind">
+									<option>선택안됨</option>
+									<option value="americano">아메리카노</option>
+									<option value="cappuccino">카푸치노</option>
+									<option value="mocha">모카</option>
+								</select>
+							</div>
 						</div>
 					</div>
 					<div class="description-sum">
@@ -61,10 +64,13 @@
 					</div>
 
 					<div class="weight">
-						<h3>g</h3>
+						<h3>ml</h3>
 						<input type="text" name="weight" value="${menu.weight}"/>
 					</div>
-
+					<div class="weight2">
+						<h3>fl oz</h3>
+						<input type="text" name="weight2" value="${menu.weight2}"/>
+					</div>
 					<c:if test="${empty menu.calorie1}">
 					<div class="weight">
 						<h3>1회 제공량 (kcal)</h3>
@@ -121,67 +127,94 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
+	function typeChange(e){
+		console.info("typechange :", e.value);
+		if(e.value == "espresso") {
+			defaultEspressoKind();
+			e.nextElementSibling.lastElementChild.removeAttribute('disabled');
+			e.nextElementSibling.style.display = "block";
+		}else{
+			e.nextElementSibling.lastElementChild.disabled = true;
+			e.nextElementSibling.style.display = "none";
+		}
+	}
 	function categoryChange(e) {
-		var good_a = ["cake", "sandwich"];
-		var good_b = ["선택안됨"];
+		let d;
+		const good_a = ["", "espresso", "coldbrew", "brewedcoffee"];
+		const good_b = ["theme"];
+		const good_c = ["선택없음"];
 
-		var target = document.getElementById("good");
-
-		if(e.value == "") var d = good_b;
-		else if(e.value == "food") var d = good_a;
-
+		const target = document.getElementById("good");
+		console.info("e.value :",e.value );
+		if(e.value == "category") {
+			d = good_a;
+		}else if(e.value == "theme") {
+			d = good_b;
+		}else if(e.value == "") {
+			d = good_c;
+		}
 
 		target.options.length = 0;
 
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			if(d[x] == "cake"){
-				opt.innerHTML = "케이크";
-			}else if(d[x] == "sandwich"){
-				opt.innerHTML = "샌드위치";
+		for (const x of d) {
+			const opt = document.createElement("option");
+			opt.value = x;
+			console.info("x  ",x);
+			if(x == ""){
+				opt.textContent = "선택없음";
 			}
-
+			else if(x == "espresso"){
+				opt.textContent = "에스프레소";
+			}else if(x == "coldbrew"){
+				opt.textContent = "콜드브루";
+			}else if(x == "brewedcoffee"){
+				opt.textContent = "브루드커피";
+			}
+			if(x == "theme") {
+				opt.textContent = "테마";
+			}
+			// 일치하는 값의 kind에 맞는 type을 생성해주고
 			target.appendChild(opt);
+			// 일치하는 값의 type 를 셀렉트해준다
+			defaultTypes();
 		}
 	}
+
 	function defaultKinds(){
-		const list = [...document.querySelector('select[name="kind"]').children];
-		for(const k of list){
-			if(k.value === "${menu.kind}"){
-				k.setAttribute("selected","");
-				break;
-			}
-		}
+		const kinds = document.querySelector('select[name="kind"]');
+		kinds.value = "${menu.kind}";
+		categoryChange(kinds);
 	}
 	function defaultTypes(){
-		const list = [...document.querySelector('select[name="type"]').children];
-		for(const k of list){
-			if(k.value === "${menu.type}"){
-				k.setAttribute("selected","");
-				break;
-			}
-		}
+		const type = document.querySelector('select[name="type"]');
+		type.value = "${menu.type}"
+		typeChange(type);
 	}
 
-	function valueOfKinds(){
-		const kinds = [...document.querySelector('select[name="kind"]').children];
-		for(const k of kinds){
-			if(k.value === "${menu.kind}"){
-				k.classList.add('selected');
-				break;
-			}
-		}
+	function defaultEspressoKind(){
+		console.log("defalt espresso : ", "${menu.espressoKind}");
+		const type = document.querySelector('select[name="espressoKind"]');
+		type.value = "${menu.espressoKind}";
 	}
-	function valueOfTypes(){
-		const kinds = [...document.querySelector('select[name="type"]').children];
-		for(const k of kinds){
-			if(k.value === "${menu.type}"){
-				k.classList.add('selected');
-				break;
-			}
-		}
-	}
+
+	<%--function valueOfKinds(){--%>
+	<%--	const kinds = [...document.querySelector('select[name="kind"]').children];--%>
+	<%--	for(const k of kinds){--%>
+	<%--		if(k.value === "${menu.kind}"){--%>
+	<%--			k.classList.add('selected');--%>
+	<%--			break;--%>
+	<%--		}--%>
+	<%--	}--%>
+	<%--}--%>
+	<%--function valueOfTypes(){--%>
+	<%--	const kinds = [...document.querySelector('select[name="type"]').children];--%>
+	<%--	for(const k of kinds){--%>
+	<%--		if(k.value === "${menu.type}"){--%>
+	<%--			k.classList.add('selected');--%>
+	<%--			break;--%>
+	<%--		}--%>
+	<%--	}--%>
+	<%--}--%>
 
 
 
@@ -210,7 +243,7 @@
 				method: 'POST',
 				body: formData
 			};
-			fetch('/menu/ajax-upload?type=food', reqInfo)
+			fetch('/menu/ajax-upload?type=drink', reqInfo)
 					.then(res => {
 						//console.log(res.status);
 						return res.text();
@@ -276,14 +309,12 @@
 	}
 
 	(function (){
-		valueOfKinds();
-		valueOfTypes();
+		// valueOfKinds();
+		// valueOfTypes();
 		noDragAndRightClick();
 		uploadImg();
 		submitData();
 		defaultKinds();
-		defaultTypes();
-		categoryChange();
 	})();
 </script>
 </body>

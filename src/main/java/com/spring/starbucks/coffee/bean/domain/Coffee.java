@@ -29,5 +29,6 @@ public class Coffee {
     private String relative;
     private String processingMethod;
     private Date regDate;
+    private String register;
     private MultipartFile file;
 }

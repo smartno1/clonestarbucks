@@ -4,6 +4,7 @@ package com.spring.starbucks.member.repository;
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
+import com.spring.starbucks.member.dto.AutoLoginDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -36,5 +37,11 @@ public interface MemberMapper {
     boolean deleteUser(String account);
 
     int getTotalCount(Search search);
+
+    // 자동로그인 쿠키정보 저장
+    void saveSessionValue(AutoLoginDTO dto);
+
+    // 쿠키값(세션아이디)을 가지고 있는 회원정보 조회
+    Member findMemberBySessionId(String sessionId);
 
 }

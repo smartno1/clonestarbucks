@@ -39,13 +39,13 @@
 
     <insert id="save">
         INSERT INTO menu
-        ( espresso_kind, price, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, weight2,calorie1,calorie2,calorie3,calorie4,calorie5,calorie6)
-        VALUES (#{espressoKind}, #{price}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{weight2}, #{calorie1}, #{calorie2}, #{calorie3}, #{calorie4}, #{calorie5}, #{calorie6})
+        ( register, espresso_kind, price, image, name_kr, name_en, weight, kind, type, description_summary, description_detail, weight2,calorie1,calorie2,calorie3,calorie4,calorie5,calorie6)
+        VALUES (#{register},#{espressoKind}, #{price}, #{image}, #{nameKr}, #{nameEn}, #{weight}, #{kind}, #{type}, #{descriptionSummary}, #{descriptionDetail}, #{weight2}, #{calorie1}, #{calorie2}, #{calorie3}, #{calorie4}, #{calorie5}, #{calorie6})
     </insert>
 
     <update id="update">
         UPDATE menu
-        SET espresso_kind=#{espressoKind}, price=#{price}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, weight2=#{weight2}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
+        SET register=#{register}, espresso_kind=#{espressoKind}, price=#{price}, image=#{image}, name_kr=#{nameKr}, name_en=#{nameEn}, weight=#{weight}, kind=#{kind}, type=#{type}, description_summary=#{descriptionSummary}, description_detail=#{descriptionDetail}, weight2=#{weight2}, calorie1 = #{calorie1}, calorie2 = #{calorie2}, calorie3 = #{calorie3}, calorie4 = #{calorie4}, calorie5 = #{calorie5}, calorie6=#{calorie6}
         WHERE id = #{id}
     </update>
 

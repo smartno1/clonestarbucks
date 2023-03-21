@@ -16,7 +16,7 @@
 <section class="container-wrapper">
     <div class="container">
         <div class="container-name">
-            <h2>상품<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/sangpumaddMenu"><span class="material-symbols-outlined">add</span> <span class="name-add">상품추가</span></a></c:if></h2>
+            <h2>상품<c:if test="${loginUser.auth == 'ADMIN'}"><a href="/menu/productAdd"><span class="material-symbols-outlined">add</span> <span class="name-add">상품추가</span></a></c:if></h2>
             <%-- <c:out value="${test}" default="foo" /> --%>
             <nav class="nav">
                 <ul class="nav-ul">
@@ -57,7 +57,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'mugcup'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/sangpumListDetail?id=${u.id}">
+                                    <a href="/menu/productDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>
@@ -78,7 +78,7 @@
                         <c:choose>
                             <c:when test="${u.type eq 'thermos'}">
                                 <li class="coffee_bean">
-                                    <a href="/menu/sangpumListDetail?id=${u.id}">
+                                    <a href="/menu/productDetail?id=${u.id}">
                                         <img src="${u.image}"/>
                                     </a>
                                     <p class="coffee_bean_name">${u.nameKr}</p>

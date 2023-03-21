@@ -89,8 +89,8 @@
           </div>
           <div class="reply">
             <c:if test="${s.replyDone}"><p class="re_textdata">
-            답변 : ${s.reply}
-            작성일 : ${s.replyDate}
+              작성자 : ${s.replyer} 작성일 : ${s.replyDate}
+              답변 : ${s.reply}
             </p></c:if>
 
             <p class="no_textdata">
