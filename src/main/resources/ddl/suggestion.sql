@@ -5,7 +5,7 @@ CREATE table starbucks.suggestion(
     ,context VARCHAR(500)
     ,phone VARCHAR(30)
     ,reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
-    ,check TINYINT DEFAULT FALSE
+    ,checked TINYINT DEFAULT FALSE
     ,checker VARCHAR(50)
     ,check_date DATETIME
     ,reply VARCHAR(500)
