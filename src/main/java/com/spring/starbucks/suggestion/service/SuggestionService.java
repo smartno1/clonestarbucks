@@ -2,7 +2,7 @@ package com.spring.starbucks.suggestion.service;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.suggestion.domain.Suggestion;
-import com.spring.starbucks.suggestion.domain.suggestionUpdateDto;
+import com.spring.starbucks.suggestion.domain.SuggestionUpdateDto;
 import com.spring.starbucks.suggestion.repository.SuggestionMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,7 +29,7 @@ public class SuggestionService {
         return suggestionMapper.insert(suggestion);
     }
 
-    public boolean update(suggestionUpdateDto dto){
+    public boolean update(SuggestionUpdateDto dto){
         return suggestionMapper.update(dto);
     }
 

@@ -10,6 +10,7 @@
         <result property="checkDate" column="check_date" />
         <result property="replyDate" column="reply_date" />
         <result property="replyDone" column="reply_done" />
+        <result property="deleteTime" column="delete_time" />
     </resultMap>
 
     <insert id="insert">
@@ -77,7 +78,7 @@
             SET reply=#{keyword}, reply_date= CURRENT_TIMESTAMP, reply_done = TRUE, replyer = #{replyer}
         </if>
         <if test="type == 'deleteReply'">
-            SET reply=null, reply_date=null, reply_done=FAlSE, replyer=#{replyer}
+            SET reply=null, reply_done=FAlSE, deleter=#{deleter}, delete_time=CURRENT_TIMESTAMP
         </if>
     </sql>
 

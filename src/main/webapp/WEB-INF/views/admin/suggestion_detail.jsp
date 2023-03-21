@@ -177,12 +177,11 @@
         })
     }
     function checker(){
-        if(${!empty suggestion.checker}){
+        if(${suggestion.checked}){
             const div = document.getElementById('reply').parentElement;
             const p = document.createElement('p');
             let date = "${suggestion.checkDate}";
-            date = date.substring(0,10);
-            console.log("ch date :",checkDate );
+            date = date.replace('T',' ');
             p.textContent = "확인자: ${suggestion.checker} 확인일: "+date;
             div.appendChild(p);
         }
@@ -191,17 +190,37 @@
         if(${!empty suggestion.replyer}){
             const div = document.getElementById('reply').parentElement;
             const p = document.createElement('p');
-            let date = "${suggestion.replyDate}";
-            date = date.substring(0,10);
+            let date = "${suggestion.checkDate}";
+            date = date.replace('T',' ');
             p.textContent = "작성자: ${suggestion.replyer} 작성일: "+date;
             div.appendChild(p);
+        }
+    }
+    function deleter(){
+        if(${!empty suggestion.deleter}){
+            const div = document.getElementById('reply').parentElement;
+            const p = document.createElement('p');
+            let date = "${suggestion.checkDate}";
+            date = date.replace('T',' ');
+            p.textContent = "삭제자: ${suggestion.replyer} 삭제일: "+date;
+            div.appendChild(p);
+        }
+    }
+    function showInfo(){
+        checker();
+
+        if(${suggestion.deleteTime > suggestion.replyDate}){
+            replyer();
+            deleter();
+        }else{
+            deleter();
+            replyer();
         }
     }
     (function (){
         msRnbShow();
         button();
-        replyer();
-        checker();
+        showInfo();
     })();
 
     </script>

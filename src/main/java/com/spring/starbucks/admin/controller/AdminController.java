@@ -2,12 +2,11 @@ package com.spring.starbucks.admin.controller;
 
 import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.member.domain.Auth;
 import com.spring.starbucks.member.domain.DelMember;
 import com.spring.starbucks.member.domain.Member;
 import com.spring.starbucks.member.service.MemberService;
 import com.spring.starbucks.suggestion.domain.Suggestion;
-import com.spring.starbucks.suggestion.domain.suggestionUpdateDto;
+import com.spring.starbucks.suggestion.domain.SuggestionUpdateDto;
 import com.spring.starbucks.suggestion.service.SuggestionService;
 import com.spring.starbucks.util.LoginUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,16 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.SpinnerUI;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -183,7 +176,12 @@ public class AdminController {
 
         //  확인 여부 컬럼에 폴스면 트루 설정 업데이트
         if(!suggestion.isChecked() ){
-            suggestionService.update(new suggestionUpdateDto(id, "check", "true", "", LoginUtils.getCurrentMemberAccount(session)));
+            SuggestionUpdateDto dto = new SuggestionUpdateDto();
+            dto.setId(id);
+            dto.setType("check");
+            dto.setKeyword("TRUE");
+            dto.setChecker( LoginUtils.getCurrentMemberAccount(session));
+            suggestionService.update(dto);
         }
 
         model.addAttribute("suggestion", suggestion);
@@ -194,7 +192,7 @@ public class AdminController {
 
     @PostMapping("/suggestion_reply")
     @ResponseBody
-    public ResponseEntity<String> saveReply(suggestionUpdateDto dto, HttpSession session, HttpServletRequest request){
+    public ResponseEntity<String> saveReply(SuggestionUpdateDto dto, HttpSession session, HttpServletRequest request){
         log.info("/suggestion_reply start - {}",dto);
         String msg;
         dto.setReplyer(LoginUtils.getCurrentMemberAccount(session));
@@ -209,9 +207,9 @@ public class AdminController {
 
     @PostMapping("/suggestion_reply_delete")
     @ResponseBody
-    public ResponseEntity<String> deleteReply(suggestionUpdateDto dto, HttpSession session){
+    public ResponseEntity<String> deleteReply(SuggestionUpdateDto dto, HttpSession session){
         String msg;
-        dto.setReplyer(LoginUtils.getCurrentMemberAccount(session));
+        dto.setDeleter(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = suggestionService.update(dto);
         if(flag){
             msg = "SUCCESS";

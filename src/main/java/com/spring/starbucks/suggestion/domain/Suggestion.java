@@ -25,6 +25,8 @@ public class Suggestion {
     private String replyer;
     private LocalDateTime replyDate;
     private boolean replyDone;
+    private String deleter;
+    private LocalDateTime deleteTime;
 
     // custom
     private int no;

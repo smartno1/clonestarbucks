@@ -12,6 +12,8 @@ CREATE table starbucks.suggestion(
     ,replyer VARCHAR(50)
     ,reply_date DATETIME
     ,reply_done TINYINT DEFAULT FALSE
+    ,deleter VARCHAR(50)
+    ,delete_time DATETIME
 
     ,CONSTRAINT pk_suggestion PRIMARY KEY (id)
 );
@@ -22,3 +24,5 @@ ALTER TABLE suggestion
     ADD FOREIGN KEY (checker) REFERENCES tbl_member(account) ON DELETE SET NULL;
 ALTER TABLE suggettion
     ADD FOREIGN KEY (replyer) REFERENCES tbl_member(account) ON DELETE SET NULL;
+ALTER TABLE suggettion
+    ADD FOREIGN KEY (deleter) REFERENCES tbl_member(account) ON DELETE SET NULL;

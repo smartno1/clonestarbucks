@@ -2,7 +2,7 @@ package com.spring.starbucks.suggestion.controller;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.Member;
-import com.spring.starbucks.suggestion.domain.suggestionDto;
+import com.spring.starbucks.suggestion.domain.SuggestionDto;
 import com.spring.starbucks.suggestion.domain.Suggestion;
 import com.spring.starbucks.suggestion.service.SuggestionService;
 import com.spring.starbucks.util.LoginUtils;
@@ -53,7 +53,7 @@ public class SuggestionController {
     }
 
     @PostMapping("/insert")
-    public String insert(suggestionDto dto, HttpSession session){
+    public String insert(SuggestionDto dto, HttpSession session){
         Member member = (Member) session.getAttribute("loginUser");
         Suggestion suggestion = new Suggestion();
         suggestion.setAccount(member.getAccount());

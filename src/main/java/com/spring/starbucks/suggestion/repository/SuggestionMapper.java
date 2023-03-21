@@ -2,7 +2,7 @@ package com.spring.starbucks.suggestion.repository;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.suggestion.domain.Suggestion;
-import com.spring.starbucks.suggestion.domain.suggestionUpdateDto;
+import com.spring.starbucks.suggestion.domain.SuggestionUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public interface SuggestionMapper {
 
     boolean insert(Suggestion suggestion);
 
-    boolean update(suggestionUpdateDto dto);
+    boolean update(SuggestionUpdateDto dto);
 
     boolean delete(Search search);
 

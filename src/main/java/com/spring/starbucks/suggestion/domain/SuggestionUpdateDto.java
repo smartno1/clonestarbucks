@@ -5,10 +5,11 @@ import lombok.*;
 @Getter @Setter @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class suggestionUpdateDto {
+public class SuggestionUpdateDto {
     private String id;
     private String type;
     private String keyword;
     private String replyer;
     private String checker;
+    private String deleter;
 }
