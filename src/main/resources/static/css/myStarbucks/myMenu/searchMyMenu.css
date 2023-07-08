@@ -178,7 +178,6 @@
 }
 .list > div {
     float: left;
-    margin-right: 30px;
 }
 .list .list-img{
     width: 100%;
@@ -186,6 +185,7 @@
     vertical-align: baseline;
     overflow: hidden;
     margin-bottom: 15px;
+    margin-right: 3%;
 }
 .list .list-img > img{
     width: 100%;

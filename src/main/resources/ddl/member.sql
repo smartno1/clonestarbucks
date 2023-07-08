@@ -48,7 +48,7 @@ CREATE TABLE tbl_member(
     , reg_date DATETIME DEFAULT current_timestamp
     , session_id VARCHAR(200) DEFAULT 'none'
     , limit_time DATETIME
-    , CONSTRAINT pk_tbl_user PRIMARY KEY(account)
+    , CONSTRAINT pk_tbl_user PRIMARY KEY(id)
 
 );
 ALTER TABLE tbl_member
