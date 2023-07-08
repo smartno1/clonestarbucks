@@ -2,11 +2,8 @@ package com.spring.starbucks.whatsNew.news.service;
 
 
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.whatsNew.news.domain.Kind;
 import com.spring.starbucks.whatsNew.news.domain.News;
-import com.spring.starbucks.whatsNew.news.domain.SearchKind;
 import com.spring.starbucks.whatsNew.news.repository.NewsMapper;
-import com.spring.starbucks.whatsNew.notice.domain.Notice;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

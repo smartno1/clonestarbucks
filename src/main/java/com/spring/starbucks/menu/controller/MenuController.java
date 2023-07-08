@@ -92,12 +92,11 @@ public class MenuController {
 
     @GetMapping("/foodList")
     public String foodList(Search search, Model model){
-        log.info("/menu/foodList GET! - kind: {}",search.getKind());
+        log.info("/menu/foodList GET! - type: {}",search.getType());
         List<Menu> menus = menuService.findAllService(search);
         log.info("list - {}",menus);
         model.addAttribute("food",menus);
-        model.addAttribute("type", search.getKeyword());
-        model.addAttribute("kind", search.getKind());
+        model.addAttribute("type", search.getType());
         return "menu/foodList";
     }
     @GetMapping("/foodEdit")
@@ -154,17 +153,13 @@ public class MenuController {
 
 
 
-
-
-
     @GetMapping("/productList")
     public String productList(Search search, Model model){
-        log.info("/menu/productList GET! - kind: {}",search.getKind());
+        log.info("/menu/productList GET! - type: {}",search.getType());
         List<Menu> menus = menuService.findAllService(search);
         log.info("list - {}",menus);
         model.addAttribute("products",menus);
-        model.addAttribute("type", search.getKeyword());
-        model.addAttribute("kind", search.getKind());
+        model.addAttribute("type", search.getType());
         return "menu/productList";
     }
     @GetMapping("/productAdd")

@@ -1,7 +1,6 @@
 package com.spring.starbucks.whatsNew.event.service;
 
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.menu.domain.Menu;
 import com.spring.starbucks.whatsNew.event.repository.EventMapper;
 import com.spring.starbucks.whatsNew.event.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 

@@ -3,7 +3,6 @@ package com.spring.starbucks.whatsNew.notice.controller;
 import com.spring.starbucks.util.FileUtils;
 import com.spring.starbucks.common.paging.PageMaker;
 import com.spring.starbucks.common.search.Search;
-import com.spring.starbucks.whatsNew.news.domain.News;
 import com.spring.starbucks.whatsNew.notice.domain.Notice;
 import com.spring.starbucks.whatsNew.notice.repository.NoticeMapper;
 import com.spring.starbucks.whatsNew.notice.service.NoticeService;
@@ -18,10 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @Log4j2

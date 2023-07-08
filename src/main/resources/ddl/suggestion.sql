@@ -22,7 +22,7 @@ ALTER TABLE suggestion
     ADD FOREIGN KEY (account) REFERENCES tbl_member(account) ON DELETE SET NULL;
 ALTER TABLE suggestion
     ADD FOREIGN KEY (checker) REFERENCES tbl_member(account) ON DELETE SET NULL;
-ALTER TABLE suggettion
+ALTER TABLE suggestion
     ADD FOREIGN KEY (replyer) REFERENCES tbl_member(account) ON DELETE SET NULL;
-ALTER TABLE suggettion
+ALTER TABLE suggestion
     ADD FOREIGN KEY (deleter) REFERENCES tbl_member(account) ON DELETE SET NULL;

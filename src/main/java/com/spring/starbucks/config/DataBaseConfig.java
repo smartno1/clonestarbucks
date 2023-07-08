@@ -31,9 +31,9 @@ public class DataBaseConfig {
     public DataSource dataSource() {
 
         HikariConfig config = new HikariConfig();
-        config.setUsername("popo");
-        config.setPassword("alska2580");
-        config.setJdbcUrl("jdbc:mysql://op-dev-database.cjwfzouhty53.ap-northeast-2.rds.amazonaws.com:3306/starbucks");
+        config.setUsername("root");
+        config.setPassword("mariadb");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/starbucks");
         config.setDriverClassName("org.mariadb.jdbc.Driver");
 
         return new HikariDataSource(config);

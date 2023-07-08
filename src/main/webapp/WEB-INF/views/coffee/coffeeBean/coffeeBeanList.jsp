@@ -319,11 +319,14 @@
     // 처음 원두 선택되게
     function defaultKind(){
         const $kinds = [...document.querySelector('.search_kind').children];
+        let kindExsit;
         for(let k of $kinds){
             if(k.firstElementChild.dataset.kinds === "${kind}"){
                 k.firstElementChild.classList.add('selected');
+                kindExsit = true;
             }
         }
+        if (!kindExsit) $kinds[0].firstElementChild.classList.add('selected');
         defaultType();
     }
 

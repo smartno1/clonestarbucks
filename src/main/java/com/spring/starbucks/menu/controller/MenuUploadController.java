@@ -33,7 +33,7 @@ public class MenuUploadController {
 
         log.info("/ajax-upload POST! - {}", file);
 
-        String[] pathInfo = new String[5];
+        String[] pathInfo = new String[3];
         pathInfo[0] = "img";
         pathInfo[1] = "menu";
         switch (type) {

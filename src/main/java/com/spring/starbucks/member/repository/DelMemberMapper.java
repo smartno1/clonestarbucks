@@ -2,7 +2,6 @@ package com.spring.starbucks.member.repository;
 
 import com.spring.starbucks.common.search.Search;
 import com.spring.starbucks.member.domain.DelMember;
-import com.spring.starbucks.member.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
