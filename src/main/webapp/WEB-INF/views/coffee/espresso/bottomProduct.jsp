@@ -7,13 +7,13 @@
         <ul class="product-ul clear-fix">
             <c:forEach items="${menuList}" var="u">
                 <li class="product-li clear-fix" data-kind="${u.kind}">
-                    <a href="/menu/menuListDetail?id=${u.id}">
+                    <a href="/menu/drinkDetail?id=${u.id}">
                         <img src="${u.image}"/>
                     </a>
                     <div>
                         <p class="product-name">${u.nameKr}</p>
                         <p class="product-descriptionSummary">${u.descriptionSummary}</p>
-                        <a href="/menu/menuListDetail?id=${u.id}">자세히 보기 ></a>
+                        <a href="/menu/drinkDetail?id=${u.id}">자세히 보기 ></a>
                     </div>
                 </li>
             </c:forEach>
