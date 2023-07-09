@@ -24,7 +24,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         //메뉴 인터셉터 추가
                 .addPathPatterns("/menu/*")
-                .excludePathPatterns("/menu/list", "/menu/menuListDetail","/menu/food", "/menu/foodListDetail","/menu/sangpum","/menu/sangpumListDetail")
+                .excludePathPatterns("/menu/drinkList", "/menu/drinkDetail","/menu/foodList", "/menu/foodDetail","/menu/productList","/menu/productDetail")
         // 커피 인터셉터 추가
                 .addPathPatterns("/coffee/bean/addCoffee","/coffee/bean/deleteCoffeeBean","/coffee/bean/editCoffeeBeanForm","/coffee/bean/editCoffeeBean")
         //왓츠뉴 인터셉터추가
