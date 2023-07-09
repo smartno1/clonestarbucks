@@ -71,18 +71,18 @@ $('#deleteProduct').click(function(){
 	}
 });
 $('#editDrink').click(function(){
-	var link = "/menu/drinkEdit?id="+$('#edit').data('id');
+	var link = "/menu/drinkEdit?id="+$('#editDrink').data('id');
 	console.log(link);
 	location.href= link
 });
 
 $('#editFood').click(function(){
-	var link = "/menu/foodEdit?id="+$('#edit1').data('id');
+	var link = "/menu/foodEdit?id="+$('#editFood').data('id');
 	console.log(link);
 	location.href= link
 });
 $('#editProduct').click(function(){
-	var link = "/menu/productEdit?id="+$('#edit2').data('id');
+	var link = "/menu/productEdit?id="+$('#editProduct').data('id');
 	console.log(link);
 	location.href= link
 });

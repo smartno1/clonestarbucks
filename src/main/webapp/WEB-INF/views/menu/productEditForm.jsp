@@ -15,7 +15,7 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <main class="container-wrapper">
-	<form id="form" action="/menu/update" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+	<form id="form" action="/menu/productEdit" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
 		<div class="container">
 			<div class="container-name">
 				<h2>스타벅스 원두 추가</h2>
@@ -112,7 +112,7 @@
 			</div>
 			<div class="context-bottom" >
 				<a href="javascript:void(0)"><button id="edit" class="btn btn-primary submit" type="button">수정</button></a></a>
-				<a href="/menu/menuListDetail?id=${menu.id}"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+				<a href="/menu/productDetail?id=${menu.id}"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
 			</div>
 
 		</div>

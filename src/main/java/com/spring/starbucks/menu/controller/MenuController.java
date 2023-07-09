@@ -124,7 +124,7 @@ public class MenuController {
         log.info("/menu/foodAdd POST! - {}", menu);
         menu.setRegister(LoginUtils.getCurrentMemberAccount(session));
         boolean flag = menuService.saveService(menu);
-        return "redirect:/menu/food";
+        return "redirect:/menu/foodList";
 
     }
 
