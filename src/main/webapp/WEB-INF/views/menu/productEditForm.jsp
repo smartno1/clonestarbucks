@@ -125,23 +125,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
 	function categoryChange(e) {
+		let d;
 		var good_a = ["mugcup", "thermos"];
+
 		var good_b = ["선택안됨"];
 
 		var target = document.getElementById("good");
 
-		if(e.value == "") var d = good_b;
-		else if(e.value == "sangpum") var d = good_a;
+		if(e.value == "product") {
+			d = good_a;
+		}else if(e.value == "") {
+			d = good_b;
+		}
 
 
 		target.options.length = 0;
 
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			if(d[x] == "mugcup"){
+		for (const x of d) {
+			const  opt = document.createElement("option");
+			opt.value = x;
+			console.info("x  ",x);
+			if(x == ""){
+				opt.textContent = "선택없음";
+			}
+			else if(x == "mugcup"){
 				opt.innerHTML = "머그컵";
-			}else if(d[x] == "thermos"){
+			}else if(x == "thermos"){
 				opt.innerHTML = "보온병";
 			}
 
