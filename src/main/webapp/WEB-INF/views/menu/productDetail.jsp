@@ -82,7 +82,7 @@
 	</main>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
  	<script src="/js/menu/crud2.js"></script>
-  	<script src="/js/menu/share.js"></script>
+  	<script src="/js/share.js"></script>
   	<script src="/js/menu/menuDetail.js"></script>
 </body>
 </html>	
