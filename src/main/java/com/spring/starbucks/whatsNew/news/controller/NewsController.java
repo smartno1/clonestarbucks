@@ -100,7 +100,7 @@ public class NewsController {
         News n = newsService.findOne(edit.getNewsId());
         if(n.getAttach() != null) {
             String[] list = n.getAttach().split(",");
-            log.info("list - {}", list);
+//            log.info("list - {}", list);
             for (String p : list) {
                 log.info("p - {}", p);
                 if (!edit.getAttach().contains(p)) {
