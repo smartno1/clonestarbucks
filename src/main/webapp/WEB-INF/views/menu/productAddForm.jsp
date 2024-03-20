@@ -35,13 +35,13 @@
                             <h3>영어이름</h3><input type="text" name="nameEn" />
                         </div>
                         <div class="name-right" >
-                            <p>음료 카테고리</p>
+                            <p>상품 카테고리</p>
                             <select class="form-select type" aria-label="Default select example" name="kind"  onchange="categoryChange(this)">
                                 <option value="">선택안함</option>
                                 <option value="product">상품</option>
 
                             </select>
-                            <p>음료 종류</p>
+                            <p>상품 종류</p>
                             <select class="form-select type"aria-label="Default select example" name="type" id="good">
 <%--                                class="form-select type"--%>
 <%--                                <option value="">선택안함</option>--%>
@@ -107,7 +107,7 @@
 
             <div class="context-bottom" >
                 <a href="javascript:void(0)"><button id="addData1" class="btn btn-primary submit" type="button">추가</button></a></a>
-                <a href="/menu/food"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+                <a href="/menu/productList"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
             </div>
 
         </div>
@@ -124,7 +124,7 @@
 
         var target = document.getElementById("good");
 
-        if(e.value == "sangpum") var d = good_a;
+        if(e.value == "product") var d = good_a;
         else if(e.value == "") var d = good_b;
 
 

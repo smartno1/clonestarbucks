@@ -104,7 +104,7 @@
 
             <div class="context-bottom" >
                 <a href="javascript:void(0)"><button id="addData1" class="btn btn-primary submit" type="button">추가</button></a></a>
-                <a href="/menu/food"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
+                <a href="/menu/foodList"><button id="cancel" class="btn btn-primary submit" type="button">취소</button></a>
             </div>
 
         </div>
