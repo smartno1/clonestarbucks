@@ -28,7 +28,7 @@
 .bottom .container .product-ul .product-li > a{
     float: left;
     width: 44.5%;
-    padding-bottom: 7px;
+    margin-bottom: 7px;
     box-sizing: border-box;
     overflow: hidden;
 }

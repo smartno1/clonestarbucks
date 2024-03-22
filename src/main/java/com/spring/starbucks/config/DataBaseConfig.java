@@ -32,8 +32,8 @@ public class DataBaseConfig {
 
         HikariConfig config = new HikariConfig();
         config.setUsername("root");
-        config.setPassword("1234");
-        config.setJdbcUrl("jdbc:mysql://192.168.0.16:3306/starbucks");
+        config.setPassword("mariadb");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/starbucks");
         config.setDriverClassName("org.mariadb.jdbc.Driver");
 
         return new HikariDataSource(config);

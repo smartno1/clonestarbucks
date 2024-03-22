@@ -149,6 +149,7 @@ label{
     height: inherit;
     max-height: 245px;
     vertical-align: baseline;
+    display: block;
     overflow: hidden;
     margin-bottom: 15px;
 }

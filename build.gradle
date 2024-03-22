@@ -69,3 +69,6 @@ tasks.named('test') {
 	exclude '**/*' // test skip 설정.
 }
 
+tasks.withType(JavaCompile){
+	options.encoding = "UTF-8"
+}
